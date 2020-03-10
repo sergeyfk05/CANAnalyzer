@@ -19,9 +19,16 @@ namespace CANAnalyzer
         {
             base.OnStartup(e);
 
-            //реализовать выбор культуры из сохранений
-            Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider("Themes.xml", "dark");
-            Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider("Languages.xml", "EN");
+            Settings.ImportFromJson("1.json");
+
+            //Settings.Instance.SettingsPath = "1.json";
+
+            //Settings.SaveToJson(Settings.Instance.SettingsPath);
+
+            Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, "dark");
+            Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, "EN");
+
+            
         }
     }
 }
