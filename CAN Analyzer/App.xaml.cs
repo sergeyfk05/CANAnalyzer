@@ -19,16 +19,22 @@ namespace CANAnalyzer
         {
             base.OnStartup(e);
 
-            Settings.ImportFromJson("1.json");
+            Settings.ImportFromJson(Settings.Instance.SettingsPath);
+            
 
-            //Settings.Instance.SettingsPath = "1.json";
+            Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);
+            Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
 
-            //Settings.SaveToJson(Settings.Instance.SettingsPath);
 
-            Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, "dark");
-            Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, "EN");
 
             
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            Settings.SaveToJson(Settings.Instance.SettingsPath);
         }
     }
 }
