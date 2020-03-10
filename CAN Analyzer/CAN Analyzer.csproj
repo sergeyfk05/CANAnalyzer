@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D4255161-5CD9-4FF5-AAF7-101B50A99022}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CAN_Analyzer</RootNamespace>
+    <RootNamespace>CANAnalyzer</RootNamespace>
     <AssemblyName>CAN Analyzer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -55,8 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Resources\DynamicResources\Extensions\ThemesExtension.cs" />
+    <Compile Include="Resources\DynamicResources\CultureInfos\LanguageCultureInfo.cs" />
+    <Compile Include="Resources\DynamicResources\Extensions\LanguageExtension.cs" />
+    <Compile Include="Resources\DynamicResources\Extensions\ThemeExtension.cs" />
     <Compile Include="Resources\DynamicResources\CultureInfos\ThemeCultureInfo.cs" />
+    <Compile Include="Resources\DynamicResources\Providers\XMLLanguageChangerProvider.cs" />
     <Compile Include="Resources\DynamicResources\Providers\XMLThemeChangerProvider.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +109,16 @@
       <Project>{eb2b307d-68eb-4e4a-8999-90db4db48342}</Project>
       <Name>HamburgerMenu</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DynamicResources\Themes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DynamicResources\Languages.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

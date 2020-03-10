@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Themes>
+  <Cultures>
+    <Culture>ru</Culture>
+    <Culture>en</Culture>
+  </Cultures>
+
+  <Recordings>
+    <Record name="s">
+      <ru>RU</ru>
+      <en>EN</en>
+    </Record>
+    <Record name="ss">
+      <ru>dark ru</ru>
+      <en>white en</en>
+    </Record>
+  </Recordings>
+</Themes>

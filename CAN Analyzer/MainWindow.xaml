@@ -1,12 +1,16 @@
-﻿<Window x:Class="CAN_Analyzer.MainWindow"
+﻿<Window x:Class="CANAnalyzer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CAN_Analyzer"
+        xmlns:local="clr-namespace:CANAnalyzer"
+        xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock Text="{resources:Theme s}"/>
+        <TextBlock Margin="50" Text="{resources:Theme ss}"/>
+        <TextBlock Margin="100" Text="{resources:Language s}"/>
+        <TextBlock Margin="150" Text="{resources:Language ss}"/>
     </Grid>
 </Window>

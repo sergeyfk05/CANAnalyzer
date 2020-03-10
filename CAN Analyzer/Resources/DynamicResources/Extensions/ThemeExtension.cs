@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Markup;
 using DynamicResource;
 
-namespace CAN_Analyzer.Resources.DynamicResources
+namespace CANAnalyzer.Resources.DynamicResources
 {
     [ContentProperty(nameof(ArgumentBindings))]
-    internal class ThemesExtension : BaseExtension<ThemeCultureInfo>
+    internal class ThemeExtension : BaseExtension<ThemeCultureInfo>
     {
-        public ThemesExtension() { }
-        public ThemesExtension(string key) : base(key) { }
+        public ThemeExtension() { }
+        public ThemeExtension(string key) : base(key) { }
     }
 }

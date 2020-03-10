@@ -8,24 +8,25 @@ using System.Xml.Linq;
 
 namespace CANAnalyzer.Resources.DynamicResources
 {
-    internal class XMLThemeChangerProvider : BaseProvider<ThemeCultureInfo>
+
+    internal class XMLLanguageChangerProvider : BaseProvider<LanguageCultureInfo>
     {
 
-        private XMLThemeChangerProvider(string file)
+        private XMLLanguageChangerProvider(string file)
         {
-            _themes = XDocument.Load(file).Element("Themes").Element("Recordings");
-            var cultures = new List<ThemeCultureInfo>();
+            _languages = XDocument.Load(file).Element("Themes").Element("Recordings");
+            var cultures = new List<LanguageCultureInfo>();
 
-            foreach(var el in XDocument.Load(file).Element("Themes").Element("Cultures").Elements("Culture"))
+            foreach (var el in XDocument.Load(file).Element("Themes").Element("Cultures").Elements("Culture"))
             {
-                cultures.Add(new ThemeCultureInfo(el.Value));
+                cultures.Add(new LanguageCultureInfo(el.Value));
             }
 
             _cultures = cultures;
 
         }
-        
-        public XMLThemeChangerProvider(string file, ThemeCultureInfo culture) : this(file)
+
+        public XMLLanguageChangerProvider(string file, LanguageCultureInfo culture) : this(file)
         {
             //если ничего не передано
             if (culture == null)
@@ -40,17 +41,17 @@ namespace CANAnalyzer.Resources.DynamicResources
                 CurrentCulture = culture;
         }
 
-        public XMLThemeChangerProvider(string file, string theme) : this(file)
+        public XMLLanguageChangerProvider(string file, string theme) : this(file)
         {
             Init(theme);
         }
 
-        private void Init(string theme)
+        private void Init(string language)
         {
-            theme = theme.ToLower();
+            language = language.ToLower();
 
             //ищем полное совпадение
-            ThemeCultureInfo selectedCulture = Cultures.FirstOrDefault(x => x.Name.ToLower() == theme);
+            LanguageCultureInfo selectedCulture = Cultures.FirstOrDefault(x => x.Name.ToLower() == language);
             if (selectedCulture != null)
             {
                 CurrentCulture = selectedCulture;
@@ -58,10 +59,10 @@ namespace CANAnalyzer.Resources.DynamicResources
             }
 
             //если не находим полное совпадение культуры, то ищем совпадение с более общей культурой
-            if (theme.IndexOf('-') != -1)
-                theme = theme.Remove(theme.IndexOf('-'));
+            if (language.IndexOf('-') != -1)
+                language = language.Remove(language.IndexOf('-'));
 
-            selectedCulture = Cultures.FirstOrDefault(x => x.Name.ToLower() == theme);
+            selectedCulture = Cultures.FirstOrDefault(x => x.Name.ToLower() == language);
             if (selectedCulture != null)
                 CurrentCulture = selectedCulture;
             else
@@ -69,15 +70,15 @@ namespace CANAnalyzer.Resources.DynamicResources
                 CurrentCulture = Cultures.First();
         }
 
-        private IEnumerable<ThemeCultureInfo> _cultures;
-        private XElement _themes;
+        private IEnumerable<LanguageCultureInfo> _cultures;
+        private XElement _languages;
 
         public override object GetResource(string key)
         {
-            IEnumerable<XElement> record = _themes.Elements("Record").Where(x => x.Attributes("name").ElementAt(0).Value == key);
+            IEnumerable<XElement> record = _languages.Elements("Record").Where(x => x.Attributes("name").ElementAt(0).Value == key);
             return record.Count() > 0 ? record.ElementAt(0).Element(CurrentCulture.Name)?.Value ?? "not declared culture" : "null";
         }
 
-        public override IEnumerable<ThemeCultureInfo> Cultures => _cultures;
+        public override IEnumerable<LanguageCultureInfo> Cultures => _cultures;
     }
 }

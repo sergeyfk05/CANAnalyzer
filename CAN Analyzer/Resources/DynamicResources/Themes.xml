@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Themes>
+  <Cultures>
+    <Culture>dark</Culture>
+    <Culture>white</Culture>
+  </Cultures>
+
+  <Recordings>
+    <Record name="s">
+      <dark>Red</dark>
+      <white>Black</white>
+    </Record>
+    <Record name="ss">
+      <dark>dark ss</dark>
+      <white>white ss</white>
+    </Record>
+  </Recordings>
+</Themes>
