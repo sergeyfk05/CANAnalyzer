@@ -16,9 +16,8 @@ namespace CANAnalyzer.VM
     public class MainWindowsVM : BaseVM
     {
         public MainWindowsVM()
-        { 
-
-
+        {
+            BottomItemSource.Add(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text="asda", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") });
         }
 
         public List<NavMenuItemData> TopItemSource
@@ -69,6 +68,23 @@ namespace CANAnalyzer.VM
             }
         }
         private bool _menuIsCollapsed = true;
+
+
+        private ICommand _navMenuClicked;
+        public ICommand NavMenuClicked
+        {
+            get
+            {
+                if (_navMenuClicked == null)
+                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
+
+                return _navMenuClicked;
+            }
+        }
+
+        private void NavMenuClicked_Execute(NavMenuItemData arg)
+        {
+        }
 
 
         private ICommand _clickContent;

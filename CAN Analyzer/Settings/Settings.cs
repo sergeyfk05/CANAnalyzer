@@ -15,8 +15,8 @@ namespace CANAnalyzer
         }
 
 
-        public string LanguagesXmlPath { get; set; } = "Languages.xml";
-        public string ThemesXmlPath { get; set; } = "Themes.xml";
+        public string LanguagesXmlPath { get; set; } = @"Resources\DynamicResources\Languages.xml";
+        public string ThemesXmlPath { get; set; } = @"Resources\DynamicResources\Themes.xml";
         public string SettingsPath { get; set; } = "Settings.xml";
         public string ThemeCulture { get; set; } = "dark";
         public string LanguageCulture { get; set; } = "EN";

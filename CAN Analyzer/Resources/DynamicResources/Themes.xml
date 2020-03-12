@@ -23,5 +23,9 @@
       <dark>1.png</dark>
       <white>1.png</white>
     </Record>
+    <Record name="CollapsedMenuWidth">
+      <dark>50</dark>
+      <white>50</white>
+    </Record>
   </Recordings>
 </Themes>

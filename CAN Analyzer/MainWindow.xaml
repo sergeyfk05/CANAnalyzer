@@ -16,10 +16,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="{resources:Theme CollapsedMenuWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <menu:HamburgerMenu BottomNavMenuItemSource="{Binding BottomItemSource}" IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" Panel.ZIndex="500" Background="Aqua" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+        <menu:HamburgerMenu BottomNavMenuItemSource="{Binding BottomItemSource}" IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" TopNavMenuItemSource="{Binding TopItemSource}" 
+                            CollapsedWidth="{resources:Theme CollapsedMenuWidth}" Background="Aqua"
+                            Panel.ZIndex="500" HorizontalAlignment="Left" Grid.ColumnSpan="2" x:Name="menu">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Clicked">
+                    <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </menu:HamburgerMenu>
+        
+        
         <Frame Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
