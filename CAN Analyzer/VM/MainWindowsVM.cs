@@ -10,6 +10,8 @@ using System.Windows.Input;
 using DynamicResource;
 using CANAnalyzer.Resources.DynamicResources;
 using System.Windows.Media;
+using System.Windows.Controls;
+using CANAnalyzer.Pages;
 
 namespace CANAnalyzer.VM
 {
@@ -17,8 +19,17 @@ namespace CANAnalyzer.VM
     {
         public MainWindowsVM()
         {
-            BottomItemSource.Add(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text="asda", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") });
+            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "app", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new AppSettingsPage()));
+            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "device", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new DeviceSettingsPage()));
+
+            foreach(var el in PagesData)
+            {
+                BottomItemSource.Add(el.NavData);
+            }
         }
+
+        private List<ContentPageData> PagesData = new List<ContentPageData>();
+
 
         public List<NavMenuItemData> TopItemSource
         {
@@ -55,6 +66,7 @@ namespace CANAnalyzer.VM
         }
         private List<NavMenuItemData> _bottomItemSource;
 
+
         public bool MenuIsCollapsed
         {
             get { return _menuIsCollapsed; }
@@ -70,6 +82,20 @@ namespace CANAnalyzer.VM
         private bool _menuIsCollapsed = true;
 
 
+        public UserControl MainContent
+        {
+            get { return _mainContent; }
+            set
+            {
+                if (value == _mainContent)
+                    return;
+
+                _mainContent = value;
+                OnPropertyChanged();
+            }
+        }
+        private UserControl _mainContent;
+
         private ICommand _navMenuClicked;
         public ICommand NavMenuClicked
         {
@@ -81,9 +107,13 @@ namespace CANAnalyzer.VM
                 return _navMenuClicked;
             }
         }
-
         private void NavMenuClicked_Execute(NavMenuItemData arg)
         {
+            ContentPageData pageData = PagesData.FirstOrDefault(x => x.NavData == arg);
+            if (pageData.Page == null)
+                return;
+
+            MainContent = pageData.Page;
         }
 
 

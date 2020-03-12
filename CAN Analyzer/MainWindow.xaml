@@ -28,15 +28,15 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </menu:HamburgerMenu>
-        
-        
-        <Frame Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black">
+
+
+        <ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
                     <i:InvokeCommandAction Command="{Binding ClickContent}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </Frame>
+        </ContentControl>
     </Grid>  
 
 </Window>

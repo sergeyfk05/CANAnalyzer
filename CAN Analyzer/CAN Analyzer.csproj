@@ -87,6 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ContentPageData.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
@@ -179,5 +180,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

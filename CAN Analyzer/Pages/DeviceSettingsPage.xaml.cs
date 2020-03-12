@@ -18,7 +18,7 @@ namespace CANAnalyzer.Pages
     /// <summary>
     /// Interaction logic for DeviceSettingsPage.xaml
     /// </summary>
-    public partial class DeviceSettingsPage : Page
+    public partial class DeviceSettingsPage : UserControl
     {
         public DeviceSettingsPage()
         {

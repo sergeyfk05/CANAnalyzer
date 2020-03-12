@@ -18,7 +18,7 @@ namespace CANAnalyzer.Pages
     /// <summary>
     /// Interaction logic for AppSettingsPage.xaml
     /// </summary>
-    public partial class AppSettingsPage : Page
+    public partial class AppSettingsPage : UserControl
     {
         public AppSettingsPage()
         {
