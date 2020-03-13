@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:models="clr-namespace:CANAnalyzer.Models"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
@@ -59,7 +60,7 @@
             <Setter Property="Control.Height" Value="15"/>
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -96,30 +97,44 @@
             </Button>
 
 
-            <ComboBox x:Name="box" DockPanel.Dock="Right" Height="30" Width="150">
+            <ComboBox x:Name="box" DockPanel.Dock="Right" Height="30" Width="150" ItemsSource="{Binding TransmitToItems}" Background="OrangeRed">
                 <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="False"/>
-                            <TextBlock Text=""/>
-                        </StackPanel>
+                    <DataTemplate DataType="{x:Type models:TransmitToViewData}">
+                        <Grid Height="23">
+                            <TextBlock Text="{resources:Language TransmitToControlPreviewText}" VerticalAlignment="Center" FontSize="{resources:Theme TransmitToControlFontSize}" 
+                                       FontFamily="{resources:Theme TransmitToControlFontFamily}" FontWeight="{resources:Theme TransmitToControlFontWeight}"/>
+                        </Grid>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
-                <ComboBoxItem Visibility="Hidden">
-                    <TextBlock Text="Transmit to:"/>
-                </ComboBoxItem>
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Background="Red">
+                                        <CheckBox IsChecked="{Binding IsTransmit}"/>
+                                        <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
 
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" CommandParameter="{Binding ElementName=box}"/>
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" CommandParameter="{Binding ElementName=box}"/>
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
 
         </DockPanel>
-        
-        
+
+
         <DataGrid Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </UserControl>

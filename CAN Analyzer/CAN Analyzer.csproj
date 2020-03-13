@@ -93,6 +93,7 @@
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandWithParameter.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
+    <Compile Include="Models\TransmitToViewData.cs" />
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -177,11 +178,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\DynamicResources\Themes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DynamicResources\Languages.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,26 @@ namespace CANAnalyzer.VM
 {
     public class TransmitPageVM : BaseVM
     {
+        public TransmitPageVM()
+        {
+            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "ss" });
+            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "s" });
+            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
+        }
+
+        public List<TransmitToViewData> TransmitToItems
+        {
+            get { return _transmitToItems ?? (_transmitToItems = new List<TransmitToViewData>()); }
+            set
+            {
+                if (_transmitToItems == value)
+                    return;
+
+                _transmitToItems = value;
+                OnPropertyChanged();
+            }
+        }
+        private List<TransmitToViewData> _transmitToItems;
 
         private ICommand _transmitToComboBoxSelected;
         public ICommand TransmitToComboBoxSelected
