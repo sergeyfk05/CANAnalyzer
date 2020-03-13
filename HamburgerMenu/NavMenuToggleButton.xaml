@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="HamburgerMenu.NavMenuToggleButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HamburgerMenu"
+             xmlns:presentation="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <presentation:KeyTime x:Key="AnimationStartTime">0</presentation:KeyTime>
+            <presentation:KeyTime x:Key="AnimationEndTime">0:0:0.35</presentation:KeyTime>
+
+            <Style x:Key="HamburgerMenu_ButtonRectangleStyle" TargetType="Rectangle">
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="Height" Value="5"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+
+            <Storyboard x:Key="HamburgerMenuRectangles_OpenMenu">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="HamburgerMenu_rectangle">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="43.5"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="HamburgerMenu_rectangle1">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="-43.5"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HamburgerMenu_rectangle2">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="1"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="HamburgerMenuRectangles_CloseMenu">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="HamburgerMenu_rectangle">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="43.5"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="HamburgerMenu_rectangle1">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="-43.5"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HamburgerMenu_rectangle2">
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationStartTime}" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="{StaticResource AnimationEndTime}" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="local:NavMenuToggleButton">
+            <Grid Background="{TemplateBinding Background}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Rectangle x:Name="HamburgerMenu_rectangle" Fill="{TemplateBinding Color}" Style="{StaticResource HamburgerMenu_ButtonRectangleStyle}" Margin="0 0 0 0" RenderTransformOrigin="-0,0.5">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="HamburgerMenu_rectangle1" Fill="{TemplateBinding Color}" Style="{StaticResource HamburgerMenu_ButtonRectangleStyle}" Margin="0 20 0 0 " RenderTransformOrigin="-0,0.5">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="HamburgerMenu_rectangle2" Fill="{TemplateBinding Color}" Style="{StaticResource HamburgerMenu_ButtonRectangleStyle}" Margin="0 10 0 0" VerticalAlignment="Top"/>
+            </Grid>
+
+            <ControlTemplate.Triggers>
+                <EventTrigger RoutedEvent="local:NavMenuToggleButton.Paralleled">
+                    <BeginStoryboard Storyboard="{StaticResource HamburgerMenuRectangles_CloseMenu}"/>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="local:NavMenuToggleButton.Crossed">
+                    <BeginStoryboard Storyboard="{StaticResource HamburgerMenuRectangles_OpenMenu}"/>
+                </EventTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>

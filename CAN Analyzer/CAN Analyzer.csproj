@@ -166,16 +166,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DynamicResource\DynamicResource\DynamicResource.csproj">
-      <Project>{92e9dc45-b6ad-4bb9-aad9-c7a88da4a279}</Project>
-      <Name>DynamicResource</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HamburgerMenu\HamburgerMenu.csproj">
-      <Project>{eb2b307d-68eb-4e4a-8999-90db4db48342}</Project>
-      <Name>HamburgerMenu</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\DynamicResources\Themes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -192,6 +182,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CANAnalyzerDevices\CANAnalyzerDevices.csproj">
+      <Project>{bdf1d1fd-8609-4acc-832b-50d1df71617a}</Project>
+      <Name>CANAnalyzerDevices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicResource\DynamicResource.csproj">
+      <Project>{92e9dc45-b6ad-4bb9-aad9-c7a88da4a279}</Project>
+      <Name>DynamicResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HamburgerMenu\HamburgerMenu.csproj">
+      <Project>{eb2b307d-68eb-4e4a-8999-90db4db48342}</Project>
+      <Name>HamburgerMenu</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
