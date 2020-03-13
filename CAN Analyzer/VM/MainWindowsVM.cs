@@ -19,7 +19,7 @@ namespace CANAnalyzer.VM
     {
         public MainWindowsVM()
         {
-            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "app", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new AppSettingsPage()));
+            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "app", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new TransmitPage()));
             PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "device", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new DeviceSettingsPage()));
 
             foreach(var el in PagesData)

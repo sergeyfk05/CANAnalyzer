@@ -15,6 +15,7 @@
       <en>white en</en>
     </Record>
 
+    <!--NavMenu-->
     <Record name="appSettingsMenu">
       <ru>Настройки</ru>
       <en>Settings</en>
@@ -22,6 +23,21 @@
     <Record name="deviceSettingsMenu">
       <ru>Настройки устройства</ru>
       <en>Device settings</en>
+    </Record>
+
+
+    <!--TransmitPage-->
+    <Record name="TransmitPageOpenButtonToolTip">
+      <ru>Открыть файл</ru>
+      <en>Open file</en>
+    </Record>
+    <Record name="TransmitPageSaveButtonToolTip">
+      <ru>Сохранить в файл</ru>
+      <en>Save in file</en>
+    </Record>
+    <Record name="TransmitPageClearButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Clear all</en>
     </Record>
   </Recordings>
 </Themes>

@@ -16,16 +16,68 @@
     </Record>
 
     <Record name="appSettingsIcon">
-      <dark>1.png</dark>
-      <white>1.png</white>
+      <dark>Resources\Icons\1.png</dark>
+      <white>Resources\Icons\1.png</white>
     </Record>
     <Record name="deviceSettingsIcon">
-      <dark>1.png</dark>
-      <white>1.png</white>
+      <dark>Resources\Icons\1.png</dark>
+      <white>Resources\Icons\1.png</white>
     </Record>
     <Record name="CollapsedMenuWidth">
       <dark>50</dark>
       <white>50</white>
+    </Record>
+
+
+
+    <!--TransmitPage-->
+    <!--TopButtons-->
+    <Record name="TransmitPageTopButtonBackgroundStartBrush">
+      <dark>Black</dark>
+      <white>Black</white>
+    </Record>
+    <Record name="TransmitPageTopButtonBackgroundStopBrush">
+      <dark>White</dark>
+      <white>White</white>
+    </Record>
+    <Record name="TransmitPageTopButtonMouseEnterBackgroundStartBrush">
+      <dark>Red</dark>
+      <white>Red</white>
+    </Record>
+    <Record name="TransmitPageTopButtonMouseEnterBackgroundStopBrush">
+      <dark>Blue</dark>
+      <white>Blue</white>
+    </Record>
+    <Record name="TransmitPageTopButtonBorderThickness">
+      <dark>2</dark>
+      <white>2</white>
+    </Record>
+    <Record name="TransmitPageTopButtonCornerRaduis">
+      <dark>2</dark>
+      <white>2</white>
+    </Record>
+    <Record name="TransmitPageTopButtonBorderStartBrush">
+      <dark>Blue</dark>
+      <white>Blue</white>
+    </Record>
+    <Record name="TransmitPageTopButtonBorderStopBrush">
+      <dark>Red</dark>
+      <white>Red</white>
+    </Record>
+
+
+
+    <Record name="TransmitPageOpenButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageSaveButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageClearButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>
   </Recordings>
 </Themes>

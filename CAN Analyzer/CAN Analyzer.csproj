@@ -98,6 +98,9 @@
     <Compile Include="Pages\DeviceSettingsPage.xaml.cs">
       <DependentUpon>DeviceSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TransmitPage.xaml.cs">
+      <DependentUpon>TransmitPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DynamicResources\CultureInfos\LanguageCultureInfo.cs" />
     <Compile Include="Resources\DynamicResources\Extensions\LanguageExtension.cs" />
     <Compile Include="Resources\DynamicResources\Extensions\ThemeExtension.cs" />
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DeviceSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TransmitPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,9 +183,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Icons\1.png">
+    <Content Include="Resources\Icons\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
