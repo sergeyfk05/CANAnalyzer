@@ -82,6 +82,22 @@
     
     
     <!--TransmitTo control-->
+    <Record name="TransmitToControlToggleButtonFontSize">
+      <dark>13</dark>
+      <white>13</white>
+    </Record>
+    <Record name="TransmitToControlToggleButtonFontFamily">
+      <dark>Arial</dark>
+      <white>Arial</white>
+    </Record>
+    <Record name="TransmitToControlToggleButtonFontWeight">
+      <dark>Bold</dark>
+      <white>Bold</white>
+    </Record>
+    <Record name="TransmitToControlToggleButtonFontColor">
+      <dark>Black</dark>
+      <white>Black</white>
+    </Record>
     <Record name="TransmitToControlFontSize">
       <dark>13</dark>
       <white>13</white>
@@ -94,10 +110,27 @@
       <dark>Bold</dark>
       <white>Bold</white>
     </Record>
-    <Record name="TransmitToControl">
+    <Record name="TransmitToControlFontColor">
+      <dark>Black</dark>
+      <white>Black</white>
+    </Record>
+    <Record name="TransmitToControlItemBackgroundBrushStart">
+      <dark>Blue</dark>
+      <white>Blue</white>
+    </Record>
+    <Record name="TransmitToControlItemBackgroundBrushStop">
       <dark>Red</dark>
       <white>Red</white>
     </Record>
+    <Record name="TransmitToControlBorderBrushStart">
+      <dark>Red</dark>
+      <white>Red</white>
+    </Record>
+    <Record name="TransmitToControlBorderBrushStop">
+      <dark>Blue</dark>
+      <white>Blue</white>
+    </Record>
+
     <Record name="TransmitToControl">
       <dark>Red</dark>
       <white>Red</white>

@@ -55,6 +55,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style x:Key="TransmitPageTopButtonImageStyle">
             <Setter Property="Control.Width" Value="15"/>
             <Setter Property="Control.Height" Value="15"/>
@@ -71,25 +72,39 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Button x:Name="openButton" DockPanel.Dock="Left" Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
+        <DockPanel Grid.Row="0" 
+                   Grid.Column="0"  
+                   Margin="10" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Stretch">
+            
+            <Button x:Name="openButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource TransmitPageTopButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
                 <Button.ToolTip>
                     <ToolTip Content="{resources:Language TransmitPageOpenButtonToolTip}"/>
                 </Button.ToolTip>
             </Button>
 
-            <Button x:Name="saveButton" DockPanel.Dock="Left" Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
+            <Button x:Name="saveButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource TransmitPageTopButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
                 <Button.ToolTip>
                     <ToolTip Content="{resources:Language TransmitPageSaveButtonToolTip}"/>
                 </Button.ToolTip>
             </Button>
 
-            <Button x:Name="clearButton" DockPanel.Dock="Left" Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" Source="{resources:Theme TransmitPageClearButtonIcon}"/>
+            <Button x:Name="clearButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource TransmitPageTopButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageClearButtonIcon}"/>
 
                 <Button.ToolTip>
                     <ToolTip Content="{resources:Language TransmitPageClearButtonToolTip}"/>
@@ -97,24 +112,61 @@
             </Button>
 
 
-            <ComboBox x:Name="box" DockPanel.Dock="Right" Height="30" Width="150" ItemsSource="{Binding TransmitToItems}" Background="OrangeRed">
+            <ComboBox x:Name="box" 
+                      DockPanel.Dock="Right"
+                      Height="30" 
+                      Width="150" 
+                      ItemsSource="{Binding TransmitToItems}">
+                
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:TransmitToViewData}">
                         <Grid Height="23">
-                            <TextBlock Text="{resources:Language TransmitToControlPreviewText}" VerticalAlignment="Center" FontSize="{resources:Theme TransmitToControlFontSize}" 
-                                       FontFamily="{resources:Theme TransmitToControlFontFamily}" FontWeight="{resources:Theme TransmitToControlFontWeight}"/>
+                            <TextBlock Text="{resources:Language TransmitToControlPreviewText}" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="{resources:Theme TransmitToControlToggleButtonFontSize}" 
+                                       FontFamily="{resources:Theme TransmitToControlToggleButtonFontFamily}" 
+                                       FontWeight="{resources:Theme TransmitToControlToggleButtonFontWeight}"
+                                       Foreground="{resources:Theme TransmitToControlToggleButtonFontColor}"/>
                         </Grid>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
+                
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Background="Red">
-                                        <CheckBox IsChecked="{Binding IsTransmit}"/>
-                                        <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"/>
-                                    </StackPanel>
+                                    <Border BorderThickness="1"
+                                                HorizontalAlignment="Stretch">
+                                            <Border.BorderBrush>
+                                                <LinearGradientBrush>
+                                                    <GradientStop Offset="0" Color="{resources:Theme TransmitToControlBorderBrushStart}"/>
+                                                    <GradientStop Offset="1" Color="{resources:Theme TransmitToControlBorderBrushStop}"/>
+                                                </LinearGradientBrush>
+                                            </Border.BorderBrush>
+
+                                        <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="Stretch"                                                
+                                                Height="30">
+                                            <StackPanel.Background>
+                                                <LinearGradientBrush>
+                                                    <GradientStop Offset="0" Color="{resources:Theme TransmitToControlItemBackgroundBrushStart}"/>
+                                                    <GradientStop Offset="1" Color="{resources:Theme TransmitToControlItemBackgroundBrushStop}"/>
+                                                </LinearGradientBrush>
+                                            </StackPanel.Background>
+                                            
+                                            <CheckBox IsChecked="{Binding IsTransmit}"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10 0 10 0"/>
+                                            <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"
+                                                   FontSize="{resources:Theme TransmitToControlFontSize}" 
+                                                   FontFamily="{resources:Theme TransmitToControlFontFamily}" 
+                                                   FontWeight="{resources:Theme TransmitToControlFontWeight}"
+                                                   Foreground="{resources:Theme TransmitToControlFontColor}"
+                                                   VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -124,10 +176,12 @@
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" CommandParameter="{Binding ElementName=box}"/>
+                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
+                                               CommandParameter="{Binding ElementName=box}"/>
                     </i:EventTrigger>
                     <i:EventTrigger EventName="Loaded">
-                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" CommandParameter="{Binding ElementName=box}"/>
+                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
+                                               CommandParameter="{Binding ElementName=box}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
@@ -135,6 +189,10 @@
         </DockPanel>
 
 
-        <DataGrid Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <DataGrid 
+            Grid.Column="0" 
+            Grid.Row="1" 
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch"/>
     </Grid>
 </UserControl>
