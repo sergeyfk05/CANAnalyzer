@@ -14,21 +14,21 @@
         <vm:TransmitPageVM/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Style x:Key="TransmitPageTopButtonStyle">
+        <Style x:Key="TransmitPageIconButtonStyle">
             <Setter Property="Control.Background">
                 <Setter.Value>
                     <LinearGradientBrush>
-                        <GradientStop Color="{resources:Theme TransmitPageTopButtonBackgroundStartBrush}" Offset="0"/>
-                        <GradientStop Color="{resources:Theme TransmitPageTopButtonBackgroundStopBrush}" Offset="1"/>
+                        <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStartBrush}" Offset="0"/>
+                        <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStopBrush}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Control.BorderThickness" Value="{resources:Theme TransmitPageTopButtonBorderThickness}"/>
+            <Setter Property="Control.BorderThickness" Value="{resources:Theme TransmitPageIconButtonBorderThickness}"/>
             <Setter Property="Control.BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush>
-                        <GradientStop Color="{resources:Theme TransmitPageTopButtonBorderStartBrush}" Offset="0"/>
-                        <GradientStop Color="{resources:Theme TransmitPageTopButtonBorderStopBrush}" Offset="1"/>
+                        <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStartBrush}" Offset="0"/>
+                        <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStopBrush}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -36,7 +36,7 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="{resources:Theme TransmitPageTopButtonCornerRaduis}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border CornerRadius="{resources:Theme TransmitPageIconButtonCornerRaduis}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -47,8 +47,8 @@
                     <Setter Property="Control.Background">
                         <Setter.Value>
                             <LinearGradientBrush>
-                                <GradientStop Color="{resources:Theme TransmitPageTopButtonMouseEnterBackgroundStartBrush}" Offset="0"/>
-                                <GradientStop Color="{resources:Theme TransmitPageTopButtonMouseEnterBackgroundStopBrush}" Offset="1"/>
+                                <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStartBrush}" Offset="0"/>
+                                <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStopBrush}" Offset="1"/>
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
@@ -56,13 +56,13 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="TransmitPageTopButtonImageStyle">
+        <Style x:Key="TransmitPageIconButtonImageStyle">
             <Setter Property="Control.Width" Value="15"/>
             <Setter Property="Control.Height" Value="15"/>
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -74,14 +74,14 @@
 
         <DockPanel Grid.Row="0" 
                    Grid.Column="0"  
-                   Margin="10" 
-                   VerticalAlignment="Stretch" 
+                   Height="30"
+                   VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
             
             <Button x:Name="openButton" 
                     DockPanel.Dock="Left" 
-                    Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                    Style="{DynamicResource TransmitPageIconButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageIconButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
                 <Button.ToolTip>
@@ -91,8 +91,8 @@
 
             <Button x:Name="saveButton" 
                     DockPanel.Dock="Left" 
-                    Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                    Style="{DynamicResource TransmitPageIconButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageIconButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
                 <Button.ToolTip>
@@ -102,8 +102,8 @@
 
             <Button x:Name="clearButton" 
                     DockPanel.Dock="Left" 
-                    Style="{DynamicResource TransmitPageTopButtonStyle}">
-                <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" 
+                    Style="{DynamicResource TransmitPageIconButtonStyle}">
+                <Image Style="{DynamicResource TransmitPageIconButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageClearButtonIcon}"/>
 
                 <Button.ToolTip>

@@ -31,36 +31,36 @@
 
 
     <!--TransmitPage-->
-    <!--TopButtons-->
-    <Record name="TransmitPageTopButtonBackgroundStartBrush">
+    <!--IconButtons-->
+    <Record name="TransmitPageIconButtonBackgroundStartBrush">
       <dark>Black</dark>
       <white>Black</white>
     </Record>
-    <Record name="TransmitPageTopButtonBackgroundStopBrush">
+    <Record name="TransmitPageIconButtonBackgroundStopBrush">
       <dark>White</dark>
       <white>White</white>
     </Record>
-    <Record name="TransmitPageTopButtonMouseEnterBackgroundStartBrush">
+    <Record name="TransmitPageIconButtonMouseEnterBackgroundStartBrush">
       <dark>Red</dark>
       <white>Red</white>
     </Record>
-    <Record name="TransmitPageTopButtonMouseEnterBackgroundStopBrush">
+    <Record name="TransmitPageIconButtonMouseEnterBackgroundStopBrush">
       <dark>Blue</dark>
       <white>Blue</white>
     </Record>
-    <Record name="TransmitPageTopButtonBorderThickness">
+    <Record name="TransmitPageIconButtonBorderThickness">
       <dark>2</dark>
       <white>2</white>
     </Record>
-    <Record name="TransmitPageTopButtonCornerRaduis">
+    <Record name="TransmitPageIconButtonCornerRaduis">
       <dark>2</dark>
       <white>2</white>
     </Record>
-    <Record name="TransmitPageTopButtonBorderStartBrush">
+    <Record name="TransmitPageIconButtonBorderStartBrush">
       <dark>Blue</dark>
       <white>Blue</white>
     </Record>
-    <Record name="TransmitPageTopButtonBorderStopBrush">
+    <Record name="TransmitPageIconButtonBorderStopBrush">
       <dark>Red</dark>
       <white>Red</white>
     </Record>
