@@ -14,5 +14,14 @@
       <ru>dark ru</ru>
       <en>white en</en>
     </Record>
+
+    <Record name="appSettingsMenu">
+      <ru>Настройки</ru>
+      <en>Settings</en>
+    </Record>
+    <Record name="deviceSettingsMenu">
+      <ru>Настройки устройства</ru>
+      <en>Device settings</en>
+    </Record>
   </Recordings>
 </Themes>

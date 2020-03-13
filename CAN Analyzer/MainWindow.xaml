@@ -3,14 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:local="clr-namespace:CANAnalyzer"
         xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+        xmlns:menu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        xmlns:vm="clr-namespace:CANAnalyzer.VM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowsVM/>
+    </Window.DataContext>
+
     <Grid>
-        <TextBlock Text="{resources:Theme s}"/>
-        <TextBlock Margin="50" Text="{resources:Theme ss}"/>
-        <TextBlock Margin="100" Text="{resources:Language s}"/>
-        <TextBlock Margin="150" Text="{resources:Language ss}"/>
-    </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{resources:Theme CollapsedMenuWidth}"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <menu:HamburgerMenu BottomNavMenuItemSource="{Binding BottomItemSource}" IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" TopNavMenuItemSource="{Binding TopItemSource}" 
+                            CollapsedWidth="{resources:Theme CollapsedMenuWidth}" Background="Aqua"
+                            Panel.ZIndex="500" HorizontalAlignment="Left" Grid.ColumnSpan="2" x:Name="menu">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Clicked">
+                    <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </menu:HamburgerMenu>
+
+
+        <ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{Binding ClickContent}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ContentControl>
+    </Grid>  
+
 </Window>

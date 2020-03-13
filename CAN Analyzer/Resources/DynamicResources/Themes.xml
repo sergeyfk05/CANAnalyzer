@@ -14,5 +14,18 @@
       <dark>dark ss</dark>
       <white>white ss</white>
     </Record>
+
+    <Record name="appSettingsIcon">
+      <dark>1.png</dark>
+      <white>1.png</white>
+    </Record>
+    <Record name="deviceSettingsIcon">
+      <dark>1.png</dark>
+      <white>1.png</white>
+    </Record>
+    <Record name="CollapsedMenuWidth">
+      <dark>50</dark>
+      <white>50</white>
+    </Record>
   </Recordings>
 </Themes>

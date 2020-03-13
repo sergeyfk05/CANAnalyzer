@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Text.Json, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Json.4.7.1\lib\net461\System.Text.Json.dll</HintPath>
@@ -64,6 +65,9 @@
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>.\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +87,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ContentPageData.cs" />
+    <Compile Include="Models\RelayCommands\BaseCommand.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommand.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
+    <Compile Include="Pages\AppSettingsPage.xaml.cs">
+      <DependentUpon>AppSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DeviceSettingsPage.xaml.cs">
+      <DependentUpon>DeviceSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DynamicResources\CultureInfos\LanguageCultureInfo.cs" />
     <Compile Include="Resources\DynamicResources\Extensions\LanguageExtension.cs" />
     <Compile Include="Resources\DynamicResources\Extensions\ThemeExtension.cs" />
@@ -90,6 +105,8 @@
     <Compile Include="Resources\DynamicResources\Providers\XMLLanguageChangerProvider.cs" />
     <Compile Include="Resources\DynamicResources\Providers\XMLThemeChangerProvider.cs" />
     <Compile Include="Settings\Settings.cs" />
+    <Compile Include="VM\BaseVM.cs" />
+    <Compile Include="VM\MainWindowsVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +119,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AppSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DeviceSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -141,14 +166,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DynamicResources\Themes.xml">
+    <EmbeddedResource Include="Resources\DynamicResources\Themes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DynamicResources\Languages.xml">
+    <EmbeddedResource Include="Resources\DynamicResources\Languages.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
