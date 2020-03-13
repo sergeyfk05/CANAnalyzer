@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:TransmitPageVM/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="TransmitPageTopButtonStyle">
             <Setter Property="Control.Background">
@@ -65,7 +70,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <DockPanel Grid.Row="0" Grid.Column="0"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Button x:Name="openButton" DockPanel.Dock="Left" Style="{DynamicResource TransmitPageTopButtonStyle}">
                 <Image Style="{DynamicResource TransmitPageTopButtonImageStyle}" Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
@@ -89,6 +94,29 @@
                     <ToolTip Content="{resources:Language TransmitPageClearButtonToolTip}"/>
                 </Button.ToolTip>
             </Button>
+
+
+            <ComboBox x:Name="box" DockPanel.Dock="Right" Height="30" Width="150">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="False"/>
+                            <TextBlock Text=""/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBoxItem Visibility="Hidden">
+                    <TextBlock Text="Transmit to:"/>
+                </ComboBoxItem>
+
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" CommandParameter="{Binding ElementName=box}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
         </DockPanel>
         
         

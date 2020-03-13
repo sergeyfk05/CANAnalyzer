@@ -91,6 +91,7 @@
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandWithParameter.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
@@ -110,6 +111,7 @@
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\BaseVM.cs" />
     <Compile Include="VM\MainWindowsVM.cs" />
+    <Compile Include="VM\TransmitPageVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
