@@ -20,7 +20,6 @@ namespace CANAnalyzer
             base.OnStartup(e);
 
             Settings.ImportFromJson(Settings.Instance.SettingsPath);
-            
 
             Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
@@ -34,7 +33,7 @@ namespace CANAnalyzer
         {
             base.OnExit(e);
 
-            Settings.SaveToJson(Settings.Instance.SettingsPath);
+            Settings.SaveToJsonAsync(Settings.Instance.SettingsPath);
         }
     }
 }

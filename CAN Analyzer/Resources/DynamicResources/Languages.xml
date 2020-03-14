@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Themes>
+<Languages>
   <Cultures>
     <Culture>ru</Culture>
     <Culture>en</Culture>
@@ -46,4 +46,4 @@
       <en>Transmit to:</en>
     </Record>
   </Recordings>
-</Themes>
+</Languages>
