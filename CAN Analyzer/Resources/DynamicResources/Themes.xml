@@ -23,10 +23,6 @@
       <dark>Resources\Icons\1.png</dark>
       <white>Resources\Icons\1.png</white>
     </Record>
-    <Record name="CollapsedMenuWidth">
-      <dark>50</dark>
-      <white>50</white>
-    </Record>
 
 
 

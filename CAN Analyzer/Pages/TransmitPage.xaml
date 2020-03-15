@@ -73,7 +73,7 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Row="0" 
-                   Grid.Column="0"  
+                   Grid.ColumnSpan="2"  
                    Height="30"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">

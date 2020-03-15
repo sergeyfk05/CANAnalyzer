@@ -19,9 +19,15 @@
             <ColumnDefinition Width="{resources:Theme CollapsedMenuWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <menu:HamburgerMenu BottomNavMenuItemSource="{Binding BottomItemSource}" IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" TopNavMenuItemSource="{Binding TopItemSource}" 
-                            CollapsedWidth="{resources:Theme CollapsedMenuWidth}" Background="Aqua"
-                            Panel.ZIndex="500" HorizontalAlignment="Left" Grid.ColumnSpan="2" x:Name="menu">
+        <menu:HamburgerMenu x:Name="menu"
+                            BottomNavMenuItemSource="{Binding BottomItemSource}" 
+                            IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" 
+                            TopNavMenuItemSource="{Binding TopItemSource}" 
+                            CollapsedWidth="45" 
+                            Background="Aqua"
+                            Panel.ZIndex="500" 
+                            HorizontalAlignment="Left" 
+                            Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Clicked">
                     <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
