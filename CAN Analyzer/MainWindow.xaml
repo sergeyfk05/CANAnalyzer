@@ -16,7 +16,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{resources:Theme CollapsedMenuWidth}"/>
+            <ColumnDefinition Width="{Binding ElementName=menu, Path=CollapsedWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <menu:HamburgerMenu x:Name="menu"
