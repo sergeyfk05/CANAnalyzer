@@ -24,52 +24,109 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Row="0" 
                    Grid.ColumnSpan="2"  
-                   Height="30"
+                   Height="36"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
-            
-            <Button x:Name="openButton" 
+
+
+            <Border Background="Aqua"
+                    DockPanel.Dock="Left"
+                    Height="36"
+                    CornerRadius="4"
+                    BorderThickness="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <DockPanel DockPanel.Dock="Left"
+                           Height="30"
+                           VerticalAlignment="Center">                     
+
+                    <Button x:Name="openButton" IsEnabled="False"
+                        Margin="2 0 0 0"
                     DockPanel.Dock="Left" 
                     Style="{DynamicResource ShortcutButtonStyle}">
-                <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
-                <Button.ToolTip>
-                    <ToolTip Content="{resources:Language TransmitPageOpenButtonToolTip}"/>
-                </Button.ToolTip>
-            </Button>
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageOpenButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
 
-            <Button x:Name="saveButton" 
+                    <Button x:Name="saveButton" 
                     DockPanel.Dock="Left" 
                     Style="{DynamicResource ShortcutButtonStyle}">
-                <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
-                <Button.ToolTip>
-                    <ToolTip Content="{resources:Language TransmitPageSaveButtonToolTip}"/>
-                </Button.ToolTip>
-            </Button>
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageSaveButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
 
-            <Button x:Name="clearButton" 
+                    <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+
+                    <Button x:Name="startButton" 
                     DockPanel.Dock="Left" 
                     Style="{DynamicResource ShortcutButtonStyle}">
-                <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStartButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageStartButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="pauseButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource ShortcutButtonStyle}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPagePauseButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="stopButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource ShortcutButtonStyle}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStopButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageStopButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="clearButton" 
+                        Margin="0 0 2 0"
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource ShortcutButtonStyle}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageClearButtonIcon}"/>
 
-                <Button.ToolTip>
-                    <ToolTip Content="{resources:Language TransmitPageClearButtonToolTip}"/>
-                </Button.ToolTip>
-            </Button>
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageClearButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                </DockPanel>
+                
+            </Border>
+
 
 
             <ComboBox x:Name="TransmiToComboBox" 
                       DockPanel.Dock="Right"
                       Height="30" 
+                      VerticalAlignment="Center"
                       Width="150" 
                       ItemsSource="{Binding TransmitToItems}"
                       ItemTemplate="{StaticResource TransmitToComboBoxItemTemplate}"
@@ -93,11 +150,16 @@
 
         </DockPanel>
 
-
         <DataGrid 
             Grid.Column="0" 
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch"/>
+
+
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            
+        </Grid>
     </Grid>
 </UserControl>

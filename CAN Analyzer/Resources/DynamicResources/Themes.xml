@@ -44,6 +44,14 @@
       <dark>Blue</dark>
       <white>Blue</white>
     </Record>
+    <Record name="TransmitPageIconButtonDisabledBackgroundStartBrush">
+      <dark>Purple</dark>
+      <white>Purple</white>
+    </Record>
+    <Record name="TransmitPageIconButtonDisabledBackgroundStopBrush">
+      <dark>Red</dark>
+      <white>Red</white>
+    </Record>
     <Record name="TransmitPageIconButtonBorderThickness">
       <dark>2</dark>
       <white>2</white>
@@ -72,6 +80,18 @@
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>
     <Record name="TransmitPageClearButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageStartButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPagePauseButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageStopButtonIcon">
       <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>

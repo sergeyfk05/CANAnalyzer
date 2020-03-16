@@ -39,6 +39,18 @@
       <ru>Очистить всё</ru>
       <en>Clear all</en>
     </Record>
+    <Record name="TransmitPageStartButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Start trasmit</en>
+    </Record>
+    <Record name="TransmitPagePauseButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Stop transmit</en>
+    </Record>
+    <Record name="TransmitPageStopButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Pause transmit</en>
+    </Record>
 
     <!--TransmitTo Control-->
     <Record name="TransmitToControlPreviewText">

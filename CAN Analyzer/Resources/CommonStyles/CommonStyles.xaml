@@ -23,6 +23,7 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Control.Width" Value="30"/>
+        <Setter Property="Control.Height" Value="30"/>
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -39,6 +40,16 @@
                         <LinearGradientBrush>
                             <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStartBrush}" Offset="0"/>
                             <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStopBrush}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Control.IsEnabled" Value="False">
+                <Setter Property="Control.Background">
+                    <Setter.Value>
+                        <LinearGradientBrush>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStartBrush}" Offset="0"/>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStopBrush}" Offset="1"/>
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
@@ -66,7 +77,7 @@
 
                         <StackPanel Orientation="Horizontal" 
                                                 HorizontalAlignment="Stretch"                                                
-                                                Height="30">
+                                                Height="25">
                             <StackPanel.Background>
                                 <LinearGradientBrush>
                                     <GradientStop Offset="0" Color="{resources:Theme TransmitToControlItemBackgroundBrushStart}"/>
