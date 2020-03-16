@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CANAnalyzer.Models.Databases;
 
 namespace CANAnalyzer
 {
@@ -25,8 +26,12 @@ namespace CANAnalyzer
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
 
 
+            TraceContext tc = new TraceContext();
+            tc.Traces.Add(new TraceModel() { CanId = 1, Payload= "sdff", IsExtId = 1, DLC = 4, Time = 324});
+            tc.Traces.Add(new TraceModel() { CanId = 1, Payload = "sdff", Time = 324 });
+            tc.SaveChanges();
 
-            
+
         }
 
         protected override void OnExit(ExitEventArgs e)
