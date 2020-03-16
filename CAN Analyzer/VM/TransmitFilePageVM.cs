@@ -10,9 +10,9 @@ using System.Windows.Controls;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitPageVM : BaseVM
+    public class TransmitFilePageVM : BaseVM
     {
-        public TransmitPageVM()
+        public TransmitFilePageVM()
         {
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "ss" });
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "s" });

@@ -100,8 +100,8 @@
     <Compile Include="Pages\DeviceSettingsPage.xaml.cs">
       <DependentUpon>DeviceSettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TransmitPage.xaml.cs">
-      <DependentUpon>TransmitPage.xaml</DependentUpon>
+    <Compile Include="Pages\TransmitFilePage.xaml.cs">
+      <DependentUpon>TransmitFilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\DynamicResources\CultureInfos\LanguageCultureInfo.cs" />
     <Compile Include="Resources\DynamicResources\Extensions\LanguageExtension.cs" />
@@ -112,7 +112,7 @@
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\BaseVM.cs" />
     <Compile Include="VM\MainWindowsVM.cs" />
-    <Compile Include="VM\TransmitPageVM.cs" />
+    <Compile Include="VM\TransmitFilePageVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TransmitPage.xaml">
+    <Page Include="Pages\TransmitFilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

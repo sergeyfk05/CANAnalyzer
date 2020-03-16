@@ -11,7 +11,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
-        <vm:TransmitPageVM/>
+        <vm:TransmitFilePageVM/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
