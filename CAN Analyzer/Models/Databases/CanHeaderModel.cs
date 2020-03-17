@@ -3,25 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CANAnalyzer.Models.Databases
 {
     /// <summary>
-    /// EF6 model Traces table entity
+    /// EF6 model CanHeaderss table entity
     /// </summary>
-    [Table("Traces")]
-    public class TraceModel : BaseModel
+    [Table("CanHeaders")]
+    public class CanHeaderModel : BaseModel
     {
-
         private int _id;
-        private int _time;
-        private int _canHeaderId;
-        private CanHeaderModel _canHeader;
-        private string _payload;
-
+        private bool _isExtId;
+        private int _canId;
+        private int _dlc = 8;
 
         [Key]
         public int Id
@@ -41,81 +38,65 @@ namespace CANAnalyzer.Models.Databases
         }
 
         /// <summary>
-        /// Relative time at which the packet was sent.
+        /// If IsExtId == true than package will be send as External Id.
         /// </summary>
         [Required]
-        public int Time
+        [DefaultValue(false)]
+        public bool IsExtId
         {
             get
             {
-                return _time;
+                return _isExtId;
             }
             set
             {
-                if (value == _time)
+                if (value == _isExtId)
                     return;
 
-                _time = value;
+                _isExtId = value;
                 OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Foreign key to CanHeaders table
+        /// CAN package's identificator.
         /// </summary>
         [Required]
-        public int CanHeaderId
+        public int CanId
         {
             get
             {
-                return _canHeaderId;
+                return _canId;
             }
             set
             {
-                if (value == _canHeaderId)
+                if (value == _canId)
                     return;
 
-                _canHeaderId = value;
+                _canId = value;
                 OnPropertyChanged();
             }
         }
 
-        /// <summary>
-        /// CanHeaderModel entity from CanHeaders table
-        /// </summary>
-        [ForeignKey("CanHeaderId")]
-        public CanHeaderModel CanHeader
-        {
-            get
-            {
-                return _canHeader;
-            }
-            set
-            {
-                if (value == _canHeader)
-                    return;
-
-                _canHeader = value;
-                OnPropertyChanged();
-            }
-        }
 
         /// <summary>
-        /// Packet payload. It's bytes converted to string
+        /// CAN Package's DLC. It's count of bytes in payload.
         /// </summary>
         [Required]
-        public string Payload
+        [Range(0, 9)]
+        [DefaultValue(8)]
+        public int DLC
         {
             get
             {
-                return _payload;
+                return _dlc;
             }
             set
             {
-                if (value == _payload)
+                if (value == _dlc)
                     return;
 
-                _payload = value;
+                _dlc = value;
                 OnPropertyChanged();
             }
         }

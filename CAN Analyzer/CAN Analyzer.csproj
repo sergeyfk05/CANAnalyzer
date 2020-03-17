@@ -110,6 +110,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\ContentPageData.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
+    <Compile Include="Models\Databases\CanHeaderModel.cs" />
     <Compile Include="Models\Databases\TraceContext.cs" />
     <Compile Include="Models\Databases\TraceModel.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
