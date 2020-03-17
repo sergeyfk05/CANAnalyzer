@@ -113,6 +113,8 @@
     <Compile Include="Models\Databases\CanHeaderModel.cs" />
     <Compile Include="Models\Databases\TraceContext.cs" />
     <Compile Include="Models\Databases\TraceModel.cs" />
+    <Compile Include="Models\DataTypesProviders\ITraceDataTypeProvider.cs" />
+    <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />

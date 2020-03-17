@@ -17,10 +17,10 @@ namespace CANAnalyzer.Models.Databases
     {
 
         private int _id;
-        private int _time;
+        private double _time;
         private int _canHeaderId;
         private CanHeaderModel _canHeader;
-        private string _payload;
+        private byte[] _payload;
 
 
         [Key]
@@ -44,7 +44,7 @@ namespace CANAnalyzer.Models.Databases
         /// Relative time at which the packet was sent.
         /// </summary>
         [Required]
-        public int Time
+        public double Time
         {
             get
             {
@@ -104,7 +104,7 @@ namespace CANAnalyzer.Models.Databases
         /// Packet payload. It's bytes converted to string
         /// </summary>
         [Required]
-        public string Payload
+        public byte[] Payload
         {
             get
             {

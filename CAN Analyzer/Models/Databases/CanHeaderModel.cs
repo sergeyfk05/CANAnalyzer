@@ -19,6 +19,7 @@ namespace CANAnalyzer.Models.Databases
         private bool _isExtId;
         private int _canId;
         private int _dlc = 8;
+        private string _comment = "";
 
         [Key]
         public int Id
@@ -97,6 +98,25 @@ namespace CANAnalyzer.Models.Databases
                     return;
 
                 _dlc = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [Required]
+        [MaxLength(100)]
+        [DefaultValue("")]
+        public string Comment
+        {
+            get
+            {
+                return _comment;
+            }
+            set
+            {
+                if (value == _comment)
+                    return;
+
+                _comment = value;
                 OnPropertyChanged();
             }
         }

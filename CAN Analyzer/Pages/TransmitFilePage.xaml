@@ -45,12 +45,13 @@
 
                 <DockPanel DockPanel.Dock="Left"
                            Height="30"
-                           VerticalAlignment="Center">                     
+                           VerticalAlignment="Center">
 
-                    <Button x:Name="openButton" IsEnabled="False"
-                        Margin="2 0 0 0"
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                    <Button x:Name="openButton"
+                            Margin="2 0 0 0"
+                            DockPanel.Dock="Left" 
+                            Style="{DynamicResource ShortcutButtonStyle}"
+                            Command="{Binding OpenFileCommand}">
                         <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
@@ -67,6 +68,17 @@
 
                         <Button.ToolTip>
                             <ToolTip Content="{resources:Language TransmitPageSaveButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="saveAsButton" 
+                    DockPanel.Dock="Left" 
+                    Style="{DynamicResource ShortcutButtonStyle}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language TransmitPageSaveAsButtonToolTip}"/>
                         </Button.ToolTip>
                     </Button>
 
@@ -118,7 +130,7 @@
                     </Button>
 
                 </DockPanel>
-                
+
             </Border>
 
 
@@ -144,7 +156,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
-            
+
             <!--This TextBlock need for fix ComboBox dockpanel's position-->
             <TextBlock Width="0" DockPanel.Dock="Right"/>
 
@@ -154,12 +166,25 @@
             Grid.Column="0" 
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch"/>
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" AutoGenerateColumns="False" CanUserResizeRows="False" LoadingRow="DataGrid_LoadingRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{resources:Language TraceDataTimeColumnName}" IsReadOnly="True"
+                             Binding="{Binding Time, StringFormat='0.000'}"/>
+                <DataGridTextColumn Header="{resources:Language TraceDataCanIdColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.CanId, StringFormat='X3'}"/>
+                <DataGridTextColumn Header="{resources:Language TraceDataDLCColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.DLC}"/>
+                <DataGridTextColumn Header="{resources:Language TraceDataPayloadColumnName}" IsReadOnly="True"
+                             Binding="{Binding Path=Payload}"/>
+                <DataGridTextColumn Header="{resources:Language TraceDataCommentColumnName}" IsReadOnly="False"
+                             Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
         <Grid Grid.Column="1"
               Grid.Row="1">
-            
+
         </Grid>
     </Grid>
 </UserControl>
