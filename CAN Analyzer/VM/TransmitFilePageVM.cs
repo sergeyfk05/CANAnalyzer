@@ -24,11 +24,6 @@ namespace CANAnalyzer.VM
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
 
 
-            openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Картинки(*.db;*.sqlite3)|*.db;*.sqlite3" + "|Все файлы (*.*)|*.* ";
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.Multiselect = false;
-
 
             traceProviders = new List<ITraceDataTypeProvider>();
             traceProviders.Add(new SQLiteTraceDataTypeProvider());
@@ -83,20 +78,23 @@ namespace CANAnalyzer.VM
         private List<TraceModel> _showedData;
 
 
-        OpenFileDialog openFileDialog;
         private ICommand _openFileCommand;
         public ICommand OpenFileCommand
         {
             get
             {
                 if (_openFileCommand == null)
-                    _openFileCommand = new RelayCommand(this.OpenFileCommand_Execute);
+                    _openFileCommand = new RelayCommandAsync(this.OpenFileCommand_Execute);
 
                 return _openFileCommand;
             }
         }
         private void OpenFileCommand_Execute()
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Картинки(*.db;*.sqlite3)|*.db;*.sqlite3" + "|Все файлы (*.*)|*.* ";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.Multiselect = false;
             if (openFileDialog?.ShowDialog() == true)
             {
                 bool isOpened = false;
@@ -122,9 +120,9 @@ namespace CANAnalyzer.VM
             }
         }
 
-        private void UpdateData()
+        private async void UpdateData()
         {
-            ShowedData = currentTraceProvider.Traces.Include("CanHeader").ToList();
+            ShowedData = await currentTraceProvider.Traces.Include("CanHeader").ToListAsync();
         }
 
     }

@@ -15,6 +15,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
         string TargetFile { get; set; }
 
 
+        void SaveChanges();
+
+
         /// <summary>
         /// Determines if the provider can work with this type of file
         /// </summary>

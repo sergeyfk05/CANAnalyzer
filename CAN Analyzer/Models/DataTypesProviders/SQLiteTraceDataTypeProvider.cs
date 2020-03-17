@@ -11,6 +11,13 @@ namespace CANAnalyzer.Models.DataTypesProviders
     public class SQLiteTraceDataTypeProvider : ITraceDataTypeProvider
     {
 
+        public async void SaveChanges()
+        {
+            if (!File.Exists(TargetFile))
+                throw new ArgumentException("TargetFile does not exist.");
+
+            await context.SaveChangesAsync();
+        }
 
         public string TargetFile
         {
@@ -20,8 +27,11 @@ namespace CANAnalyzer.Models.DataTypesProviders
                 if (value == _targetFile)
                     return;
 
+                if (!File.Exists(value))
+                    throw new ArgumentException("File does not exist.");
+
                 if (!CanWorkWithIt(value))
-                    throw new ArgumentException("Invalid file type or file does not exist");
+                    throw new ArgumentException("Invalid file type.");
 
                 _targetFile = value;
                 TargetFileChanged();
@@ -33,8 +43,6 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             context = new TraceContext(TargetFile);
         }
-
-        private TraceContext context;
 
 
         public void CloseConnection()
@@ -50,9 +58,6 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// <returns>Return true if this provider can work with this type of file</returns>
         public bool CanWorkWithIt(string filePath)
         {
-            if (!File.Exists(filePath))
-                return false;
-
             var splittedPath = filePath.ToLower().Split('.');
             var extension = splittedPath[splittedPath.Length - 1];
 
@@ -68,5 +73,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// CanHeaders dataset
         /// </summary>
         public IQueryable<CanHeaderModel> CanHeaders => context?.CanHeaders;
+
+
+        private TraceContext context;
     }
 }
