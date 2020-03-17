@@ -109,6 +109,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\ContentPageData.cs" />
+    <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
     <Compile Include="Models\Databases\CanHeaderModel.cs" />
     <Compile Include="Models\Databases\TraceContext.cs" />

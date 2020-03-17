@@ -175,7 +175,7 @@
                 <DataGridTextColumn Header="{resources:Language TraceDataDLCColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.DLC}"/>
                 <DataGridTextColumn Header="{resources:Language TraceDataPayloadColumnName}" IsReadOnly="True"
-                             Binding="{Binding Path=Payload}"/>
+                             Binding="{Binding Path=Payload, Converter={StaticResource BiteArrayToHexStringConverter}}"/>
                 <DataGridTextColumn Header="{resources:Language TraceDataCommentColumnName}" IsReadOnly="False"
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
             </DataGrid.Columns>

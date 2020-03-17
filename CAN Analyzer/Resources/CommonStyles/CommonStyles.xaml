@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CANAnalyzer.Pages.CommonStyles"
                     xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
-                    xmlns:models="clr-namespace:CANAnalyzer.Models">
+                    xmlns:models="clr-namespace:CANAnalyzer.Models"
+                    xmlns:converters="clr-namespace:CANAnalyzer.Models.Converters">
     
     <Style x:Key="ShortcutButtonStyle">
         <Setter Property="Control.Background">
@@ -113,4 +114,6 @@
         </Grid>
     </DataTemplate>
 
+    <converters:BiteArrayToHexStringConverter x:Key="BiteArrayToHexStringConverter"/>
+    
 </ResourceDictionary>
