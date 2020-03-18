@@ -46,6 +46,35 @@ namespace CANAnalyzer.VM
         }
         private List<TransmitToViewData> _transmitToItems;
 
+        public List<TraceModel> ShowedData
+        {
+            get { return _showedData; }
+            set
+            {
+                if (value == _showedData)
+                    return;
+
+                _showedData = value;
+                OnPropertyChanged();
+            }
+        }
+        private List<TraceModel> _showedData;
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                if (value == _isEnabled)
+                    return;
+
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isEnabled = true;
+
+
         private ICommand _transmitToComboBoxSelected;
         public ICommand TransmitToComboBoxSelected
         {
@@ -61,21 +90,6 @@ namespace CANAnalyzer.VM
         {
             arg.SelectedIndex = 0;
         }
-
-
-        public List<TraceModel> ShowedData
-        {
-            get { return _showedData; }
-            set
-            {
-                if (value == _showedData)
-                    return;
-
-                _showedData = value;
-                OnPropertyChanged();
-            }
-        }
-        private List<TraceModel> _showedData;
 
 
         private ICommand _openFileCommand;
@@ -102,6 +116,7 @@ namespace CANAnalyzer.VM
                 {
                     if(el.CanWorkWithIt(openFileDialog.FileName))
                     {
+                        IsEnabled = false;
                         isOpened = true;
 
                         currentTraceProvider?.CloseConnection();
@@ -117,6 +132,8 @@ namespace CANAnalyzer.VM
                 {
                     MessageBox.Show("Added successfully", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                IsEnabled = true;
             }
         }
 

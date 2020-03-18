@@ -15,7 +15,7 @@ namespace CANAnalyzer.Models.Converters
         {
             if(value is byte[] bytes && targetType == typeof(string))
             {
-                string result = "";
+                string result = "0x";
                 foreach(var b in bytes)
                 {
                     result += b.ToString("X2");

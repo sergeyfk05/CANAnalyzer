@@ -79,6 +79,10 @@
       <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>
+    <Record name="TransmitPageSaveAsButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
     <Record name="TransmitPageClearButtonIcon">
       <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
