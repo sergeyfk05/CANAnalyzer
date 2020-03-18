@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace CANAnalyzer.Models
 {
@@ -9,6 +11,7 @@ namespace CANAnalyzer.Models
         public BaseCommand(Func<bool> canExecute)
         {
             this.canExecute = canExecute;
+            _context = SynchronizationContext.Current;
         }
 
         /// <summary>
@@ -16,6 +19,7 @@ namespace CANAnalyzer.Models
         /// </summary>
         public event EventHandler CanExecuteChanged;
 
+        private SynchronizationContext _context;
 
         /// <summary>
         /// Определяет, можно ли выполнить эту команду <see cref="RelayCommandAsync"/> в текущем состоянии.
@@ -36,10 +40,12 @@ namespace CANAnalyzer.Models
         /// </summary>
         public void RaiseCanExecuteChanged()
         {
-            var handler = CanExecuteChanged;
-            if (handler != null)
+            if (CanExecuteChanged != null)
             {
-                handler(this, EventArgs.Empty);
+                _context?.Post(s =>
+                {
+                    CanExecuteChanged.Invoke(this, EventArgs.Empty);
+                }, null);
             }
         }
     }

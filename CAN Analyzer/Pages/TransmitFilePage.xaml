@@ -31,7 +31,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            
+
 
             <DockPanel Grid.Row="0" 
                    Grid.ColumnSpan="2"  
@@ -54,10 +54,10 @@
                            VerticalAlignment="Center">
 
                         <Button x:Name="openButton"
-                            Margin="2 0 0 0"
-                            DockPanel.Dock="Left" 
-                            Style="{DynamicResource ShortcutButtonStyle}"
-                            Command="{Binding OpenFileCommand}">
+                                Margin="2 0 0 0"
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding OpenFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
@@ -67,8 +67,9 @@
                         </Button>
 
                         <Button x:Name="saveButton" 
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
@@ -78,10 +79,10 @@
                         </Button>
 
                         <Button x:Name="saveAsButton" 
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+                                   Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language TransmitPageSaveAsButtonToolTip}"/>
@@ -91,8 +92,9 @@
                         <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
 
                         <Button x:Name="startButton" 
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                IsEnabled="{Binding FileIsOpened}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStartButtonIcon}"/>
 
@@ -102,8 +104,8 @@
                         </Button>
 
                         <Button x:Name="pauseButton" 
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
 
@@ -113,25 +115,13 @@
                         </Button>
 
                         <Button x:Name="stopButton" 
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStopButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language TransmitPageStopButtonToolTip}"/>
-                            </Button.ToolTip>
-                        </Button>
-
-                        <Button x:Name="clearButton" 
-                        Margin="0 0 2 0"
-                    DockPanel.Dock="Left" 
-                    Style="{DynamicResource ShortcutButtonStyle}">
-                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageClearButtonIcon}"/>
-
-                            <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageClearButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 

@@ -23,7 +23,7 @@ namespace CANAnalyzer.VM
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "s" });
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
 
-
+            PropertyChanged += SaveFileCommandCanExecuteChanged_PropertyChanged;
 
             traceProviders = new List<ITraceDataTypeProvider>();
             traceProviders.Add(new SQLiteTraceDataTypeProvider());
@@ -74,9 +74,22 @@ namespace CANAnalyzer.VM
         }
         private bool _isEnabled = true;
 
+        public bool FileIsOpened
+        {
+            get { return _fileIsOpened; }
+            set
+            {
+                if (value == _fileIsOpened)
+                    return;
 
-        private ICommand _transmitToComboBoxSelected;
-        public ICommand TransmitToComboBoxSelected
+                _fileIsOpened = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _fileIsOpened = false;
+
+        private RelayCommandWithParameter<ComboBox> _transmitToComboBoxSelected;
+        public RelayCommandWithParameter<ComboBox> TransmitToComboBoxSelected
         {
             get
             {
@@ -92,8 +105,8 @@ namespace CANAnalyzer.VM
         }
 
 
-        private ICommand _openFileCommand;
-        public ICommand OpenFileCommand
+        private RelayCommandAsync _openFileCommand;
+        public RelayCommandAsync OpenFileCommand
         {
             get
             {
@@ -111,13 +124,19 @@ namespace CANAnalyzer.VM
             openFileDialog.Multiselect = false;
             if (openFileDialog?.ShowDialog() == true)
             {
-                bool isOpened = false;
+                //reset data and closing connection
+                ShowedData = null;
+                currentTraceProvider?.CloseConnection();
+                FileIsOpened = false;
+
+                //find provider and load data
+                bool findedProvider = false;
                 foreach(var el in traceProviders)
                 {
                     if(el.CanWorkWithIt(openFileDialog.FileName))
                     {
                         IsEnabled = false;
-                        isOpened = true;
+                        findedProvider = true;
 
                         currentTraceProvider?.CloseConnection();
                         el.TargetFile = openFileDialog.FileName;
@@ -128,7 +147,8 @@ namespace CANAnalyzer.VM
                     }
                 }
 
-                if(!isOpened)
+                //if provider not founded
+                if(!findedProvider)
                 {
                     MessageBox.Show("Added successfully", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -139,8 +159,37 @@ namespace CANAnalyzer.VM
 
         private async void UpdateData()
         {
-            ShowedData = await currentTraceProvider.Traces.Include("CanHeader").ToListAsync();
+            try
+            {
+                ShowedData = await currentTraceProvider.Traces.Include("CanHeader").ToListAsync();
+                FileIsOpened = true;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
+        private RelayCommandAsync _saveFileCommand;
+        public RelayCommandAsync SaveFileCommand
+        {
+            get
+            {
+                if (_saveFileCommand == null)
+                    _saveFileCommand = new RelayCommandAsync(this.SaveFileCommand_Execute, () => { return this.FileIsOpened; });
+
+                return _saveFileCommand;
+            }
+        }
+        private void SaveFileCommand_Execute()
+        {
+            currentTraceProvider.SaveChanges();
+        }
+        private void SaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
+                vm.SaveFileCommand.RaiseCanExecuteChanged();
+        }
     }
 }
