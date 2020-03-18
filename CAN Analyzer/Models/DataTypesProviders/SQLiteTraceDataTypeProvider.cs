@@ -47,7 +47,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         public void CloseConnection()
         {
-            context.Dispose();
+            context?.Dispose();
             context = null;
         }
 
