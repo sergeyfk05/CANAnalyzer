@@ -235,7 +235,7 @@ namespace CANAnalyzer.VM
 
                         try
                         {
-                            el.SaveAs(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
+                            currentTraceProvider = el.SaveAs(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
                         }
                         catch (Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
