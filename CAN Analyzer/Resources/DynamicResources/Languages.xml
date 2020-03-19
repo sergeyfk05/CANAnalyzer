@@ -92,5 +92,8 @@
     <Record name="ErrorMsgBoxTitle">
       <en>Error</en>
     </Record>
+    <Record name="FileError">
+      <en>File in use by another program or inaccessible.</en>
+    </Record>
   </Recordings>
 </Languages>

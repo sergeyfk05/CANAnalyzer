@@ -191,13 +191,14 @@ namespace CANAnalyzer.VM
         }
         private void SaveFileCommand_Execute()
         {
+            IsEnabled = false;
             try
             {
                 currentTraceProvider.SaveChanges();
             }
             catch(Exception e)
             { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
-
+            IsEnabled = true;
         }
         private void SaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -216,15 +217,26 @@ namespace CANAnalyzer.VM
                 return _saveAsFileCommand;
             }
         }
-        private void SaveAsFileCommand_Execute()
-        {
+        private async void SaveAsFileCommand_Execute()
+        { 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = GenerateFilterForDialog(traceProviders);
             
             if(saveFileDialog.ShowDialog() == true)
             {
-                if (File.Exists(saveFileDialog.FileName))
-                    File.Delete(saveFileDialog.FileName);
+                IsEnabled = false;
+                try
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                        File.Delete(saveFileDialog.FileName);
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("FileError"),                     
+                        (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), 
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Error);
+                }
 
                 bool findedProvider = false;
                 foreach(var el in traceProviders)
@@ -235,10 +247,13 @@ namespace CANAnalyzer.VM
 
                         try
                         {
-                            currentTraceProvider = el.SaveAs(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
+                            currentTraceProvider = await el.SaveAsAsync(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
+                            UpdateData();
                         }
                         catch (Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+
+                        break;
                     }
                 }
 
@@ -247,6 +262,7 @@ namespace CANAnalyzer.VM
                 {
                     MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                IsEnabled = true;
             }
 
         }

@@ -43,5 +43,15 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
 
         ITraceDataTypeProvider SaveAs(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders);
+
+        Task<ITraceDataTypeProvider> SaveAsAsync(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders);
+
+        
+        void Add(TraceModel entity);
+        void Add(CanHeaderModel entity);
+
+
+        void AddRange(IEnumerable<TraceModel> entities);
+        void AddRange(IEnumerable<CanHeaderModel> entities);
     }
 }

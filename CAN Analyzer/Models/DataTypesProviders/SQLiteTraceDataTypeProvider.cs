@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data.SQLite;
+using System.Data.Entity;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
@@ -74,10 +76,94 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// </summary>
         public IQueryable<CanHeaderModel> CanHeaders => context?.CanHeaders;
 
+
+        /// <summary>
+        /// Supported files
+        /// </summary>
         public string SupportedFiles => "*.db;*.sqlite3";
 
 
         private TraceContext context;
+
+        public ITraceDataTypeProvider SaveAs(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+
+            SQLiteConnection.CreateFile(path);
+
+            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            {
+                string sql = "CREATE TABLE \"CanHeaders\"(" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"CanId\" INTEGER NOT NULL," +
+                    "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
+                    "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
+                    "\"Comment\" TEXT NOT NULL DEFAULT \"\");" +
+                    "CREATE TABLE \"Traces\" (" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"Time\" REAL NOT NULL," +
+                    "\"Payload\" BLOB NOT NULL," +
+                    "\"CanHeaderId\" INTEGER NOT NULL," +
+                    "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
+
+                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                command.ExecuteNonQuery();
+            }
+
+            var result = new SQLiteTraceDataTypeProvider();
+            result.TargetFile = path;
+
+            result.AddRange(canHeaders);
+            result.AddRange(traces);
+            result.SaveChanges();
+
+            return result;
+        }
+
+        public async Task<ITraceDataTypeProvider> SaveAsAsync(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+
+            SQLiteConnection.CreateFile(path);
+
+            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            {
+                dbConnection.Open();
+                string sql = "CREATE TABLE \"CanHeaders\"(" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"CanId\" INTEGER NOT NULL," +
+                    "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
+                    "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
+                    "\"Comment\" TEXT NOT NULL DEFAULT \"\");" +
+                    "CREATE TABLE \"Traces\" (" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"Time\" REAL NOT NULL," +
+                    "\"Payload\" BLOB NOT NULL," +
+                    "\"CanHeaderId\" INTEGER NOT NULL," +
+                    "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
+
+                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                await command.ExecuteNonQueryAsync();
+            }
+
+            var result = new SQLiteTraceDataTypeProvider();
+            result.TargetFile = path;
+
+            result.AddRange(canHeaders);
+            result.AddRange(traces);
+            result.SaveChanges();
+
+            return result;
+        }
+
+        public void Add(TraceModel entity) => context?.Traces.Add(entity);
+        public void Add(CanHeaderModel entity) => context?.CanHeaders.Add(entity);
+
+
+        public void AddRange(IEnumerable<TraceModel> entities) => context?.Traces.AddRange(entities);
+        public void AddRange(IEnumerable<CanHeaderModel> entities) => context?.CanHeaders.AddRange(entities);
 
         public void Dispose()
         {

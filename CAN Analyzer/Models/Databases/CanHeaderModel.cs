@@ -103,7 +103,6 @@ namespace CANAnalyzer.Models.Databases
             }
         }
 
-        [Required]
         [MaxLength(100)]
         [DefaultValue("")]
         public string Comment
