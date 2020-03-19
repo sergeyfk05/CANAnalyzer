@@ -83,9 +83,14 @@
     
     
     <!--DataTypeProviders-->
-    CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider
     <Record name="CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
       <en>SQLite3 database</en>
+    </Record>
+
+
+
+    <Record name="ErrorMsgBoxTitle">
+      <en>Error</en>
     </Record>
   </Recordings>
 </Languages>

@@ -40,5 +40,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// Supported files
         /// </summary>
         string SupportedFiles { get; }
+
+
+        ITraceDataTypeProvider SaveAs(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders);
     }
 }

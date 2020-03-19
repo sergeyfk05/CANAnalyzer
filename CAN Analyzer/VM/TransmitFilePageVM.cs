@@ -13,6 +13,7 @@ using System.Windows;
 using CANAnalyzer.Models.Databases;
 using System.Data.Entity;
 using CANAnalyzer.Resources.DynamicResources;
+using System.IO;
 
 namespace CANAnalyzer.VM
 {
@@ -25,6 +26,7 @@ namespace CANAnalyzer.VM
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
 
             PropertyChanged += SaveFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += SaveAsFileCommandCanExecuteChanged_PropertyChanged;
         }
 
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
@@ -117,25 +119,12 @@ namespace CANAnalyzer.VM
         private void OpenFileCommand_Execute()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            //fill in filters
-            foreach(var el in traceProviders)
-            {
-                if (openFileDialog.Filter == "")
-                    openFileDialog.Filter += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
-                else
-                    openFileDialog.Filter += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
-            }
-
-            if (openFileDialog.Filter == "")
-                openFileDialog.Filter += "Все файлы (*.*)|*.* ";
-            else
-                openFileDialog.Filter += "|Все файлы (*.*)|*.* ";
-
+            openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
             openFileDialog.CheckFileExists = true;
             openFileDialog.Multiselect = false;
 
 
-            if (openFileDialog?.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
                 //reset data and closing connection
                 ShowedData = null;
@@ -151,10 +140,15 @@ namespace CANAnalyzer.VM
                         IsEnabled = false;
                         findedProvider = true;
 
-                        currentTraceProvider?.CloseConnection();
-                        el.TargetFile = openFileDialog.FileName;
-                        currentTraceProvider = el;
-                        UpdateData();
+                        try
+                        {
+                            currentTraceProvider?.CloseConnection();
+                            el.TargetFile = openFileDialog.FileName;
+                            currentTraceProvider = el;
+                            UpdateData();
+                        }
+                        catch(Exception e)
+                        { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
 
                         break;
                     }
@@ -163,7 +157,7 @@ namespace CANAnalyzer.VM
                 //if provider not founded
                 if(!findedProvider)
                 {
-                    MessageBox.Show("Added successfully", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 IsEnabled = true;
@@ -197,7 +191,13 @@ namespace CANAnalyzer.VM
         }
         private void SaveFileCommand_Execute()
         {
-            currentTraceProvider.SaveChanges();
+            try
+            {
+                currentTraceProvider.SaveChanges();
+            }
+            catch(Exception e)
+            { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+
         }
         private void SaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -218,12 +218,63 @@ namespace CANAnalyzer.VM
         }
         private void SaveAsFileCommand_Execute()
         {
-            currentTraceProvider.SaveChanges();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = GenerateFilterForDialog(traceProviders);
+            
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                if (File.Exists(saveFileDialog.FileName))
+                    File.Delete(saveFileDialog.FileName);
+
+                bool findedProvider = false;
+                foreach(var el in traceProviders)
+                {
+                    if (el.CanWorkWithIt(saveFileDialog.FileName))
+                    {
+                        findedProvider = true;
+
+                        try
+                        {
+                            el.SaveAs(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
+                        }
+                        catch (Exception e)
+                        { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+                    }
+                }
+
+
+                if (!findedProvider)
+                {
+                    MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
         }
-        private void SaveFileAsCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void SaveAsFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.SaveAsFileCommand.RaiseCanExecuteChanged();
+        }
+
+
+        private string GenerateFilterForDialog(IEnumerable<ITraceDataTypeProvider> source)
+        {
+            string result = "";
+
+            foreach (var el in traceProviders)
+            {
+                if (result == "")
+                    result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+                else
+                    result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+            }
+
+            if (result == "")
+                result += "Все файлы (*.*)|*.* ";
+            else
+                result += "|Все файлы (*.*)|*.* ";
+
+            return result;
         }
     }
 }
