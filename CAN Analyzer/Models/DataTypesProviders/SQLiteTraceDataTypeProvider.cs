@@ -8,7 +8,7 @@ using System.IO;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
-    public class SQLiteTraceDataTypeProvider : ITraceDataTypeProvider
+    public class SQLiteTraceDataTypeProvider : ITraceDataTypeProvider, IDisposable
     {
 
         public async void SaveChanges()
@@ -76,5 +76,10 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
 
         private TraceContext context;
+
+        public void Dispose()
+        {
+            context?.Dispose();
+        }
     }
 }

@@ -115,8 +115,12 @@
     <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
     <Compile Include="Models\Databases\CanHeaderModel.cs" />
+    <Compile Include="Models\Databases\FilterModel.cs" />
+    <Compile Include="Models\TraceFilters\BlockCanIdTraceFilter.cs" />
+    <Compile Include="Models\TraceFilters\ITraceFilter.cs" />
     <Compile Include="Models\Databases\TraceContext.cs" />
     <Compile Include="Models\Databases\TraceModel.cs" />
+    <Compile Include="Models\DataTypesProviders\Builders\TraceDataTypeProvidersListBuilder.cs" />
     <Compile Include="Models\DataTypesProviders\ITraceDataTypeProvider.cs" />
     <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />

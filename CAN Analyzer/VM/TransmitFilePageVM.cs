@@ -24,12 +24,9 @@ namespace CANAnalyzer.VM
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
 
             PropertyChanged += SaveFileCommandCanExecuteChanged_PropertyChanged;
-
-            traceProviders = new List<ITraceDataTypeProvider>();
-            traceProviders.Add(new SQLiteTraceDataTypeProvider());
         }
 
-        private List<ITraceDataTypeProvider> traceProviders;
+        private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;
 
         public List<TransmitToViewData> TransmitToItems

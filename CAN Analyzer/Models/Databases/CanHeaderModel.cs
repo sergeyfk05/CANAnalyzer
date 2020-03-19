@@ -43,6 +43,7 @@ namespace CANAnalyzer.Models.Databases
         /// </summary>
         [Required]
         [DefaultValue(false)]
+        [Range(0, 1)]
         public bool IsExtId
         {
             get
