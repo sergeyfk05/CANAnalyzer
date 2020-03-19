@@ -74,6 +74,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// </summary>
         public IQueryable<CanHeaderModel> CanHeaders => context?.CanHeaders;
 
+        public string SupportedFiles => "*.db;*.sqlite3";
+
 
         private TraceContext context;
 

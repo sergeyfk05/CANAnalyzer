@@ -35,5 +35,10 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// CanHeaders dataset
         /// </summary>
         IQueryable<CanHeaderModel> CanHeaders { get; }
+
+        /// <summary>
+        /// Supported files
+        /// </summary>
+        string SupportedFiles { get; }
     }
 }

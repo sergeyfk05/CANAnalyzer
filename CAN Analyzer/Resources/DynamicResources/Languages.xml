@@ -79,5 +79,13 @@
     <Record name="TraceDataCommentColumnName">
       <en>CAN header comment</en>
     </Record>
+    
+    
+    
+    <!--DataTypeProviders-->
+    CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider
+    <Record name="CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
+      <en>SQLite3 database</en>
+    </Record>
   </Recordings>
 </Languages>

@@ -80,7 +80,8 @@
 
                         <Button x:Name="saveAsButton" 
                                 DockPanel.Dock="Left" 
-                                Style="{DynamicResource ShortcutButtonStyle}">
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveAsFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                                    Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
 

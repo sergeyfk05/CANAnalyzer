@@ -12,6 +12,7 @@ using CANAnalyzer.Models.DataTypesProviders;
 using System.Windows;
 using CANAnalyzer.Models.Databases;
 using System.Data.Entity;
+using CANAnalyzer.Resources.DynamicResources;
 
 namespace CANAnalyzer.VM
 {
@@ -116,9 +117,24 @@ namespace CANAnalyzer.VM
         private void OpenFileCommand_Execute()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Картинки(*.db;*.sqlite3)|*.db;*.sqlite3" + "|Все файлы (*.*)|*.* ";
+            //fill in filters
+            foreach(var el in traceProviders)
+            {
+                if (openFileDialog.Filter == "")
+                    openFileDialog.Filter += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+                else
+                    openFileDialog.Filter += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+            }
+
+            if (openFileDialog.Filter == "")
+                openFileDialog.Filter += "Все файлы (*.*)|*.* ";
+            else
+                openFileDialog.Filter += "|Все файлы (*.*)|*.* ";
+
             openFileDialog.CheckFileExists = true;
             openFileDialog.Multiselect = false;
+
+
             if (openFileDialog?.ShowDialog() == true)
             {
                 //reset data and closing connection
@@ -187,6 +203,27 @@ namespace CANAnalyzer.VM
         {
             if((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.SaveFileCommand.RaiseCanExecuteChanged();
+        }
+
+        private RelayCommandAsync _saveAsFileCommand;
+        public RelayCommandAsync SaveAsFileCommand
+        {
+            get
+            {
+                if (_saveAsFileCommand == null)
+                    _saveAsFileCommand = new RelayCommandAsync(this.SaveAsFileCommand_Execute, () => { return this.FileIsOpened; });
+
+                return _saveAsFileCommand;
+            }
+        }
+        private void SaveAsFileCommand_Execute()
+        {
+            currentTraceProvider.SaveChanges();
+        }
+        private void SaveFileAsCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
+                vm.SaveAsFileCommand.RaiseCanExecuteChanged();
         }
     }
 }
