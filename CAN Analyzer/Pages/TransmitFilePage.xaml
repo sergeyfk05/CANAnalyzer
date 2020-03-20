@@ -29,7 +29,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="130"/>
             </Grid.ColumnDefinitions>
 
 
@@ -169,6 +169,8 @@
                              Binding="{Binding Time, StringFormat='0.000'}"/>
                     <DataGridTextColumn Header="{resources:Language TraceDataCanIdColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.CanId, StringFormat='X3'}"/>
+                    <DataGridCheckBoxColumn Header="{resources:Language TraceDataExtIdColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.IsExtId}"/>
                     <DataGridTextColumn Header="{resources:Language TraceDataDLCColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.DLC}"/>
                     <DataGridTextColumn Header="{resources:Language TraceDataPayloadColumnName}" IsReadOnly="True"
@@ -180,7 +182,29 @@
 
 
             <Grid Grid.Column="1"
-              Grid.Row="1">
+                  Grid.Row="1"
+                  Margin="20 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{resources:Language TraceFilterById}" Grid.Row="0"/>
+                <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">
+                            <GridView.Columns>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsActive, Mode=TwoWay}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DisplayName}" Header="adsf"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
 
             <Grid.Style>

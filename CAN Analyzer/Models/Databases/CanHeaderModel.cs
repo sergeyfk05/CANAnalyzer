@@ -64,6 +64,7 @@ namespace CANAnalyzer.Models.Databases
         /// CAN package's identificator.
         /// </summary>
         [Required]
+        [Range(0, 0x1FFFFFFF)]
         public int CanId
         {
             get

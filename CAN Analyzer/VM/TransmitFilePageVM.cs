@@ -14,6 +14,7 @@ using CANAnalyzer.Models.Databases;
 using System.Data.Entity;
 using CANAnalyzer.Resources.DynamicResources;
 using System.IO;
+using CANAnalyzer.Models.TraceFilters;
 
 namespace CANAnalyzer.VM
 {
@@ -27,6 +28,7 @@ namespace CANAnalyzer.VM
 
             PropertyChanged += SaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += SaveAsFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += OpenFileCommandCanExecuteChanged_PropertyChanged;
         }
 
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
@@ -60,6 +62,20 @@ namespace CANAnalyzer.VM
         }
         private List<TraceModel> _showedData;
 
+        public List<CanIdTraceFilter> Filters
+        {
+            get { return _filters ?? (_filters = new List<CanIdTraceFilter>()); }
+            set
+            {
+                if (value == _filters)
+                    return;
+
+                _filters = value;
+                OnPropertyChanged();
+            }
+        }
+        private List<CanIdTraceFilter> _filters;
+
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -74,7 +90,7 @@ namespace CANAnalyzer.VM
         }
         private bool _isEnabled = true;
 
-        public bool FileIsOpened
+        public FileState FileIsOpened
         {
             get { return _fileIsOpened; }
             set
@@ -86,7 +102,7 @@ namespace CANAnalyzer.VM
                 OnPropertyChanged();
             }
         }
-        private bool _fileIsOpened = false;
+        private FileState _fileIsOpened = FileState.Closed;
 
         private RelayCommandWithParameter<ComboBox> _transmitToComboBoxSelected;
         public RelayCommandWithParameter<ComboBox> TransmitToComboBoxSelected
@@ -111,13 +127,20 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_openFileCommand == null)
-                    _openFileCommand = new RelayCommandAsync(this.OpenFileCommand_Execute);
+                    _openFileCommand = new RelayCommandAsync(this.OpenFileCommand_Execute, () => { return this.FileIsOpened != FileState.Opening; });
 
                 return _openFileCommand;
             }
         }
+        private void OpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
+                vm.OpenFileCommand.RaiseCanExecuteChanged();
+        }
         private void OpenFileCommand_Execute()
         {
+
+            FileIsOpened = FileState.Opening;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
             openFileDialog.CheckFileExists = true;
@@ -126,10 +149,17 @@ namespace CANAnalyzer.VM
 
             if (openFileDialog.ShowDialog() == true)
             {
+
+                if(openFileDialog.FileName == currentTraceProvider?.TargetFile)
+                {
+                    MessageBox.Show("Файл уже открыт", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 //reset data and closing connection
                 ShowedData = null;
                 currentTraceProvider?.CloseConnection();
-                FileIsOpened = false;
+                FileIsOpened = FileState.Closed;
 
                 //find provider and load data
                 bool findedProvider = false;
@@ -145,7 +175,7 @@ namespace CANAnalyzer.VM
                             currentTraceProvider?.CloseConnection();
                             el.TargetFile = openFileDialog.FileName;
                             currentTraceProvider = el;
-                            UpdateData();
+                            UpdateDataAndFilters();
                         }
                         catch(Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -164,14 +194,53 @@ namespace CANAnalyzer.VM
             }
         }
 
-        private async void UpdateData()
+        private async void UpdateDataAndFilters()
         {
             try
             {
-                ShowedData = await currentTraceProvider.Traces.Include("CanHeader").ToListAsync();
-                FileIsOpened = true;
+                var newFilters = new List<CanIdTraceFilter>();
+                foreach(var el in await currentTraceProvider.CanHeaders.ToListAsync())
+                {
+                    var entity =new CanIdTraceFilter(el.CanId, el.IsExtId);
+                    entity.PropertyChanged += FilterIsActive_PropertyChanged;
+                    newFilters.Add(entity);
+                }
+                Filters = newFilters;
+
+                UpdateData();
+
             }
             catch(Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void FilterIsActive_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "IsActive")
+                return;
+
+            UpdateData();
+
+        }
+
+        public async void UpdateData()
+        {
+            try
+            {
+                var data = currentTraceProvider.Traces;
+                foreach (var el in Filters)
+                {
+                    data = el.Filter(data);
+                }
+
+                ShowedData = await data.Include("CanHeader").ToListAsync();
+                FileIsOpened = FileState.Opened;
+
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -184,7 +253,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_saveFileCommand == null)
-                    _saveFileCommand = new RelayCommandAsync(this.SaveFileCommand_Execute, () => { return this.FileIsOpened; });
+                    _saveFileCommand = new RelayCommandAsync(this.SaveFileCommand_Execute, () => { return this.FileIsOpened == FileState.Opened; });
 
                 return _saveFileCommand;
             }
@@ -212,7 +281,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_saveAsFileCommand == null)
-                    _saveAsFileCommand = new RelayCommandAsync(this.SaveAsFileCommand_Execute, () => { return this.FileIsOpened; });
+                    _saveAsFileCommand = new RelayCommandAsync(this.SaveAsFileCommand_Execute, () => { return this.FileIsOpened == FileState.Opened; });
 
                 return _saveAsFileCommand;
             }
@@ -248,7 +317,7 @@ namespace CANAnalyzer.VM
                         try
                         {
                             currentTraceProvider = await el.SaveAsAsync(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
-                            UpdateData();
+                            UpdateDataAndFilters();
                         }
                         catch (Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }

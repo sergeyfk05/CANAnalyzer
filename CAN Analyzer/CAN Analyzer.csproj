@@ -120,11 +120,14 @@
     <Compile Include="Models\DataTypesProviders\Builders\TraceDataTypeProvidersListBuilder.cs" />
     <Compile Include="Models\DataTypesProviders\ITraceDataTypeProvider.cs" />
     <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
+    <Compile Include="Models\FileState.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandWithParameter.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
+    <Compile Include="Models\TraceFilters\CanIdTraceFilter.cs" />
+    <Compile Include="Models\TraceFilters\ITraceFilter.cs" />
     <Compile Include="Models\TransmitToViewData.cs" />
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>

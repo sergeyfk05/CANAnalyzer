@@ -55,6 +55,9 @@
       <ru>Очистить всё</ru>
       <en>Pause transmit</en>
     </Record>
+    <Record name="TraceFilterById">
+      <en>Filter by CAN id:</en>
+    </Record>
 
     <!--TransmitTo Control-->
     <Record name="TransmitToControlPreviewText">
@@ -69,6 +72,9 @@
     </Record>
     <Record name="TraceDataCanIdColumnName">
       <en>ID</en>
+    </Record>
+    <Record name="TraceDataExtIdColumnName">
+      <en>External ID</en>
     </Record>
     <Record name="TraceDataDLCColumnName">
       <en>DLC</en>
