@@ -7,8 +7,7 @@ using System.Management;
 
 namespace CANAnalyzerDevices.Devices
 {
-    public interface IDevice
+    public abstract class DeviceBase
     {
-        bool IsSupportWorkWith(ManagementObject obj);
     }
 }
