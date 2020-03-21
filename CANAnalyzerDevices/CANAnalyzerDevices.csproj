@@ -42,11 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DevicesFinder.cs" />
+    <Compile Include="Devices\DeviceChannels\CanHackerChannel.cs" />
+    <Compile Include="Devices\DeviceChannels\IChannel.cs" />
+    <Compile Include="Devices\DeviceCreaters\CanHackerCreator.cs" />
+    <Compile Include="Devices\DeviceCreaters\DeviceCreatorsBuilder.cs" />
+    <Compile Include="Finder\DevicesFinder.cs" />
     <Compile Include="Devices\CANAnalyzerDevice.cs" />
     <Compile Include="Devices\CANHackerDevice.cs" />
-    <Compile Include="Devices\DeviceBase.cs" />
-    <Compile Include="Devices\SupportedDevicesBuilder.cs" />
+    <Compile Include="Devices\IDevice.cs" />
+    <Compile Include="Devices\DeviceCreaters\IDeviceCreator.cs" />
+    <Compile Include="Finder\HardwareDeviceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

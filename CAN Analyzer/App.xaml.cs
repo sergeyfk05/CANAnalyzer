@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using CANAnalyzerDevices;
+using CANAnalyzerDevices.Finder;
 
 namespace CANAnalyzer
 {
@@ -27,7 +27,6 @@ namespace CANAnalyzer
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
 
             DevicesFinder.find();
-
             
         }
 

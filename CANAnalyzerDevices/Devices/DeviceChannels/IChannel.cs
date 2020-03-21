@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Management;
 
-namespace CANAnalyzerDevices.Devices
+namespace CANAnalyzerDevices.Devices.DeviceChannels
 {
-    public abstract class DeviceBase
+    public interface IChannel
     {
     }
 }
