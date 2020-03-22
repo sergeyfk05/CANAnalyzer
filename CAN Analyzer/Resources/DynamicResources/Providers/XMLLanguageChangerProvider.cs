@@ -14,10 +14,10 @@ namespace CANAnalyzer.Resources.DynamicResources
 
         private XMLLanguageChangerProvider(string file)
         {
-            _languages = XDocument.Load(file).Element("Themes").Element("Recordings");
+            _languages = XDocument.Load(file).Element("Languages").Element("Recordings");
             var cultures = new List<LanguageCultureInfo>();
 
-            foreach (var el in XDocument.Load(file).Element("Themes").Element("Cultures").Elements("Culture"))
+            foreach (var el in XDocument.Load(file).Element("Languages").Element("Cultures").Elements("Culture"))
             {
                 cultures.Add(new LanguageCultureInfo(el.Value));
             }

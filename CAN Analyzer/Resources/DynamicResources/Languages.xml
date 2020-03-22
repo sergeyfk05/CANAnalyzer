@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Themes>
+<Languages>
   <Cultures>
     <Culture>ru</Culture>
     <Culture>en</Culture>
@@ -35,9 +35,28 @@
       <ru>Сохранить в файл</ru>
       <en>Save in file</en>
     </Record>
+    <Record name="TransmitPageSaveAsButtonToolTip">
+      <ru>Сохранить как</ru>
+      <en>Save as</en>
+    </Record>
     <Record name="TransmitPageClearButtonToolTip">
       <ru>Очистить всё</ru>
       <en>Clear all</en>
+    </Record>
+    <Record name="TransmitPageStartButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Start trasmit</en>
+    </Record>
+    <Record name="TransmitPagePauseButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Stop transmit</en>
+    </Record>
+    <Record name="TransmitPageStopButtonToolTip">
+      <ru>Очистить всё</ru>
+      <en>Pause transmit</en>
+    </Record>
+    <Record name="TraceFilterById">
+      <en>Filter by CAN id:</en>
     </Record>
 
     <!--TransmitTo Control-->
@@ -45,5 +64,42 @@
       <ru>Транслировать в:</ru>
       <en>Transmit to:</en>
     </Record>
+    
+    
+    <!--Trace DataGrid-->
+    <Record name="TraceDataTimeColumnName">
+      <en>Time</en>
+    </Record>
+    <Record name="TraceDataCanIdColumnName">
+      <en>ID</en>
+    </Record>
+    <Record name="TraceDataExtIdColumnName">
+      <en>External ID</en>
+    </Record>
+    <Record name="TraceDataDLCColumnName">
+      <en>DLC</en>
+    </Record>
+    <Record name="TraceDataPayloadColumnName">
+      <en>Payload</en>
+    </Record>
+    <Record name="TraceDataCommentColumnName">
+      <en>CAN header comment</en>
+    </Record>
+    
+    
+    
+    <!--DataTypeProviders-->
+    <Record name="CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
+      <en>SQLite3 database</en>
+    </Record>
+
+
+
+    <Record name="ErrorMsgBoxTitle">
+      <en>Error</en>
+    </Record>
+    <Record name="FileError">
+      <en>File in use by another program or inaccessible.</en>
+    </Record>
   </Recordings>
-</Themes>
+</Languages>

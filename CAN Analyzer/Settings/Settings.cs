@@ -17,7 +17,7 @@ namespace CANAnalyzer
 
         public string LanguagesXmlPath { get; set; } = @"Resources\DynamicResources\Languages.xml";
         public string ThemesXmlPath { get; set; } = @"Resources\DynamicResources\Themes.xml";
-        public string SettingsPath { get; set; } = "Settings.xml";
+        public string SettingsPath { get; set; } = "Settings.json";
         public string ThemeCulture { get; set; } = "dark";
         public string LanguageCulture { get; set; } = "EN";
 
@@ -31,7 +31,7 @@ namespace CANAnalyzer
         private static Settings _settings;
         public static Settings Instance => _settings ?? (_settings = new Settings());
 
-        public static async void ImportFromJson(string path)
+        public static async void ImportFromJsonAsync(string path)
         {
             if (!File.Exists(path))
             {
@@ -44,14 +44,25 @@ namespace CANAnalyzer
                 _settings = await JsonSerializer.DeserializeAsync<Settings>(fs);
             }
         }
+        public static void ImportFromJson(string path)
+        {
+            if (!File.Exists(path))
+            {
+                _settings = new Settings();
+                return;
+            }
 
-        public static async void SaveToJson(string path)
+            string fs = File.ReadAllText(path);
+            _settings = JsonSerializer.Deserialize<Settings>(fs);
+        }
+
+        public static async void SaveToJsonAsync(string path)
         {
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
-
+            
             using (FileStream fs = new FileStream(path, FileMode.CreateNew))
             {
                 await JsonSerializer.SerializeAsync<Settings>(fs, _settings);

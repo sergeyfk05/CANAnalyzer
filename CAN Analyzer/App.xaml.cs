@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CANAnalyzerDevices.Finder;
+using CANAnalyzer.Models.Databases;
 
 namespace CANAnalyzer
 {
@@ -16,27 +17,22 @@ namespace CANAnalyzer
     /// </summary>
     public partial class App : Application
     {
-        public object DeviceCreatorsBuilder { get; private set; }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             Settings.ImportFromJson(Settings.Instance.SettingsPath);
-            
 
             Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
 
-            DevicesFinder.FindAvailableDevices();
-            
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
 
-            Settings.SaveToJson(Settings.Instance.SettingsPath);
+            Settings.SaveToJsonAsync(Settings.Instance.SettingsPath);
         }
     }
 }

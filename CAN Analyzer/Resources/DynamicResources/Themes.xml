@@ -23,10 +23,6 @@
       <dark>Resources\Icons\1.png</dark>
       <white>Resources\Icons\1.png</white>
     </Record>
-    <Record name="CollapsedMenuWidth">
-      <dark>50</dark>
-      <white>50</white>
-    </Record>
 
 
 
@@ -47,6 +43,14 @@
     <Record name="TransmitPageIconButtonMouseEnterBackgroundStopBrush">
       <dark>Blue</dark>
       <white>Blue</white>
+    </Record>
+    <Record name="TransmitPageIconButtonDisabledBackgroundStartBrush">
+      <dark>Purple</dark>
+      <white>Purple</white>
+    </Record>
+    <Record name="TransmitPageIconButtonDisabledBackgroundStopBrush">
+      <dark>Red</dark>
+      <white>Red</white>
     </Record>
     <Record name="TransmitPageIconButtonBorderThickness">
       <dark>2</dark>
@@ -75,7 +79,23 @@
       <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>
+    <Record name="TransmitPageSaveAsButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
     <Record name="TransmitPageClearButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageStartButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPagePauseButtonIcon">
+      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
+    </Record>
+    <Record name="TransmitPageStopButtonIcon">
       <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
       <white>/Can Analyzer;component/Resources/Icons/1.png</white>
     </Record>
