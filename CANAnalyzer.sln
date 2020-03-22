@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicResource", "DynamicR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerMenu", "HamburgerMenu\HamburgerMenu.csproj", "{EB2B307D-68EB-4E4A-8999-90DB4DB48342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanAnalyzerDevicesTests", "CanAnalyzerDevicesTests\CanAnalyzerDevicesTests.csproj", "{DA797630-41B3-48C2-B62A-B00D6417E191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA797630-41B3-48C2-B62A-B00D6417E191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA797630-41B3-48C2-B62A-B00D6417E191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA797630-41B3-48C2-B62A-B00D6417E191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA797630-41B3-48C2-B62A-B00D6417E191}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

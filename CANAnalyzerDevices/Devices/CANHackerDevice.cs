@@ -18,7 +18,8 @@ namespace CANAnalyzerDevices.Devices
         {
             port = new SerialPort(portName, 115200, Parity.None, 8, StopBits.One);
 
-            channel = new CanHackerChannel(this, port);
+            _channels = new List<IChannel>();
+            _channels.Add(new CanHackerChannel(this, port));
 
             if (IsConnectNow)
                 Connect();
@@ -42,21 +43,21 @@ namespace CANAnalyzerDevices.Devices
         }
 
 
-        public IChannel this[int index]
+        public IEnumerable<IChannel> Channels
         {
-            get
-            {
-                if (index >= ChannelCount)
-                    throw new ArgumentOutOfRangeException();
-
-                return channel;
-            }
+            get { return _channels; }
         }
+        private List<IChannel> _channels;
 
-        public int ChannelCount { get; private set; } = 1;
-        private CanHackerChannel channel;
+        public int ChannelCount => _channels.Count;
 
         public bool IsConnected => port.IsOpen;
+
+
+        public override string ToString()
+        {
+            return $"CanHacker v2.0 : {port.PortName}";
+        }
 
         private SerialPort port;
     }

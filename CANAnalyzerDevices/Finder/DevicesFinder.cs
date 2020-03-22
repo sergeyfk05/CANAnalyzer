@@ -8,29 +8,35 @@ using Microsoft.Win32;
 using System.Management;
 using System.Text.RegularExpressions;
 using CANAnalyzerDevices.Devices.DeviceCreaters;
+using CANAnalyzerDevices.Devices;
 
 namespace CANAnalyzerDevices.Finder
 {
-    public class DevicesFinder
+    public static class DevicesFinder
     {
-
-        public static void find()
+        /// <summary>
+        /// Method for find available devices.
+        /// </summary>
+        /// <returns>Returns list of available to work devices.</returns>
+        public static List<IDevice> FindAvailableDevices()
         {
+            List<IDevice> availableDevices = new List<IDevice>();
             List<IDeviceCreator> creators = DeviceCreatorsBuilder.BuildDeviceCreatorsList();
 
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_SerialPort");
-            foreach (ManagementObject obj in searcher.Get())
+            foreach (ManagementObject win32Device in searcher.Get())
             {
-                HardwareDeviceInfo info = new HardwareDeviceInfo(obj["DeviceID"].ToString(), obj["PNPDeviceID"].ToString());
+                HardwareDeviceInfo info = new HardwareDeviceInfo(win32Device["DeviceID"].ToString(), win32Device["PNPDeviceID"].ToString());
 
                 foreach(var creator in creators)
                 {
-                    if (!creator.IsCanWorkWith(info))
-                        continue;
+                    IDevice a = creator.CreateInstance(info, true);
+                    if (a != null)
+                        availableDevices.Add(a);
                 }
-
-
             }
+
+            return availableDevices;
         }
     }
 }

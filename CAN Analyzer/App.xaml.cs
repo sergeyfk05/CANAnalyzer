@@ -16,6 +16,8 @@ namespace CANAnalyzer
     /// </summary>
     public partial class App : Application
     {
+        public object DeviceCreatorsBuilder { get; private set; }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -26,7 +28,7 @@ namespace CANAnalyzer
             Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
 
-            DevicesFinder.find();
+            DevicesFinder.FindAvailableDevices();
             
         }
 

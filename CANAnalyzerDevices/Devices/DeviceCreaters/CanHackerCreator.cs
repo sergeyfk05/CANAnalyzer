@@ -8,8 +8,16 @@ using System.IO.Ports;
 
 namespace CANAnalyzerDevices.Devices.DeviceCreaters
 {
+    /// <summary>
+    /// Class for creation CanHackerDevice. Before creation checks compatibility.
+    /// </summary>
     internal class CanHackerCreator : IDeviceCreator
     {
+        /// <summary>
+        /// Check on compatability device.
+        /// </summary>
+        /// <param name="info">Information needed for check compatability.</param>
+        /// <returns>Return true if device is compatability, else return false.</returns>
         bool IDeviceCreator.IsCanWorkWith(HardwareDeviceInfo info)
         {
             if (info.VID != 0483 || info.PID != 5740)
@@ -62,11 +70,27 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
             {
                 return false;
             }
-
-            return false;
         }
 
+        /// <summary>
+        /// Create new IDevice.
+        /// </summary>
+        /// <param name="info">Information needed for creation IDevice</param>
+        /// <param name="returnDefault">If device isn't supported, then return null or exception. If true - return null or IDevice, if false - return IDevice or throw exceprion.</param>
+        /// <returns>Return IDevice. Before creation checks compatibility. If not compatible, then throw exception or returned null.</returns>
+        IDevice IDeviceCreator.CreateInstance(HardwareDeviceInfo info, bool returnDefault)
+        {
+            if (!((IDeviceCreator)this).IsCanWorkWith(info))
+            {
+                if (returnDefault)
+                    return null;
+                else
+                    throw new ArgumentException("this device cannot work with this hardware device.");
+            }
+                
 
+            return new CANHackerDevice(info.PortName);
+        }
 
     }
 }

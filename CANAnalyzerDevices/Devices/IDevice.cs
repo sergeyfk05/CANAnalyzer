@@ -14,7 +14,7 @@ namespace CANAnalyzerDevices.Devices
     {
         void Connect();
         void Disconnect();
-        IChannel this[int index] { get; }
+        IEnumerable<IChannel> Channels { get; }
 
         int ChannelCount { get; }
 
