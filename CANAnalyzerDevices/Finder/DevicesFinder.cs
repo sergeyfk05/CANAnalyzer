@@ -30,7 +30,7 @@ namespace CANAnalyzerDevices.Finder
 
                 foreach(var creator in creators)
                 {
-                    IDevice a = creator.CreateInstance(info, true);
+                    IDevice a = creator.CreateInstanceDefault(info);
                     if (a != null)
                         availableDevices.Add(a);
                 }

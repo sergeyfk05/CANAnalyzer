@@ -23,8 +23,14 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
         /// Create new IDevice.
         /// </summary>
         /// <param name="info">Information needed for creation IDevice</param>
-        /// <param name="returnDefault">If device isn't supported, then return null or exception. If true - return null or IDevice, if false - return IDevice or throw exceprion.</param>
-        /// <returns>Return IDevice. Before creation checks compatibility. If not compatible, then throw exception or returned null.</returns>
-        IDevice CreateInstance(HardwareDeviceInfo info, bool returnDefault = false);
+        /// <returns>Return IDevice. Before creation checks compatibility. If not compatible, then throw exception.</returns>
+        IDevice CreateInstance(HardwareDeviceInfo info);
+
+        /// <summary>
+        /// Create new IDevice.
+        /// </summary>
+        /// <param name="info">Information needed for creation IDevice</param>
+        /// <returns>Return IDevice. Before creation checks compatibility. If not compatible, then returne null.</returns>
+        IDevice CreateInstanceDefault(HardwareDeviceInfo info);
     }
 }

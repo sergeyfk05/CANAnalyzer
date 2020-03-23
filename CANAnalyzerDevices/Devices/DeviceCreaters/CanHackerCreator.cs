@@ -78,16 +78,24 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
         /// <param name="info">Information needed for creation IDevice</param>
         /// <param name="returnDefault">If device isn't supported, then return null or exception. If true - return null or IDevice, if false - return IDevice or throw exceprion.</param>
         /// <returns>Return IDevice. Before creation checks compatibility. If not compatible, then throw exception or returned null.</returns>
-        IDevice IDeviceCreator.CreateInstance(HardwareDeviceInfo info, bool returnDefault)
+        IDevice IDeviceCreator.CreateInstance(HardwareDeviceInfo info)
         {
             if (!((IDeviceCreator)this).IsCanWorkWith(info))
             {
-                if (returnDefault)
-                    return null;
-                else
-                    throw new ArgumentException("this device cannot work with this hardware device.");
+                throw new ArgumentException("this device cannot work with this hardware device.");
             }
                 
+
+            return new CANHackerDevice(info.PortName);
+        }
+
+        IDevice IDeviceCreator.CreateInstanceDefault(HardwareDeviceInfo info)
+        {
+            if (!((IDeviceCreator)this).IsCanWorkWith(info))
+            {
+                return null;
+            }
+
 
             return new CANHackerDevice(info.PortName);
         }
