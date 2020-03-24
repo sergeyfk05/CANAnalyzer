@@ -31,7 +31,8 @@ namespace CANAnalyzerDevices.Devices
             if (IsConnected)
                 return;
 
-            port.Open();
+            lock(port)
+                port.Open();
         }
 
         public void Disconnect()
@@ -39,7 +40,8 @@ namespace CANAnalyzerDevices.Devices
             if (!IsConnected)
                 return;
 
-            port.Close();
+            lock(port)
+                port.Close();
         }
 
 

@@ -26,7 +26,12 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         {
             if (sender is SerialPort port)
             {
-                ReceivedData data  = ParseData(port.ReadExisting());
+                ReceivedData data;
+                lock (_port)
+                {
+                    data = ParseData(port.ReadExisting());
+                }
+
                 if (data != null)
                     OnReceivedData(data);
             }
@@ -168,13 +173,17 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 default:
                     throw new ArgumentException("invalid bitrate. Support only 10, 20, 50, 100, 125, 250, 500, 800 and 1000 kbps");
             }
-            _port.Write(command);
 
-            //open channel
-            if (isListenOnly)
-                _port.Write(new char[] { 'L' }, 0, 1);
-            else
-                _port.Write(new char[] { 'O' }, 0, 1);
+            lock(_port)
+            {
+                _port.Write(command);
+
+                //open channel
+                if (isListenOnly)
+                    _port.Write(new char[] { 'L' }, 0, 1);
+                else
+                    _port.Write(new char[] { 'O' }, 0, 1);
+            }
 
 
             //open
@@ -197,7 +206,10 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 return;
 
             IsOpen = false;
-            _port.Write(new char[] { 'C' }, 0, 1);
+            lock (_port)
+            {
+                _port.Write(new char[] { 'C' }, 0, 1);
+            }
         }
 
         /// <summary>
@@ -230,7 +242,10 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             else
                 transmit = $"t{data.CanId.ToString("X3")}{data.DLC.ToString("X1")}{payloadstr}\r";
 
-            _port.Write(transmit);
+            lock (_port)
+            {
+                _port.Write(transmit);
+            }
 
         }
 
