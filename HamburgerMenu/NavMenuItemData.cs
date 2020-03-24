@@ -28,4 +28,18 @@ namespace HamburgerMenu
         public bool IsSelected { get; set; }
 
     }
+
+    public static class NavMenuItemDataExtensions
+    {
+        public static void ResetIsSelectedFlag(this NavMenuItemData data)
+        {
+            data.IsSelected = false;
+
+            if (data.DropdownItems == null)
+                return;
+
+            foreach (var el in data.DropdownItems)
+                el.ResetIsSelectedFlag();
+        }
+    }
 }

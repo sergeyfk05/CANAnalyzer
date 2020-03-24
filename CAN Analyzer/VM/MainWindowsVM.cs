@@ -19,17 +19,63 @@ namespace CANAnalyzer.VM
     {
         public MainWindowsVM()
         {
-            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "app", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new TransmitPage()));
-            PagesData.Add(new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false, Text = "device", ImageSource = new Uri(new Uri(Assembly.GetExecutingAssembly().Location), @"Resources\Icons\1.png") }, new DeviceSettingsPage()));
+            ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                "appSettingsMenu",
+                "appSettingsIcon",
+                new AppSettingsPage(),
+                (ContentPageData data) =>
+                {
+                    MainContent = data.Page;
+                    ResetSelectedItems();
+                    data.NavData.IsSelected = true;
+                });
+            PagesData.Add(buf);
+            BottomItemSource.Add(buf.NavData);
+            buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+   "appSettingsMenu",
+   "appSettingsIcon",
+   new AppSettingsPage(),
+   (ContentPageData data) =>
+   {
+       MainContent = data.Page;
+       ResetSelectedItems();
+       data.NavData.IsSelected = true;
+   });
+            PagesData.Add(buf);
+            BottomItemSource.Add(buf.NavData);
 
-            foreach(var el in PagesData)
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
+        }
+
+        private void ThemeManager_CultureChanged(object sender, EventArgs e)
+        {
+            if (PagesData == null)
+                return;
+
+            foreach (var el in PagesData)
             {
-                BottomItemSource.Add(el.NavData);
+                el.UpdateTheme();
+            }
+        }
+
+        private void LanguageManager_CultureChanged(object sender, EventArgs e)
+        {
+            if (PagesData == null)
+                return;
+
+            foreach (var el in PagesData)
+            {
+                el.UpdateLocalization();
             }
         }
 
         private List<ContentPageData> PagesData = new List<ContentPageData>();
-
+        private void ResetSelectedItems()
+        {
+            foreach (var el in PagesData)
+                el.NavData.ResetIsSelectedFlag();
+        }
 
         public List<NavMenuItemData> TopItemSource
         {
@@ -113,7 +159,7 @@ namespace CANAnalyzer.VM
             if (pageData.Page == null)
                 return;
 
-            MainContent = pageData.Page;
+            pageData.ClickAction(pageData);
         }
 
 

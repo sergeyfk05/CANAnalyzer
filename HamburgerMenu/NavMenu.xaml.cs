@@ -46,17 +46,20 @@ namespace HamburgerMenu
                 Height = ItemHeight,
                 Background = new SolidColorBrush(item.IsSelected ? SelectedItemBackground : Background)
             };
-        
 
-            Image icon = new Image()
+            try
             {
-                Height = IconSize,
-                Width = IconSize,
-                Margin = new Thickness((DropdownIconSectionWidth - IconSize) / 2 + offset, (ItemHeight - IconSize) / 2, (DropdownIconSectionWidth - IconSize) / 2, (ItemHeight - IconSize) / 2),
-                Source = new BitmapImage(item.ImageSource)
-            };
-            DockPanel.SetDock(icon, Dock.Left);
-            result.Children.Add(icon);
+                Image icon = new Image()
+                {
+                    Height = IconSize,
+                    Width = IconSize,
+                    Margin = new Thickness((DropdownIconSectionWidth - IconSize) / 2 + offset, (ItemHeight - IconSize) / 2, (DropdownIconSectionWidth - IconSize) / 2, (ItemHeight - IconSize) / 2),
+                    Source = new BitmapImage(item.ImageSource)
+                };
+                DockPanel.SetDock(icon, Dock.Left);
+                result.Children.Add(icon);
+            }
+            catch { }
 
 
             TextBlock text = new TextBlock()
