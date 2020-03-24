@@ -11,5 +11,10 @@ namespace CANAnalyzer.Resources.DynamicResources
     {
         public ThemeCultureInfo(string name) : base(name)
         { }
+
+        public override string ToString()
+        {
+            return (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource(Name);
+        }
     }
 }

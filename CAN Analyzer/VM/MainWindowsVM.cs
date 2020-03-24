@@ -23,24 +23,16 @@ namespace CANAnalyzer.VM
                 "appSettingsMenu",
                 "appSettingsIcon",
                 new AppSettingsPage(),
-                (ContentPageData data) =>
-                {
-                    MainContent = data.Page;
-                    ResetSelectedItems();
-                    data.NavData.IsSelected = true;
-                });
+                ChangePage);
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
+
+
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-   "deviceSettingsMenu",
-   "deviceSettingsIcon",
-   new AppSettingsPage(),
-   (ContentPageData data) =>
-   {
-       MainContent = data.Page;
-       ResetSelectedItems();
-       data.NavData.IsSelected = true;
-   });
+               "deviceSettingsMenu",
+               "deviceSettingsIcon",
+               new DeviceSettingsPage(),
+               ChangePage);
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
 
@@ -69,6 +61,18 @@ namespace CANAnalyzer.VM
                 el.UpdateLocalization();
             }
         }
+
+
+        private void ChangePage(ContentPageData data)
+        {
+            MainContent = data.Page;
+            ResetSelectedItems();
+            data.NavData.IsSelected = true;
+        }
+
+
+
+
 
         private List<ContentPageData> PagesData = new List<ContentPageData>();
         private void ResetSelectedItems()

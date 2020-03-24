@@ -6,13 +6,13 @@
   </Cultures>
 
   <Recordings>
-    <Record name="s">
-      <ru>RU</ru>
-      <en>EN</en>
+    <Record name="ru">
+      <ru>Русский</ru>
+      <en>Русский</en>
     </Record>
-    <Record name="ss">
-      <ru>dark ru</ru>
-      <en>white en</en>
+    <Record name="en">
+      <ru>English</ru>
+      <en>English</en>
     </Record>
 
     <!--NavMenu-->

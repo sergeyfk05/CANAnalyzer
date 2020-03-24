@@ -151,9 +151,5 @@
       <white>Blue</white>
     </Record>
 
-    <Record name="TransmitToControl">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
   </Recordings>
 </Themes>
