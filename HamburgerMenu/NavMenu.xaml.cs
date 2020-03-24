@@ -3,6 +3,7 @@ using HamburgerMenu.Events;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ namespace HamburgerMenu
         public NavMenu()
         {
             InitializeComponent();
+            _context = SynchronizationContext.Current;
             Root.Loaded += (object sender, RoutedEventArgs e) => { MinCorrectWidth = Root.CalcMinNavMenuCorrectWidth(); };
             Draw(Root);
         }
@@ -37,19 +39,23 @@ namespace HamburgerMenu
             
         }
 
+        private SynchronizationContext _context;
+
         private void CreateNavMenuItem(NavMenuItemData item, Panel toAdd, int offset = 0)
         {
             #region создание самого элемента
 
-            DockPanel result = new DockPanel()
+
+            DockPanel dock = new DockPanel()
             {
                 Height = ItemHeight,
                 Background = new SolidColorBrush(item.IsSelected ? SelectedItemBackground : Background)
             };
 
+            Image icon = null;
             try
             {
-                Image icon = new Image()
+                icon = new Image()
                 {
                     Height = IconSize,
                     Width = IconSize,
@@ -57,7 +63,7 @@ namespace HamburgerMenu
                     Source = new BitmapImage(item.ImageSource)
                 };
                 DockPanel.SetDock(icon, Dock.Left);
-                result.Children.Add(icon);
+                dock.Children.Add(icon);
             }
             catch { }
 
@@ -74,7 +80,7 @@ namespace HamburgerMenu
                 Margin = new Thickness(0, 0, (ItemHeight - ItemTextFontSize) / 2, 0)
             };
             DockPanel.SetDock(text, Dock.Left);
-            result.Children.Add(text);
+            dock.Children.Add(text);
 
 
 
@@ -90,12 +96,12 @@ namespace HamburgerMenu
                 To = MouseInItemTextColor,
                 Duration = MouseInOverAnimationDuration
             };
-            result.MouseEnter += (object sender, MouseEventArgs e) => 
+            dock.MouseEnter += (object sender, MouseEventArgs e) => 
             {
                 if (!this.IsEnabled)
                     return;
 
-                result.Background.BeginAnimation(SolidColorBrush.ColorProperty, mouseEnterAnimation);
+                dock.Background.BeginAnimation(SolidColorBrush.ColorProperty, mouseEnterAnimation);
                 text.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, mouseEnterTextAnimation);
             };
 
@@ -111,24 +117,66 @@ namespace HamburgerMenu
                 From = MouseInItemTextColor,
                 Duration = MouseInOverAnimationDuration
             };
-            result.MouseLeave += (object sender, MouseEventArgs e) => 
+            dock.MouseLeave += (object sender, MouseEventArgs e) => 
             {
                 if (!this.IsEnabled)
                     return;
 
-                result.Background.BeginAnimation(SolidColorBrush.ColorProperty, mouseLeaveAnimation);
+                dock.Background.BeginAnimation(SolidColorBrush.ColorProperty, mouseLeaveAnimation);
                 text.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, mouseLeaveTextAnimation);
             };
 
             MouseClickManager clickManager = new MouseClickManager(200, () => { return this.IsEnabled; });
-            result.MouseLeftButtonDown += clickManager.OnMouseLeftButtonDown;
-            result.MouseLeftButtonUp += clickManager.OnMouseLeftButtonUp;
+            dock.MouseLeftButtonDown += clickManager.OnMouseLeftButtonDown;
+            dock.MouseLeftButtonUp += clickManager.OnMouseLeftButtonUp;
 
             //обработчик кликов во вне
             clickManager.Click += (object sender, MouseButtonEventArgs e) => { RaiseClickedEvent(item); };
 
+            item.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+            {
+                _context?.Post((s) =>
+                {
+                    if (sender is NavMenuItemData data)
+                    {
+                        if (e.PropertyName == "ImageSource")
+                        {
+                            if (icon != null)
+                                icon.Source = new BitmapImage(data.ImageSource);
+                        }
 
-            toAdd.Children.Add(result);
+                        if (e.PropertyName == "Text")
+                        {
+                            if (text != null)
+                                text.Text = data.Text;
+                        }
+
+                        if (e.PropertyName == "IsSelected")
+                        {
+                            if (text != null)
+                                text.Foreground = data.IsSelected ? new SolidColorBrush(SelectedItemTextColor) : new SolidColorBrush(ItemTextColor);
+
+                            if (dock != null)
+                                dock.Background = new SolidColorBrush(data.IsSelected ? SelectedItemBackground : Background);
+
+                            if (mouseEnterAnimation != null)
+                                mouseEnterAnimation.From = data.IsSelected ? SelectedItemBackground : Background;
+
+                            if (mouseEnterTextAnimation != null)
+                                mouseEnterTextAnimation.From = data.IsSelected ? SelectedItemTextColor : ItemTextColor;
+
+                            if (mouseLeaveAnimation != null)
+                                mouseLeaveAnimation.To = data.IsSelected ? SelectedItemBackground : Background;
+
+                            if (mouseLeaveTextAnimation != null)
+                                mouseLeaveTextAnimation.To = data.IsSelected ? SelectedItemTextColor : ItemTextColor;
+                        }
+                    }
+                }, null);
+            };
+
+
+            toAdd.Children.Add(dock);
 
             #endregion
 
@@ -153,7 +201,7 @@ namespace HamburgerMenu
                     Name = "dropdownIcon"
                 };
                 DockPanel.SetDock(dropdownIcon, Dock.Right);
-                result.Children.Add(dropdownIcon);
+                dock.Children.Add(dropdownIcon);
 
                 DoubleAnimation rotateAnimation = new DoubleAnimation()
                 {
@@ -247,6 +295,8 @@ namespace HamburgerMenu
             #endregion
 
         }
+
+
 
         public void ReDraw()
         {

@@ -32,8 +32,8 @@ namespace CANAnalyzer.VM
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-   "appSettingsMenu",
-   "appSettingsIcon",
+   "deviceSettingsMenu",
+   "deviceSettingsIcon",
    new AppSettingsPage(),
    (ContentPageData data) =>
    {

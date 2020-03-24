@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HamburgerMenu
 {
-    public class NavMenuItemData
+    public class NavMenuItemData : INotifyPropertyChanged
     {
         public void AddDropdownItem(NavMenuItemData item)
         {
@@ -21,11 +23,54 @@ namespace HamburgerMenu
 
         private List<NavMenuItemData> _dropdownItems;
 
-        public Uri ImageSource { get; set; }
+        public Uri ImageSource
+        {
+            get { return _imageSource; }
+            set
+            {
+                if (value == _imageSource)
+                    return;
 
-        public string Text { get; set; }
+                _imageSource = value;
+                OnPropertyChanged();
+            }
+        }
+        private Uri _imageSource;
 
-        public bool IsSelected { get; set; }
+        public string Text
+        {
+            get { return _text; }
+            set
+            {
+                if (value == _text)
+                    return;
+
+                _text = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _text;
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (value == _isSelected)
+                    return;
+
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isSelected;
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
     }
 
