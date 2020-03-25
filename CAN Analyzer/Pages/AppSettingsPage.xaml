@@ -15,26 +15,35 @@
         <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
     </UserControl.Resources>
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
+    <StackPanel Margin="10">
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
-        </Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>-->
 
-        <TextBlock Grid.Row="0" Text="{resources:Language AppSettingsTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
+        <Grid Height="30">
+            <TextBlock Grid.Row="0" Text="{resources:Language AppSettingsPageTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
+        </Grid>
+
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Left">
-            <ComboBox Height="30" 
+            <GroupBox Header="{resources:Language AppSettingPageSelectLanguage}" Padding="5">
+                <ComboBox
                   VerticalAlignment="Center"
                   Width="150" 
                   ItemsSource="{Binding Languages}"
                   SelectedItem="{Binding CurrentLanguage}"/>
-            <ComboBox Height="30" 
+            </GroupBox>
+
+            <GroupBox Header="{resources:Language AppSettingPageSelectTheme}" Padding="5">
+                <ComboBox
                   VerticalAlignment="Center"
                   Width="150" 
                   ItemsSource="{Binding Themes}"
                   SelectedItem="{Binding CurrentTheme}"/>
+            </GroupBox>
         </StackPanel>
 
-    </Grid>
+    </StackPanel>
 </UserControl>

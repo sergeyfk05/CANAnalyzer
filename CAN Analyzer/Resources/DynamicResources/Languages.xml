@@ -106,8 +106,14 @@
 
 
     <!--AppSettingPage-->
-    <Record name="AppSettingsTitle">
+    <Record name="AppSettingsPageTitle">
       <en>Application settings</en>
+    </Record>
+    <Record name="AppSettingPageSelectLanguage">
+      <en>Select language:</en>
+    </Record>
+    <Record name="AppSettingPageSelectTheme">
+      <en>Select theme:</en>
     </Record>
     
 
