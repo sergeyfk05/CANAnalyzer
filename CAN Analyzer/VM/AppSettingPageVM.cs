@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
+using CANAnalyzer.Models;
 
 namespace CANAnalyzer.VM
 {
@@ -115,5 +116,24 @@ namespace CANAnalyzer.VM
             }
         }
         private ThemeCultureInfo _themeLanguage = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
+
+        private RelayCommandAsync _loadedCommand;
+        public RelayCommandAsync LoadedCommand
+        {
+            get
+            {
+                if (_loadedCommand == null)
+                    _loadedCommand = new RelayCommandAsync(this.LoadedCommand_Execute);
+
+                return _loadedCommand;
+            }
+        }
+        private void LoadedCommand_Execute()
+        {
+            Languages = Manager<LanguageCultureInfo>.StaticInstance.Cultures;
+            CurrentLanguage = Manager<LanguageCultureInfo>.StaticInstance.CurrentCulture;
+            Themes = Manager<ThemeCultureInfo>.StaticInstance.Cultures;
+            CurrentTheme = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
+        }
     }
 }

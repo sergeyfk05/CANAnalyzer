@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
@@ -14,13 +15,14 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
     </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
 
     <StackPanel Margin="10">
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>-->
 
         <Grid Height="30">
             <TextBlock Grid.Row="0" Text="{resources:Language AppSettingsPageTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
