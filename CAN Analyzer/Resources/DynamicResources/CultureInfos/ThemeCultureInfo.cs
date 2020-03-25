@@ -7,14 +7,14 @@ using DynamicResource;
 
 namespace CANAnalyzer.Resources.DynamicResources
 {
-    internal class ThemeCultureInfo : BaseCultureInfo
+    public class ThemeCultureInfo : BaseCultureInfo
     {
         public ThemeCultureInfo(string name) : base(name)
         { }
 
         public override string ToString()
         {
-            return (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource(Name);
+            return (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(Name);
         }
     }
 }

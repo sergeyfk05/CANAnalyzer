@@ -32,6 +32,9 @@ namespace CANAnalyzer
         {
             base.OnExit(e);
 
+            Settings.Instance.LanguageCulture = Manager<LanguageCultureInfo>.StaticInstance.CurrentCulture.Name;
+            Settings.Instance.ThemeCulture = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture.Name;
+
             Settings.SaveToJsonAsync(Settings.Instance.SettingsPath);
         }
     }

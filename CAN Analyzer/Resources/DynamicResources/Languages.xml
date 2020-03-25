@@ -15,6 +15,17 @@
       <en>English</en>
     </Record>
 
+
+
+    <Record name="dark">
+      <ru>Тёмная</ru>
+      <en>Dark</en>
+    </Record>
+    <Record name="white">
+      <ru>Светлая</ru>
+      <en>Bright</en>
+    </Record>
+
     <!--NavMenu-->
     <Record name="appSettingsMenu">
       <ru>Настройки</ru>
@@ -94,6 +105,11 @@
     </Record>
 
 
+    <!--AppSettingPage-->
+    <Record name="AppSettingsTitle">
+      <en>Application settings</en>
+    </Record>
+    
 
     <Record name="ErrorMsgBoxTitle">
       <en>Error</en>

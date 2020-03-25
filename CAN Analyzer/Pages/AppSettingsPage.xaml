@@ -14,20 +14,27 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
     </UserControl.Resources>
-    
 
     <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Column="0" Text="{resources:Language AppSettingsTitle}" FontFamily="Arial" FontSize="18"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <ComboBox Height="30" 
+        <TextBlock Grid.Row="0" Text="{resources:Language AppSettingsTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+            <ComboBox Height="30" 
                   VerticalAlignment="Center"
                   Width="150" 
                   ItemsSource="{Binding Languages}"
                   SelectedItem="{Binding CurrentLanguage}"/>
+            <ComboBox Height="30" 
+                  VerticalAlignment="Center"
+                  Width="150" 
+                  ItemsSource="{Binding Themes}"
+                  SelectedItem="{Binding CurrentTheme}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>
