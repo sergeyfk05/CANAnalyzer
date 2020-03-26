@@ -264,42 +264,5 @@ namespace CANAnalyzer.VM
             }
 
         }
-        //private void ConnectCommandCanExecuteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if ((sender is AppSettingPageVM vm) && ((e.PropertyName == "IsConnected") || (e.PropertyName == "SelectedDevice")))
-        //        vm.DeviceConnectCommand.RaiseCanExecuteChanged();
-        //}
-
-
-        private RelayCommandAsync _deviceDisonnectCommand;
-        public RelayCommandAsync DeviceDisconnectCommand
-        {
-            get
-            {
-                if (_deviceDisonnectCommand == null)
-                    _deviceDisonnectCommand = new RelayCommandAsync(this.DeviceDisconnectCommand_Execute, () => ((Settings.Instance.Device != null) && (Settings.Instance.Device.IsConnected)) || (IsConnected));
-
-                return _deviceDisonnectCommand;
-            }
-        }
-        private void DeviceDisconnectCommand_Execute()
-        {
-            try
-            {
-                Settings.Instance.Device.Disconnect();
-                IsConnected = false;
-            }
-            catch(Exception e)
-            {
-                IsConnected = false;
-                Settings.Instance.Device = null;
-                MessageBox.Show("Чо-то не то с устройством", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        //private void DisconnectCommandCanExecuteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if ((sender is AppSettingPageVM vm) && ((e.PropertyName == "IsConnected") || (e.PropertyName == "SelectedDevice") || (e.PropertyName == "IsConnected")))
-        //        vm.DeviceDisconnectCommand.RaiseCanExecuteChanged();
-        //}
     }
 }

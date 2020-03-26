@@ -65,7 +65,7 @@
                                 </Style.Triggers>
                             </Style>
                         </ComboBox.Style>
-                        
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseEnter">
                                 <i:InvokeCommandAction Command="{Binding UpdateDevicesInfoCommand}"/>
@@ -90,16 +90,8 @@
                     </Button>
                 </DockPanel>
             </GroupBox>
+            
 
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Expander Header="">
-                            
-                        </Expander>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
 
         </StackPanel>
 
