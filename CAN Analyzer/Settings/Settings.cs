@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.ComponentModel;
+using CANAnalyzerDevices.Devices;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CANAnalyzer
 {
@@ -15,16 +20,98 @@ namespace CANAnalyzer
         }
 
 
-        public string LanguagesXmlPath { get; set; } = @"Resources\DynamicResources\Languages.xml";
-        public string ThemesXmlPath { get; set; } = @"Resources\DynamicResources\Themes.xml";
-        public string SettingsPath { get; set; } = "Settings.json";
-        public string ThemeCulture { get; set; } = "dark";
-        public string LanguageCulture { get; set; } = "EN";
+        public string LanguagesXmlPath
+        {
+            get { return _languagesXmlPath; }
+            set
+            {
+                if (value == _languagesXmlPath)
+                    return;
+
+                _languagesXmlPath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _languagesXmlPath = @"Resources\DynamicResources\Languages.xml";
+
+        public string ThemesXmlPath
+        {
+            get { return _themesXmlPath; }
+            set
+            {
+                if (value == _themesXmlPath)
+                    return;
+
+                _themesXmlPath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _themesXmlPath = @"Resources\DynamicResources\Themes.xml";
+
+        public string SettingsPath
+        {
+            get { return _settingsPath; }
+            set
+            {
+                if (value == _settingsPath)
+                    return;
+
+                _settingsPath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _settingsPath = "Settings.json";
+
+        public string ThemeCulture
+        {
+            get { return _themeCulture; }
+            set
+            {
+                if (value == _themeCulture)
+                    return;
+
+                _themeCulture = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _themeCulture = "dark";
+
+        public string LanguageCulture
+        {
+            get { return _languageCulture; }
+            set
+            {
+                if (value == _languageCulture)
+                    return;
+
+                _languageCulture = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _languageCulture = "EN";
 
 
+        [JsonIgnore]
+        public IDevice Device
+        {
+            get { return _device; }
+            set
+            {
+                if (value == _device)
+                    return;
+
+                _device = value;
+                OnPropertyChanged();
+            }
+        }
+        private IDevice _device = null;
 
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
 
 

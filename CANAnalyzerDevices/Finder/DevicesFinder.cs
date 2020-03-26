@@ -18,7 +18,7 @@ namespace CANAnalyzerDevices.Finder
         /// Method for find available devices.
         /// </summary>
         /// <returns>Returns list of available to work devices.</returns>
-        public static List<IDevice> FindAvailableDevices()
+        public static IEnumerable<IDevice> FindAvailableDevices()
         {
             List<IDevice> availableDevices = new List<IDevice>();
             List<IDeviceCreator> creators = DeviceCreatorsBuilder.BuildDeviceCreatorsList();

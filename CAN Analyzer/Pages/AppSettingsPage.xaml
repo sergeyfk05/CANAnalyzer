@@ -29,7 +29,7 @@
         </Grid>
 
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal">
             <GroupBox Header="{resources:Language AppSettingPageSelectLanguage}" Padding="5">
                 <ComboBox
                   VerticalAlignment="Center"
@@ -38,7 +38,7 @@
                   SelectedItem="{Binding CurrentLanguage}"/>
             </GroupBox>
 
-            <GroupBox Header="{resources:Language AppSettingPageSelectTheme}" Padding="5">
+            <GroupBox Header="{resources:Language AppSettingPageSelectTheme}" Padding="5" Margin="15 0 0 0">
                 <ComboBox
                   VerticalAlignment="Center"
                   Width="150" 
@@ -46,6 +46,40 @@
                   SelectedItem="{Binding CurrentTheme}"/>
             </GroupBox>
         </StackPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+            <GroupBox Header="{resources:Language AppSettingPageSelectDevice}" Padding="5">
+                <DockPanel>
+                    <ComboBox VerticalAlignment="Center"
+                              Width="150" 
+                              DockPanel.Dock="Left"
+                              ItemsSource="{Binding Devices}"
+                              SelectedItem="{Binding SelectedDevice}">
+
+                        <ComboBox.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                        <Setter Property="Control.IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseEnter">
+                                <i:InvokeCommandAction Command="{Binding UpdateDevicesInfoCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <Button Margin="10 0 0 0" Content="{resources:Language AppSettingPageConnectDevice}" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0"/>
+                    <Button Margin="10 0 0 0" Content="{resources:Language AppSettingPageDisconnectDevice}" Command="{Binding DeviceDisconnectCommand}" Padding="5 0 5 0"/>
+                </DockPanel>
+            </GroupBox>
+
+        </StackPanel>
+
 
     </StackPanel>
 </UserControl>

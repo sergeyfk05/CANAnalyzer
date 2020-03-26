@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
 using CANAnalyzer.Models;
+using CANAnalyzerDevices.Finder;
+using CANAnalyzerDevices.Devices;
+using System.Windows;
 
 namespace CANAnalyzer.VM
 {
@@ -20,11 +23,13 @@ namespace CANAnalyzer.VM
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
             PropertyChanged += LanguageSelectorChanged;
             PropertyChanged += ThemeSelectorChanged;
+            PropertyChanged += ConnectCommandCanExecuteChanged;
+            PropertyChanged += DisconnectCommandCanExecuteChanged;
         }
 
         private void LanguageSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if((sender is AppSettingPageVM vm) && (e.PropertyName == "CurrentLanguage"))
+            if ((sender is AppSettingPageVM vm) && (e.PropertyName == "CurrentLanguage"))
             {
                 if (vm.CurrentLanguage == null)
                     return;
@@ -71,7 +76,7 @@ namespace CANAnalyzer.VM
                 OnPropertyChanged();
             }
         }
-        private LanguageCultureInfo _currentLanguage = Manager<LanguageCultureInfo>.StaticInstance.CurrentCulture;
+        private LanguageCultureInfo _currentLanguage;
 
 
 
@@ -115,7 +120,50 @@ namespace CANAnalyzer.VM
                 OnPropertyChanged();
             }
         }
-        private ThemeCultureInfo _themeLanguage = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
+        private ThemeCultureInfo _themeLanguage;
+
+
+        public IEnumerable<IDevice> Devices
+        {
+            get { return _devices; }
+            set
+            {
+                if (value == _devices)
+                    return;
+
+                _devices = value;
+                OnPropertyChanged();
+            }
+        }
+        private IEnumerable<IDevice> _devices;
+
+        public IDevice SelectedDevice
+        {
+            get { return _selectedDevice; }
+            set
+            {
+                if (value == _selectedDevice)
+                    return;
+
+                _selectedDevice = value;
+                OnPropertyChanged();
+            }
+        }
+        private IDevice _selectedDevice;
+
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+            set
+            {
+                if (value == _isConnected)
+                    return;
+
+                _isConnected = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isConnected;
 
         private RelayCommandAsync _loadedCommand;
         public RelayCommandAsync LoadedCommand
@@ -134,6 +182,101 @@ namespace CANAnalyzer.VM
             CurrentLanguage = Manager<LanguageCultureInfo>.StaticInstance.CurrentCulture;
             Themes = Manager<ThemeCultureInfo>.StaticInstance.Cultures;
             CurrentTheme = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
+
+            DeviceConnectCommand.RaiseCanExecuteChanged();
+            DeviceConnectCommand.RaiseCanExecuteChanged();
+
+            UpdateDevicesInfoCommand.Execute();
+        }
+
+        private RelayCommandAsync _updateDevicesInfoCommand;
+        public RelayCommandAsync UpdateDevicesInfoCommand
+        {
+            get
+            {
+                if (_updateDevicesInfoCommand == null)
+                    _updateDevicesInfoCommand = new RelayCommandAsync(this.UpdateDeviceInfoCommand_Execute);
+
+                return _updateDevicesInfoCommand;
+            }
+        }
+        private void UpdateDeviceInfoCommand_Execute()
+        {
+            if ((Settings.Instance.Device != null) && (Settings.Instance.Device.IsConnected))
+            {
+                var newDevices = new List<IDevice>(DevicesFinder.FindAvailableDevices());
+                newDevices.Add(Settings.Instance.Device);
+
+                Devices = newDevices;
+            }
+            else { Devices = DevicesFinder.FindAvailableDevices(); }
+
+            SelectedDevice = Settings.Instance.Device;
+            IsConnected = Settings.Instance.Device == null ? false : !Settings.Instance.Device.IsConnected;
+        }
+
+        private RelayCommandAsync _deviceConnectCommand;
+        public RelayCommandAsync DeviceConnectCommand
+        {
+            get
+            {
+                if (_deviceConnectCommand == null)
+                    _deviceConnectCommand = new RelayCommandAsync(this.DeviceConnectCommand_Execute, () => (!IsConnected) && (SelectedDevice != null));
+
+                return _deviceConnectCommand;
+            }
+        }
+        private void DeviceConnectCommand_Execute()
+        {
+            try
+            {
+                SelectedDevice.Connect();
+                Settings.Instance.Device = SelectedDevice;
+                IsConnected = true;
+            }
+            catch(Exception e)
+            {
+                IsConnected = false;
+                Settings.Instance.Device = null;
+                MessageBox.Show("Не получилось подключиться", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        private void ConnectCommandCanExecuteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if ((sender is AppSettingPageVM vm) && ((e.PropertyName == "IsConnected") || (e.PropertyName == "SelectedDevice")))
+                vm.DeviceConnectCommand.RaiseCanExecuteChanged();
+        }
+
+
+        private RelayCommandAsync _deviceDisonnectCommand;
+        public RelayCommandAsync DeviceDisconnectCommand
+        {
+            get
+            {
+                if (_deviceDisonnectCommand == null)
+                    _deviceDisonnectCommand = new RelayCommandAsync(this.DeviceDisconnectCommand_Execute, () => ((Settings.Instance.Device != null) && (Settings.Instance.Device.IsConnected)) || (IsConnected));
+
+                return _deviceDisonnectCommand;
+            }
+        }
+        private void DeviceDisconnectCommand_Execute()
+        {
+            try
+            {
+                Settings.Instance.Device.Disconnect();
+                IsConnected = false;
+            }
+            catch(Exception e)
+            {
+                IsConnected = false;
+                Settings.Instance.Device = null;
+                MessageBox.Show("Чо-то не то с устройством", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        private void DisconnectCommandCanExecuteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if ((sender is AppSettingPageVM vm) && ((e.PropertyName == "IsConnected") || (e.PropertyName == "SelectedDevice") || (e.PropertyName == "IsConnected")))
+                vm.DeviceDisconnectCommand.RaiseCanExecuteChanged();
         }
     }
 }

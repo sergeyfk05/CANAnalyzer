@@ -55,7 +55,6 @@ namespace CANAnalyzerDevices.Devices
 
         public bool IsConnected => port.IsOpen;
 
-
         public override string ToString()
         {
             return $"CanHacker v2.0 : {port.PortName}";
