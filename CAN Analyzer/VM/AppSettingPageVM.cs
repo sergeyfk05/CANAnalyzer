@@ -37,7 +37,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 var buf = new List<DeviceChannelViewData>();
-                foreach(var ch in Settings.Instance.Device.Channels)
+                foreach (var ch in Settings.Instance.Device.Channels)
                 {
                     buf.Add(new DeviceChannelViewData(ch));
                 }
@@ -235,27 +235,51 @@ namespace CANAnalyzer.VM
         }
         private void UpdateDeviceInfoCommand_Execute()
         {
+            var newDevices = new List<IDevice>(DevicesFinder.FindAvailableDevices());
+
             if ((Settings.Instance.Device != null) && (Settings.Instance.Device.IsConnected))
             {
-                var newDevices = new List<IDevice>(DevicesFinder.FindAvailableDevices());
                 newDevices.Add(Settings.Instance.Device);
 
-                Devices = newDevices;
-                SelectedDevice = Settings.Instance.Device;
+                if (!CompareDevicesList(newDevices, Devices))
+                {
+                    Devices = newDevices;
+                    SelectedDevice = Settings.Instance.Device;
+                }
             }
             else
             {
                 var buf = SelectedDevice?.ToString();
-                Devices = DevicesFinder.FindAvailableDevices();
 
-                if (!string.IsNullOrEmpty(buf))
+                if (!CompareDevicesList(newDevices, Devices))
                 {
-                    SelectedDevice = Devices.FirstOrDefault(x => x.ToString() == buf);
+                    Devices = newDevices;
+
+                    if (!string.IsNullOrEmpty(buf))
+                    {
+                        SelectedDevice = Devices.FirstOrDefault(x => x.ToString() == buf);
+                    }
                 }
             }
 
-            SelectedDevice = Settings.Instance.Device;
             IsConnected = Settings.Instance.Device == null ? false : Settings.Instance.Device.IsConnected;
+        }
+        private bool CompareDevicesList(IEnumerable<IDevice> first, IEnumerable<IDevice> second)
+        {
+            if (first == null || second == null)
+                return false;
+
+            if (first.Count() != second.Count())
+                return false;
+
+            foreach(var el in first)
+            {
+                if (second.FirstOrDefault(x => x.ToString() == el.ToString()) == null)
+                    return false;
+            }
+
+            return true;
+
         }
 
         private RelayCommandAsync _deviceConnectCommand;
@@ -274,12 +298,6 @@ namespace CANAnalyzer.VM
 
             if (IsConnected)
             {
-                if (SelectedDevice == null)
-                {
-                    MessageBox.Show("Ничего не выбрано", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
                 try
                 {
                     Settings.Instance.Device?.Disconnect();
@@ -294,6 +312,12 @@ namespace CANAnalyzer.VM
             }
             else
             {
+                if (SelectedDevice == null)
+                {
+                    MessageBox.Show("Ничего не выбрано", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 try
                 {
                     SelectedDevice.Connect();
