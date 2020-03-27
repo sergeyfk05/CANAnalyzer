@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using CANAnalyzer.Models;
 
 namespace CANAnalyzer.Models
 {
@@ -20,7 +21,6 @@ namespace CANAnalyzer.Models
 
             this.Channel = channel;
             this.Channel.IsOpenChanged += Channel_IsOpenChanged;
-            IsOpen = this.Channel.IsOpen;
 
             if(IsOpen)
             {
@@ -36,7 +36,7 @@ namespace CANAnalyzer.Models
 
         private void Channel_IsOpenChanged(object sender, EventArgs e)
         {
-            IsOpen = this.Channel.IsOpen;
+            OnPropertyChanged("IsOpen");
         }
 
         public string BitrateText
@@ -67,20 +67,8 @@ namespace CANAnalyzer.Models
         }
         private bool _isListenOnlyViewable;
 
-        public bool IsOpen
-        {
-            get { return _isOpen; }
-            private set
-            {
-                if (value == _isOpen)
-                    return;
 
-                _isOpen = value;
-                OnPropertyChanged();
-            }
-        }
-        private bool _isOpen;
-
+        public bool IsOpen => Channel.IsOpen;
 
         public IChannel Channel { get; private set; }
 
@@ -112,6 +100,31 @@ namespace CANAnalyzer.Models
             }
 
         }
+
+
+        private RelayCommandAsync _channelConnectCommand;
+        public RelayCommandAsync ChannelConnectCommand
+        {
+            get
+            {
+                if (_channelConnectCommand == null)
+                    _channelConnectCommand = new RelayCommandAsync(this.ChannelConnectCommand_Execute);
+
+                return _channelConnectCommand;
+            }
+        }
+        private void ChannelConnectCommand_Execute()
+        {
+            if(IsOpen)
+            {
+                Channel?.Close();
+            }
+            else
+            {
+                Channel?.Open(Convert.ToInt32(BitrateText), IsListenOnlyViewable);
+            }
+        }
+
 
         public override string ToString()
         {

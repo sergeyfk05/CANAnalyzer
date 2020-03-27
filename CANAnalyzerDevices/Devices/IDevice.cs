@@ -36,5 +36,7 @@ namespace CANAnalyzerDevices.Devices
         /// Hardware device status.
         /// </summary>
         bool IsConnected { get; }
+
+        event EventHandler IsConnectedChanged;
     }
 }

@@ -18,8 +18,15 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         public CanHackerChannel(IDevice owner, SerialPort port)
         {
             this.Owner = owner;
+            owner.IsConnectedChanged += Owner_IsConnectedChanged;
             _port = port;
             _port.DataReceived += port_DataReceived;
+        }
+
+        private void Owner_IsConnectedChanged(object sender, EventArgs e)
+        {
+            if (!Owner.IsConnected)
+                IsOpen = false;
         }
 
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -189,6 +196,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             //open
             this.Bitrate = bitrate;
             this.IsListenOnly = isListenOnly;
+            IsOpen = true;
 
         }
 

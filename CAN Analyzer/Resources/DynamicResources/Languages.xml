@@ -133,6 +133,12 @@
     <Record name="AppSettingsPageListenOnlyLabel">
       <en>Listen only</en>
     </Record>
+    <Record name="AppSettingsPageOpenChannel">
+      <en>Open channel</en>
+    </Record>
+    <Record name="AppSettingsPageCloseChannel">
+      <en>Close channel</en>
+    </Record>
     
     
 

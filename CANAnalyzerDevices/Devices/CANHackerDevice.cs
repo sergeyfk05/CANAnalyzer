@@ -33,6 +33,8 @@ namespace CANAnalyzerDevices.Devices
 
             lock(port)
                 port.Open();
+
+            OnIsConnectedChanged();
         }
 
         public void Disconnect()
@@ -42,6 +44,8 @@ namespace CANAnalyzerDevices.Devices
 
             lock(port)
                 port.Close();
+
+            OnIsConnectedChanged();
         }
 
 
@@ -58,6 +62,12 @@ namespace CANAnalyzerDevices.Devices
         public override string ToString()
         {
             return $"CanHacker v2.0 : {port.PortName}";
+        }
+
+        public event EventHandler IsConnectedChanged;
+        private void OnIsConnectedChanged()
+        {
+            IsConnectedChanged?.Invoke(this, null);
         }
 
         private SerialPort port;
