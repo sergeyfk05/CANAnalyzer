@@ -189,6 +189,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             //open
             this.Bitrate = bitrate;
             this.IsListenOnly = isListenOnly;
+
         }
 
         /// <summary>
@@ -271,12 +272,36 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         /// <summary>
         /// CAN bus status
         /// </summary>
-        public bool IsOpen { get; private set; } = false;
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            private set
+            {
+                if (value == _isOpen)
+                    return;
+
+                _isOpen = value;
+                OnIsOpenChanged();
+            }
+        }
+        private bool _isOpen = false;
 
         /// <summary>
         /// Channel owner.
         /// </summary>
         public IDevice Owner { get; private set; }
+
+        public event EventHandler IsOpenChanged;
+        private void OnIsOpenChanged()
+        {
+            IsOpenChanged?.Invoke(this, null);
+        }
+
+
+        public override string ToString()
+        {
+            return "CanHacker Channel";
+        }
 
         SerialPort _port;
     }

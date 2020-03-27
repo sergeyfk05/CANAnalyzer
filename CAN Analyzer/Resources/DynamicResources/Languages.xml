@@ -115,6 +115,25 @@
     <Record name="AppSettingPageSelectTheme">
       <en>Select theme:</en>
     </Record>
+    <Record name="AppSettingPageSelectDevice">
+      <en>Select device:</en>
+    </Record>
+    <Record name="AppSettingPageConnectDevice">
+      <en>Connect</en>
+    </Record>
+    <Record name="AppSettingPageDisconnectDevice">
+      <en>Disconnect</en>
+    </Record>
+    <Record name="AppSettingsPageSelectBitrateLabel">
+      <en>Bitrate:</en>
+    </Record>
+    <Record name="AppSettingsPageBitrateUnitsOfMeasure">
+      <en>kbps</en>
+    </Record>
+    <Record name="AppSettingsPageListenOnlyLabel">
+      <en>Listen only</en>
+    </Record>
+    
     
 
     <Record name="ErrorMsgBoxTitle">

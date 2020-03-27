@@ -9,6 +9,8 @@ using CANAnalyzer.Models;
 using CANAnalyzerDevices.Finder;
 using CANAnalyzerDevices.Devices;
 using System.Windows;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
 
 namespace CANAnalyzer.VM
 {
@@ -23,10 +25,25 @@ namespace CANAnalyzer.VM
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
             PropertyChanged += LanguageSelectorChanged;
             PropertyChanged += ThemeSelectorChanged;
-            //PropertyChanged += ConnectCommandCanExecuteChanged;
-            //PropertyChanged += DisconnectCommandCanExecuteChanged;
+
+            Settings.Instance.PropertyChanged += Device_PropertyChanged;
         }
 
+        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Device")
+            {
+                if (Settings.Instance.Device == null || !Settings.Instance.Device.IsConnected)
+                    return;
+
+                var buf = new List<DeviceChannelViewData>();
+                foreach(var ch in Settings.Instance.Device.Channels)
+                {
+                    buf.Add(new DeviceChannelViewData(ch));
+                }
+                ChannelsData = buf;
+            }
+        }
         private void LanguageSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((sender is AppSettingPageVM vm) && (e.PropertyName == "CurrentLanguage"))
@@ -51,6 +68,9 @@ namespace CANAnalyzer.VM
             CurrentTheme = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
 
         }
+
+
+
         public IEnumerable<LanguageCultureInfo> Languages
         {
             get { return _languages; }
@@ -165,6 +185,21 @@ namespace CANAnalyzer.VM
         }
         private bool _isConnected;
 
+
+        public IEnumerable<DeviceChannelViewData> ChannelsData
+        {
+            get { return _channelsData; }
+            set
+            {
+                if (value == _channelsData)
+                    return;
+
+                _channelsData = value;
+                OnPropertyChanged();
+            }
+        }
+        private IEnumerable<DeviceChannelViewData> _channelsData;
+
         private RelayCommandAsync _loadedCommand;
         public RelayCommandAsync LoadedCommand
         {
@@ -206,11 +241,21 @@ namespace CANAnalyzer.VM
                 newDevices.Add(Settings.Instance.Device);
 
                 Devices = newDevices;
+                SelectedDevice = Settings.Instance.Device;
             }
-            else { Devices = DevicesFinder.FindAvailableDevices(); }
+            else
+            {
+                var buf = SelectedDevice?.ToString();
+                Devices = DevicesFinder.FindAvailableDevices();
+
+                if (!string.IsNullOrEmpty(buf))
+                {
+                    SelectedDevice = Devices.FirstOrDefault(x => x.ToString() == buf);
+                }
+            }
 
             SelectedDevice = Settings.Instance.Device;
-            IsConnected = Settings.Instance.Device == null ? false : !Settings.Instance.Device.IsConnected;
+            IsConnected = Settings.Instance.Device == null ? false : Settings.Instance.Device.IsConnected;
         }
 
         private RelayCommandAsync _deviceConnectCommand;
@@ -227,14 +272,14 @@ namespace CANAnalyzer.VM
         private void DeviceConnectCommand_Execute()
         {
 
-            if (SelectedDevice == null)
-            {
-                MessageBox.Show("Ничего не выбрано", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
             if (IsConnected)
             {
+                if (SelectedDevice == null)
+                {
+                    MessageBox.Show("Ничего не выбрано", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 try
                 {
                     Settings.Instance.Device?.Disconnect();

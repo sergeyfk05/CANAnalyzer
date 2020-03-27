@@ -56,5 +56,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         /// Channel owner.
         /// </summary>
         IDevice Owner { get; }
+
+        event EventHandler IsOpenChanged;
     }
 }

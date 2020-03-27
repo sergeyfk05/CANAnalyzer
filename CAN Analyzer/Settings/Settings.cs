@@ -13,7 +13,7 @@ using System.Text.Json.Serialization;
 
 namespace CANAnalyzer
 {
-    public class Settings
+    public class Settings : INotifyPropertyChanged
     {
         public Settings()
         {

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
@@ -54,7 +55,7 @@
                               Width="150" 
                               DockPanel.Dock="Left"
                               ItemsSource="{Binding Devices}"
-                              SelectedItem="{Binding SelectedDevice}">
+                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
 
                         <ComboBox.Style>
                             <Style>
@@ -96,5 +97,38 @@
         </StackPanel>
 
 
+        <ItemsControl ItemsSource="{Binding ChannelsData}">
+            <ItemsControl.Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Expander Header="{Binding}">
+                                    <StackPanel Orientation="Horizontal" Margin="25 0 0 0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{resources:Language AppSettingsPageSelectBitrateLabel}"/>
+                                            <Grid Height="20" Width="200">
+                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding BitrateText}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="PreviewTextInput" >
+                                                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
+                                                <TextBlock Margin="0 0 5 0" Text="{resources:Language AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                        <CheckBox Content="{resources:Language AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="5 0 0 3"/>
+                                        <Button Content="sdfsdf" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
+                                    </StackPanel>
+                                </Expander>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsControl.Style>
+        </ItemsControl>
+        
     </StackPanel>
 </UserControl>
