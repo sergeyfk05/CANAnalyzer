@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CANAnalyzer.Models
+namespace CANAnalyzer.Models.ChannelsViewData
 {
     public class TransmitToViewData : INotifyPropertyChanged
     {

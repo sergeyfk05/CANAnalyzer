@@ -11,6 +11,7 @@ using CANAnalyzerDevices.Devices;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using CANAnalyzer.Models.ChannelsViewData;
 
 namespace CANAnalyzer.VM
 {

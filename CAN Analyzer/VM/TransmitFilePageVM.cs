@@ -15,6 +15,7 @@ using System.Data.Entity;
 using CANAnalyzer.Resources.DynamicResources;
 using System.IO;
 using CANAnalyzer.Models.TraceFilters;
+using CANAnalyzer.Models.ChannelsViewData;
 
 namespace CANAnalyzer.VM
 {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using CANAnalyzer.Models;
 
-namespace CANAnalyzer.Models
+namespace CANAnalyzer.Models.ChannelsViewData
 {
     public class DeviceChannelViewData : INotifyPropertyChanged
     {
