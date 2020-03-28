@@ -114,6 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ChannelsViewData\WCFChannelProxy.cs" />
     <Compile Include="Models\ContentPageData.cs" />
     <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
     <Compile Include="Models\ChannelsViewData\DeviceChannelViewData.cs" />
     <Compile Include="Models\FileState.cs" />
-    <Compile Include="Models\ChannelsViewData\IChannelViewData.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommand.cs" />
     <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />

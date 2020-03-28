@@ -238,7 +238,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 throw new ArgumentException($"Transmit data is invalid:\r\n{errors}");
             }
 
-            if (!IsOpen)
+            if (!IsOpen || IsListenOnly)
                 return;
 
             string transmit = "";

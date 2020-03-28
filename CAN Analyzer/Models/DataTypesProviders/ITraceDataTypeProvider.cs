@@ -42,9 +42,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
         string SupportedFiles { get; }
 
 
-        ITraceDataTypeProvider SaveAs(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders);
+        ITraceDataTypeProvider SaveAs(string path, IEnumerable<TraceModel> traces, IEnumerable<CanHeaderModel> canHeaders);
 
-        Task<ITraceDataTypeProvider> SaveAsAsync(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders);
+        Task<ITraceDataTypeProvider> SaveAsAsync(string path, IEnumerable<TraceModel> traces, IEnumerable<CanHeaderModel> canHeaders);
 
         
         void Add(TraceModel entity);

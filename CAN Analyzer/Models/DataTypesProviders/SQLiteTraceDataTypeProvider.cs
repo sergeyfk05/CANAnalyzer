@@ -85,7 +85,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         private TraceContext context;
 
-        public ITraceDataTypeProvider SaveAs(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders)
+        public ITraceDataTypeProvider SaveAs(string path, IEnumerable<TraceModel> traces, IEnumerable<CanHeaderModel> canHeaders)
         {
             if (File.Exists(path))
                 File.Delete(path);
@@ -121,7 +121,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
             return result;
         }
 
-        public async Task<ITraceDataTypeProvider> SaveAsAsync(string path, IQueryable<TraceModel> traces, IQueryable<CanHeaderModel> canHeaders)
+        public async Task<ITraceDataTypeProvider> SaveAsAsync(string path, IEnumerable<TraceModel> traces, IEnumerable<CanHeaderModel> canHeaders)
         {
             if (File.Exists(path))
                 File.Delete(path);
