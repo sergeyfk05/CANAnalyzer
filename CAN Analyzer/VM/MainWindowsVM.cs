@@ -12,6 +12,7 @@ using CANAnalyzer.Resources.DynamicResources;
 using System.Windows.Media;
 using System.Windows.Controls;
 using CANAnalyzer.Pages;
+using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
@@ -93,7 +94,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _topItemSource = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private List<NavMenuItemData> _topItemSource;
@@ -111,7 +112,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _bottomItemSource = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private List<NavMenuItemData> _bottomItemSource;
@@ -126,7 +127,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _menuIsCollapsed = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _menuIsCollapsed = true;
@@ -141,7 +142,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _mainContent = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private UserControl _mainContent;

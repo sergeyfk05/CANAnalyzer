@@ -48,7 +48,7 @@ namespace CANAnalyzer.Models.TraceFilters
                     return;
 
                 _canId = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private int _canId;
@@ -62,7 +62,7 @@ namespace CANAnalyzer.Models.TraceFilters
                     return;
 
                 _isExtId = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isExtId;
@@ -76,7 +76,7 @@ namespace CANAnalyzer.Models.TraceFilters
                     return;
 
                 _isActive = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isActive;
@@ -90,7 +90,7 @@ namespace CANAnalyzer.Models.TraceFilters
                     return;
 
                 _displayName = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _displayName;
@@ -111,7 +111,7 @@ namespace CANAnalyzer.Models.TraceFilters
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }

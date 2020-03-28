@@ -11,7 +11,7 @@ using CANAnalyzerDevices.Devices;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
-using CANAnalyzer.Models.ChannelsViewData;
+using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
@@ -81,7 +81,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _languages = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IEnumerable<LanguageCultureInfo> _languages;
@@ -94,7 +94,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _currentLanguage = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private LanguageCultureInfo _currentLanguage;
@@ -125,7 +125,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _themes = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IEnumerable<ThemeCultureInfo> _themes;
@@ -138,7 +138,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _themeLanguage = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private ThemeCultureInfo _themeLanguage;
@@ -153,7 +153,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _devices = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IEnumerable<IDevice> _devices;
@@ -167,7 +167,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _selectedDevice = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IDevice _selectedDevice;
@@ -181,7 +181,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _isConnected = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isConnected;
@@ -196,7 +196,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _channelsData = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IEnumerable<DeviceChannelViewData> _channelsData;

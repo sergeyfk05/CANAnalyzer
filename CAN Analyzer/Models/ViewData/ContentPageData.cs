@@ -9,7 +9,7 @@ using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
 using HamburgerMenu;
 
-namespace CANAnalyzer.Models
+namespace CANAnalyzer.Models.ViewData
 {
     public class ContentPageData
     {

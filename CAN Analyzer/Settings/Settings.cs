@@ -29,7 +29,7 @@ namespace CANAnalyzer
                     return;
 
                 _languagesXmlPath = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _languagesXmlPath = @"Resources\DynamicResources\Languages.xml";
@@ -43,7 +43,7 @@ namespace CANAnalyzer
                     return;
 
                 _themesXmlPath = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _themesXmlPath = @"Resources\DynamicResources\Themes.xml";
@@ -57,7 +57,7 @@ namespace CANAnalyzer
                     return;
 
                 _settingsPath = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _settingsPath = "Settings.json";
@@ -71,7 +71,7 @@ namespace CANAnalyzer
                     return;
 
                 _themeCulture = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _themeCulture = "dark";
@@ -85,7 +85,7 @@ namespace CANAnalyzer
                     return;
 
                 _languageCulture = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _languageCulture = "EN";
@@ -101,14 +101,14 @@ namespace CANAnalyzer
                     return;
 
                 _device = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private IDevice _device = null;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }

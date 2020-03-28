@@ -15,7 +15,7 @@ using System.Data.Entity;
 using CANAnalyzer.Resources.DynamicResources;
 using System.IO;
 using CANAnalyzer.Models.TraceFilters;
-using CANAnalyzer.Models.ChannelsViewData;
+using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
@@ -44,7 +44,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _transmitToItems = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private List<TransmitToViewData> _transmitToItems;
@@ -58,7 +58,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _showedData = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private List<TraceModel> _showedData;
@@ -72,7 +72,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _filters = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private List<CanIdTraceFilter> _filters;
@@ -86,7 +86,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _isEnabled = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isEnabled = true;
@@ -100,7 +100,7 @@ namespace CANAnalyzer.VM
                     return;
 
                 _fileIsOpened = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private FileState _fileIsOpened = FileState.Closed;

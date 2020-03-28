@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using CANAnalyzer.Models;
 
-namespace CANAnalyzer.Models.ChannelsViewData
+namespace CANAnalyzer.Models.ViewData
 {
     public class DeviceChannelViewData : INotifyPropertyChanged
     {
@@ -36,7 +36,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
 
         private void Channel_IsOpenChanged(object sender, EventArgs e)
         {
-            OnPropertyChanged("IsOpen");
+            RaisePropertyChanged("IsOpen");
         }
 
         public string BitrateText
@@ -48,7 +48,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
                     return;
 
                 _bitrateText = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _bitrateText;
@@ -62,7 +62,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
                     return;
 
                 _isListenOnlyViewable = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isListenOnlyViewable;
@@ -132,7 +132,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }

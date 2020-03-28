@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CANAnalyzer.Models.ChannelsViewData
+namespace CANAnalyzer.Models.ViewData
 {
     public class TransmitToViewData : INotifyPropertyChanged
     {
@@ -20,7 +20,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
                     return;
 
                 _isTransmit = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isTransmit = false;
@@ -34,14 +34,14 @@ namespace CANAnalyzer.Models.ChannelsViewData
                     return;
 
                 _descriptionKey = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _descriptionKey;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
