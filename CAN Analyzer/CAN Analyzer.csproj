@@ -114,7 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\ChannelsViewData\WCFChannelProxy.cs" />
+    <Compile Include="Models\ChannelsViewData\TCPChannelProxy.cs" />
     <Compile Include="Models\ViewData\ContentPageData.cs" />
     <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
