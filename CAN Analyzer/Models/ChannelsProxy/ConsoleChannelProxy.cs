@@ -10,14 +10,15 @@ using System.IO;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
 
-namespace CANAnalyzer.Models.ChannelsViewData
+namespace CANAnalyzer.Models.ChannelsProxy
 {
-    public class TCPChannelProxy : IChannel, IDisposable
+    public class ConsoleChannelProxy : IChannel, IDisposable
     {
-        public TCPChannelProxy(IChannel ch, string path)
+        public ConsoleChannelProxy(IChannel ch, string path)
         {
-            //_ch = ch ?? throw new ArgumentException("IChannel cannot be null.");
+            _ch = ch ?? throw new ArgumentException("IChannel cannot be null.");
 
             if (!File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
@@ -49,7 +50,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
                 _process.Start();
 
 
-                if (!CheckConnectionAsync().Result)
+                if (!CheckConnection())
                     throw new ArgumentException("Invalide file\r\n");
             }
             catch (Exception e)
@@ -58,46 +59,66 @@ namespace CANAnalyzer.Models.ChannelsViewData
             }
 
 
-            //_ch.ReceivedData += RealChannel_ReceivedData;
+            _ch.ReceivedData += RealChannel_ReceivedData;
             RealChannel_ReceivedData(this, new ChannelDataReceivedEventArgs(new ReceivedData() { IsExtId = false, CanId = 0x60D, DLC = 4, Time = 50.2, Payload = new byte[] { 0x10, 0x20, 0x30, 0x40 } }));
         }
 
-        private async void RealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
+        private void RealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
         {
-            await SendDataToProxyAsync(e.Data);
+            SendDataToProxy(e.Data);
 
             string response = _process.StandardOutput.ReadLine();
             var match = Regex.Match(response,
                 @"([0-1]{1});" +
                 @"([0-9a-fA-F]{8});" +
-                @"([0-9a-fA-F]{1})+;" +
-                @"([0-9a-fA-F]*);" +
+                @"([0-9a-fA-F]{1});" +
+                @"([0-9a-fA-F])+;" +
                 @"([0-9a-fA-F]{4});");
 
             if (!match.Success)
                 return;
 
             ReceivedData result = new ReceivedData();
-            result.DLC = Convert.ToInt32(match.Groups[3].Value, 16);
+            try
+            {
+                result.DLC = Convert.ToInt32(match.Groups[3].Value, 16);
+            }
+            catch { return; }
+
 
             match = Regex.Match(response,
-                @"([0-1]{1})+;" +
-                @"([0-9a-fA-F]{8})+;" +
-                @"([0-9a-fA-F]{1})+;" +
-                @"([0-9a-fA-F]{" + (result.DLC * 2) + "})+;" +
-                @"([0-9a-fA-F]{4})+;");
+                @"([0-1]{1});" +
+                @"([0-9a-fA-F]{8});" +
+                @"([0-9a-fA-F]{1});" +
+                @"([0-9a-fA-F]{" + (result.DLC * 2) + "});" +
+                @"([0-9a-fA-F]{4});");
 
 
             if (!match.Success)
                 return;
 
-            throw new NotImplementedException("распарсить регулярку и проверить данные");
+            //throw new NotImplementedException("распарсить регулярку и проверить данные");
 
-            result.Payload = new byte[result.DLC];
+            try
+            {
+                result.IsExtId = Convert.ToInt32(match.Groups[1].Value, 16) == 0 ? false : true;
+                result.CanId = Convert.ToInt32(match.Groups[2].Value, 16);
+                result.Time = Convert.ToInt32(match.Groups[5].Value, 16) / 1000.0;
+                result.Payload = new byte[result.DLC];
+
+                for (int i = 0; i < result.DLC; i++)
+                {
+                    result.Payload[i] = Convert.ToByte(match.Groups[4].Value.Substring(i * 2, 2), 16);
+                }
+            }
+            catch { return; }
+
+
+            RaiseReceivedData(result);
 
         }
 
-        private async Task SendDataToProxyAsync(ReceivedData data)
+        private void SendDataToProxy(ReceivedData data)
         {
 
             string payload = "";
@@ -118,7 +139,7 @@ namespace CANAnalyzer.Models.ChannelsViewData
         private Process _process;
         private IChannel _ch;
 
-        private async Task<bool> CheckConnectionAsync()
+        private bool CheckConnection()
         {
             string response = "Hello world!";
             _process.StandardInput.WriteLine(response);
@@ -162,7 +183,10 @@ namespace CANAnalyzer.Models.ChannelsViewData
         public event ChannelDataReceivedEventHandler ReceivedData;
         private void RaiseReceivedData(ReceivedData data)
         {
-            ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
+            if (!Validator.TryValidateObject(data, new ValidationContext(data), null, true))
+                return;
+
+                ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
         }
 
         public event EventHandler IsOpenChanged;

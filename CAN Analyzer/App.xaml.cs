@@ -26,8 +26,7 @@ namespace CANAnalyzer
 
             Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);
             Manager<LanguageCultureInfo>.StaticInstance.Provider = new XMLLanguageChangerProvider(Settings.Instance.LanguagesXmlPath, Settings.Instance.LanguageCulture);
-
-            TCPChannelProxy a = new TCPChannelProxy(null, @"D:\Projects\CANAnalyzerProxy\CANAnalyzerProxy\bin\Debug\CANAnalyzerProxy.exe");
+            
 
         }
 
