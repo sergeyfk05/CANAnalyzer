@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using CANAnalyzerDevices.Finder;
 using CANAnalyzer.Models.Databases;
-using CANAnalyzer.Models.ChannelsViewData;
 
 namespace CANAnalyzer
 {
     /// <summary>
     /// Interaction logic for App.xaml
-    /// </summary>
+    /// </summary>  
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
