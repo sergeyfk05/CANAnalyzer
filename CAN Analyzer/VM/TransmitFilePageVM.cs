@@ -356,9 +356,9 @@ namespace CANAnalyzer.VM
             }
 
             if (result == "")
-                result += "Все файлы (*.*)|*.* ";
+                result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
             else
-                result += "|Все файлы (*.*)|*.* ";
+                result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
 
             return result;
         }

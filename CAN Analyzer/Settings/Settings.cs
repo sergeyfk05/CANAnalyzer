@@ -8,8 +8,9 @@ using System.Text.Json;
 using System.ComponentModel;
 using CANAnalyzerDevices.Devices;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
+using CANAnalyzer.Models.ChannelsProxy;
 using System.Text.Json.Serialization;
+using System.Collections.ObjectModel;
 
 namespace CANAnalyzer
 {
@@ -17,8 +18,16 @@ namespace CANAnalyzer
     {
         public Settings()
         {
+            PropertyChanged += Device_PropertyChanged;
         }
 
+        private void Device_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "Device")
+                return;
+
+            _proxies.Clear();
+        }
 
         public string LanguagesXmlPath
         {
@@ -106,9 +115,16 @@ namespace CANAnalyzer
         }
         private IDevice _device = null;
 
+        [JsonIgnore]
+        public ObservableCollection<IChannelProxy> Proxies
+        {
+            get { return _proxies ?? (_proxies = new ObservableCollection<IChannelProxy>()); }
+        }
+        private ObservableCollection<IChannelProxy> _proxies;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged([CallerMemberName]string prop = "")
+        private void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }

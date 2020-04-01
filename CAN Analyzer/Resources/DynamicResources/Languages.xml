@@ -103,7 +103,14 @@
     <Record name="CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
       <en>SQLite3 database</en>
     </Record>
-
+    <Record name="AllFiles_FileGroup">
+      <en>All files</en>
+    </Record>
+    
+    <!--ProxyDataTypes-->
+    <Record name="Proxy_FileGroup">
+      <en>Execute file</en>
+    </Record>
 
     <!--AppSettingPage-->
     <Record name="AppSettingsPageTitle">

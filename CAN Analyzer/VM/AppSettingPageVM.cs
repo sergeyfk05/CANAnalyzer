@@ -12,6 +12,9 @@ using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using CANAnalyzer.Models.ViewData;
+using CANAnalyzer.Models.ChannelsProxy;
+using System.Collections.ObjectModel;
+using Microsoft.Win32;
 
 namespace CANAnalyzer.VM
 {
@@ -28,6 +31,34 @@ namespace CANAnalyzer.VM
             PropertyChanged += ThemeSelectorChanged;
 
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
+            Settings.Instance.Proxies.CollectionChanged += Proxies_AddCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged += Proxies_RemoveCollectionChanged;
+        }
+
+        private void Proxies_RemoveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                return;
+
+            throw new NotImplementedException();
+
+            RaisePropertyChanged("ProxiesData");
+        }
+
+        private void Proxies_AddCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                return;
+
+            foreach(var el in e.NewItems)
+            {
+                if(el is IChannelProxy proxy)
+                {
+                    ProxiesData.Add(new ProxyChannelViewData(proxy));
+                }
+            }
+
+            RaisePropertyChanged("ProxiesData");
         }
 
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -201,6 +232,21 @@ namespace CANAnalyzer.VM
         }
         private IEnumerable<DeviceChannelViewData> _channelsData;
 
+
+        public List<ProxyChannelViewData> ProxiesData
+        {
+            get { return _proxiesData ?? (_proxiesData = new List<ProxyChannelViewData>()); }
+            private set
+            {
+                if (value == _proxiesData)
+                    return;
+
+                _proxiesData = value;
+                RaisePropertyChanged();
+            }
+        }
+        private List<ProxyChannelViewData> _proxiesData;
+
         private RelayCommandAsync _loadedCommand;
         public RelayCommandAsync LoadedCommand
         {
@@ -222,6 +268,7 @@ namespace CANAnalyzer.VM
 
             UpdateDevicesInfoCommand.Execute();
         }
+
 
         private RelayCommandAsync _updateDevicesInfoCommand;
         public RelayCommandAsync UpdateDevicesInfoCommand
@@ -283,6 +330,7 @@ namespace CANAnalyzer.VM
 
         }
 
+
         private RelayCommandAsync _deviceConnectCommand;
         public RelayCommandAsync DeviceConnectCommand
         {
@@ -333,6 +381,38 @@ namespace CANAnalyzer.VM
                 }
             }
 
+        }
+
+        private RelayCommandAsync _addProxyCommand;
+        public RelayCommandAsync AddProxyCommand
+        {
+            get
+            {
+                if (_addProxyCommand == null)
+                    _addProxyCommand = new RelayCommandAsync(this.AddProxyCommand_Execute);
+
+                return _addProxyCommand;
+            }
+        }
+        private void AddProxyCommand_Execute()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("Proxy_FileGroup")}(*.exe) | *.exe | {Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")}(*.*) | *.*";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.Multiselect = false;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var buf = new ConsoleChannelProxy(openFileDialog.FileName);
+                    Settings.Instance.Proxies.Add(buf);
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("не верный файл", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
     }
 }

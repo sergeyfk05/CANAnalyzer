@@ -14,11 +14,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {
-    public class ConsoleChannelProxy : IChannel, IDisposable
+    public class ConsoleChannelProxy : IChannel, IDisposable, IChannelProxy
     {
-        public ConsoleChannelProxy(IChannel ch, string path)
+        public ConsoleChannelProxy(string path)
         {
-            _ch = ch ?? throw new ArgumentException("IChannel cannot be null.");
+            Path = path;
 
             if (!File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
@@ -58,8 +58,6 @@ namespace CANAnalyzer.Models.ChannelsProxy
                 throw new ArgumentException("Invalide file\r\n" + e.ToString());
             }
 
-
-            _ch.ReceivedData += RealChannel_ReceivedData;
             RealChannel_ReceivedData(this, new ChannelDataReceivedEventArgs(new ReceivedData() { IsExtId = false, CanId = 0x60D, DLC = 4, Time = 50.2, Payload = new byte[] { 0x10, 0x20, 0x30, 0x40 } }));
         }
 
@@ -137,7 +135,21 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
 
         private Process _process;
-        private IChannel _ch;
+        public IChannel Channel { get; private set; }
+
+        public void SetChannel(IChannel newCH)
+        {
+            try
+            {
+                Channel.ReceivedData -= RealChannel_ReceivedData;
+            }
+            catch { }
+
+            Channel = newCH;
+            Channel.ReceivedData += RealChannel_ReceivedData;
+        }
+
+        public string Path { get; private set; }
 
         private bool CheckConnection()
         {
@@ -149,7 +161,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
             return message.TrimEnd('\0') == response;
         }
 
-        public int Bitrate => _ch.Bitrate;
+        public int Bitrate => Channel.Bitrate;
 
         public bool IsListenOnly
         {
@@ -178,7 +190,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
         private bool _isOpen = false;
 
-        public IDevice Owner => _ch.Owner;
+        public IDevice Owner => Channel.Owner;
 
         public event ChannelDataReceivedEventHandler ReceivedData;
         private void RaiseReceivedData(ReceivedData data)
