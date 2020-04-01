@@ -169,5 +169,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             context?.Dispose();
         }
+        ~SQLiteTraceDataTypeProvider()
+        {
+            this.Dispose();
+        }
     }
 }
