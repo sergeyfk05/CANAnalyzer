@@ -1,4 +1,8 @@
-﻿using HamburgerMenu.Calcs;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using HamburgerMenu.Calcs;
 using HamburgerMenu.Events;
 using System;
 using System.Collections.Generic;
@@ -190,7 +194,7 @@ namespace HamburgerMenu
                     Height = DropdownIconSize,
                     Width = DropdownIconSize,
                     Margin = 
-                    new Thickness((ItemHeight - DropdownIconSize) / 2 > DropdownIconMinLeftOffset ? (ItemHeight - DropdownIconSize) / 2 : DropdownIconMinLeftOffset, 
+                    new Thickness((ItemHeight - DropdownIconSize) / 2.0 > DropdownIconMinLeftOffset ? (ItemHeight - DropdownIconSize) / 2.0 : DropdownIconMinLeftOffset, 
                     (ItemHeight - DropdownIconSize) / 2, 
                     (ItemHeight - DropdownIconSize) / 2, 
                     (ItemHeight - DropdownIconSize) / 2),
@@ -261,7 +265,7 @@ namespace HamburgerMenu
                             if (submenu is Panel submenuPanel)
                             {
                                 isAnimatedNow = true;
-                                if (submenuPanel.MaxHeight == 0)
+                                if (submenuPanel.MaxHeight <= 0.1)
                                 {
                                     rotateAnimation.From = 0;
                                     rotateAnimation.To = 180;

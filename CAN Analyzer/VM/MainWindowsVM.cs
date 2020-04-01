@@ -1,4 +1,8 @@
-﻿using HamburgerMenu;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using HamburgerMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -161,7 +165,7 @@ namespace CANAnalyzer.VM
         private void NavMenuClicked_Execute(NavMenuItemData arg)
         {
             ContentPageData pageData = PagesData.FirstOrDefault(x => x.NavData == arg);
-            if (pageData.Page == null)
+            if ((pageData == null) || (pageData.Page == null))
                 return;
 
             pageData.ClickAction(pageData);

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -52,7 +56,7 @@ namespace CANAnalyzer.Models.Databases
             }
             set
             {
-                if (value == _time)
+                if (Math.Abs(value - _time) < 0.0009)
                     return;
 
                 _time = value;

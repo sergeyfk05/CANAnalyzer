@@ -1,4 +1,8 @@
-﻿using CANAnalyzer.Resources.DynamicResources;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
 using System;
 using System.Collections.Generic;
