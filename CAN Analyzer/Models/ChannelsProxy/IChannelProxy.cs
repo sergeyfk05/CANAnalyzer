@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {
-    public interface IChannelProxy : IChannel
+    public interface IChannelProxy : IChannel, IDisposable
     {
         string Path { get; }
         IChannel Channel { get; }

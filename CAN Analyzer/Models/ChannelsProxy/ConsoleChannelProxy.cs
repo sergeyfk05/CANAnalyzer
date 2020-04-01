@@ -225,8 +225,26 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         public void Dispose()
         {
-            _process?.Close();
-            _process?.Dispose();
+            try
+            {
+                if(!isDisposed)
+                {
+                    _process?.CloseMainWindow();
+                    _process?.Close();
+                    _process?.Dispose();
+                }
+            }
+            finally
+            {
+                isDisposed = true;
+                GC.SuppressFinalize(this);
+            }
+        }
+        private bool isDisposed = false;
+
+        ~ConsoleChannelProxy()
+        {
+            this.Dispose();
         }
     }
 }

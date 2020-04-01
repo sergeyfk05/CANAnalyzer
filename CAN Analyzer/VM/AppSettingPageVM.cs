@@ -16,6 +16,7 @@ using CANAnalyzer.Models.ChannelsProxy;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using System.ComponentModel;
+using System.Threading;
 
 namespace CANAnalyzer.VM
 {
@@ -34,6 +35,18 @@ namespace CANAnalyzer.VM
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
             Settings.Instance.Proxies.CollectionChanged += Proxies_AddCollectionChanged;
             Settings.Instance.Proxies.CollectionChanged += Proxies_RemoveCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged += Proxies_ResetCollectionChanged;
+            _context = SynchronizationContext.Current;
+        }
+
+        private SynchronizationContext _context;
+
+        private void Proxies_ResetCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+                return;
+
+            _context.Post((s) => { ProxiesData.Clear(); }, null);
         }
 
         private void Proxies_RemoveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -47,10 +60,17 @@ namespace CANAnalyzer.VM
                 {
                     if (el is IChannelProxy proxy)
                     {
-                        ProxiesData.Remove(ProxiesData.First(x => x.ChannelProxy == el));
+                        _context.Post((s) => 
+                        {
+                            ProxiesData.Remove(ProxiesData.First(x => x.ChannelProxy == el));
+                        }, null);
                     }
                 }
-                catch { }
+                catch (Exception ee)
+
+                {
+                    return;
+                }
 
             }
         }
@@ -64,7 +84,10 @@ namespace CANAnalyzer.VM
             {
                 if(el is IChannelProxy proxy)
                 {
-                    ProxiesData.Add(new ProxyChannelViewData(proxy));
+                    _context.Post((s) =>
+                    {
+                        ProxiesData.Add(new ProxyChannelViewData(proxy));
+                    }, null);
                 }
             }
         }
@@ -358,6 +381,7 @@ namespace CANAnalyzer.VM
                 try
                 {
                     Settings.Instance.Device?.Disconnect();
+                    UpdateDevicesInfoCommand.Execute();
                     IsConnected = false;
                 }
                 catch (Exception e)
@@ -391,13 +415,13 @@ namespace CANAnalyzer.VM
 
         }
 
-        private RelayCommand _addProxyCommand;
-        public RelayCommand AddProxyCommand
+        private RelayCommandAsync _addProxyCommand;
+        public RelayCommandAsync AddProxyCommand
         {
             get
             {
                 if (_addProxyCommand == null)
-                    _addProxyCommand = new RelayCommand(this.AddProxyCommand_Execute);
+                    _addProxyCommand = new RelayCommandAsync(this.AddProxyCommand_Execute);
 
                 return _addProxyCommand;
             }
