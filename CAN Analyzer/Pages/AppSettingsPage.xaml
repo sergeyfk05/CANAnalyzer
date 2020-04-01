@@ -174,12 +174,12 @@
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <!--<Expander Header="123">
+                                <Expander Header="{Binding}">
                                     <StackPanel Orientation="Horizontal" Margin="25 0 0 0">
-                                        <StackPanel Orientation="Vertical" IsEnabled="False">
+                                        <StackPanel Orientation="Vertical">
                                             <TextBlock Text="Path:"/>
                                             <Grid Height="22" Width="200">
-                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Path}"/>
+                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path, Mode=OneWay}"/>
                                             </Grid>
                                         </StackPanel>
 
@@ -210,13 +210,12 @@
                                             </Button.Style>
                                         </Button>
                                     </StackPanel>
-                                </Expander>-->
-                                <TextBlock Text="asfasf"/>
+                                </Expander>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
 
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsConnected}" Value="True">
                             <Setter Property="Visibility" Value="Visible"/>

@@ -15,6 +15,7 @@ using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Models.ChannelsProxy;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
+using System.ComponentModel;
 
 namespace CANAnalyzer.VM
 {
@@ -40,9 +41,18 @@ namespace CANAnalyzer.VM
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                 return;
 
-            throw new NotImplementedException();
+            foreach (var el in e.NewItems)
+            {
+                try
+                {
+                    if (el is IChannelProxy proxy)
+                    {
+                        ProxiesData.Remove(ProxiesData.First(x => x.ChannelProxy == el));
+                    }
+                }
+                catch { }
 
-            RaisePropertyChanged("ProxiesData");
+            }
         }
 
         private void Proxies_AddCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -57,8 +67,6 @@ namespace CANAnalyzer.VM
                     ProxiesData.Add(new ProxyChannelViewData(proxy));
                 }
             }
-
-            RaisePropertyChanged("ProxiesData");
         }
 
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -233,9 +241,9 @@ namespace CANAnalyzer.VM
         private IEnumerable<DeviceChannelViewData> _channelsData;
 
 
-        public List<ProxyChannelViewData> ProxiesData
+        public BindingList<ProxyChannelViewData> ProxiesData
         {
-            get { return _proxiesData ?? (_proxiesData = new List<ProxyChannelViewData>()); }
+            get { return _proxiesData ?? (_proxiesData = new BindingList<ProxyChannelViewData>()); }
             private set
             {
                 if (value == _proxiesData)
@@ -245,7 +253,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private List<ProxyChannelViewData> _proxiesData;
+        private BindingList<ProxyChannelViewData> _proxiesData;
 
         private RelayCommandAsync _loadedCommand;
         public RelayCommandAsync LoadedCommand
@@ -383,13 +391,13 @@ namespace CANAnalyzer.VM
 
         }
 
-        private RelayCommandAsync _addProxyCommand;
-        public RelayCommandAsync AddProxyCommand
+        private RelayCommand _addProxyCommand;
+        public RelayCommand AddProxyCommand
         {
             get
             {
                 if (_addProxyCommand == null)
-                    _addProxyCommand = new RelayCommandAsync(this.AddProxyCommand_Execute);
+                    _addProxyCommand = new RelayCommand(this.AddProxyCommand_Execute);
 
                 return _addProxyCommand;
             }
