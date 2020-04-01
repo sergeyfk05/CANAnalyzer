@@ -48,13 +48,12 @@ namespace CANAnalyzer.VM
 
             _context.Post((s) => { ProxiesData.Clear(); }, null);
         }
-
         private void Proxies_RemoveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                 return;
 
-            foreach (var el in e.NewItems)
+            foreach (var el in e.OldItems)
             {
                 try
                 {
@@ -67,14 +66,12 @@ namespace CANAnalyzer.VM
                     }
                 }
                 catch (Exception ee)
-
                 {
                     return;
                 }
 
             }
         }
-
         private void Proxies_AddCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Add)
@@ -84,13 +81,24 @@ namespace CANAnalyzer.VM
             {
                 if(el is IChannelProxy proxy)
                 {
+                    var buf = new ProxyChannelViewData(proxy);
+                    buf.DeletedEvent += ProxyRemoved;
+
                     _context.Post((s) =>
                     {
-                        ProxiesData.Add(new ProxyChannelViewData(proxy));
+                        ProxiesData.Add(buf);
                     }, null);
                 }
             }
         }
+        private void ProxyRemoved(object sender, EventArgs args)
+        {
+            if(sender is ProxyChannelViewData viewData)
+            {
+                Settings.Instance.Proxies.Remove(viewData.ChannelProxy);
+            }
+        }
+
 
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -429,7 +437,7 @@ namespace CANAnalyzer.VM
         private void AddProxyCommand_Execute()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("Proxy_FileGroup")}(*.exe) | *.exe | {Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")}(*.*) | *.*";
+            openFileDialog.Filter = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("Proxy_FileGroup")}(*.exe)|*.exe|{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")}(*.*)|*.*";
             openFileDialog.CheckFileExists = true;
             openFileDialog.Multiselect = false;
 

@@ -146,6 +146,12 @@
     <Record name="AppSettingsPageCloseChannel">
       <en>Close channel</en>
     </Record>
+    <Record name="AppSettingsPageDeleteProxyChannel">
+      <en>Delete proxy</en>
+    </Record>
+    <Record name="AppSettingsPageAddProxyChannel">
+      <en>Add proxy</en>
+    </Record>
     
     
 

@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CANAnalyzer.Models.ChannelsProxy;
+using System.Windows;
+using DynamicResource;
+using CANAnalyzer.Resources.DynamicResources;
 
 namespace CANAnalyzer.Models.ViewData
 {
@@ -14,11 +17,8 @@ namespace CANAnalyzer.Models.ViewData
     {
         public ProxyChannelViewData(IChannelProxy chProxy)
         {
-            if (chProxy == null)
-                throw new ArgumentNullException("chProxy must be not null.");
-
             IsOpen = false;
-            ChannelProxy = chProxy;
+            ChannelProxy = chProxy ?? throw new ArgumentNullException("chProxy must be not null.");
             Path = ChannelProxy.Path;
         }
         public IChannelProxy ChannelProxy { get; private set; }
@@ -74,14 +74,44 @@ namespace CANAnalyzer.Models.ViewData
             if(IsOpen)
             {
                 ChannelProxy.Close();
+                IsOpen = false;
             }
             else
             {
-                throw new NotImplementedException("добавить смену канала");
+                if(OwnerChannel == null)
+                {
+                    MessageBox.Show("не выбран родительский канал", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                ChannelProxy.SetChannel(OwnerChannel);
                 ChannelProxy.Open();
+                IsOpen = true;
             }
         }
 
+
+        private RelayCommand _removeProxyCommand;
+        public RelayCommand RemoveProxyCommand
+        {
+            get
+            {
+                if (_removeProxyCommand == null)
+                    _removeProxyCommand = new RelayCommand(this.RemoveProxyCommand_Execute);
+
+                return _removeProxyCommand;
+            }
+        }
+        private void RemoveProxyCommand_Execute()
+        {
+            RaiseDeletedEvent();
+        }
+
+        public event EventHandler DeletedEvent;
+        private void RaiseDeletedEvent()
+        {
+            DeletedEvent?.Invoke(this, new EventArgs());
+        }
 
         public override string ToString()
         {

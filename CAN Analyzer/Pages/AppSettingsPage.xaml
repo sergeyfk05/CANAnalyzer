@@ -126,7 +126,7 @@
                                             </StackPanel.Style>
                                         </StackPanel>
 
-                                        <CheckBox Content="{resources:Language AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="5 0 0 3">
+                                        <CheckBox Content="{resources:Language AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="10 0 0 3">
                                             <CheckBox.Style>
                                                 <Style>
                                                     <Style.Triggers>
@@ -138,7 +138,7 @@
                                             </CheckBox.Style>
                                         </CheckBox>
                                         
-                                        <Button VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="5 0 0 0" Height="22" Command="{Binding ChannelConnectCommand}">
+                                        <Button VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ChannelConnectCommand}">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Content" Value="{resources:Language AppSettingsPageOpenChannel}"/>
@@ -166,7 +166,18 @@
             </ItemsControl.Style>
         </ItemsControl>
 
-        <Button Content="sadfsdf" Command="{Binding AddProxyCommand}"/>
+        <Button Content="{resources:Language AppSettingsPageAddProxyChannel}" Command="{Binding AddProxyCommand}">
+            <Button.Style>
+                <Style>
+                    <Setter Property="Control.Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                            <Setter Property="Control.Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <ItemsControl ItemsSource="{Binding ProxiesData}" Margin="0 10 0 0">
             <ItemsControl.Style>
@@ -183,7 +194,7 @@
                                             </Grid>
                                         </StackPanel>
 
-                                        <ComboBox ItemsSource="{Binding channels}" SelectedItem="{Binding OwnerChannel}">
+                                        <ComboBox Height="22" VerticalAlignment="Bottom" Width="150" Margin="10 0 0 0" ItemsSource="{Binding channels}" SelectedItem="{Binding OwnerChannel}">
 
                                             <ComboBox.Style>
                                                 <Style>
@@ -197,7 +208,7 @@
                                             </ComboBox.Style>
                                         </ComboBox>
 
-                                        <Button VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="5 0 0 0" Height="22" Command="{Binding ProxyOpenCommand}">
+                                        <Button VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ProxyOpenCommand}">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Content" Value="{resources:Language AppSettingsPageOpenChannel}"/>
@@ -209,6 +220,8 @@
                                                 </Style>
                                             </Button.Style>
                                         </Button>
+
+                                        <Button Content="{resources:Language AppSettingsPageDeleteProxyChannel}" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding RemoveProxyCommand}"/>
                                     </StackPanel>
                                 </Expander>
                             </DataTemplate>

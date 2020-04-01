@@ -95,8 +95,6 @@ namespace CANAnalyzer.Models.ChannelsProxy
             if (!match.Success)
                 return;
 
-            //throw new NotImplementedException("распарсить регулярку и проверить данные");
-
             try
             {
                 result.IsExtId = Convert.ToInt32(match.Groups[1].Value, 16) == 0 ? false : true;
@@ -141,12 +139,14 @@ namespace CANAnalyzer.Models.ChannelsProxy
         {
             try
             {
-                Channel.ReceivedData -= RealChannel_ReceivedData;
+                if (Channel != null)
+                    Channel.ReceivedData -= RealChannel_ReceivedData;
             }
             catch { }
 
             Channel = newCH;
-            Channel.ReceivedData += RealChannel_ReceivedData;
+            if(Channel != null)
+                Channel.ReceivedData += RealChannel_ReceivedData;
         }
 
         public string Path { get; private set; }
