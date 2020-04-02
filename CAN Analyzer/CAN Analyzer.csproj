@@ -151,7 +151,7 @@
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\AppSettingPageVM.cs" />
     <Compile Include="VM\BaseVM.cs" />
-    <Compile Include="VM\MainWindowsVM.cs" />
+    <Compile Include="VM\MainWindowVM.cs" />
     <Compile Include="VM\TransmitFilePageVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

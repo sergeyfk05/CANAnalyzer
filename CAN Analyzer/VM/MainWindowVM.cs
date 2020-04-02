@@ -20,9 +20,9 @@ using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
-    public class MainWindowsVM : BaseVM
+    public class MainWindowVM : BaseVM
     {
-        public MainWindowsVM()
+        public MainWindowVM()
         {
             ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "appSettingsMenu",
