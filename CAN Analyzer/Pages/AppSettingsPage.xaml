@@ -114,7 +114,7 @@
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Expander Header="{Binding}">
+                                <Expander Header="{Binding Name}">
                                     <StackPanel Orientation="Horizontal" Margin="25 0 0 0">
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Text="{resources:Language AppSettingsPageSelectBitrateLabel}"/>

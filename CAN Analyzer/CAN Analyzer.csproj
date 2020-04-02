@@ -116,6 +116,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\ChannelsProxy\ConsoleChannelProxy.cs" />
     <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
+    <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
     <Compile Include="Models\ViewData\ContentPageData.cs" />
     <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />
@@ -139,6 +140,12 @@
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MonitorChannelPage.xaml.cs">
+      <DependentUpon>MonitorChannelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecieveChannelPage.xaml.cs">
+      <DependentUpon>RecieveChannelPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TransmitFilePage.xaml.cs">
       <DependentUpon>TransmitFilePage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +159,8 @@
     <Compile Include="VM\AppSettingPageVM.cs" />
     <Compile Include="VM\BaseVM.cs" />
     <Compile Include="VM\MainWindowVM.cs" />
+    <Compile Include="VM\MonitorChannelPageVM.cs" />
+    <Compile Include="VM\RecieveChannelPageVM.cs" />
     <Compile Include="VM\TransmitFilePageVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +175,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AppSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MonitorChannelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecieveChannelPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

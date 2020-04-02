@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using CANAnalyzer.Pages;
 using CANAnalyzer.Models.ViewData;
+using System.ComponentModel;
 
 namespace CANAnalyzer.VM
 {
@@ -26,38 +27,78 @@ namespace CANAnalyzer.VM
         {
             ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "appSettingsMenu",
-                "appSettingsIcon",
+                "AppSettingsPageIcon",
                 new AppSettingsPage(),
                 ChangePage);
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
 
 
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
+            Settings.Instance.Proxies.CollectionChanged += Proxies_CollectionChanged;
+            Settings.Instance.PropertyChanged += Device_PropertyChanged;
+
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
         }
 
-        private void ThemeManager_CultureChanged(object sender, EventArgs e)
+        private void Theme_CultureChanged(object sender, EventArgs e)
         {
-            if (PagesData == null)
+            RaisePropertyChanged("NavMenuDropdownIconSource");
+        }
+
+        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (Settings.Instance.Device == null)
                 return;
 
-            foreach (var el in PagesData)
+            List<NavMenuItemData> channels = new List<NavMenuItemData>();
+
+            foreach(var el in Settings.Instance.Device.Channels)
             {
-                el.UpdateTheme();
+                //recievePage
+                var recievePage = new RecieveChannelPage();
+                recievePage.DataContext = new RecieveChannelPageVM();
+
+                ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                    "NavMenuRecieveChannelPage",
+                    "RecievedChannelPageIcon",
+                    recievePage,
+                    ChangePage);
+                PagesData.Add(recievePageData);
+
+                //monitorPage
+                var monitorPage = new MonitorChannelPage();
+                monitorPage.DataContext = new MonitorChannelPageVM();
+
+                ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                    "NavMenuMonitorChannelPage",
+                    "MonitorChannelPageIcon",
+                    monitorPage,
+                    ChangePage);
+                PagesData.Add(monitorPageData);
+
+                ContentPageData channelViewData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
+                    el.ToString() + "NavMenu",
+                    el.ToString() + "Icon");
+                channelViewData.NavData.AddDropdownItem(recievePageData.NavData);
+                channelViewData.NavData.AddDropdownItem(monitorPageData.NavData);
+
+                PagesData.Add(channelViewData);
+                channels.Add(channelViewData.NavData);
+
             }
+
+            TopItemSource = new List<NavMenuItemData>(TopItemSource.Concat(channels));
+
+
+
+            //create views
         }
 
-        private void LanguageManager_CultureChanged(object sender, EventArgs e)
+        private void Proxies_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (PagesData == null)
-                return;
-
-            foreach (var el in PagesData)
-            {
-                el.UpdateLocalization();
-            }
+            //throw new NotImplementedException();
         }
+
 
 
         private void ChangePage(ContentPageData data)
@@ -113,6 +154,10 @@ namespace CANAnalyzer.VM
         }
         private List<NavMenuItemData> _bottomItemSource;
 
+
+        public Uri NavMenuDropdownIconSource => new Uri(
+            new Uri(Assembly.GetExecutingAssembly().Location), 
+            (string) Manager<ThemeCultureInfo>.StaticInstance.GetResource("NavMenuDropdownIcon"));
 
         public bool MenuIsCollapsed
         {

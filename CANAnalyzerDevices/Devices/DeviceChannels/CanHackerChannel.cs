@@ -312,7 +312,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
 
         public override string ToString()
         {
-            return "CanHacker Channel";
+            return "CanHackerChannel";
         }
 
         SerialPort _port;

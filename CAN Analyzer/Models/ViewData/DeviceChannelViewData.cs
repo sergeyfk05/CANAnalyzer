@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using CANAnalyzer.Models;
+using DynamicResource;
+using CANAnalyzer.Resources.DynamicResources;
 
 namespace CANAnalyzer.Models.ViewData
 {
@@ -36,6 +38,13 @@ namespace CANAnalyzer.Models.ViewData
                 BitrateText = "500";
                 IsListenOnlyViewable = true;
             }
+
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
+        }
+
+        private void Language_CultureChanged(object sender, EventArgs e)
+        {
+            RaisePropertyChanged("Name");
         }
 
         private void Channel_IsOpenChanged(object sender, EventArgs e)
@@ -128,6 +137,8 @@ namespace CANAnalyzer.Models.ViewData
                 Channel?.Open(Convert.ToInt32(BitrateText), IsListenOnlyViewable);
             }
         }
+
+        public string Name => (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(this.ToString() + "NavMenu");
 
 
         public override string ToString()

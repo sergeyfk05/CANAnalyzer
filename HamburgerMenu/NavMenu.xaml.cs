@@ -6,6 +6,7 @@ using HamburgerMenu.Calcs;
 using HamburgerMenu.Events;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
@@ -26,10 +27,19 @@ namespace HamburgerMenu
         {
             InitializeComponent();
             _context = SynchronizationContext.Current;
-            Root.Loaded += (object sender, RoutedEventArgs e) => { MinCorrectWidth = Root.CalcMinNavMenuCorrectWidth(); };
+            Root.Loaded += (object sender, RoutedEventArgs e) => 
+            {
+                MinCorrectWidth = Root.CalcMinNavMenuCorrectWidth();
+            };
             Draw(Root);
         }
 
+
+        public double UpdateMinCorrectWidth()
+        {
+            MinCorrectWidth = Root.CalcMinNavMenuCorrectWidth();
+            return MinCorrectWidth;
+        }
 
         private void Draw(StackPanel root)
         {
@@ -189,23 +199,29 @@ namespace HamburgerMenu
             bool isAnimatedNow = false;
             if (item.IsDropdownItem && item.DropdownItems != null)
             {
-                Image dropdownIcon = new Image()
+                Image dropdownIcon;
+                try
                 {
-                    Height = DropdownIconSize,
-                    Width = DropdownIconSize,
-                    Margin = 
-                    new Thickness((ItemHeight - DropdownIconSize) / 2.0 > DropdownIconMinLeftOffset ? (ItemHeight - DropdownIconSize) / 2.0 : DropdownIconMinLeftOffset, 
-                    (ItemHeight - DropdownIconSize) / 2, 
-                    (ItemHeight - DropdownIconSize) / 2, 
-                    (ItemHeight - DropdownIconSize) / 2),
+                    dropdownIcon = new Image()
+                    {
+                        Height = DropdownIconSize,
+                        Width = DropdownIconSize,
+                        Margin =
+                   new Thickness((ItemHeight - DropdownIconSize) / 2.0 > DropdownIconMinLeftOffset ? (ItemHeight - DropdownIconSize) / 2.0 : DropdownIconMinLeftOffset,
+                   (ItemHeight - DropdownIconSize) / 2,
+                   (ItemHeight - DropdownIconSize) / 2,
+                   (ItemHeight - DropdownIconSize) / 2),
 
-                    HorizontalAlignment = HorizontalAlignment.Right,
-                    Source = new BitmapImage(DropdownIconSource),
-                    RenderTransform = new RotateTransform(0, DropdownIconSize / 2, DropdownIconSize / 2),
-                    Name = "dropdownIcon"
-                };
-                DockPanel.SetDock(dropdownIcon, Dock.Right);
-                dock.Children.Add(dropdownIcon);
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        Source = new BitmapImage(DropdownIconSource),
+                        RenderTransform = new RotateTransform(0, DropdownIconSize / 2, DropdownIconSize / 2),
+                        Name = "dropdownIcon"
+                    };
+                    DockPanel.SetDock(dropdownIcon, Dock.Right);
+                    dock.Children.Add(dropdownIcon);
+                }
+                catch { }
+               
 
                 DoubleAnimation rotateAnimation = new DoubleAnimation()
                 {

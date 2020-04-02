@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using CANAnalyzer.Models.ChannelsProxy;
 using System.Text.Json.Serialization;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace CANAnalyzer
 {
@@ -23,7 +24,10 @@ namespace CANAnalyzer
         public Settings()
         {
             PropertyChanged += Device_PropertyChanged;
+            _context = SynchronizationContext.Current;
         }
+
+        SynchronizationContext _context;
 
         private void Device_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -130,7 +134,10 @@ namespace CANAnalyzer
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            _context.Post((s) => 
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            }, null);
         }
 
 

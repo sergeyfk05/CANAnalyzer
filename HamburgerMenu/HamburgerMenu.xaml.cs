@@ -143,14 +143,15 @@ namespace HamburgerMenu
                 }
                 else
                 {
+                    
                     double newWidth = hm.CollapsedWidth;
-                    if (hm.Template.FindName("TopNavMenu", hm) is NavMenu topNavMenu && newWidth < topNavMenu.MinCorrectWidth)
+                    if (hm.Template.FindName("TopNavMenu", hm) is NavMenu topNavMenu && newWidth < topNavMenu.UpdateMinCorrectWidth())
                     {
                         newWidth = topNavMenu.MinCorrectWidth;
                     }
 
 
-                    if (hm.Template.FindName("BottomNavMenu", hm) is NavMenu bottomNavMenu && newWidth < bottomNavMenu.MinCorrectWidth)
+                    if (hm.Template.FindName("BottomNavMenu", hm) is NavMenu bottomNavMenu && newWidth < bottomNavMenu.UpdateMinCorrectWidth())
                     {
                         newWidth = bottomNavMenu.MinCorrectWidth;
                     }

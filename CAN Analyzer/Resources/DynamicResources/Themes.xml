@@ -6,20 +6,13 @@
   </Cultures>
 
   <Recordings>
-    <Record name="s">
-      <dark>Red</dark>
-      <white>Black</white>
-    </Record>
-    <Record name="ss">
-      <dark>dark ss</dark>
-      <white>white ss</white>
-    </Record>
-
-    <Record name="appSettingsIcon">
+    <Record name="NavMenuDropdownIcon">
       <dark>Resources\Icons\1.png</dark>
       <white>Resources\Icons\1.png</white>
     </Record>
-    <Record name="deviceSettingsIcon">
+    
+    <!--AppSettingsPage-->
+    <Record name="AppSettingsPageIcon">
       <dark>Resources\Icons\1.png</dark>
       <white>Resources\Icons\1.png</white>
     </Record>
@@ -149,6 +142,25 @@
     <Record name="TransmitToControlBorderBrushStop">
       <dark>Blue</dark>
       <white>Blue</white>
+    </Record>
+    
+    
+    <!--RecievedChannelPage-->
+    <Record name="RecievedChannelPageIcon">
+      <dark>Resources\Icons\1.png</dark>
+      <white>Resources\Icons\1.png</white>
+    </Record>
+    
+    <!--MonitorChannelPage-->
+    <Record name="MonitorChannelPageIcon">
+      <dark>Resources\Icons\1.png</dark>
+      <white>Resources\Icons\1.png</white>
+    </Record>
+
+    <!--CanHacker Device-->
+    <Record name="CanHackerChannelIcon">
+      <dark>Resources\Icons\1.png</dark>
+      <white>Resources\Icons\1.png</white>
     </Record>
 
   </Recordings>

@@ -116,6 +116,7 @@
     </DataTemplate>
 
     <converters:BiteArrayToHexStringConverter x:Key="BiteArrayToHexStringConverter"/>
+    <converters:RelativePathToUriConverter x:Key="RelativePathToUriConverter"/>
 
     <Style x:Key="TraceFilterListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="Visibility" Value="Collapsed" />

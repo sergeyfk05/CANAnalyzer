@@ -17,7 +17,23 @@ namespace CANAnalyzer.Models.ViewData
 {
     public class ContentPageData
     {
-        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, Action<ContentPageData> clickAction = null)
+        private ContentPageData()
+        {
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
+        }
+
+        private void Theme_CultureChanged(object sender, EventArgs e)
+        {
+            this.UpdateTheme();
+        }
+
+        private void Language_CultureChanged(object sender, EventArgs e)
+        {
+            this.UpdateLocalization();
+        }
+
+        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, Action<ContentPageData> clickAction = null) : this()
         {
             LocalizedKey = locKey;
             NavData = nd;

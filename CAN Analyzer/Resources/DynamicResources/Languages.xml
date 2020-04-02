@@ -31,9 +31,11 @@
       <ru>Настройки</ru>
       <en>Settings</en>
     </Record>
-    <Record name="deviceSettingsMenu">
-      <ru>Настройки устройства</ru>
-      <en>Device settings</en>
+    <Record name="NavMenuRecieveChannelPage">
+      <en>Tracer</en>
+    </Record>
+    <Record name="NavMenuMonitorChannelPage">
+      <en>Monitor</en>
     </Record>
 
 
@@ -153,6 +155,19 @@
       <en>Add proxy</en>
     </Record>
     
+    
+    
+    <!--CanHacker Device-->
+    <Record name="CanHackerChannelNavMenu">
+      <en>CanHacker Channel1234</en>
+      <ru>Канал CanHacker'а</ru>
+    </Record>
+    <Record name="AppSettingsPageAddProxyChannel">
+      <en>Add proxy</en>
+    </Record>
+    <Record name="AppSettingsPageAddProxyChannel">
+      <en>Add proxy</en>
+    </Record>
     
 
     <Record name="ErrorMsgBoxTitle">
