@@ -33,14 +33,6 @@ namespace CANAnalyzer.VM
             BottomItemSource.Add(buf.NavData);
 
 
-            buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-               "deviceSettingsMenu",
-               "deviceSettingsIcon",
-               new DeviceSettingsPage(),
-               ChangePage);
-            PagesData.Add(buf);
-            BottomItemSource.Add(buf.NavData);
-
             Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
         }

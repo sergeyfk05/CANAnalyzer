@@ -139,9 +139,6 @@
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DeviceSettingsPage.xaml.cs">
-      <DependentUpon>DeviceSettingsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\TransmitFilePage.xaml.cs">
       <DependentUpon>TransmitFilePage.xaml</DependentUpon>
     </Compile>
@@ -173,10 +170,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\CommonStyles\CommonStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\DeviceSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

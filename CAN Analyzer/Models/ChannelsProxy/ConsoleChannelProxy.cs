@@ -56,14 +56,17 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
                 if (!CheckConnection())
                     throw new ArgumentException("Invalide file\r\n");
+
+                index = count++;
             }
             catch (Exception e)
             {
                 throw new ArgumentException("Invalide file\r\n" + e.ToString());
             }
-
-            RealChannel_ReceivedData(this, new ChannelDataReceivedEventArgs(new ReceivedData() { IsExtId = false, CanId = 0x60D, DLC = 4, Time = 50.2, Payload = new byte[] { 0x10, 0x20, 0x30, 0x40 } }));
         }
+
+        private int index;
+        private static int count = 1;
 
         private void RealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
         {
@@ -249,6 +252,11 @@ namespace CANAnalyzer.Models.ChannelsProxy
         ~ConsoleChannelProxy()
         {
             this.Dispose();
+        }
+
+        public override string ToString()
+        {
+            return $"Console Proxy{index}";
         }
     }
 }
