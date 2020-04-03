@@ -19,16 +19,16 @@ namespace CANAnalyzer.Models.ViewData
     {
         private ContentPageData()
         {
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += OnLanguageCultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += OnThemeCultureChanged;
         }
 
-        private void Theme_CultureChanged(object sender, EventArgs e)
+        private void OnThemeCultureChanged(object sender, EventArgs e)
         {
             this.UpdateTheme();
         }
 
-        private void Language_CultureChanged(object sender, EventArgs e)
+        private void OnLanguageCultureChanged(object sender, EventArgs e)
         {
             this.UpdateLocalization();
         }

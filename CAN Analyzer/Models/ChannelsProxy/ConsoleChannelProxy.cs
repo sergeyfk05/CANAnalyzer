@@ -68,7 +68,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         private int index;
         private static int count = 1;
 
-        private void RealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
+        private void OnRealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
         {
             SendDataToProxy(e.Data);
 
@@ -147,13 +147,13 @@ namespace CANAnalyzer.Models.ChannelsProxy
             try
             {
                 if (Channel != null)
-                    Channel.ReceivedData -= RealChannel_ReceivedData;
+                    Channel.ReceivedData -= OnRealChannel_ReceivedData;
             }
             catch { }
 
             Channel = newCH;
             if(Channel != null)
-                Channel.ReceivedData += RealChannel_ReceivedData;
+                Channel.ReceivedData += OnRealChannel_ReceivedData;
         }
 
         public string Path { get; private set; }

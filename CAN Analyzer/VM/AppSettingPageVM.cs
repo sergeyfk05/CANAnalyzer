@@ -31,28 +31,28 @@ namespace CANAnalyzer.VM
             Languages = Manager<LanguageCultureInfo>.StaticInstance.Cultures;
             Themes = Manager<ThemeCultureInfo>.StaticInstance.Cultures;
 
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
-            PropertyChanged += LanguageSelectorChanged;
-            PropertyChanged += ThemeSelectorChanged;
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += OnLanguageCultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += OnThemeCultureChanged;
+            PropertyChanged += OnLanguageSelectorChanged;
+            PropertyChanged += OnThemeSelectorChanged;
 
-            Settings.Instance.PropertyChanged += Device_PropertyChanged;
-            Settings.Instance.Proxies.CollectionChanged += Proxies_AddCollectionChanged;
-            Settings.Instance.Proxies.CollectionChanged += Proxies_RemoveCollectionChanged;
-            Settings.Instance.Proxies.CollectionChanged += Proxies_ResetCollectionChanged;
+            Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
+            Settings.Instance.Proxies.CollectionChanged += OnProxiesAddCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged += OnProxiesRemoveCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged += OnProxiesResetCollectionChanged;
             _context = SynchronizationContext.Current;
         }
 
         private SynchronizationContext _context;
 
-        private void Proxies_ResetCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnProxiesResetCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
                 return;
 
             _context.Post((s) => { ProxiesData.Clear(); }, null);
         }
-        private void Proxies_RemoveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnProxiesRemoveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                 return;
@@ -76,7 +76,7 @@ namespace CANAnalyzer.VM
 
             }
         }
-        private void Proxies_AddCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnProxiesAddCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Add)
                 return;
@@ -104,7 +104,7 @@ namespace CANAnalyzer.VM
         }
 
 
-        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnDevicePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Device")
             {
@@ -119,7 +119,7 @@ namespace CANAnalyzer.VM
                 ChannelsData = buf;
             }
         }
-        private void LanguageSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnLanguageSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((sender is AppSettingPageVM vm) && (e.PropertyName == "CurrentLanguage"))
             {
@@ -129,7 +129,7 @@ namespace CANAnalyzer.VM
                 Manager<LanguageCultureInfo>.StaticInstance.CurrentCulture = vm.CurrentLanguage;
             }
         }
-        private void Language_CultureChanged(object sender, EventArgs e)
+        private void OnLanguageCultureChanged(object sender, EventArgs e)
         {
             //уловка, чтобы КомбоБокс заного запросит у Themes и Languages ToString()
             CurrentLanguage = null;
@@ -176,7 +176,7 @@ namespace CANAnalyzer.VM
 
 
 
-        private void ThemeSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnThemeSelectorChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((sender is AppSettingPageVM vm) && (e.PropertyName == "CurrentTheme"))
             {
@@ -186,7 +186,7 @@ namespace CANAnalyzer.VM
                 Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture = vm.CurrentTheme;
             }
         }
-        private void Theme_CultureChanged(object sender, EventArgs e)
+        private void OnThemeCultureChanged(object sender, EventArgs e)
         {
             CurrentTheme = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture;
         }

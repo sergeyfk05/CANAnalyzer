@@ -23,13 +23,13 @@ namespace CANAnalyzer
     {
         public Settings()
         {
-            PropertyChanged += Device_PropertyChanged;
+            PropertyChanged += OnDevice_PropertyChanged;
             _context = SynchronizationContext.Current;
         }
 
         SynchronizationContext _context;
 
-        private void Device_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnDevice_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "Device")
                 return;

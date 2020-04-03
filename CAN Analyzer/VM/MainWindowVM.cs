@@ -34,18 +34,18 @@ namespace CANAnalyzer.VM
             BottomItemSource.Add(buf.NavData);
 
 
-            Settings.Instance.Proxies.CollectionChanged += Proxies_CollectionChanged;
-            Settings.Instance.PropertyChanged += Device_PropertyChanged;
+            Settings.Instance.Proxies.CollectionChanged += OnProxiesCollectionChanged;
+            Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
 
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += OnThemeCultureChanged;
         }
 
-        private void Theme_CultureChanged(object sender, EventArgs e)
+        private void OnThemeCultureChanged(object sender, EventArgs e)
         {
             RaisePropertyChanged("NavMenuDropdownIconSource");
         }
 
-        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnDevicePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (Settings.Instance.Device == null)
                 return;
@@ -94,7 +94,7 @@ namespace CANAnalyzer.VM
             //create views
         }
 
-        private void Proxies_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnProxiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             //throw new NotImplementedException();
         }

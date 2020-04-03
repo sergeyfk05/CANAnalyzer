@@ -22,18 +22,18 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         public CanHackerChannel(IDevice owner, SerialPort port)
         {
             this.Owner = owner;
-            owner.IsConnectedChanged += Owner_IsConnectedChanged;
+            owner.IsConnectedChanged += OnOwner_IsConnectedChanged;
             _port = port;
-            _port.DataReceived += port_DataReceived;
+            _port.DataReceived += OnPort_DataReceived;
         }
 
-        private void Owner_IsConnectedChanged(object sender, EventArgs e)
+        private void OnOwner_IsConnectedChanged(object sender, EventArgs e)
         {
             if (!Owner.IsConnected)
                 IsOpen = false;
         }
 
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void OnPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sender is SerialPort port)
             {

@@ -30,10 +30,10 @@ namespace CANAnalyzer.Models.TraceFilters
                 throw new ArgumentException();
             }
 
-            PropertyChanged += CanIdTraceFilter_CanIdPropertyChanged;
+            PropertyChanged += OnCanIdTraceFilter_CanIdPropertyChanged;
         }
 
-        private void CanIdTraceFilter_CanIdPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnCanIdTraceFilter_CanIdPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "CanId")
                 return;

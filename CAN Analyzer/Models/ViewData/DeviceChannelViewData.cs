@@ -26,7 +26,7 @@ namespace CANAnalyzer.Models.ViewData
                 throw new ArgumentException("argument must not be null");
 
             this.Channel = channel;
-            this.Channel.IsOpenChanged += Channel_IsOpenChanged;
+            this.Channel.IsOpenChanged += OnChannel_IsOpenChanged;
 
             if(IsOpen)
             {
@@ -47,7 +47,7 @@ namespace CANAnalyzer.Models.ViewData
             RaisePropertyChanged("Name");
         }
 
-        private void Channel_IsOpenChanged(object sender, EventArgs e)
+        private void OnChannel_IsOpenChanged(object sender, EventArgs e)
         {
             RaisePropertyChanged("IsOpen");
         }

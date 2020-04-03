@@ -32,11 +32,11 @@ namespace HamburgerMenu
         public HamburgerMenu()
         {
             InitializeComponent();
-            this.Loaded += HamburgerMenu_Loaded;
+            this.Loaded += OnHamburgerMenu_Loaded;
             
         }
 
-        private void HamburgerMenu_Loaded(object sender, RoutedEventArgs e)
+        private void OnHamburgerMenu_Loaded(object sender, RoutedEventArgs e)
         {
             if (sender is HamburgerMenu hm)
             {

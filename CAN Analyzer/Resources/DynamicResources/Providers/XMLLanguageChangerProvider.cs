@@ -80,7 +80,7 @@ namespace CANAnalyzer.Resources.DynamicResources
         public override object GetResource(string key)
         {
             IEnumerable<XElement> record = _languages.Elements("Record").Where(x => x.Attributes("name").ElementAt(0).Value == key);
-            return record.Count() > 0 ? record.ElementAt(0).Element(CurrentCulture.Name)?.Value ?? "not declared culture" : "null";
+            return record.Count() > 0 ? record.ElementAt(0).Element(CurrentCulture.Name)?.Value ?? "not declared culture" : key;
         }
 
         public override IEnumerable<LanguageCultureInfo> Cultures => _cultures;

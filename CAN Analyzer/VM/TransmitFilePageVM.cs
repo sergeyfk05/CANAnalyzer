@@ -31,9 +31,9 @@ namespace CANAnalyzer.VM
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "s" });
             TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
 
-            PropertyChanged += SaveFileCommandCanExecuteChanged_PropertyChanged;
-            PropertyChanged += SaveAsFileCommandCanExecuteChanged_PropertyChanged;
-            PropertyChanged += OpenFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
         }
 
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
@@ -137,7 +137,7 @@ namespace CANAnalyzer.VM
                 return _openFileCommand;
             }
         }
-        private void OpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnOpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.OpenFileCommand.RaiseCanExecuteChanged();
@@ -274,7 +274,7 @@ namespace CANAnalyzer.VM
             { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
             IsEnabled = true;
         }
-        private void SaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnSaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.SaveFileCommand.RaiseCanExecuteChanged();
@@ -340,7 +340,7 @@ namespace CANAnalyzer.VM
             }
 
         }
-        private void SaveAsFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnSaveAsFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.SaveAsFileCommand.RaiseCanExecuteChanged();
