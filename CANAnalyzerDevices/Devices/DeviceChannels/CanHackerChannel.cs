@@ -22,103 +22,114 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         public CanHackerChannel(IDevice owner, SerialPort port)
         {
             this.Owner = owner;
-            owner.IsConnectedChanged += Owner_IsConnectedChanged;
+            owner.IsConnectedChanged += OnOwner_IsConnectedChanged;
             _port = port;
-            _port.DataReceived += port_DataReceived;
+            _port.DataReceived += OnPort_DataReceived;
         }
 
-        private void Owner_IsConnectedChanged(object sender, EventArgs e)
+        private void OnOwner_IsConnectedChanged(object sender, EventArgs e)
         {
             if (!Owner.IsConnected)
                 IsOpen = false;
         }
 
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void OnPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sender is SerialPort port)
             {
-                ReceivedData data;
+                List<ReceivedData> data;
                 lock (_port)
                 {
                     data = ParseData(port.ReadExisting());
                 }
 
                 if (data != null)
-                    OnReceivedData(data);
+                    foreach (var el in data)
+                        OnReceivedData(el);
             }
         }
 
-        public static ReceivedData ParseData(string data)
+        public static List<ReceivedData> ParseData(string str)
         {
-            ReceivedData result = new ReceivedData();
+            List<ReceivedData> receivedData = new List<ReceivedData>();
 
-            if (data.Length < 9)
-                return null;
-
-            if (data[0] == 't')
-                result.IsExtId = false;
-            else if (data[0] == 'T')
-                result.IsExtId = true;
-            else
-                return null;
-
-            if (result.IsExtId)
+            foreach (var data in str.Split('\r'))
             {
-                var match = Regex.Match(data, @"T([0-9a-fA-F]{8})(\d{1})(\w*)\r");
-                if (!match.Success)
-                    throw new ArgumentException("data is invalid");
 
-                int dlc = Convert.ToInt32(match.Groups[2].Value);
-                if (dlc < 0 || dlc > 8)
-                    return null;
+                ReceivedData result = new ReceivedData();
 
-                match = Regex.Match(data, @"T([0-9a-fA-F]{8})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+\r");
-                if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                if (data.Length < 9)
+                    continue;
 
+                if (data[0] == 't')
+                    result.IsExtId = false;
+                else if (data[0] == 'T')
+                    result.IsExtId = true;
+                else
+                    continue;
 
-                result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
-                result.DLC = Convert.ToInt32(match.Groups[2].Value, 16);
-                result.Time = Convert.ToInt32(match.Groups[4].Value, 16) / 1000.0;
-                result.Payload = new byte[result.DLC];
-
-                for(int i = 0; i < result.DLC; i++)
+                if (result.IsExtId)
                 {
-                    result.Payload[i] = byte.Parse(match.Groups[3].Value.Substring(2 * i, 2), System.Globalization.NumberStyles.HexNumber);
+                    var match = Regex.Match(data, @"T([0-9a-fA-F]{8})(\d{1})(\w*)");
+                    if (!match.Success)
+                        continue;
+
+                    int dlc = Convert.ToInt32(match.Groups[2].Value);
+                    if (dlc < 0 || dlc > 8)
+                        continue;
+
+                    match = Regex.Match(data, @"T([0-9a-fA-F]{8})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+");
+                    if (!match.Success)
+                        continue;
+
+
+                    result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
+                    result.DLC = Convert.ToInt32(match.Groups[2].Value, 16);
+                    result.Time = Convert.ToInt32(match.Groups[4].Value, 16) / 1000.0;
+                    result.Payload = new byte[result.DLC];
+
+                    for (int i = 0; i < result.DLC; i++)
+                    {
+                        result.Payload[i] = byte.Parse(match.Groups[3].Value.Substring(2 * i, 2), System.Globalization.NumberStyles.HexNumber);
+                    }
+
+                }
+                else
+                {
+                    var match = Regex.Match(data, @"t([0-9a-fA-F]{3})(\d{1})(\w*)");
+                    if (!match.Success)
+                        continue;
+
+                    int dlc = Convert.ToInt32(match.Groups[2].Value);
+                    if (dlc < 0 || dlc > 8)
+                        continue;
+
+                    match = Regex.Match(data, @"t([0-9a-fA-F]{3})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+");
+                    if (!match.Success)
+                        continue;
+
+
+                    result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
+                    result.DLC = Convert.ToInt32(match.Groups[2].Value, 16);
+                    result.Time = Convert.ToInt32(match.Groups[4].Value, 16) / 1000.0;
+                    result.Payload = new byte[result.DLC];
+
+                    for (int i = 0; i < result.DLC; i++)
+                    {
+                        result.Payload[i] = byte.Parse(match.Groups[3].Value.Substring(2 * i, 2), System.Globalization.NumberStyles.HexNumber);
+                    }
                 }
 
-            }
-            else
-            {
-                var match = Regex.Match(data, @"t([0-9a-fA-F]{3})(\d{1})(\w*)\r");
-                if (!match.Success)
-                    throw new ArgumentException("data is invalid");
-
-                int dlc = Convert.ToInt32(match.Groups[2].Value);
-                if (dlc < 0 || dlc > 8)
-                    return null;
-
-                match = Regex.Match(data, @"t([0-9a-fA-F]{3})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+\r");
-                if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                if (!Validator.TryValidateObject(result, new ValidationContext(result), null, true))
+                    continue;
 
 
-                result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
-                result.DLC = Convert.ToInt32(match.Groups[2].Value, 16);
-                result.Time = Convert.ToInt32(match.Groups[4].Value, 16) / 1000.0;
-                result.Payload = new byte[result.DLC];
-
-                for (int i = 0; i < result.DLC; i++)
-                {
-                    result.Payload[i] = byte.Parse(match.Groups[3].Value.Substring(2 * i, 2), System.Globalization.NumberStyles.HexNumber);
-                }
+                receivedData.Add(result);
             }
 
-            if (!Validator.TryValidateObject(result, new ValidationContext(result), null, true))
-                return null;
+            return receivedData;
 
 
-            return result;
         }
 
         /// <summary>
@@ -185,7 +196,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                     throw new ArgumentException("invalid bitrate. Support only 10, 20, 50, 100, 125, 250, 500, 800 and 1000 kbps");
             }
 
-            lock(_port)
+            lock (_port)
             {
                 _port.Write(command);
 
@@ -312,7 +323,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
 
         public override string ToString()
         {
-            return "CanHacker Channel";
+            return "CanHackerChannel";
         }
 
         SerialPort _port;
