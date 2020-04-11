@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using CANAnalyzer.Pages;
 using CANAnalyzer.Models.ViewData;
+using System.Collections.ObjectModel;
 
 namespace CANAnalyzer.VM
 {
@@ -31,11 +32,54 @@ namespace CANAnalyzer.VM
                 ChangePage);
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
+            Source.Add(buf.NavData);
+            Source.Add(buf.NavData);
 
+
+            ContentPageData buf1 = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
+    "appSettingsMenu",
+    "appSettingsIcon",
+    new AppSettingsPage(),
+    ChangePage);
+            buf1.NavData.AddDropdownItem(buf.NavData);
+            buf1.NavData.AddDropdownItem(buf.NavData);
+            buf1.NavData.AddDropdownItem(buf.NavData);
+            Source.Add(buf1.NavData);
+
+
+            ContentPageData buf2 = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
+"appSettingsMenu",
+"appSettingsIcon",
+new AppSettingsPage(),
+ChangePage);
+            buf2.NavData.AddDropdownItem(buf.NavData);
+            buf2.NavData.AddDropdownItem(buf.NavData);
+            buf2.NavData.AddDropdownItem(buf.NavData);
+            Source.Add(buf2.NavData);
+
+            Source.Add(buf.NavData);
+            Source.Add(buf.NavData);
 
             Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
         }
+
+        public ObservableCollection<NavMenuItemData> Source
+        {
+            get
+            {
+                return _source ?? (_source = new ObservableCollection<NavMenuItemData>());
+            }
+            set
+            {
+                if (_source == value)
+                    return;
+
+                _source = value;
+                RaisePropertyChanged();
+            }
+        }
+        private ObservableCollection<NavMenuItemData> _source;
 
         private void ThemeManager_CultureChanged(object sender, EventArgs e)
         {

@@ -4,11 +4,13 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace HamburgerMenu
 {
@@ -17,15 +19,15 @@ namespace HamburgerMenu
         public void AddDropdownItem(NavMenuItemData item)
         {
             if (_dropdownItems == null)
-                _dropdownItems = new List<NavMenuItemData>();
+                _dropdownItems = new ObservableCollection<NavMenuItemData>();
 
             _dropdownItems.Add(item);
         }
         public bool IsDropdownItem { get; set; }
 
-        public IEnumerable<NavMenuItemData> DropdownItems { get { return _dropdownItems; } }
+        public ObservableCollection<NavMenuItemData> DropdownItems { get { return _dropdownItems; } }
 
-        private List<NavMenuItemData> _dropdownItems;
+        private ObservableCollection<NavMenuItemData> _dropdownItems;
 
         public Uri ImageSource
         {

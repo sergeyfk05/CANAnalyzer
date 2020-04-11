@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
 using HamburgerMenu;

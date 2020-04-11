@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:CANAnalyzer"
         xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
         xmlns:menu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:vm="clr-namespace:CANAnalyzer.VM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -19,7 +20,7 @@
             <ColumnDefinition Width="{Binding ElementName=menu, Path=CollapsedWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <menu:HamburgerMenu x:Name="menu"
+        <!--<menu:HamburgerMenu x:Name="menu"
                             BottomNavMenuItemSource="{Binding BottomItemSource}" 
                             IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" 
                             TopNavMenuItemSource="{Binding TopItemSource}" 
@@ -33,16 +34,28 @@
                     <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </menu:HamburgerMenu>
+        </menu:HamburgerMenu>-->
 
 
-        <ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
+        <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <menu:NewNavMenuItem Text="dghfshgdfh" IsDropdownable="True" Offset="0" IconSectionWidth="45" DropdownItems="{Binding Source}" ItemBackground="Aqua">
+                <menu:NewNavMenuItem.DropdownIconSource>
+                    <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
+                </menu:NewNavMenuItem.DropdownIconSource>
+
+                <menu:NewNavMenuItem.IconSource>
+                    <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
+                </menu:NewNavMenuItem.IconSource>
+            </menu:NewNavMenuItem>
+        </StackPanel>
+
+        <!--<ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
                     <i:InvokeCommandAction Command="{Binding ClickContent}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </ContentControl>
+        </ContentControl>-->
     </Grid>  
 
 </Window>
