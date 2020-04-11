@@ -28,6 +28,7 @@ namespace CANAnalyzer.VM
             ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "appSettingsMenu",
                 "AppSettingsPageIcon",
+                PageKind.Settings,
                 new AppSettingsPage(),
                 ChangePage);
             PagesData.Add(buf);
@@ -47,8 +48,30 @@ namespace CANAnalyzer.VM
 
         private void OnDevicePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+
+            if (e != null && e.PropertyName != "Device")
+                return;
+
+
+            ClearChannelsAndProxies();
+            
+
             if (Settings.Instance.Device == null)
                 return;
+
+
+            Settings.Instance.Device.IsConnectedChanged += (object s, EventArgs args) => 
+            {
+                if (s == Settings.Instance.Device)
+                    if (Settings.Instance.Device.IsConnected)
+                        OnDevicePropertyChanged(null, null);
+                    else
+                        ClearChannelsAndProxies();
+            };
+
+            if (!Settings.Instance.Device.IsConnected)
+                return;
+
 
             List<NavMenuItemData> channels = new List<NavMenuItemData>();
 
@@ -61,9 +84,11 @@ namespace CANAnalyzer.VM
                 ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                     "NavMenuRecieveChannelPage",
                     "RecievedChannelPageIcon",
+                    PageKind.Channel,
                     recievePage,
                     ChangePage);
                 PagesData.Add(recievePageData);
+
 
                 //monitorPage
                 var monitorPage = new MonitorChannelPage();
@@ -72,13 +97,16 @@ namespace CANAnalyzer.VM
                 ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                     "NavMenuMonitorChannelPage",
                     "MonitorChannelPageIcon",
+                    PageKind.Channel,
                     monitorPage,
                     ChangePage);
                 PagesData.Add(monitorPageData);
 
+
                 ContentPageData channelViewData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
                     el.ToString() + "NavMenu",
-                    el.ToString() + "Icon");
+                    el.ToString() + "Icon",
+                    PageKind.Channel);
                 channelViewData.NavData.AddDropdownItem(recievePageData.NavData);
                 channelViewData.NavData.AddDropdownItem(monitorPageData.NavData);
 
@@ -100,6 +128,19 @@ namespace CANAnalyzer.VM
         }
 
 
+        private void ClearChannelsAndProxies()
+        {
+            //clear channels and proxies
+            foreach (var el in PagesData)
+            {
+                if (el.Kind == PageKind.Channel || el.Kind == PageKind.Proxy)
+                {
+                    TopItemSource.Remove(el.NavData);
+                }
+            }
+            RaisePropertyChanged("TopItemSource");
+            PagesData.RemoveAll(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy);
+        }
 
         private void ChangePage(ContentPageData data)
         {

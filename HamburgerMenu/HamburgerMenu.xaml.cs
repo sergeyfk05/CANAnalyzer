@@ -110,9 +110,12 @@ namespace HamburgerMenu
             set { SetValue(TopNavMenuItemSourceProperty, value); }
         }
         public static readonly DependencyProperty TopNavMenuItemSourceProperty =
-            DependencyProperty.Register("TopNavMenuItemSource", typeof(List<NavMenuItemData>), typeof(HamburgerMenu), new PropertyMetadata(null));
+            DependencyProperty.Register("TopNavMenuItemSource", typeof(List<NavMenuItemData>), typeof(HamburgerMenu), new FrameworkPropertyMetadata(null, onpropchanged));
 
-
+        public static void onpropchanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            return;
+        }
 
         public List<NavMenuItemData> BottomNavMenuItemSource
         {

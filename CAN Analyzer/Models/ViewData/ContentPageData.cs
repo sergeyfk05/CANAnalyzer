@@ -15,6 +15,13 @@ using HamburgerMenu;
 
 namespace CANAnalyzer.Models.ViewData
 {
+    public enum PageKind
+    {
+        Undefined,
+        Channel,
+        Proxy,
+        Settings
+    }
     public class ContentPageData
     {
         private ContentPageData()
@@ -33,23 +40,26 @@ namespace CANAnalyzer.Models.ViewData
             this.UpdateLocalization();
         }
 
-        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, Action<ContentPageData> clickAction = null) : this()
+        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, PageKind kind = PageKind.Undefined, Action<ContentPageData> clickAction = null) : this()
         {
             LocalizedKey = locKey;
             NavData = nd;
             ClickAction = clickAction;
             ImageKey = imageKey;
+            Kind = kind;
 
             this.UpdateLocalization();
             this.UpdateTheme();
         }
-        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, UserControl page, Action<ContentPageData> clickAction = null)
-            : this(nd, locKey, imageKey, clickAction)
+        public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, PageKind kind, UserControl page, Action<ContentPageData> clickAction = null)
+            : this(nd, locKey, imageKey, kind, clickAction)
         {
             Page = page;
         }
 
         public NavMenuItemData NavData { get; private set; }
+
+        public PageKind Kind { get; private set; }
 
         public string LocalizedKey { get; private set; }
         public string ImageKey { get; private set; }

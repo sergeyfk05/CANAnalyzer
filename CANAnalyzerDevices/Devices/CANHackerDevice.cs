@@ -35,8 +35,11 @@ namespace CANAnalyzerDevices.Devices
             if (IsConnected)
                 return;
 
-            lock(port)
+            lock (port)
+            {
                 port.Open();
+            }
+
 
             OnIsConnectedChanged();
         }
