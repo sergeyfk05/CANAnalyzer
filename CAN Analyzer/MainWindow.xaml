@@ -20,21 +20,24 @@
             <ColumnDefinition Width="{Binding ElementName=menu, Path=CollapsedWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <!--<menu:HamburgerMenu x:Name="menu"
+        <menu:HamburgerMenu x:Name="menu"
                             BottomNavMenuItemSource="{Binding BottomItemSource}" 
                             IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" 
-                            TopNavMenuItemSource="{Binding TopItemSource}" 
+                            TopNavMenuItemSource="{Binding Source}" 
                             CollapsedWidth="45" 
                             Background="Aqua"
                             Panel.ZIndex="500" 
                             HorizontalAlignment="Left" 
                             Grid.ColumnSpan="2">
+            <menu:HamburgerMenu.NavMenuDropdownIconSource>
+                <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
+            </menu:HamburgerMenu.NavMenuDropdownIconSource>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Clicked">
                     <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </menu:HamburgerMenu>-->
+        </menu:HamburgerMenu>
 
 
         <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

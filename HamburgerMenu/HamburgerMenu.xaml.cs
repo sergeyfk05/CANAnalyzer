@@ -5,6 +5,7 @@
 using HamburgerMenu.Events;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -104,23 +105,23 @@ namespace HamburgerMenu
 
 
 
-        public List<NavMenuItemData> TopNavMenuItemSource
+        public ObservableCollection<NavMenuItemData> TopNavMenuItemSource
         {
-            get { return (List<NavMenuItemData>)GetValue(TopNavMenuItemSourceProperty); }
+            get { return (ObservableCollection<NavMenuItemData>)GetValue(TopNavMenuItemSourceProperty); }
             set { SetValue(TopNavMenuItemSourceProperty, value); }
         }
         public static readonly DependencyProperty TopNavMenuItemSourceProperty =
-            DependencyProperty.Register("TopNavMenuItemSource", typeof(List<NavMenuItemData>), typeof(HamburgerMenu), new PropertyMetadata(null));
+            DependencyProperty.Register("TopNavMenuItemSource", typeof(ObservableCollection<NavMenuItemData>), typeof(HamburgerMenu), new PropertyMetadata(null));
 
 
 
-        public List<NavMenuItemData> BottomNavMenuItemSource
+        public ObservableCollection<NavMenuItemData> BottomNavMenuItemSource
         {
-            get { return (List<NavMenuItemData>)GetValue(BottomNavMenuItemSourceProperty); }
+            get { return (ObservableCollection<NavMenuItemData>)GetValue(BottomNavMenuItemSourceProperty); }
             set { SetValue(BottomNavMenuItemSourceProperty, value); }
         }
         public static readonly DependencyProperty BottomNavMenuItemSourceProperty =
-            DependencyProperty.Register("BottomNavMenuItemSource", typeof(List<NavMenuItemData>), typeof(HamburgerMenu), new PropertyMetadata(null));
+            DependencyProperty.Register("BottomNavMenuItemSource", typeof(ObservableCollection<NavMenuItemData>), typeof(HamburgerMenu), new PropertyMetadata(null));
 
 
 
@@ -144,15 +145,22 @@ namespace HamburgerMenu
                 else
                 {
                     double newWidth = hm.CollapsedWidth;
-                    if (hm.Template.FindName("TopNavMenu", hm) is NavMenu topNavMenu && newWidth < topNavMenu.MinCorrectWidth)
+                    
+                    if (hm.Template.FindName("TopNavMenu", hm) is NewNavMenu topNavMenu)
                     {
-                        newWidth = topNavMenu.MinCorrectWidth;
+                        topNavMenu.UpdateMinCorrectWidth();
+
+                        if(newWidth < topNavMenu.MinCorrectWidth)
+                            newWidth = topNavMenu.MinCorrectWidth;
                     }
 
 
-                    if (hm.Template.FindName("BottomNavMenu", hm) is NavMenu bottomNavMenu && newWidth < bottomNavMenu.MinCorrectWidth)
+                    if (hm.Template.FindName("BottomNavMenu", hm) is NewNavMenu bottomNavMenu)
                     {
-                        newWidth = bottomNavMenu.MinCorrectWidth;
+                        bottomNavMenu.UpdateMinCorrectWidth();
+
+                        if(newWidth < bottomNavMenu.MinCorrectWidth)
+                            newWidth = bottomNavMenu.MinCorrectWidth;
                     }
 
                     hm.Width = newWidth;
@@ -194,23 +202,23 @@ namespace HamburgerMenu
 
 
 
-        public TimeSpan CollapseHamburgerAnimationDuration
+        public Duration CollapseHamburgerAnimationDuration
         {
-            get { return (TimeSpan)GetValue(CollapseHamburgerAnimationDurationProperty); }
+            get { return (Duration)GetValue(CollapseHamburgerAnimationDurationProperty); }
             set { SetValue(CollapseHamburgerAnimationDurationProperty, value); }
         }
         public static readonly DependencyProperty CollapseHamburgerAnimationDurationProperty =
-            DependencyProperty.Register("CollapseHamburgerAnimationDuration", typeof(TimeSpan), typeof(HamburgerMenu), new PropertyMetadata(TimeSpan.FromMilliseconds(350)));
+            DependencyProperty.Register("CollapseHamburgerAnimationDuration", typeof(Duration), typeof(HamburgerMenu), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(350))));
 
 
 
-        public TimeSpan DropdownNavMenuAnimationDuration
+        public Duration DropdownNavMenuAnimationDuration
         {
-            get { return (TimeSpan)GetValue(DropdownNavMenuAnimationDurationProperty); }
+            get { return (Duration)GetValue(DropdownNavMenuAnimationDurationProperty); }
             set { SetValue(DropdownNavMenuAnimationDurationProperty, value); }
         }
         public static readonly DependencyProperty DropdownNavMenuAnimationDurationProperty =
-            DependencyProperty.Register("DropdownNavMenuAnimationDuration", typeof(TimeSpan), typeof(HamburgerMenu), new PropertyMetadata(TimeSpan.FromMilliseconds(350)));
+            DependencyProperty.Register("DropdownNavMenuAnimationDuration", typeof(Duration), typeof(HamburgerMenu), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(350))));
 
 
 
@@ -265,34 +273,34 @@ namespace HamburgerMenu
 
 
 
-        public Color NavMenuBackground
+        public Brush NavMenuBackground
         {
-            get { return (Color)GetValue(NavMenuBackgroundProperty); }
+            get { return (Brush)GetValue(NavMenuBackgroundProperty); }
             set { SetValue(NavMenuBackgroundProperty, value); }
         }
         public static readonly DependencyProperty NavMenuBackgroundProperty =
-            DependencyProperty.Register("NavMenuBackground", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(0, 0, 0)));
+            DependencyProperty.Register("NavMenuBackground", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0, 0, 0))));
 
 
 
 
-        public Color NavMenuMouseInItemBackground
+        public Brush NavMenuMouseInItemBackground
         {
-            get { return (Color)GetValue(NavMenuMouseInItemBackgroundProperty); }
+            get { return (Brush)GetValue(NavMenuMouseInItemBackgroundProperty); }
             set { SetValue(NavMenuMouseInItemBackgroundProperty, value); }
         }
         public static readonly DependencyProperty NavMenuMouseInItemBackgroundProperty =
-            DependencyProperty.Register("NavMenuMouseInItemBackground", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(125, 0, 0)));
+            DependencyProperty.Register("NavMenuMouseInItemBackground", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(125, 0, 0))));
 
 
 
-        public Color NavMenuSelectedItemBackground
+        public Brush NavMenuSelectedItemBackground
         {
-            get { return (Color)GetValue(NavMenuSelectedItemBackgroundProperty); }
+            get { return (Brush)GetValue(NavMenuSelectedItemBackgroundProperty); }
             set { SetValue(NavMenuSelectedItemBackgroundProperty, value); }
         }
         public static readonly DependencyProperty NavMenuSelectedItemBackgroundProperty =
-            DependencyProperty.Register("NavMenuSelectedItemBackground", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(125, 125, 0)));
+            DependencyProperty.Register("NavMenuSelectedItemBackground", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(125, 125, 0))));
 
 
         public double NavMenuDropdownIconLeftOffset
@@ -316,43 +324,43 @@ namespace HamburgerMenu
 
 
 
-        public Uri NavMenuDropdownIconSource
+        public ImageSource NavMenuDropdownIconSource
         {
-            get { return (Uri)GetValue(NavMenuDropdownIconSourceProperty); }
+            get { return (ImageSource)GetValue(NavMenuDropdownIconSourceProperty); }
             set { SetValue(NavMenuDropdownIconSourceProperty, value); }
         }
         public static readonly DependencyProperty NavMenuDropdownIconSourceProperty =
-            DependencyProperty.Register("NavMenuDropdownIconSource", typeof(Uri), typeof(HamburgerMenu), new PropertyMetadata(new Uri(new Uri(Assembly.GetExecutingAssembly().Location), "1.png")));
+            DependencyProperty.Register("NavMenuDropdownIconSource", typeof(ImageSource), typeof(HamburgerMenu), new PropertyMetadata(null));
 
 
 
-        public Color NavMenuItemTextColor
+        public Brush NavMenuItemTextColor
         {
-            get { return (Color)GetValue(NavMenuItemTextColorProperty); }
+            get { return (Brush)GetValue(NavMenuItemTextColorProperty); }
             set { SetValue(NavMenuItemTextColorProperty, value); }
         }
         public static readonly DependencyProperty NavMenuItemTextColorProperty =
-            DependencyProperty.Register("NavMenuItemTextColor", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(0, 0, 255)));
+            DependencyProperty.Register("NavMenuItemTextColor", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0, 0, 255))));
 
 
 
-        public Color NavMenuMouseInItemTextColor
+        public Brush NavMenuMouseInItemTextColor
         {
-            get { return (Color)GetValue(NavMenuMouseInItemTextColorProperty); }
+            get { return (Brush)GetValue(NavMenuMouseInItemTextColorProperty); }
             set { SetValue(NavMenuMouseInItemTextColorProperty, value); }
         }
         public static readonly DependencyProperty NavMenuMouseInItemTextColorProperty =
-            DependencyProperty.Register("NavMenuMouseInItemTextColor", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(0, 0, 255)));
+            DependencyProperty.Register("NavMenuMouseInItemTextColor", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0, 0, 255))));
 
 
 
-        public Color NavMenuSelectedItemTextColor
+        public Brush NavMenuSelectedItemTextColor
         {
-            get { return (Color)GetValue(NavMenuSelectedItemTextColorProperty); }
+            get { return (Brush)GetValue(NavMenuSelectedItemTextColorProperty); }
             set { SetValue(NavMenuSelectedItemTextColorProperty, value); }
         }
         public static readonly DependencyProperty NavMenuSelectedItemTextColorProperty =
-            DependencyProperty.Register("NavMenuSelectedItemTextColor", typeof(Color), typeof(HamburgerMenu), new PropertyMetadata(Color.FromRgb(0, 0, 255)));
+            DependencyProperty.Register("NavMenuSelectedItemTextColor", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0, 0, 255))));
 
 
 

@@ -27,10 +27,31 @@ namespace HamburgerMenu
             InitializeComponent();
         }
 
-        //mincorrectwidth
         //click event
 
 
+        public void UpdateMinCorrectWidth()
+        {
+            double result = 0;
+            if (this.Template.FindName("navMenu", this) is ItemsControl itemsControl && itemsControl.IsLoaded)
+            {
+                for(int i = 0; i < itemsControl.Items.Count; i++)
+                {
+                    ContentPresenter presenter = itemsControl.ItemContainerGenerator.ContainerFromIndex(i) as ContentPresenter;
+
+                    if (!presenter.IsLoaded)
+                        continue;
+
+                    NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
+                    NewNavMenuItem.UpdateMinCorrectWidth(child);
+
+                    if (child.MinCorrectWidth > result)
+                        result = child.MinCorrectWidth;
+                }
+
+            }
+            MinCorrectWidth = result;
+        }
 
         public ObservableCollection<NavMenuItemData> Items
         {

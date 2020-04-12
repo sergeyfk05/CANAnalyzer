@@ -64,6 +64,7 @@ namespace HamburgerMenu
             dockPanel.MouseLeave += (object s, MouseEventArgs a) => { mouseLeaveTextStoryboard.Begin(); };
 
             UpdateMinCorrectWidth(this);
+            IsMyLoaded = true;
         }
 
         public DockPanel dockPanel;
@@ -182,6 +183,8 @@ namespace HamburgerMenu
             ShowedTextBrush = IsSelected ? SelectedTextBrush : TextBrush;
         }
 
+
+        public bool IsMyLoaded { get; private set; } = false;
 
         public double ItemHeight
         {
@@ -565,6 +568,7 @@ namespace HamburgerMenu
                     result += nmi.dropdownIcon.ActualWidth;
                 result += nmi.DropdownIconMargin.Right;
 
+                nmi.MinCorrectWidth = result;
 
                 if (nmi.dropdownMenu != null)
                     for (int i = 0; i < nmi.dropdownMenu.Items.Count; i++)
@@ -575,7 +579,8 @@ namespace HamburgerMenu
                             continue;
 
                         NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
-                        if (child.MinCorrectWidth > result)
+                        UpdateMinCorrectWidth(child);
+                        if (child.IsLoaded && child.MinCorrectWidth > result)
                             result = child.MinCorrectWidth;
                     }
 

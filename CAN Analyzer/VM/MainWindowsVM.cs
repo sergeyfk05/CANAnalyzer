@@ -58,7 +58,6 @@ ChangePage);
             buf.NavData.AddDropdownItem(buf1.NavData);
             buf.NavData.AddDropdownItem(buf1.NavData);
 
-
             Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
         }
@@ -121,11 +120,11 @@ ChangePage);
                 el.NavData.ResetIsSelectedFlag();
         }
 
-        public List<NavMenuItemData> TopItemSource
+        public ObservableCollection<NavMenuItemData> TopItemSource
         {
             get
             {
-                return _topItemSource ?? (_topItemSource = new List<NavMenuItemData>());
+                return _topItemSource ?? (_topItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -136,14 +135,14 @@ ChangePage);
                 RaisePropertyChanged();
             }
         }
-        private List<NavMenuItemData> _topItemSource;
+        private ObservableCollection<NavMenuItemData> _topItemSource;
 
 
-        public List<NavMenuItemData> BottomItemSource
+        public ObservableCollection<NavMenuItemData> BottomItemSource
         {
             get
             {
-                return _bottomItemSource ?? (_bottomItemSource = new List<NavMenuItemData>());
+                return _bottomItemSource ?? (_bottomItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -154,7 +153,7 @@ ChangePage);
                 RaisePropertyChanged();
             }
         }
-        private List<NavMenuItemData> _bottomItemSource;
+        private ObservableCollection<NavMenuItemData> _bottomItemSource;
 
 
         public bool MenuIsCollapsed

@@ -15,13 +15,13 @@
                     <Image x:Name="icon" Height="{TemplateBinding IconSize}" Width="{TemplateBinding IconSize}" Margin="{TemplateBinding IconMargin}" Source="{TemplateBinding IconSource}" DockPanel.Dock="Left"/>
                     <TextBlock x:Name="text" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{TemplateBinding Text}" Foreground="{TemplateBinding ShowedTextBrush}" FontFamily="{TemplateBinding TextFontFamily}" FontSize="{TemplateBinding TextFontWeight}" FontWeight="{TemplateBinding TextFontSize}" Margin="{TemplateBinding TextMargin}" DockPanel.Dock="Left"/>
 
-
+                    
                     <Image x:Name="dropdownIcon" RenderTransformOrigin="0.5, 0.5" Visibility="Collapsed" Height="{TemplateBinding DropdownIconSize}" Width="{TemplateBinding DropdownIconSize}" Source="{TemplateBinding DropdownIconSource}" Margin="{TemplateBinding DropdownIconMargin}" DockPanel.Dock="Right">
                         <Image.RenderTransform>
                             <RotateTransform Angle="0"/>
                         </Image.RenderTransform>
                     </Image>
-
+                    <Grid VerticalAlignment="Stretch" Width="0" DockPanel.Dock="Right"/>
                 </DockPanel>
 
                 <ItemsControl x:Name="dropdownMenu" Visibility="Collapsed" ItemsSource="{TemplateBinding DropdownItems}" MaxHeight="0">
