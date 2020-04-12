@@ -6,7 +6,36 @@
              xmlns:local="clr-namespace:HamburgerMenu"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Template>
+        <ControlTemplate TargetType="local:NewNavMenu">
+            <ItemsControl x:Name="navMenu" ItemsSource="{TemplateBinding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="local:NavMenuItemData">
+                        <local:NewNavMenuItem ItemHeight="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=ItemHeight}"
+                                                  IconSize="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=IconSize}"
+                                                  IconSectionWidth="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=IconSectionWidth}"
+                                                  Offset="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownMenuOffset}"
+                                                  DropdownIncrementOffset="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownIncrementOffset}"
+                                                  DropdownIconSource="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownIconSource}"
+                                                  DropdownIconSize="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownIconSize}"
+                                                  DropdownIconMinLeftOffset="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownIconMinLeftOffset}"
+                                                  TextFontFamily="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=TextFontFamily}"
+                                                  TextFontSize="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=TextFontSize}"
+                                                  TextFontWeight="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=TextFontWeight}"
+                                                  TextBrush="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=TextBrush}"
+                                                  SelectedTextBrush="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=SelectedTextBrush}"
+                                                  TextMouseEnterBrush="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=TextMouseEnterBrush}"
+                                                  MouseEnterOverAnimationDuration="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=MouseEnterOverAnimationDuration}"
+                                                  SelectedItemBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=SelectedItemBackground}"
+                                                  ItemBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=ItemBackground}"
+                                                  ItemMouseEnterBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=ItemMouseEnterBackground}"
+                                                  ItemData="{Binding}"
+                                                  DropdownAnimationDuration="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationDuration}"
+                                                  DropdownAnimationFunction="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationFunction}">
+                        </local:NewNavMenuItem>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>

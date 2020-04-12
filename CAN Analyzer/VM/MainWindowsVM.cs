@@ -33,7 +33,7 @@ namespace CANAnalyzer.VM
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
 
-            Source = buf.NavData;
+            Source.Add(buf.NavData);
 
             ContentPageData buf1 = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
     "appSettingsMenu",
@@ -63,11 +63,11 @@ ChangePage);
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
         }
 
-        public NavMenuItemData Source
+        public ObservableCollection<NavMenuItemData> Source
         {
             get
             {
-                return _source;
+                return _source ?? (_source = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -78,7 +78,7 @@ ChangePage);
                 RaisePropertyChanged();
             }
         }
-        private NavMenuItemData _source;
+        private ObservableCollection<NavMenuItemData> _source;
 
         private void ThemeManager_CultureChanged(object sender, EventArgs e)
         {

@@ -38,11 +38,11 @@
 
 
         <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <menu:NewNavMenuItem  Offset="0" IconSectionWidth="45" ItemData="{Binding Source}" ItemBackground="Aqua">
-                <menu:NewNavMenuItem.DropdownIconSource>
+            <menu:NewNavMenu IconSectionWidth="45" Items="{Binding Source}" ItemBackground="Aqua">
+                <menu:NewNavMenu.DropdownIconSource>
                     <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
-                </menu:NewNavMenuItem.DropdownIconSource>
-            </menu:NewNavMenuItem>
+                </menu:NewNavMenu.DropdownIconSource>
+            </menu:NewNavMenu>
         </StackPanel>
 
         <!--<ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
