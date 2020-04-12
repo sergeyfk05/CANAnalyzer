@@ -63,6 +63,9 @@
     <Compile Include="NavMenuToggleButton.xaml.cs">
       <DependentUpon>NavMenuToggleButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewNavMenu.xaml.cs">
+      <DependentUpon>NewNavMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewNavMenuItem.xaml.cs">
       <DependentUpon>NewNavMenuItem.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NavMenuToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewNavMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

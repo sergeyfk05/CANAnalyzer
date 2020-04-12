@@ -38,14 +38,10 @@
 
 
         <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <menu:NewNavMenuItem Text="dghfshgdfh" IsDropdownable="True" Offset="0" IconSectionWidth="45" DropdownItems="{Binding Source}" ItemBackground="Aqua">
+            <menu:NewNavMenuItem  Offset="0" IconSectionWidth="45" ItemData="{Binding Source}" ItemBackground="Aqua">
                 <menu:NewNavMenuItem.DropdownIconSource>
                     <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
                 </menu:NewNavMenuItem.DropdownIconSource>
-
-                <menu:NewNavMenuItem.IconSource>
-                    <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
-                </menu:NewNavMenuItem.IconSource>
             </menu:NewNavMenuItem>
         </StackPanel>
 

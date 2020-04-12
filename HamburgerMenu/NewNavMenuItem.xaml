@@ -35,7 +35,6 @@
                                                   DropdownIconSource="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=DropdownIconSource}"
                                                   DropdownIconSize="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=DropdownIconSize}"
                                                   DropdownIconMinLeftOffset="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=DropdownIconMinLeftOffset}"
-                                                  Text="{Binding Text}"
                                                   TextFontFamily="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=TextFontFamily}"
                                                   TextFontSize="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=TextFontSize}"
                                                   TextFontWeight="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=TextFontWeight}"
@@ -46,14 +45,10 @@
                                                   SelectedItemBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=SelectedItemBackground}"
                                                   ItemBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=ItemBackground}"
                                                   ItemMouseEnterBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=ItemMouseEnterBackground}"
-                                                  IsDropdownable="{Binding IsDropdownItem}"
-                                                  IsSelected="{Binding IsSelected}"
+                                                  ItemData="{Binding}"
                                                   DropdownAnimationDuration="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=DropdownAnimationDuration}"
                                                   DropdownAnimationFunction="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenuItem}, Path=DropdownAnimationFunction}"
-                                                  DropdownItems="{Binding DropdownItems}">
-                                <local:NewNavMenuItem.IconSource>
-                                    <BitmapImage UriSource="{Binding ImageSource}"/>
-                                </local:NewNavMenuItem.IconSource>
+                                                  >
                             </local:NewNavMenuItem>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

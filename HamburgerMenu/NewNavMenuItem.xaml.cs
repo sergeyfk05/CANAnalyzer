@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HamburgerMenu.Events;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HamburgerMenu
 {
@@ -54,7 +48,9 @@ namespace HamburgerMenu
             dockPanel.MouseLeftButtonDown += manager.OnMouseLeftButtonDown;
             dockPanel.MouseLeftButtonUp += manager.OnMouseLeftButtonUp;
             manager.Click += Manager_Click;
+            manager.Click += (object ss, MouseButtonEventArgs ee) => { RaiseClickedEvent(ItemData); };
 
+            OnDropdownItemsSourceChanged(this, new DependencyPropertyChangedEventArgs());
             OnOffsetsChanged(this, new DependencyPropertyChangedEventArgs());
             ResetColors();
             GenerateBackgroundAnimations();
@@ -66,6 +62,8 @@ namespace HamburgerMenu
 
             dockPanel.MouseEnter += (object s, MouseEventArgs a) => { mouseEnterTextStoryboard.Begin(); };
             dockPanel.MouseLeave += (object s, MouseEventArgs a) => { mouseLeaveTextStoryboard.Begin(); };
+
+            UpdateMinCorrectWidth(this);
         }
 
         public DockPanel dockPanel;
@@ -215,7 +213,7 @@ namespace HamburgerMenu
 
 
 
-        public ImageSource IconSource
+        internal ImageSource IconSource
         {
             get { return (ImageSource)GetValue(IconSourceProperty); }
             set { SetValue(IconSourceProperty, value); }
@@ -260,8 +258,6 @@ namespace HamburgerMenu
             get { return (double)GetValue(DropdownMenuOffsetProperty); }
             set { SetValue(DropdownMenuOffsetProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for DropdownMenuOffset.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DropdownMenuOffsetProperty =
             DependencyProperty.Register("DropdownMenuOffset", typeof(double), typeof(NewNavMenuItem), new PropertyMetadata(0.0));
 
@@ -309,7 +305,7 @@ namespace HamburgerMenu
 
 
 
-        public string Text
+        internal string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
@@ -462,7 +458,7 @@ namespace HamburgerMenu
 
 
 
-        public bool IsDropdownable
+        internal bool IsDropdownable
         {
             get { return (bool)GetValue(IsDropdownableProperty); }
             set { SetValue(IsDropdownableProperty, value); }
@@ -483,7 +479,7 @@ namespace HamburgerMenu
 
 
 
-        public bool IsSelected
+        private bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
             set { SetValue(IsSelectedProperty, value); }
@@ -515,24 +511,189 @@ namespace HamburgerMenu
 
 
 
-        public ObservableCollection<NavMenuItemData> DropdownItems
+        internal ObservableCollection<NavMenuItemData> DropdownItems
         {
             get { return (ObservableCollection<NavMenuItemData>)GetValue(DropdownItemsProperty); }
             set { SetValue(DropdownItemsProperty, value); }
         }
         public static readonly DependencyProperty DropdownItemsProperty =
-            DependencyProperty.Register("DropdownItems", typeof(ObservableCollection<NavMenuItemData>), typeof(NewNavMenuItem), new PropertyMetadata(null));
+            DependencyProperty.Register("DropdownItems", typeof(ObservableCollection<NavMenuItemData>), typeof(NewNavMenuItem), new UIPropertyMetadata(null, OnDropdownItemsSourceChanged));
+
+
+
+        public NavMenuItemData ItemData
+        {
+            get { return (NavMenuItemData)GetValue(ItemDataProperty); }
+            set { SetValue(ItemDataProperty, value); }
+        }
+        public static readonly DependencyProperty ItemDataProperty =
+            DependencyProperty.Register("ItemData", typeof(NavMenuItemData), typeof(NewNavMenuItem), new UIPropertyMetadata(null, OnItemDataChanged));
 
 
 
 
+        public static readonly RoutedEvent ClickedEvent = EventManager.RegisterRoutedEvent("Clicked", RoutingStrategy.Bubble, typeof(ClickedEventHandler), typeof(NewNavMenuItem));
+        public event ClickedEventHandler Clicked
+        {
+            add { AddHandler(ClickedEvent, value); }
+            remove { RemoveHandler(ClickedEvent, value); }
+        }
+        private void RaiseClickedEvent(NavMenuItemData item)
+        {
+            RaiseEvent(new ClickedEventArgs(ClickedEvent, item));
+        }
 
 
 
+        public static void UpdateMinCorrectWidth(DependencyObject d)
+        {
+            if (d is NewNavMenuItem nmi)
+            {
+                if (!nmi.IsLoaded)
+                    return;
+
+                double result = 0;
+                result += nmi.IconMargin.Left;
+                result += nmi.IconSize;
+                result += nmi.IconMargin.Right;
+                result += nmi.TextMargin.Left;
+                if (nmi.textBlock != null)
+                    result += nmi.textBlock.ActualWidth;
+                result += nmi.TextMargin.Right;
+                result += nmi.DropdownIconMargin.Left;
+                if (nmi.dropdownIcon != null)
+                    result += nmi.dropdownIcon.ActualWidth;
+                result += nmi.DropdownIconMargin.Right;
+
+
+                if (nmi.dropdownMenu != null)
+                    for (int i = 0; i < nmi.dropdownMenu.Items.Count; i++)
+                    {
+                        ContentPresenter presenter = nmi.dropdownMenu.ItemContainerGenerator.ContainerFromIndex(i) as ContentPresenter;
+
+                        if (!presenter.IsLoaded)
+                            continue;
+
+                        NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
+                        if (child.MinCorrectWidth > result)
+                            result = child.MinCorrectWidth;
+                    }
+
+                nmi.MinCorrectWidth = result;
+            }
+        }
+        public static void OnDropdownItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NewNavMenuItem nmi)
+            {
+
+                if (nmi.DropdownItems == null || nmi.dropdownMenu == null)
+                    return;
+
+
+                for (int i = 0; i < nmi.dropdownMenu.Items.Count; i++)
+                {
+                    ContentPresenter presenter = nmi.dropdownMenu.ItemContainerGenerator.ContainerFromIndex(i) as ContentPresenter;
+                    NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
+                    child.Clicked += (object sender, ClickedEventArgs ee) => { NewNavMenuItem_Clicked(sender, ee, nmi); };
+                }
+
+                nmi.DropdownItems.CollectionChanged += (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs ee) => { DropdownItems_CollectionChanged(sender, ee, nmi); };
+                UpdateMinCorrectWidth(d);
+            }
+        }
+        private static void DropdownItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e, NewNavMenuItem source)
+        {
+            if (sender is ObservableCollection<NavMenuItemData> collection && collection == source.ItemData.DropdownItems)
+            {
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                {
+                    foreach (var el in e.NewItems)
+                    {
+                        if (el is NavMenuItemData data)
+                        {
+                            ContentPresenter presenter = source.dropdownMenu.ItemContainerGenerator.ContainerFromItem(data) as ContentPresenter;
+
+                            RoutedEventHandler addClickedHandler = (object s, RoutedEventArgs ee) =>
+                            {
+                                NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
+                                child.Clicked += (object sss, ClickedEventArgs eee) => { NewNavMenuItem_Clicked(sss, eee, source); };
+                                UpdateMinCorrectWidth(source);
+                            };
+
+                            if (presenter.IsLoaded)
+                            {
+                                addClickedHandler.Invoke(null, null);
+                            }
+                            else
+                            {
+                                presenter.Loaded += addClickedHandler;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        private static void NewNavMenuItem_Clicked(object sender, ClickedEventArgs e, NewNavMenuItem source)
+        {
+            if (sender is NavMenuItemData data)
+            {
+                if (source.ItemData.DropdownItems?.FirstOrDefault(x => x == data) == null)
+                    return;
+
+                source.RaiseClickedEvent(data);
+            }
+        }
+        public static void OnItemDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NewNavMenuItem nmi)
+            {
+                nmi.ItemData.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs ee) => { ItemData_PropertyChanged(sender, ee, nmi); };
+                ItemData_PropertyChanged(nmi.ItemData, new System.ComponentModel.PropertyChangedEventArgs(""), nmi);
+            }
+        }
+        private static void ItemData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e, NewNavMenuItem source)
+        {
+            if (sender is NavMenuItemData data)
+            {
+                if (source.ItemData != data)
+                    return;
+
+                if (e.PropertyName == "ImageSource" || e.PropertyName == "")
+                    try { source.IconSource = new BitmapImage(source.ItemData.ImageSource); } catch { }
+
+                if (e.PropertyName == "Text" || e.PropertyName == "")
+                {
+                    source.Text = source.ItemData.Text;
+                    UpdateMinCorrectWidth(source);
+                }
+
+
+                if (e.PropertyName == "DropdownItems" || e.PropertyName == "")
+                {
+                    source.DropdownItems = source.ItemData.DropdownItems;
+                    UpdateMinCorrectWidth(source);
+                }
+
+
+                if (e.PropertyName == "IsDropdownItem" || e.PropertyName == "")
+                {
+                    source.IsDropdownable = source.ItemData.IsDropdownItem;
+                    UpdateMinCorrectWidth(source);
+                }
+
+
+                if (e.PropertyName == "IsSelected" || e.PropertyName == "")
+                    source.IsSelected = source.ItemData.IsSelected;
+
+
+            }
+        }
         public static void OnIsDropdownedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is NewNavMenuItem nmi)
-            {   
+            {
                 if (nmi.IsDropdowned)
                 {
                     double dropdownMenuHeight = 0;
@@ -601,6 +762,7 @@ namespace HamburgerMenu
                      (nmi.ItemHeight - nmi.DropdownIconSize) / 2,
                      (nmi.ItemHeight - nmi.DropdownIconSize) / 2,
                      (nmi.ItemHeight - nmi.DropdownIconSize) / 2);
+                UpdateMinCorrectWidth(d);
             }
         }
         public static void OnTextBrushesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -631,6 +793,7 @@ namespace HamburgerMenu
             if (d is NewNavMenuItem nmi)
             {
                 nmi.IconMargin = new Thickness((nmi.IconSectionWidth - nmi.IconSize) / 2 + nmi.Offset, (nmi.ItemHeight - nmi.IconSize) / 2, (nmi.IconSectionWidth - nmi.IconSize) / 2, (nmi.ItemHeight - nmi.IconSize) / 2);
+                UpdateMinCorrectWidth(d);
             }
         }
         public static void OnTextPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -638,6 +801,7 @@ namespace HamburgerMenu
             if (d is NewNavMenuItem nmi)
             {
                 nmi.TextMargin = new Thickness(0, 0, (nmi.ItemHeight - nmi.TextFontSize) / 2, 0);
+                UpdateMinCorrectWidth(d);
             }
         }
         public static void OnItemHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
