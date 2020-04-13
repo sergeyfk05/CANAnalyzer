@@ -18,6 +18,7 @@ using System.Windows.Controls;
 using CANAnalyzer.Pages;
 using CANAnalyzer.Models.ViewData;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace CANAnalyzer.VM
 {
@@ -25,7 +26,7 @@ namespace CANAnalyzer.VM
     {
         public MainWindowVM()
         {
-            ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+            ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
                 "appSettingsMenu",
                 "AppSettingsPageIcon",
                 PageKind.Settings,
@@ -39,9 +40,11 @@ namespace CANAnalyzer.VM
             Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
 
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += OnThemeCultureChanged;
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
         }
 
-        private void OnThemeCultureChanged(object sender, EventArgs e)
+        private void ThemeManager_CultureChanged(object sender, EventArgs e)
         {
             RaisePropertyChanged("NavMenuDropdownIconSource");
         }
@@ -160,11 +163,11 @@ namespace CANAnalyzer.VM
                 el.NavData.ResetIsSelectedFlag();
         }
 
-        public List<NavMenuItemData> TopItemSource
+        public ObservableCollection<NavMenuItemData> TopItemSource
         {
             get
             {
-                return _topItemSource ?? (_topItemSource = new List<NavMenuItemData>());
+                return _topItemSource ?? (_topItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -175,14 +178,14 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private List<NavMenuItemData> _topItemSource;
+        private ObservableCollection<NavMenuItemData> _topItemSource;
 
 
-        public List<NavMenuItemData> BottomItemSource
+        public ObservableCollection<NavMenuItemData> BottomItemSource
         {
             get
             {
-                return _bottomItemSource ?? (_bottomItemSource = new List<NavMenuItemData>());
+                return _bottomItemSource ?? (_bottomItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -193,7 +196,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private List<NavMenuItemData> _bottomItemSource;
+        private ObservableCollection<NavMenuItemData> _bottomItemSource;
 
 
         public Uri NavMenuDropdownIconSource => new Uri(
@@ -235,7 +238,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_navMenuClicked == null)
-                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
+                    _navMenuClicked = new RelayCommandWithParameter<NavMenuItemData>(this.NavMenuClicked_Execute);
 
                 return _navMenuClicked;
             }
@@ -246,6 +249,7 @@ namespace CANAnalyzer.VM
             if ((pageData == null) || (pageData.Page == null))
                 return;
 
+            TopItemSource.Add(arg);
             pageData.ClickAction(pageData);
         }
 

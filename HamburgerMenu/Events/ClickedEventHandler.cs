@@ -10,5 +10,6 @@ using System.Threading.Tasks;
 
 namespace HamburgerMenu.Events
 {
-    public delegate void ClickedEventHandler(object sender, ClickedEventArgs e);
+    public delegate void ClickedEventHandler(object sender, ClickedEventArgs e); 
+    public delegate void HamburgerMenuClickedEventHandler(object sender, HamburgerMenuClickedEventArgs e);
 }

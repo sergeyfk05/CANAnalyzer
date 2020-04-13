@@ -21,4 +21,26 @@ namespace HamburgerMenu.Events
 
         public NavMenuItemData ClickedItem { get; private set; }
     }
+
+    public enum ClickedType
+    {
+        Item,
+        Data
+    }
+
+    public class HamburgerMenuClickedEventArgs : RoutedEventArgs
+    {
+        public HamburgerMenuClickedEventArgs(RoutedEvent routedEvent, ClickedType type, NewNavMenuItem item, NavMenuItemData data)
+            : base(routedEvent)
+        {
+            ClickedItem = item;
+            ClickedData = data;
+            Type = type;
+        }
+        
+        public ClickedType Type { get; private set; }
+        
+        public NewNavMenuItem ClickedItem { get; private set; }
+        public NavMenuItemData ClickedData { get; private set; }
+    }
 }

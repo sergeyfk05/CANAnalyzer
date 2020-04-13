@@ -48,12 +48,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrushAnimation.cs" />
     <Compile Include="Calcs\NavMenuItemCalcs.cs" />
     <Compile Include="Events\ClickedEventArgs.cs" />
     <Compile Include="Events\ClickedEventHandler.cs" />
     <Compile Include="HamburgerMenu.xaml.cs">
       <DependentUpon>HamburgerMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="MouseClickManager.cs" />
     <Compile Include="NavMenu.xaml.cs">
       <DependentUpon>NavMenu.xaml</DependentUpon>
@@ -61,6 +63,12 @@
     <Compile Include="NavMenuItemData.cs" />
     <Compile Include="NavMenuToggleButton.xaml.cs">
       <DependentUpon>NavMenuToggleButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewNavMenu.xaml.cs">
+      <DependentUpon>NewNavMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewNavMenuItem.xaml.cs">
+      <DependentUpon>NewNavMenuItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -94,6 +102,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NavMenuToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewNavMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewNavMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
