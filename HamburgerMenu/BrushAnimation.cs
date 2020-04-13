@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,9 +44,9 @@ namespace HamburgerMenu
             defaultOriginValue = this.From ?? defaultOriginValue;
             defaultDestinationValue = this.To ?? defaultDestinationValue;
 
-            if (animationClock.CurrentProgress.Value == 0)
+            if (Math.Abs(animationClock.CurrentProgress.Value) < 0.01)
                 return defaultOriginValue;
-            if (animationClock.CurrentProgress.Value == 1)
+            if (Math.Abs(animationClock.CurrentProgress.Value - 1) < 0.01)
                 return defaultDestinationValue;
 
             return new VisualBrush(new Border()

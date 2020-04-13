@@ -1,4 +1,8 @@
-﻿using HamburgerMenu.Events;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using HamburgerMenu.Events;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -619,7 +623,9 @@ namespace HamburgerMenu
                 {
                     ContentPresenter presenter = nmi.dropdownMenu.ItemContainerGenerator.ContainerFromIndex(i) as ContentPresenter;
                     NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
-                    child.Clicked += (object sender, ClickedEventArgs ee) => { NewNavMenuItem_Clicked(sender, ee, nmi); };
+
+                    if (child != null)
+                        child.Clicked += (object sender, ClickedEventArgs ee) => { NewNavMenuItem_Clicked(sender, ee, nmi); };
                 }
 
                 nmi.DropdownItems.CollectionChanged += (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs ee) => { DropdownItems_CollectionChanged(sender, ee, nmi); };
@@ -630,7 +636,7 @@ namespace HamburgerMenu
         {
             if (sender is ObservableCollection<NavMenuItemData> collection && collection == source.ItemData.DropdownItems)
             {
-                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add || e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                if ((e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add) || (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace))
                 {
                     foreach (var el in e.NewItems)
                     {
@@ -641,7 +647,9 @@ namespace HamburgerMenu
                             RoutedEventHandler addClickedHandler = (object s, RoutedEventArgs ee) =>
                             {
                                 NewNavMenuItem child = VisualTreeHelper.GetChild(presenter, 0) as NewNavMenuItem;
-                                child.Clicked += (object sss, ClickedEventArgs eee) => { NewNavMenuItem_Clicked(sss, eee, source); };
+
+                                if (child != null)
+                                    child.Clicked += (object sss, ClickedEventArgs eee) => { NewNavMenuItem_Clicked(sss, eee, source); };
                                 UpdateMinCorrectWidth(source);
                             };
 
