@@ -138,7 +138,7 @@ namespace CANAnalyzer.Models.ViewData
             }
         }
 
-        public string Name => (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(this.ToString() + "NavMenu");
+        public string Name => (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource($"#{this.ToString()}NavMenu");
 
 
         public override string ToString()

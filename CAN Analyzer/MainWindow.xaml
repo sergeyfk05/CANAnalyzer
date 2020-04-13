@@ -21,6 +21,7 @@
             <ColumnDefinition Width="{Binding ElementName=menu, Path=CollapsedWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
         <menu:HamburgerMenu x:Name="menu"
                             BottomNavMenuItemSource="{Binding BottomItemSource}" 
                             IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" 
@@ -31,9 +32,6 @@
                             Panel.ZIndex="500" 
                             HorizontalAlignment="Left" 
                             Grid.ColumnSpan="2">
-            <menu:HamburgerMenu.NavMenuDropdownIconSource>
-                <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
-            </menu:HamburgerMenu.NavMenuDropdownIconSource>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Clicked">
                     <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>
@@ -41,22 +39,13 @@
             </i:Interaction.Triggers>
         </menu:HamburgerMenu>
 
-
-        <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <menu:NewNavMenu IconSectionWidth="45" Items="{Binding Source}" ItemBackground="Aqua">
-                <menu:NewNavMenu.DropdownIconSource>
-                    <BitmapImage UriSource="D:\Projects\CANAnalyzer\CAN Analyzer\bin\Debug\Resources\Icons\1.png"/>
-                </menu:NewNavMenu.DropdownIconSource>
-            </menu:NewNavMenu>
-        </StackPanel>
-
-        <!--<ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
+        <ContentControl Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding MainContent}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
                     <i:InvokeCommandAction Command="{Binding ClickContent}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </ContentControl>-->
+        </ContentControl>
     </Grid>  
 
 </Window>

@@ -6,174 +6,174 @@
   </Cultures>
 
   <Recordings>
-    <Record name="ru">
+    <Record name="#ru">
       <ru>Русский</ru>
       <en>Русский</en>
     </Record>
-    <Record name="en">
+    <Record name="#en">
       <ru>English</ru>
       <en>English</en>
     </Record>
 
 
 
-    <Record name="dark">
+    <Record name="#dark">
       <ru>Тёмная</ru>
       <en>Dark</en>
     </Record>
-    <Record name="white">
+    <Record name="#white">
       <ru>Светлая</ru>
       <en>Bright</en>
     </Record>
 
     <!--NavMenu-->
-    <Record name="appSettingsMenu">
+    <Record name="#appSettingsMenu">
       <ru>Настройки</ru>
       <en>Settings</en>
     </Record>
-    <Record name="NavMenuRecieveChannelPage">
+    <Record name="#NavMenuRecieveChannelPage">
       <en>Tracer</en>
     </Record>
-    <Record name="NavMenuMonitorChannelPage">
+    <Record name="#NavMenuMonitorChannelPage">
       <en>Monitor</en>
     </Record>
 
 
     <!--TransmitPage-->
-    <Record name="TransmitPageOpenButtonToolTip">
+    <Record name="#TransmitPageOpenButtonToolTip">
       <ru>Открыть файл</ru>
       <en>Open file</en>
     </Record>
-    <Record name="TransmitPageSaveButtonToolTip">
+    <Record name="#TransmitPageSaveButtonToolTip">
       <ru>Сохранить в файл</ru>
       <en>Save in file</en>
     </Record>
-    <Record name="TransmitPageSaveAsButtonToolTip">
+    <Record name="#TransmitPageSaveAsButtonToolTip">
       <ru>Сохранить как</ru>
       <en>Save as</en>
     </Record>
-    <Record name="TransmitPageClearButtonToolTip">
+    <Record name="#TransmitPageClearButtonToolTip">
       <ru>Очистить всё</ru>
       <en>Clear all</en>
     </Record>
-    <Record name="TransmitPageStartButtonToolTip">
+    <Record name="#TransmitPageStartButtonToolTip">
       <ru>Очистить всё</ru>
       <en>Start trasmit</en>
     </Record>
-    <Record name="TransmitPagePauseButtonToolTip">
+    <Record name="#TransmitPagePauseButtonToolTip">
       <ru>Очистить всё</ru>
       <en>Stop transmit</en>
     </Record>
-    <Record name="TransmitPageStopButtonToolTip">
+    <Record name="#TransmitPageStopButtonToolTip">
       <ru>Очистить всё</ru>
       <en>Pause transmit</en>
     </Record>
-    <Record name="TraceFilterById">
+    <Record name="#TraceFilterById">
       <en>Filter by CAN id:</en>
     </Record>
 
     <!--TransmitTo Control-->
-    <Record name="TransmitToControlPreviewText">
+    <Record name="#TransmitToControlPreviewText">
       <ru>Транслировать в:</ru>
       <en>Transmit to:</en>
     </Record>
     
     
     <!--Trace DataGrid-->
-    <Record name="TraceDataTimeColumnName">
+    <Record name="#TraceDataTimeColumnName">
       <en>Time</en>
     </Record>
-    <Record name="TraceDataCanIdColumnName">
+    <Record name="#TraceDataCanIdColumnName">
       <en>ID</en>
     </Record>
-    <Record name="TraceDataExtIdColumnName">
+    <Record name="#TraceDataExtIdColumnName">
       <en>External ID</en>
     </Record>
-    <Record name="TraceDataDLCColumnName">
+    <Record name="#TraceDataDLCColumnName">
       <en>DLC</en>
     </Record>
-    <Record name="TraceDataPayloadColumnName">
+    <Record name="#TraceDataPayloadColumnName">
       <en>Payload</en>
     </Record>
-    <Record name="TraceDataCommentColumnName">
+    <Record name="#TraceDataCommentColumnName">
       <en>CAN header comment</en>
     </Record>
     
     
     
     <!--DataTypeProviders-->
-    <Record name="CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
+    <Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
       <en>SQLite3 database</en>
     </Record>
-    <Record name="AllFiles_FileGroup">
+    <Record name="#AllFiles_FileGroup">
       <en>All files</en>
     </Record>
     
     <!--ProxyDataTypes-->
-    <Record name="Proxy_FileGroup">
+    <Record name="#Proxy_FileGroup">
       <en>Execute file</en>
     </Record>
 
     <!--AppSettingPage-->
-    <Record name="AppSettingsPageTitle">
+    <Record name="#AppSettingsPageTitle">
       <en>Application settings</en>
     </Record>
-    <Record name="AppSettingPageSelectLanguage">
+    <Record name="#AppSettingPageSelectLanguage">
       <en>Select language:</en>
     </Record>
-    <Record name="AppSettingPageSelectTheme">
+    <Record name="#AppSettingPageSelectTheme">
       <en>Select theme:</en>
     </Record>
-    <Record name="AppSettingPageSelectDevice">
+    <Record name="#AppSettingPageSelectDevice">
       <en>Select device:</en>
     </Record>
-    <Record name="AppSettingPageConnectDevice">
+    <Record name="#AppSettingPageConnectDevice">
       <en>Connect</en>
     </Record>
-    <Record name="AppSettingPageDisconnectDevice">
+    <Record name="#AppSettingPageDisconnectDevice">
       <en>Disconnect</en>
     </Record>
-    <Record name="AppSettingsPageSelectBitrateLabel">
+    <Record name="#AppSettingsPageSelectBitrateLabel">
       <en>Bitrate:</en>
     </Record>
-    <Record name="AppSettingsPageBitrateUnitsOfMeasure">
+    <Record name="#AppSettingsPageBitrateUnitsOfMeasure">
       <en>kbps</en>
     </Record>
-    <Record name="AppSettingsPageListenOnlyLabel">
+    <Record name="#AppSettingsPageListenOnlyLabel">
       <en>Listen only</en>
     </Record>
-    <Record name="AppSettingsPageOpenChannel">
+    <Record name="#AppSettingsPageOpenChannel">
       <en>Open channel</en>
     </Record>
-    <Record name="AppSettingsPageCloseChannel">
+    <Record name="#AppSettingsPageCloseChannel">
       <en>Close channel</en>
     </Record>
-    <Record name="AppSettingsPageDeleteProxyChannel">
+    <Record name="#AppSettingsPageDeleteProxyChannel">
       <en>Delete proxy</en>
     </Record>
-    <Record name="AppSettingsPageAddProxyChannel">
+    <Record name="#AppSettingsPageAddProxyChannel">
       <en>Add proxy</en>
+    </Record>
+    <Record name="#AppSettingsPageProxyFilePathLabel">
+      <en>Path:</en>
     </Record>
     
     
     
     <!--CanHacker Device-->
-    <Record name="CanHackerChannelNavMenu">
+    <Record name="#CanHackerChannelNavMenu">
       <en>CanHacker Channel1234</en>
       <ru>Канал CanHacker'а</ru>
     </Record>
-    <Record name="AppSettingsPageAddProxyChannel">
-      <en>Add proxy</en>
-    </Record>
-    <Record name="AppSettingsPageAddProxyChannel">
+    <Record name="#AppSettingsPageAddProxyChannel">
       <en>Add proxy</en>
     </Record>
     
 
-    <Record name="ErrorMsgBoxTitle">
+    <Record name="#ErrorMsgBoxTitle">
       <en>Error</en>
     </Record>
-    <Record name="FileError">
+    <Record name="#FileError">
       <en>File in use by another program or inaccessible.</en>
     </Record>
   </Recordings>

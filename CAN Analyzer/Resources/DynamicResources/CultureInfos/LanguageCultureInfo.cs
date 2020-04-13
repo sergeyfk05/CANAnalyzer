@@ -18,7 +18,7 @@ namespace CANAnalyzer.Resources.DynamicResources
 
         public override string ToString()
         {
-            return (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(Name);
+            return (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource($"#{Name}");
         }
     }
 }

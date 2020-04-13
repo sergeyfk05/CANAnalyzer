@@ -19,6 +19,9 @@ using CANAnalyzer.Pages;
 using CANAnalyzer.Models.ViewData;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
+using CANAnalyzer.Models.Extensions;
+using System.Threading;
 
 namespace CANAnalyzer.VM
 {
@@ -26,7 +29,7 @@ namespace CANAnalyzer.VM
     {
         public MainWindowVM()
         {
-            ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
+            ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "appSettingsMenu",
                 "AppSettingsPageIcon",
                 PageKind.Settings,
@@ -39,14 +42,14 @@ namespace CANAnalyzer.VM
             Settings.Instance.Proxies.CollectionChanged += OnProxiesCollectionChanged;
             Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
 
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += OnThemeCultureChanged;
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += LanguageManager_CultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += ThemeManager_CultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
         }
 
-        private void ThemeManager_CultureChanged(object sender, EventArgs e)
+        private SynchronizationContext _context = SynchronizationContext.Current;
+
+        private void Theme_CultureChanged(object sender, EventArgs e)
         {
-            RaisePropertyChanged("NavMenuDropdownIconSource");
+            RaisePropertyChanged("NavMenuDropdownIcon");
         }
 
         private void OnDevicePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -57,13 +60,13 @@ namespace CANAnalyzer.VM
 
 
             ClearChannelsAndProxies();
-            
+
 
             if (Settings.Instance.Device == null)
                 return;
 
 
-            Settings.Instance.Device.IsConnectedChanged += (object s, EventArgs args) => 
+            Settings.Instance.Device.IsConnectedChanged += (object s, EventArgs args) =>
             {
                 if (s == Settings.Instance.Device)
                     if (Settings.Instance.Device.IsConnected)
@@ -78,7 +81,7 @@ namespace CANAnalyzer.VM
 
             List<NavMenuItemData> channels = new List<NavMenuItemData>();
 
-            foreach(var el in Settings.Instance.Device.Channels)
+            foreach (var el in Settings.Instance.Device.Channels.Reverse())
             {
                 //recievePage
                 var recievePage = new RecieveChannelPage();
@@ -114,11 +117,16 @@ namespace CANAnalyzer.VM
                 channelViewData.NavData.AddDropdownItem(monitorPageData.NavData);
 
                 PagesData.Add(channelViewData);
-                channels.Add(channelViewData.NavData);
+
+                _context.Post((s) =>
+                {
+                    TopItemSource.Add(channelViewData.NavData);
+                }, null);
+                //channels.Add(channelViewData.NavData);
 
             }
 
-            TopItemSource = new List<NavMenuItemData>(TopItemSource.Concat(channels));
+            
 
 
 
@@ -134,14 +142,12 @@ namespace CANAnalyzer.VM
         private void ClearChannelsAndProxies()
         {
             //clear channels and proxies
-            foreach (var el in PagesData)
+            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy).Select(x=> x.NavData);
+            _context.Send((s) => 
             {
-                if (el.Kind == PageKind.Channel || el.Kind == PageKind.Proxy)
-                {
-                    TopItemSource.Remove(el.NavData);
-                }
-            }
-            RaisePropertyChanged("TopItemSource");
+                TopItemSource.RemoveAll(x => deleteObjects.Contains(x));
+            }, null);   
+
             PagesData.RemoveAll(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy);
         }
 
@@ -199,9 +205,23 @@ namespace CANAnalyzer.VM
         private ObservableCollection<NavMenuItemData> _bottomItemSource;
 
 
-        public Uri NavMenuDropdownIconSource => new Uri(
-            new Uri(Assembly.GetExecutingAssembly().Location), 
-            (string) Manager<ThemeCultureInfo>.StaticInstance.GetResource("NavMenuDropdownIcon"));
+        public ImageSource NavMenuDropdownIconSource
+        {
+            get
+            {
+                try
+                {
+                    return new BitmapImage(new Uri(
+                                        new Uri(Assembly.GetExecutingAssembly().Location),
+                                        (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource("NavMenuDropdownIcon")));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
 
         public bool MenuIsCollapsed
         {
@@ -238,7 +258,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_navMenuClicked == null)
-                    _navMenuClicked = new RelayCommandWithParameter<NavMenuItemData>(this.NavMenuClicked_Execute);
+                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
 
                 return _navMenuClicked;
             }
@@ -249,8 +269,10 @@ namespace CANAnalyzer.VM
             if ((pageData == null) || (pageData.Page == null))
                 return;
 
-            TopItemSource.Add(arg);
-            pageData.ClickAction(pageData);
+            _context.Post((s) =>
+            {
+                pageData.ClickAction(pageData);
+            }, null);
         }
 
 

@@ -56,17 +56,12 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
                 if (!CheckConnection())
                     throw new ArgumentException("Invalide file\r\n");
-
-                index = count++;
             }
             catch (Exception e)
             {
                 throw new ArgumentException("Invalide file\r\n" + e.ToString());
             }
         }
-
-        private int index;
-        private static int count = 1;
 
         private void OnRealChannel_ReceivedData(object sender, ChannelDataReceivedEventArgs e)
         {
@@ -256,7 +251,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         public override string ToString()
         {
-            return $"Console Proxy{index}";
+            return $"Console Proxy";
         }
     }
 }

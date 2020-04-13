@@ -62,7 +62,7 @@
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageOpenButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -74,7 +74,7 @@
                        Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageSaveButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -86,7 +86,7 @@
                                    Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageSaveAsButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -100,7 +100,7 @@
                        Source="{resources:Theme TransmitPageStartButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageStartButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -111,7 +111,7 @@
                        Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPagePauseButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -122,7 +122,7 @@
                        Source="{resources:Theme TransmitPageStopButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language TransmitPageStopButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -165,17 +165,17 @@
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" AutoGenerateColumns="False" CanUserResizeRows="False" LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{resources:Language TraceDataTimeColumnName}" IsReadOnly="True"
+                    <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
-                    <DataGridTextColumn Header="{resources:Language TraceDataCanIdColumnName}" IsReadOnly="True"
+                    <DataGridTextColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.CanId, StringFormat='X3'}"/>
-                    <DataGridCheckBoxColumn Header="{resources:Language TraceDataExtIdColumnName}" IsReadOnly="True"
+                    <DataGridCheckBoxColumn Header="{resources:Language #TraceDataExtIdColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.IsExtId}"/>
-                    <DataGridTextColumn Header="{resources:Language TraceDataDLCColumnName}" IsReadOnly="True"
+                    <DataGridTextColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="True"
                              Binding="{Binding CanHeader.DLC}"/>
-                    <DataGridTextColumn Header="{resources:Language TraceDataPayloadColumnName}" IsReadOnly="True"
+                    <DataGridTextColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="True"
                              Binding="{Binding Path=Payload, Converter={StaticResource BiteArrayToHexStringConverter}}"/>
-                    <DataGridTextColumn Header="{resources:Language TraceDataCommentColumnName}" IsReadOnly="False"
+                    <DataGridTextColumn Header="{resources:Language #TraceDataCommentColumnName}" IsReadOnly="False"
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
@@ -188,7 +188,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{resources:Language TraceFilterById}" Grid.Row="0"/>
+                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0"/>
                 <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">
