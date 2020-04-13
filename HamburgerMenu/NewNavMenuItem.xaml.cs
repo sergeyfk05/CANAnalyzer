@@ -183,9 +183,30 @@ namespace HamburgerMenu
 
         public void ResetColors()
         {
-            //don't work
-            ShowedItemBackground = IsSelected ? SelectedItemBackground : ItemBackground;
-            ShowedTextBrush = IsSelected ? SelectedTextBrush : TextBrush;
+            //используются анимации, тк свойства не работают после использованной анимации
+
+            if(dockPanel!=null)
+            {
+                BrushAnimation backgroundAnimation = new BrushAnimation
+                {
+                    From = IsSelected ? SelectedItemBackground : ItemBackground,
+                    To = IsSelected ? SelectedItemBackground : ItemBackground,
+                    Duration = new Duration(TimeSpan.FromMilliseconds(0))
+                };
+                dockPanel.BeginAnimation(DockPanel.BackgroundProperty, backgroundAnimation);
+            }
+
+
+            if(textBlock != null)
+            {
+                BrushAnimation textAnimation = new BrushAnimation
+                {
+                    From = IsSelected ? SelectedTextBrush : TextBrush,
+                    To = IsSelected ? SelectedTextBrush : TextBrush,
+                    Duration = new Duration(TimeSpan.FromMilliseconds(0))
+                };
+                textBlock.BeginAnimation(TextBlock.ForegroundProperty, textAnimation);
+            }
         }
 
 
