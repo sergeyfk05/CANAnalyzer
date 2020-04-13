@@ -55,6 +55,7 @@
     <Compile Include="HamburgerMenu.xaml.cs">
       <DependentUpon>HamburgerMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="MouseClickManager.cs" />
     <Compile Include="NavMenu.xaml.cs">
       <DependentUpon>NavMenu.xaml</DependentUpon>

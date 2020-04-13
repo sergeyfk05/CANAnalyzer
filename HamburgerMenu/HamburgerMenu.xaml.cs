@@ -422,7 +422,7 @@ namespace HamburgerMenu
         public NavMenuItemData LastClickedItem
         {
             get { return (NavMenuItemData)GetValue(LastClickedItemProperty); }
-            set { SetValue(LastClickedItemProperty, value); }
+            private set { SetValue(LastClickedItemProperty, value); }
         }
         public static readonly DependencyProperty LastClickedItemProperty =
             DependencyProperty.Register("LastClickedItem", typeof(NavMenuItemData), typeof(HamburgerMenu), new PropertyMetadata(null));

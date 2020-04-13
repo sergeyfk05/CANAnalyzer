@@ -191,7 +191,7 @@ ChangePage);
             get
             {
                 if (_navMenuClicked == null)
-                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
+                    _navMenuClicked = new RelayCommandWithParameter<NavMenuItemData>(this.NavMenuClicked_Execute);
 
                 return _navMenuClicked;
             }
@@ -202,6 +202,7 @@ ChangePage);
             if ((pageData == null) || (pageData.Page == null))
                 return;
 
+            TopItemSource.Add(arg);
             pageData.ClickAction(pageData);
         }
 

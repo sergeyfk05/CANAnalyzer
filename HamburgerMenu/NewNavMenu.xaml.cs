@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerMenu.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -272,5 +273,30 @@ namespace HamburgerMenu
         public static readonly DependencyProperty DropdownAnimationFunctionProperty =
             DependencyProperty.Register("DropdownAnimationFunction", typeof(IEasingFunction), typeof(NewNavMenu), new PropertyMetadata(new CircleEase()));
 
+
+        public bool CanUserDropdowning
+        {
+            get { return (bool)GetValue(CanUserDropdowningProperty); }
+            set { SetValue(CanUserDropdowningProperty, value); }
+        }
+        public static readonly DependencyProperty CanUserDropdowningProperty =
+            DependencyProperty.Register("CanUserDropdowning", typeof(bool), typeof(NewNavMenu), new PropertyMetadata(false));
+
+
+        public static readonly RoutedEvent ClickedEvent = EventManager.RegisterRoutedEvent("Clicked", RoutingStrategy.Bubble, typeof(ClickedEventHandler), typeof(NewNavMenu));
+        public event ClickedEventHandler Clicked
+        {
+            add { AddHandler(ClickedEvent, value); }
+            remove { RemoveHandler(ClickedEvent, value); }
+        }
+        private void RaiseClickedEvent(NavMenuItemData item)
+        {
+            RaiseEvent(new ClickedEventArgs(ClickedEvent, item));
+        }
+
+        private void NewNavMenuItem_Clicked(object sender, ClickedEventArgs e)
+        {
+            RaiseClickedEvent(e.ClickedItem);
+        }
     }
 }

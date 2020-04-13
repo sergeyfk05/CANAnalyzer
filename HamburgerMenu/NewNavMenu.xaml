@@ -30,8 +30,10 @@
                                                   ItemBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=ItemBackground}"
                                                   ItemMouseEnterBackground="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=ItemMouseEnterBackground}"
                                                   ItemData="{Binding}"
+                                                  CanUserDropdowning="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=CanUserDropdowning}"
                                                   DropdownAnimationDuration="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationDuration}"
-                                                  DropdownAnimationFunction="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationFunction}">
+                                                  DropdownAnimationFunction="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationFunction}"
+                                                  Clicked="NewNavMenuItem_Clicked">
                         </local:NewNavMenuItem>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

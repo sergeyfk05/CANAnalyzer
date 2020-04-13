@@ -23,7 +23,7 @@
         <menu:HamburgerMenu x:Name="menu"
                             BottomNavMenuItemSource="{Binding BottomItemSource}" 
                             IsCollapsed="{Binding MenuIsCollapsed, Mode=TwoWay}" 
-                            TopNavMenuItemSource="{Binding Source}" 
+                            TopNavMenuItemSource="{Binding TopItemSource}" 
                             CollapsedWidth="45" 
                             Background="Aqua"
                             Panel.ZIndex="500" 

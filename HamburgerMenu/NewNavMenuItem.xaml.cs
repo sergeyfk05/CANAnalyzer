@@ -25,7 +25,8 @@ namespace HamburgerMenu
 
         private void Manager_Click(object sender, MouseButtonEventArgs e)
         {
-            IsDropdowned = !IsDropdowned;
+            if(IsDropdownable && CanUserDropdowning)
+                IsDropdowned = !IsDropdowned;
         }
 
         private void NewNavMenuItem_Loaded(object sender, RoutedEventArgs e)
@@ -535,6 +536,17 @@ namespace HamburgerMenu
 
 
 
+        public bool CanUserDropdowning
+        {
+            get { return (bool)GetValue(CanUserDropdowningProperty); }
+            set { SetValue(CanUserDropdowningProperty, value); }
+        }
+        public static readonly DependencyProperty CanUserDropdowningProperty =
+            DependencyProperty.Register("CanUserDropdowning", typeof(bool), typeof(NewNavMenuItem), new UIPropertyMetadata(false, OnCanUserDropdowningChanged));
+
+
+
+
         public static readonly RoutedEvent ClickedEvent = EventManager.RegisterRoutedEvent("Clicked", RoutingStrategy.Bubble, typeof(ClickedEventHandler), typeof(NewNavMenuItem));
         public event ClickedEventHandler Clicked
         {
@@ -548,6 +560,13 @@ namespace HamburgerMenu
 
 
 
+        public static void OnCanUserDropdowningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is NewNavMenuItem nmi) && (nmi.IsDropdownable))
+            {
+                nmi.IsDropdowned = false;
+            }
+        }
         public static void UpdateMinCorrectWidth(DependencyObject d)
         {
             if (d is NewNavMenuItem nmi)
