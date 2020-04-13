@@ -200,7 +200,10 @@
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <Expander Header="{Binding}">
+                                    <Expander>
+                                        <Expander.Header>
+                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="22"/>
+                                        </Expander.Header>
                                         <Grid Margin="25 0 0 0">
 
                                             <Grid.ColumnDefinitions>

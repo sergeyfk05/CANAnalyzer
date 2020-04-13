@@ -22,6 +22,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 using CANAnalyzer.Models.Extensions;
 using System.Threading;
+using CANAnalyzer.Models.ChannelsProxy;
+using System.Collections;
 
 namespace CANAnalyzer.VM
 {
@@ -79,8 +81,7 @@ namespace CANAnalyzer.VM
                 return;
 
 
-            List<NavMenuItemData> channels = new List<NavMenuItemData>();
-
+            //create views
             foreach (var el in Settings.Instance.Device.Channels.Reverse())
             {
                 //recievePage
@@ -122,34 +123,132 @@ namespace CANAnalyzer.VM
                 {
                     TopItemSource.Add(channelViewData.NavData);
                 }, null);
-                //channels.Add(channelViewData.NavData);
-
             }
-
-            
-
-
-
-            //create views
         }
 
         private void OnProxiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                foreach(var el in e.NewItems)
+                {
+                    if(el is IChannelProxy proxy)
+                    {
+                        //recievePage
+                        RecieveChannelPage recievePage = null;
+                        _context.Send((s) =>
+                        {
+                            recievePage = new RecieveChannelPage();
+                            recievePage.DataContext = new RecieveChannelPageVM();
+                        }, null);                        
+
+                        ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                            "NavMenuRecieveProxyPage",
+                            "RecievedProxyPageIcon",
+                            PageKind.Proxy,
+                            recievePage,
+                            ChangePage);
+                        PagesData.Add(recievePageData);
+
+
+                        //monitorPage
+                        MonitorChannelPage monitorPage = null;
+                        _context.Send((s) =>
+                        {
+                            monitorPage = new MonitorChannelPage();
+                            monitorPage.DataContext = new MonitorChannelPageVM();
+                        }, null);
+
+                        ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                            "NavMenuMonitorProxyPage",
+                            "MonitorProxyPageIcon",
+                            PageKind.Proxy,
+                            monitorPage,
+                            ChangePage);
+                        PagesData.Add(monitorPageData);
+
+
+                        ContentPageDataForProxy channelViewData = new ContentPageDataForProxy(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
+                            proxy.ToString() + "Icon",
+                            proxy,
+                            PageKind.Proxy);
+                        channelViewData.NavData.AddDropdownItem(recievePageData.NavData);
+                        channelViewData.NavData.AddDropdownItem(monitorPageData.NavData);
+
+                        PagesData.Add(channelViewData);
+
+                        _context.Post((s) =>
+                        {
+                            TopItemSource.Add(channelViewData.NavData);
+                        }, null);
+                    }
+                }
+
+            }
+
+
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+            {
+                ClearProxies();
+            }
+
+
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                var objectsToRemove = PagesData.Where(x => IsContentPageDataContainsProxies(x, e.OldItems)).Select(x => x.NavData);
+
+                _context.Send((s) =>
+                {
+                    TopItemSource.RemoveAll(x => objectsToRemove.Contains(x));
+                }, null);
+            }
+        }
+
+        /// <summary>
+        /// Метода, который нужен для удаления прокси из меню
+        /// </summary>
+        /// <param name="data">ContentPageData который мы проверим на то отвечает ли он за прокси и содержится ли прокси в листе</param>
+        /// <param name="proxies">Лист по которому мы будет смотреть содержаться ли прокси</param>
+        /// <returns></returns>
+        private bool IsContentPageDataContainsProxies(ContentPageData data, IList proxies)
+        {
+            if(data is ContentPageDataForProxy proxyData)
+            {
+                return proxies.Contains(proxyData.Proxy);
+            }
+            return false;
         }
 
 
         private void ClearChannelsAndProxies()
         {
             //clear channels and proxies
-            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy).Select(x=> x.NavData);
-            _context.Send((s) => 
+            ClearChannels();
+            ClearProxies();
+        }
+        private void ClearChannels()
+        {
+            //clear channels
+            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Channel).Select(x => x.NavData);
+            _context.Send((s) =>
             {
                 TopItemSource.RemoveAll(x => deleteObjects.Contains(x));
-            }, null);   
+            }, null);
 
-            PagesData.RemoveAll(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy);
+            PagesData.RemoveAll(x => x.Kind == PageKind.Channel);
         }
+        private void ClearProxies()
+        {
+            //clear proxies
+            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Proxy).Select(x => x.NavData);
+            _context.Send((s) =>
+            {
+                TopItemSource.RemoveAll(x => deleteObjects.Contains(x));
+            }, null);
+
+            PagesData.RemoveAll(x => x.Kind == PageKind.Proxy);
+        }
+
 
         private void ChangePage(ContentPageData data)
         {
@@ -282,7 +381,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_clickContent == null)
-                    _clickContent = new RelayCommand(this.ClickContent_Execute, () => !MenuIsCollapsed);
+                    _clickContent = new RelayCommand(this.ClickContent_Execute);
 
                 return _clickContent;
             }

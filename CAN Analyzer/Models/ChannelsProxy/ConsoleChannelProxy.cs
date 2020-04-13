@@ -23,6 +23,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         public ConsoleChannelProxy(string path)
         {
             Path = path;
+            Name = this.ToString();
 
             if (!File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
@@ -244,6 +245,26 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
         private bool isDisposed = false;
 
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (value == _name)
+                    return;
+
+                _name = value;
+                RaiseNameChangedEvent();
+            }
+        }
+        private string _name = "";
+
+        public event EventHandler NameChanged;
+        private void RaiseNameChangedEvent()
+        {
+            NameChanged?.Invoke(this, new EventArgs());
+        }
+
         ~ConsoleChannelProxy()
         {
             this.Dispose();
@@ -251,7 +272,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         public override string ToString()
         {
-            return $"Console Proxy";
+            return $"ConsoleProxy";
         }
     }
 }

@@ -16,6 +16,9 @@ namespace CANAnalyzer.Models.ChannelsProxy
         string Path { get; }
         IChannel Channel { get; }
 
+        string Name { get; set; }
+        event EventHandler NameChanged;
+
         void SetChannel(IChannel newCH);
     }
 }

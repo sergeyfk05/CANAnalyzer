@@ -62,8 +62,33 @@ namespace CANAnalyzer.Models.ViewData
 
         public PageKind Kind { get; private set; }
 
-        public string LocalizedKey { get; private set; }
-        public string ImageKey { get; private set; }
+        public string LocalizedKey
+        {
+            get { return _localizedKey; }
+            protected set
+            {
+                if (value == _localizedKey)
+                    return;
+
+                _localizedKey = value;
+                this.UpdateLocalization();
+            }
+        }
+        private string _localizedKey = "";
+
+        public string ImageKey
+        {
+            get { return _imageKey; }
+            protected set
+            {
+                if (value == _imageKey)
+                    return;
+
+                _imageKey = value;
+                this.UpdateTheme();
+            }
+        }
+        private string _imageKey = "";
 
         public UserControl Page { get; private set; }
 
@@ -74,12 +99,14 @@ namespace CANAnalyzer.Models.ViewData
     {
         public static void UpdateLocalization(this ContentPageData data)
         {
-            data.NavData.Text = (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(data.LocalizedKey);
+            if (data.NavData != null)
+                data.NavData.Text = (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(data.LocalizedKey);
         }
         public static void UpdateTheme(this ContentPageData data)
         {
-            data.NavData.ImageSource = new Uri(
-                new Uri(Assembly.GetExecutingAssembly().Location), 
+            if (data.NavData != null)
+                data.NavData.ImageSource = new Uri(
+                new Uri(Assembly.GetExecutingAssembly().Location),
                 (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource(data.ImageKey));
         }
     }

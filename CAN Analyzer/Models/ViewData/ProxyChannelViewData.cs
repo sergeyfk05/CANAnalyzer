@@ -24,7 +24,24 @@ namespace CANAnalyzer.Models.ViewData
             IsOpen = false;
             ChannelProxy = chProxy ?? throw new ArgumentNullException("chProxy must be not null.");
             Path = ChannelProxy.Path;
+            Name = this.ToString();
+            PropertyChanged += ProxyChannelViewData_PropertyChanged;
+            chProxy.NameChanged += ChProxy_NameChanged;
         }
+
+        private void ChProxy_NameChanged(object sender, EventArgs e)
+        {
+            Name = ChannelProxy.Name;
+        }
+
+        private void ProxyChannelViewData_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "Name")
+            {
+                ChannelProxy.Name = Name;
+            }
+        }
+
         public IChannelProxy ChannelProxy { get; private set; }
 
 
@@ -44,6 +61,20 @@ namespace CANAnalyzer.Models.ViewData
         private bool _isOpen;
 
         public string Path { get; private set; }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (_name == value)
+                    return;
+
+                _name = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _name;
 
         public IEnumerable<IChannel> channels => Settings.Instance.Device.Channels;
 

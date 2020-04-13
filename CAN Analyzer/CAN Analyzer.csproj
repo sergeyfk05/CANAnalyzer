@@ -127,6 +127,7 @@
     <Compile Include="Models\DataTypesProviders\Builders\TraceDataTypeProvidersListBuilder.cs" />
     <Compile Include="Models\DataTypesProviders\ITraceDataTypeProvider.cs" />
     <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
+    <Compile Include="Models\ViewData\ContentPageDataForProxy.cs" />
     <Compile Include="Models\ViewData\DeviceChannelViewData.cs" />
     <Compile Include="Models\FileState.cs" />
     <Compile Include="Models\RelayCommands\BaseCommand.cs" />
