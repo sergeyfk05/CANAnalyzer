@@ -118,7 +118,7 @@ namespace CANAnalyzer.Models.TraceFilters
 
         public override string ToString()
         {
-            return CanId.ToString("X3");
+            return IsExtId ? CanId.ToString("X8") : CanId.ToString("X3");
         }
 
 

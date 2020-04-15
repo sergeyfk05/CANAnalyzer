@@ -23,184 +23,210 @@
     </i:Interaction.Triggers>
 
 
-    <StackPanel Margin="10">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Grid Height="30">
+        <Grid Height="30" Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Grid.Row="0" Text="{resources:Language #AppSettingsPageTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
         </Grid>
 
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <GroupBox Header="{resources:Language #AppSettingPageSelectLanguage}" Padding="5">
-                <ComboBox
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectLanguage}" Padding="5">
+                    <ComboBox
                   VerticalAlignment="Center"
-                  Width="150" 
+                  HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Languages}"
                   SelectedItem="{Binding CurrentLanguage}"/>
-            </GroupBox>
+                </GroupBox>
 
-            <GroupBox Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5" Margin="15 0 0 0">
-                <ComboBox
+                <GroupBox Grid.Column="2" Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5">
+                    <ComboBox
                   VerticalAlignment="Center"
-                  Width="150" 
+                  HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Themes}"
                   SelectedItem="{Binding CurrentTheme}"/>
-            </GroupBox>
-        </StackPanel>
+                </GroupBox>
+            </Grid>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <GroupBox Header="{resources:Language #AppSettingPageSelectDevice}" Padding="5">
-                <DockPanel>
-                    <ComboBox VerticalAlignment="Center"
-                              Width="150" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectDevice}" Padding="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0" VerticalAlignment="Center"
+                              HorizontalAlignment="Stretch"
                               DockPanel.Dock="Left"
                               ItemsSource="{Binding Devices}"
                               SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
 
-                        <ComboBox.Style>
-                            <Style>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                        <Setter Property="Control.IsEnabled" Value="False"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ComboBox.Style>
+                            <ComboBox.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                            <Setter Property="Control.IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
 
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseEnter">
-                                <i:InvokeCommandAction Command="{Binding UpdateDevicesInfoCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:InvokeCommandAction Command="{Binding UpdateDevicesInfoCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
 
-                    <Button Margin="10 0 0 0" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsConnected}" Value="False">
-                                        <Setter Property="Content" Value="{resources:Language #AppSettingPageConnectDevice}"/>
-                                    </DataTrigger>
+                        <Button Grid.Column="2" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsConnected}" Value="False">
+                                            <Setter Property="Content" Value="{resources:Language #AppSettingPageConnectDevice}"/>
+                                        </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                        <Setter Property="Content" Value="{resources:Language #AppSettingPageDisconnectDevice}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </DockPanel>
-            </GroupBox>
+                                        <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                            <Setter Property="Content" Value="{resources:Language #AppSettingPageDisconnectDevice}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        
+                    </Grid>
+                </GroupBox>
 
-            <Button VerticalAlignment="Center" Height="22" Padding="5 0 5 0" Margin="10 10.5 0 0" 
+
+                <Button Grid.Column="2" VerticalAlignment="Center" Height="22" Padding="5 0 5 0" Margin="0 10.5 0 0" 
                     Content="{resources:Language #AppSettingsPageAddProxyChannel}" Command="{Binding AddProxyCommand}">
-                <Button.Style>
-                    <Style>
-                        <Setter Property="Control.Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                <Setter Property="Control.Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="Control.Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                    <Setter Property="Control.Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
         </StackPanel>
 
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <ItemsControl ItemsSource="{Binding ChannelsData}" Grid.Column="0" Grid.Row="2" Margin="0 10 0 0">
+            <ItemsControl.Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Expander Header="{Binding Name}">
+                                    <Grid Margin="25 0 0 0" HorizontalAlignment="Stretch">
 
-            <ItemsControl ItemsSource="{Binding ChannelsData}" Grid.Column="0" Margin="0 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{resources:Language #AppSettingsPageSelectBitrateLabel}"/>
+                                            <Grid Height="22" HorizontalAlignment="Stretch">
+                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding BitrateText}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="PreviewTextInput" >
+                                                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
+                                                <TextBlock Margin="0 0 5 0" Text="{resources:Language #AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
+
+                                            <StackPanel.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                                            <Setter Property="Control.IsEnabled" Value="False"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+                                        </StackPanel>
+
+                                        <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="10 0 0 3">
+                                            <CheckBox.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                                            <Setter Property="Control.IsEnabled" Value="False"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+                                        </CheckBox>
+
+                                        <Button Grid.Column="2" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ChannelConnectCommand}">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Content" Value="{resources:Language #AppSettingsPageOpenChannel}"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                                            <Setter Property="Content" Value="{resources:Language #AppSettingsPageCloseChannel}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
+                                </Expander>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Style>
+        </ItemsControl>
+
+        <ScrollViewer Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0 0 5 0">
+            <ItemsControl ItemsSource="{Binding ProxiesData}" Margin="0 10 0 0">
                 <ItemsControl.Style>
                     <Style TargetType="ItemsControl">
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <Expander Header="{Binding Name}">
-                                        <Grid Margin="25 0 0 0" HorizontalAlignment="Stretch">
-
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch">
-                                                <TextBlock Text="{resources:Language #AppSettingsPageSelectBitrateLabel}"/>
-                                                <Grid Height="22" HorizontalAlignment="Stretch">
-                                                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding BitrateText}">
-                                                        <i:Interaction.Triggers>
-                                                            <i:EventTrigger EventName="PreviewTextInput" >
-                                                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
-                                                            </i:EventTrigger>
-                                                        </i:Interaction.Triggers>
-                                                    </TextBox>
-                                                    <TextBlock Margin="0 0 5 0" Text="{resources:Language #AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                                </Grid>
-
-                                                <StackPanel.Style>
-                                                    <Style>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsOpen}" Value="True">
-                                                                <Setter Property="Control.IsEnabled" Value="False"/>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </StackPanel.Style>
-                                            </StackPanel>
-
-                                            <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="10 0 0 3">
-                                                <CheckBox.Style>
-                                                    <Style>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsOpen}" Value="True">
-                                                                <Setter Property="Control.IsEnabled" Value="False"/>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </CheckBox.Style>
-                                            </CheckBox>
-
-                                            <Button Grid.Column="2" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ChannelConnectCommand}">
-                                                <Button.Style>
-                                                    <Style TargetType="Button">
-                                                        <Setter Property="Content" Value="{resources:Language #AppSettingsPageOpenChannel}"/>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsOpen}" Value="True">
-                                                                <Setter Property="Content" Value="{resources:Language #AppSettingsPageCloseChannel}"/>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Button.Style>
-                                            </Button>
-                                        </Grid>
-                                    </Expander>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsConnected}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ItemsControl.Style>
-            </ItemsControl>
-
-            <ItemsControl ItemsSource="{Binding ProxiesData}" Grid.Column="2" Margin="0 10 0 0">
-                <ItemsControl.Style>
-                    <Style TargetType="ItemsControl">
-                        <Setter Property="ItemTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <Expander>
+                                    <Expander Margin="0 0 0 10">
                                         <Expander.Header>
                                             <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="22"/>
                                         </Expander.Header>
@@ -224,7 +250,7 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <ComboBox Grid.Row="2" Grid.Column="0" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ItemsSource="{Binding channels}" SelectedItem="{Binding OwnerChannel}">
+                                            <ComboBox Grid.Row="2" Grid.Column="0" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChannelsData}" SelectedItem="{Binding OwnerChannel}" DisplayMemberPath="Name">
 
                                                 <ComboBox.Style>
                                                     <Style>
@@ -267,11 +293,8 @@
                     </Style>
                 </ItemsControl.Style>
             </ItemsControl>
-        </Grid>
+        </ScrollViewer>
 
-        
-
-
-
-    </StackPanel>
+    </Grid>
+    
 </UserControl>

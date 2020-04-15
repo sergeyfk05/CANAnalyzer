@@ -35,6 +35,9 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
 
         private void OnPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            if (!IsOpen)
+                return;
+
             if (sender is SerialPort port)
             {
                 ReceivedData data;

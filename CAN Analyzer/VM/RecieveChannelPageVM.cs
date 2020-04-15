@@ -99,9 +99,6 @@ namespace CANAnalyzer.VM
 
         private void Channel_ReceivedData(object sender, CANAnalyzerDevices.Devices.DeviceChannels.Events.ChannelDataReceivedEventArgs e)
         {
-            if (!Channel.IsOpen)
-                return;
-
             if (sender != Channel || currentTraceProvider == null)
                 return;
 
@@ -112,12 +109,14 @@ namespace CANAnalyzer.VM
             };
 
 
+            //проверка на существование такого же CanHeader'a
             List<CanHeaderModel> canHeaders;
             lock (currentTraceProvider)
             {
                 canHeaders = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId)).Take(1).ToList();
             }
 
+            //если такого CanHeader'a нет, то создаем, добавляем в БД и добавляем фильтр для него
             if (canHeaders.Count == 0)
             {
                 canHeaders.Add(new CanHeaderModel()
@@ -153,7 +152,7 @@ namespace CANAnalyzer.VM
 
         }
 
-        private async void FilterIsActive_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void FilterIsActive_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var data = currentTraceProvider.Traces;
             foreach (var el in Filters)
@@ -183,9 +182,9 @@ namespace CANAnalyzer.VM
         private ITraceDataTypeProvider currentTraceProvider;
 
 
-        public BindingList<CanIdTraceFilter> Filters
+        public BindingList<ITraceFilter> Filters
         {
-            get { return _filters ?? (_filters = new BindingList<CanIdTraceFilter>()); }
+            get { return _filters ?? (_filters = new BindingList<ITraceFilter>()); }
             set
             {
                 if (value == _filters)
@@ -195,7 +194,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private BindingList<CanIdTraceFilter> _filters;
+        private BindingList<ITraceFilter> _filters;
 
         public FileState Status
         {

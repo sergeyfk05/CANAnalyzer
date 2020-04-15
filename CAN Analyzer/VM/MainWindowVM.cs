@@ -32,7 +32,7 @@ namespace CANAnalyzer.VM
         public MainWindowVM()
         {
             ContentPageData buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-                "appSettingsMenu",
+                "#appSettingsMenu",
                 "AppSettingsPageIcon",
                 PageKind.Settings,
                 new AppSettingsPage(),
@@ -89,7 +89,7 @@ namespace CANAnalyzer.VM
                 recievePage.DataContext = new RecieveChannelPageVM(el);
 
                 ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-                    "NavMenuRecieveChannelPage",
+                    "#NavMenuRecieveChannelPage",
                     "RecievedChannelPageIcon",
                     PageKind.Channel,
                     recievePage,
@@ -102,7 +102,7 @@ namespace CANAnalyzer.VM
                 monitorPage.DataContext = new MonitorChannelPageVM();
 
                 ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-                    "NavMenuMonitorChannelPage",
+                    "#NavMenuMonitorChannelPage",
                     "MonitorChannelPageIcon",
                     PageKind.Channel,
                     monitorPage,
@@ -111,7 +111,7 @@ namespace CANAnalyzer.VM
 
 
                 ContentPageData channelViewData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
-                    el.ToString() + "NavMenu",
+                    "#" + el.ToString() + "NavMenu",
                     el.ToString() + "Icon",
                     PageKind.Channel);
                 channelViewData.NavData.AddDropdownItem(recievePageData.NavData);
@@ -143,7 +143,7 @@ namespace CANAnalyzer.VM
                         }, null);                        
 
                         ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-                            "NavMenuRecieveProxyPage",
+                            "#NavMenuRecieveProxyPage",
                             "RecievedProxyPageIcon",
                             PageKind.Proxy,
                             recievePage,
@@ -160,7 +160,7 @@ namespace CANAnalyzer.VM
                         }, null);
 
                         ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
-                            "NavMenuMonitorProxyPage",
+                            "#NavMenuMonitorProxyPage",
                             "MonitorProxyPageIcon",
                             PageKind.Proxy,
                             monitorPage,

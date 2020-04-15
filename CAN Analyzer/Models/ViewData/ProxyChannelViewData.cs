@@ -76,9 +76,7 @@ namespace CANAnalyzer.Models.ViewData
         }
         private string _name;
 
-        public IEnumerable<IChannel> channels => Settings.Instance.Device.Channels;
-
-        public IChannel OwnerChannel
+        public DeviceChannelViewData OwnerChannel
         {
             get { return _ownerChannel; }
             set
@@ -90,7 +88,7 @@ namespace CANAnalyzer.Models.ViewData
                 RaisePropertyChanged();
             }
         }
-        private IChannel _ownerChannel;
+        private DeviceChannelViewData _ownerChannel;
 
 
         private RelayCommandAsync _proxyOpenCommand;
@@ -119,7 +117,7 @@ namespace CANAnalyzer.Models.ViewData
                     return;
                 }
 
-                ChannelProxy.SetChannel(OwnerChannel);
+                ChannelProxy.SetChannel(OwnerChannel.Channel);
                 ChannelProxy.Open();
                 IsOpen = true;
             }
