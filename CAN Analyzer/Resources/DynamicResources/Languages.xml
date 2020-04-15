@@ -98,6 +98,12 @@
     <Record name="#TraceDataCommentColumnName">
       <en>CAN header comment</en>
     </Record>
+    <Record name="#TraceDataGridDeleteContextMenuCommand">
+      <en>Delete</en>
+    </Record>
+    <Record name="#TraceDataGridCopyContextMenuCommand">
+      <en>Copy</en>
+    </Record>
     
     
     

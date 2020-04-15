@@ -14,6 +14,7 @@ namespace CANAnalyzer.Models
     {
         Closed,
         Opened,
-        Opening
+        Opening,
+        Temporary
     }
 }

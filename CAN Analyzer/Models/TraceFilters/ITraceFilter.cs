@@ -19,5 +19,12 @@ namespace CANAnalyzer.Models.TraceFilters
         string DisplayName { get; }
 
         IQueryable<TraceModel> Filter(IQueryable<TraceModel> source);
+
+        /// <summary>
+        /// Filter one object
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns>true = blocked;</returns>
+        bool FilterOne(TraceModel source);
     }
 }

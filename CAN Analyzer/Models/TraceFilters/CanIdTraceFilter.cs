@@ -108,6 +108,14 @@ namespace CANAnalyzer.Models.TraceFilters
             return source.Where(x => !(x.CanHeader.CanId == CanId && x.CanHeader.IsExtId == IsExtId));
         }
 
+        public bool FilterOne(TraceModel source)
+        {
+            if (!IsActive)
+                return false;
+
+            return (source.CanHeader.CanId == CanId && source.CanHeader.IsExtId == IsExtId);
+        }
+
         public override string ToString()
         {
             return CanId.ToString("X3");
@@ -119,5 +127,7 @@ namespace CANAnalyzer.Models.TraceFilters
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
+
     }
 }

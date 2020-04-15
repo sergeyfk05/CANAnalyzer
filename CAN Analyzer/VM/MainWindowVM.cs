@@ -86,7 +86,7 @@ namespace CANAnalyzer.VM
             {
                 //recievePage
                 var recievePage = new RecieveChannelPage();
-                recievePage.DataContext = new RecieveChannelPageVM();
+                recievePage.DataContext = new RecieveChannelPageVM(el);
 
                 ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                     "NavMenuRecieveChannelPage",
@@ -139,7 +139,7 @@ namespace CANAnalyzer.VM
                         _context.Send((s) =>
                         {
                             recievePage = new RecieveChannelPage();
-                            recievePage.DataContext = new RecieveChannelPageVM();
+                            recievePage.DataContext = new RecieveChannelPageVM(proxy);
                         }, null);                        
 
                         ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },

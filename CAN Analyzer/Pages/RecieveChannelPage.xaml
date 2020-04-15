@@ -4,9 +4,257 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
+             xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
+    </UserControl.Resources>
+
+
     <Grid>
-            
+
+
+        <Grid Margin="10"
+              IsEnabled="{Binding IsEnabled}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+
+
+            <DockPanel Grid.Row="0" 
+                   Grid.ColumnSpan="2"  
+                   Height="36"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Stretch">
+
+
+                <Border Background="Aqua"
+                    DockPanel.Dock="Left"
+                    Height="36"
+                    CornerRadius="4"
+                    BorderThickness="0">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                    </Border.Effect>
+
+                    <DockPanel DockPanel.Dock="Left"
+                           Height="30"
+                           VerticalAlignment="Center">
+
+                        <Button x:Name="openButton"
+                                Margin="2 0 0 0"
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding OpenFileCommand}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="saveButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveFileCommand}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="saveAsButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveAsFileCommand}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                                   Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+
+                        <Button x:Name="startButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                IsEnabled="{Binding FileIsOpened}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStartButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="pauseButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="stopButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStopButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </DockPanel>
+
+                </Border>
+
+
+
+                <ComboBox x:Name="TransmiToComboBox" 
+                      DockPanel.Dock="Right"
+                      Height="30" 
+                      VerticalAlignment="Center"
+                      Width="150" 
+                      ItemsSource="{Binding TransmitToItems}"
+                      ItemTemplate="{StaticResource TransmitToComboBoxItemTemplate}"
+                      ItemContainerStyle="{StaticResource TransmitToComboBoxItemStyle}">
+
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
+                                               CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
+                                               CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+
+                <!--This TextBlock need for fix ComboBox dockpanel's position-->
+                <TextBlock Width="0" DockPanel.Dock="Right"/>
+
+            </DockPanel>
+            <DataGrid 
+                Grid.Column="0"
+                Grid.Row="1"
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
+                             Binding="{Binding Time, StringFormat='0.000'}"/>
+                    <DataGridTextColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.CanId, StringFormat='X3'}"/>
+                    <DataGridCheckBoxColumn Header="{resources:Language #TraceDataExtIdColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.IsExtId}"/>
+                    <DataGridTextColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="True"
+                             Binding="{Binding CanHeader.DLC}"/>
+                    <DataGridTextColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="True"
+                             Binding="{Binding Path=Payload, Converter={StaticResource BiteArrayToHexStringConverter}}"/>
+                    <DataGridTextColumn Header="{resources:Language #TraceDataCommentColumnName}" IsReadOnly="False"
+                             Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
+                </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
+                        <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
+
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="20 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0"/>
+                <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">
+                            <GridView.Columns>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsActive, Mode=TwoWay}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding DisplayName}" Header="adsf"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <Trigger Property="Control.IsEnabled" Value="False">
+                            <Setter Property="Control.Effect">
+                                <Setter.Value>
+                                    <BlurEffect Radius="5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+
+
+
+        <Grid Grid.ColumnSpan="2"
+              Grid.RowSpan="2"
+              Panel.ZIndex="450">
+
+            <fa:ImageAwesome Icon="Cog" 
+                             Spin="True" 
+                             SpinDuration="2" 
+                             Foreground="Red" 
+                             Height="48" 
+                             Width="48" 
+                             VerticalAlignment="Center" 
+                             HorizontalAlignment="Center"
+                             IsEnabled="{Binding IsEnabled}">
+                <fa:ImageAwesome.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Control.IsEnabled" Value="False">
+                                <Setter Property="Control.Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="Control.IsEnabled" Value="True">
+                                <Setter Property="Control.Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </fa:ImageAwesome.Style>
+            </fa:ImageAwesome>
+
+        </Grid>
+
     </Grid>
+
 </UserControl>

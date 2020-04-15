@@ -13,7 +13,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
 {
     public interface ITraceDataTypeProvider
     {
-
+        void GenerateFile(string file);
         void CloseConnection();
 
         string TargetFile { get; set; }
@@ -57,5 +57,12 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         void AddRange(IEnumerable<TraceModel> entities);
         void AddRange(IEnumerable<CanHeaderModel> entities);
+
+        void Remove(TraceModel entity);
+        void Remove(CanHeaderModel entity);
+
+
+        void RemoveRange(IEnumerable<TraceModel> entities);
+        void RemoveRange(IEnumerable<CanHeaderModel> entities);
     }
 }

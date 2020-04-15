@@ -125,5 +125,15 @@ namespace CANAnalyzer.Models.Databases
                 OnPropertyChanged();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is CanHeaderModel model)
+            {
+                return (model.IsExtId == IsExtId) && (model.CanId == CanId) && (model.DLC == DLC);
+            }
+
+            return false;
+        }
     }
 }
