@@ -16,7 +16,6 @@
 
     <Grid>
 
-
         <Grid Margin="10"
               IsEnabled="{Binding IsEnabled}">
             <Grid.RowDefinitions>
@@ -154,11 +153,12 @@
                 <TextBlock Width="0" DockPanel.Dock="Right"/>
 
             </DockPanel>
+            
             <DataGrid 
                 Grid.Column="0"
                 Grid.Row="1"
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="True">
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" AddingNewItem="DataGrid_AddingNewItem" ScrollViewer.ScrollChanged="DataGrid_ScrollChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
@@ -181,7 +181,6 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-
 
             <Grid Grid.Column="1"
                   Grid.Row="1"

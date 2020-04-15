@@ -111,12 +111,14 @@ namespace CANAnalyzer.VM
 
             //проверка на существование такого же CanHeader'a
             List<CanHeaderModel> canHeaders;
+            int filtersCount;
             lock (currentTraceProvider)
             {
-                canHeaders = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId)).Take(1).ToList();
+                canHeaders = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId) && (x.DLC == e.Data.DLC)).Take(1).ToList();
+                filtersCount = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId)).Count();
             }
 
-            //если такого CanHeader'a нет, то создаем, добавляем в БД и добавляем фильтр для него
+            //если такого CanHeader'a нет, то создаем, добавляем в БД
             if (canHeaders.Count == 0)
             {
                 canHeaders.Add(new CanHeaderModel()
@@ -126,14 +128,17 @@ namespace CANAnalyzer.VM
                     DLC = e.Data.DLC
                 });
                 currentTraceProvider.Add(canHeaders[0]);
+            }
 
+            //если появился новый CAN ID
+            if(filtersCount == 0)
+            {
                 CanIdTraceFilter filter = new CanIdTraceFilter(e.Data.CanId, e.Data.IsExtId);
                 filter.PropertyChanged += FilterIsActive_PropertyChanged;
                 _context.Post((s) =>
                 {
                     Filters.Add(filter);
                 }, null);
-
             }
 
 
@@ -267,6 +272,7 @@ namespace CANAnalyzer.VM
             }
         }
         private IChannel _channel;
+
 
 
 

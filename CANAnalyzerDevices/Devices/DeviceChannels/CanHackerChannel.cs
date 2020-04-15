@@ -69,7 +69,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             {
                 var match = Regex.Match(data, @"T([0-9a-fA-F]{8})(\d{1})(\w*)\r");
                 if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                    return null;
 
                 int dlc = Convert.ToInt32(match.Groups[2].Value);
                 if (dlc < 0 || dlc > 8)
@@ -77,7 +77,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
 
                 match = Regex.Match(data, @"T([0-9a-fA-F]{8})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+\r");
                 if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                    return null;
 
 
                 result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
@@ -95,7 +95,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             {
                 var match = Regex.Match(data, @"t([0-9a-fA-F]{3})(\d{1})(\w*)\r");
                 if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                    return null;
 
                 int dlc = Convert.ToInt32(match.Groups[2].Value);
                 if (dlc < 0 || dlc > 8)
@@ -103,7 +103,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
 
                 match = Regex.Match(data, @"t([0-9a-fA-F]{3})+(\d{1})+([0-9a-fA-F]{" + (dlc * 2) + "})+([0-9a-fA-F]{4})+\r");
                 if (!match.Success)
-                    throw new ArgumentException("data is invalid");
+                    return null;
 
 
                 result.CanId = Convert.ToInt32(match.Groups[1].Value, 16);
