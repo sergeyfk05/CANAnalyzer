@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,24 @@ namespace CANAnalyzer.Models.ViewData
         }
         private string _descriptionKey;
 
+        public IChannel Channel
+        {
+            get { return _channel; }
+            set
+            {
+                if (value == _channel)
+                    return;
+
+                _channel = value;
+                RaisePropertyChanged();
+            }
+        }
+        private IChannel _channel;
+
+        public void Transmit(TransmitData data)
+        {
+            Channel?.Transmit(data);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged([CallerMemberName]string prop = "")

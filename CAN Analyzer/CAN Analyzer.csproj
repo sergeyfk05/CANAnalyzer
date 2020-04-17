@@ -118,6 +118,7 @@
     <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
     <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
     <Compile Include="Models\Extensions\Extensions.cs" />
+    <Compile Include="Models\RecieveState.cs" />
     <Compile Include="Models\ViewData\ContentPageData.cs" />
     <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
     <Compile Include="Models\Databases\BaseModel.cs" />

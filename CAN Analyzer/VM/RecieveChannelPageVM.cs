@@ -13,6 +13,11 @@ using System.Threading;
 using System.ComponentModel;
 using CANAnalyzer.Models.TraceFilters;
 using System.Data.Entity;
+using Microsoft.Win32;
+using System.Windows;
+using DynamicResource;
+using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
@@ -20,8 +25,26 @@ namespace CANAnalyzer.VM
     {
         public RecieveChannelPageVM(IChannel ch)
         {
-            currentTraceProvider = new SQLiteTraceDataTypeProvider();
+            PropertyChanged += RecieveState_PropertyChanged;
 
+            //create ViewData for  transmitable channels
+            if(Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
+            {
+                foreach (var el in Settings.Instance.Device.Channels)
+                {
+                    //if (el == ch)
+                    //    continue;
+
+                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
+                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
+                    TransmitToItems.Add(viewData);
+                }
+            }
+
+
+
+            //create main trace data type provider
+            currentTraceProvider = new SQLiteTraceDataTypeProvider();
             string tempfile = "";
             while (true)
             {
@@ -31,18 +54,49 @@ namespace CANAnalyzer.VM
                     ).AbsolutePath;
                 if (!File.Exists(tempfile))
                 {
-                    currentTraceProvider.GenerateFile(tempfile);
+                    currentTraceProvider = currentTraceProvider.SaveAs(tempfile, null, null);
                     break;
                 }
 
             }
-            currentTraceProvider.TargetFile = tempfile;
-            Status = FileState.Temporary;
 
 
             PropertyChanged += Channel_PropertyChanged;
 
             Channel = ch;
+        }
+
+        private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
+            {
+                if(viewData.IsTransmit)
+                {
+                    if (TransmitToSelectedChannels == null)
+                        TransmitToSelectedChannels = viewData.Transmit;
+                    else
+                        TransmitToSelectedChannels += viewData.Transmit;
+                }
+                else
+                {
+                    try
+                    {
+                        TransmitToSelectedChannels -= viewData.Transmit;
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        private void RecieveState_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if((sender is RecieveChannelPageVM vm) && (e.PropertyName == "RecieveState"))
+            {
+                vm.SaveAsFileCommand.RaiseCanExecuteChanged();
+                vm.RecieveStartCommand.RaiseCanExecuteChanged();
+                vm.PauseRecievingCommand.RaiseCanExecuteChanged();
+                vm.ClearTraceCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -74,12 +128,23 @@ namespace CANAnalyzer.VM
                             {
                                 ShowedItems.Add(model);
                             }, null);
+
+                        TransmitToSelectedChannels?.Invoke(new TransmitData() { CanId = model.CanHeader.CanId, DLC = model.CanHeader.DLC, IsExtId = model.CanHeader.IsExtId, Payload = model.Payload });
                     }
                 }
             }
 
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
             {
+
+                lock (currentTraceProvider)
+                {
+                    currentTraceProvider.RemoveAll();
+                    currentTraceProvider.SaveChanges();
+                }
+
+
+
                 _context.Post((s) =>
                 {
                     ShowedItems.Clear();
@@ -99,7 +164,7 @@ namespace CANAnalyzer.VM
 
         private void Channel_ReceivedData(object sender, CANAnalyzerDevices.Devices.DeviceChannels.Events.ChannelDataReceivedEventArgs e)
         {
-            if (sender != Channel || currentTraceProvider == null)
+            if (RecieveState != RecieveState.Recieving || sender != Channel || currentTraceProvider == null)
                 return;
 
             TraceModel model = new TraceModel()
@@ -183,9 +248,41 @@ namespace CANAnalyzer.VM
             //}
         }
 
+        private delegate void TransmitToMethod(TransmitData data);
+        private TransmitToMethod TransmitToSelectedChannels;
+
+
+
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;
 
+        public BindingList<TransmitToViewData> TransmitToItems
+        {
+            get { return _transmitToItems ?? (_transmitToItems = new BindingList<TransmitToViewData>()); }
+            set
+            {
+                if (_transmitToItems == value)
+                    return;
+
+                _transmitToItems = value;
+                RaisePropertyChanged();
+            }
+        }
+        private BindingList<TransmitToViewData> _transmitToItems;
+
+        public RecieveState RecieveState
+        {
+            get { return _recieveState; }
+            set
+            {
+                if (value == _recieveState)
+                    return;
+
+                _recieveState = value;
+                RaisePropertyChanged();
+            }
+        }
+        private RecieveState _recieveState = RecieveState.Blocked;
 
         public BindingList<ITraceFilter> Filters
         {
@@ -200,23 +297,6 @@ namespace CANAnalyzer.VM
             }
         }
         private BindingList<ITraceFilter> _filters;
-
-        public FileState Status
-        {
-            get
-            {
-                return _status;
-            }
-            private set
-            {
-                if (_status == value)
-                    return;
-
-                _status = value;
-                RaisePropertyChanged();
-            }
-        }
-        private FileState _status = FileState.Closed;
 
         public ObservableCollection<TraceModel> ShowedItems
         {
@@ -255,10 +335,6 @@ namespace CANAnalyzer.VM
         }
         private ObservableCollection<TraceModel> _items;
 
-
-
-
-
         public IChannel Channel
         {
             get { return _channel; }
@@ -274,8 +350,132 @@ namespace CANAnalyzer.VM
         private IChannel _channel;
 
 
+        private RelayCommandAsync _saveAsFileCommand;
+        public RelayCommandAsync SaveAsFileCommand
+        {
+            get
+            {
+                if (_saveAsFileCommand == null)
+                    _saveAsFileCommand = new RelayCommandAsync(this.SaveAsFileCommand_Execute, () => { return this.RecieveState == RecieveState.Blocked; });
+
+                return _saveAsFileCommand;
+            }
+        }
+        private async void SaveAsFileCommand_Execute()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = GenerateFilterForDialog(traceProviders);
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                        File.Delete(saveFileDialog.FileName);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("FileError"),
+                        (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+
+                bool findedProvider = false;
+                foreach (var el in traceProviders)
+                {
+                    if (el.CanWorkWithIt(saveFileDialog.FileName))
+                    {
+                        findedProvider = true;
+
+                        try
+                        {
+                            await el.SaveAsAsync(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
+                        }
+                        catch (Exception e)
+                        { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+
+                        break;
+                    }
+                }
 
 
+                if (!findedProvider)
+                {
+                    MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+        }
+
+        private RelayCommandAsync _recieveStartCommand;
+        public RelayCommandAsync RecieveStartCommand
+        {
+            get
+            {
+                if (_recieveStartCommand == null)
+                    _recieveStartCommand = new RelayCommandAsync(this.RecieveStartCommand_Execute, () => { return this.RecieveState == RecieveState.Blocked; });
+
+                return _recieveStartCommand;
+            }
+        }
+        private void RecieveStartCommand_Execute()
+        {
+            this.RecieveState = RecieveState.Recieving;
+        }
+
+        private RelayCommandAsync _pauseRecievingCommand;
+        public RelayCommandAsync PauseRecievingCommand
+        {
+            get
+            {
+                if (_pauseRecievingCommand == null)
+                    _pauseRecievingCommand = new RelayCommandAsync(this.PauseRecievingCommand_Execute, () => { return this.RecieveState == RecieveState.Recieving; });
+
+                return _pauseRecievingCommand;
+            }
+        }
+        private void PauseRecievingCommand_Execute()
+        {
+            this.RecieveState = RecieveState.Blocked;
+        }
+
+        private RelayCommand _clearTraceCommand;
+        public RelayCommand ClearTraceCommand
+        {
+            get
+            {
+                if (_clearTraceCommand == null)
+                    _clearTraceCommand = new RelayCommand(this.ClearTraceCommand_Execute, () => { return this.RecieveState == RecieveState.Blocked; });
+
+                return _clearTraceCommand;
+            }
+        }
+        private void ClearTraceCommand_Execute()
+        {
+            Filters.Clear();
+            this.Items.Clear();
+        }
+
+        private string GenerateFilterForDialog(IEnumerable<ITraceDataTypeProvider> source)
+        {
+            string result = "";
+
+            foreach (var el in traceProviders)
+            {
+                if (result == "")
+                    result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+                else
+                    result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+            }
+
+            if (result == "")
+                result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
+            else
+                result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
+
+            return result;
+        }
 
 
         public void Dispose()
@@ -284,7 +484,7 @@ namespace CANAnalyzer.VM
             {
                 currentTraceProvider.CloseConnection();
 
-                if (Status == FileState.Temporary && File.Exists(currentTraceProvider.TargetFile))
+                if (File.Exists(currentTraceProvider.TargetFile))
                     File.Delete(currentTraceProvider.TargetFile);
             }
         }

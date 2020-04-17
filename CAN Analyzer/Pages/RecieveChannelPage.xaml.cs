@@ -25,21 +25,13 @@ namespace CANAnalyzer.Pages
             InitializeComponent();
         }
 
-        private void DataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
-        {
-            if(sender is DataGrid grid)
-            {
-                grid.SelectedIndex = grid.Items.Count - 1;
-                grid.ScrollIntoView(grid.SelectedItem);
-            }
-        }
-
         private void DataGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             if (sender is DataGrid grid)
             {
                 grid.SelectedIndex = grid.Items.Count - 1;
-                grid.ScrollIntoView(grid.SelectedItem);
+                if (grid.SelectedItem != null)
+                    grid.ScrollIntoView(grid.SelectedItem);
             }
         }
     }

@@ -50,35 +50,6 @@ namespace CANAnalyzer.Models.DataTypesProviders
             context = new TraceContext(TargetFile);
         }
 
-        public void GenerateFile(string file)
-        {
-            if (File.Exists(file))
-                throw new ArgumentException("File exist.");
-
-            SQLiteConnection.CreateFile(file);
-
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={file}"))
-            {
-                string sql = "CREATE TABLE \"CanHeaders\"(" +
-                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
-                    "\"CanId\" INTEGER NOT NULL," +
-                    "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
-                    "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
-                    "\"Comment\" TEXT NOT NULL DEFAULT \"\");" +
-                    "CREATE TABLE \"Traces\" (" +
-                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
-                    "\"Time\" REAL NOT NULL," +
-                    "\"Payload\" BLOB NOT NULL," +
-                    "\"CanHeaderId\" INTEGER NOT NULL," +
-                    "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
-
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
-                dbConnection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-
-
         public void CloseConnection()
         {
             context?.Dispose();
@@ -122,18 +93,38 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            GenerateFile(path);
+            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            {
+                dbConnection.Open();
+                string sql = "CREATE TABLE \"CanHeaders\"(" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"CanId\" INTEGER NOT NULL," +
+                    "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
+                    "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
+                    "\"Comment\" TEXT NOT NULL DEFAULT \"\");" +
+                    "CREATE TABLE \"Traces\" (" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    "\"Time\" REAL NOT NULL," +
+                    "\"Payload\" BLOB NOT NULL," +
+                    "\"CanHeaderId\" INTEGER NOT NULL," +
+                    "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
+
+                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                command.ExecuteNonQuery();
+            }
 
             var result = new SQLiteTraceDataTypeProvider();
             result.TargetFile = path;
 
-            result.AddRange(canHeaders);
-            result.AddRange(traces);
+            if(canHeaders != null)
+                result.AddRange(canHeaders);
+
+            if (traces != null)
+                result.AddRange(traces);
             result.SaveChanges();
 
             return result;
         }
-
         public async Task<ITraceDataTypeProvider> SaveAsAsync(string path, IEnumerable<TraceModel> traces, IEnumerable<CanHeaderModel> canHeaders)
         {
             if (File.Exists(path))
@@ -191,6 +182,13 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             context?.Dispose();
         }
+
+        public async void RemoveAll()
+        {
+            await context.Database.ExecuteSqlCommandAsync("DELETE FROM CanHeaders");
+            await context.Database.ExecuteSqlCommandAsync("DELETE FROM Traces");
+        }
+
         ~SQLiteTraceDataTypeProvider()
         {
             this.Dispose();
