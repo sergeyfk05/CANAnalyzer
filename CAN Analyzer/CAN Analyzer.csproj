@@ -115,6 +115,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\ChannelsProxy\ConsoleChannelProxy.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\ChannelProxyCreatorsListBuilder.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\ConsoleChannelProxyCreator.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\IChannelProxyCreator.cs" />
     <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
     <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
     <Compile Include="Models\Extensions\Comparers\CanIdComparer.cs" />

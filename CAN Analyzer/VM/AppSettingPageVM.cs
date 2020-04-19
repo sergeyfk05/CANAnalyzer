@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Threading;
+using CANAnalyzer.Models.ChannelsProxy.Creators;
 
 namespace CANAnalyzer.VM
 {
@@ -440,8 +441,10 @@ namespace CANAnalyzer.VM
         }
         private void AddProxyCommand_Execute()
         {
+            List<IChannelProxyCreator> creators = ChannelProxyCreatorsListBuilder.GenerateTraceDataTypeProviders();
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("Proxy_FileGroup")}(*.exe)|*.exe|{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")}(*.*)|*.*";
+            openFileDialog.Filter = GenerateFilterForDialog(creators);
             openFileDialog.CheckFileExists = true;
             openFileDialog.Multiselect = false;
 
@@ -449,14 +452,44 @@ namespace CANAnalyzer.VM
             {
                 try
                 {
-                    var buf = new ConsoleChannelProxy(openFileDialog.FileName);
-                    Settings.Instance.Proxies.Add(buf);
+                    foreach(var el in creators)
+                    {
+                        if(el.IsCanWorkWith(openFileDialog.FileName))
+                        {
+                            var buf = el.CreateInstanceDefault(openFileDialog.FileName);
+
+                            if (buf == null)
+                                throw new ArgumentException("invalid file");
+
+                            Settings.Instance.Proxies.Add(buf);
+                        }
+                    }
                 }
                 catch(Exception e)
                 {
                     MessageBox.Show("не верный файл", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+        }
+
+        private string GenerateFilterForDialog(IEnumerable<IChannelProxyCreator> source)
+        {
+            string result = "";
+
+            foreach (var el in source)
+            {
+                if (result == "")
+                    result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_ProxyFileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+                else
+                    result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_ProxyFileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";
+            }
+
+            if (result == "")
+                result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
+            else
+                result += $"|{Manager<LanguageCultureInfo>.StaticInstance.GetResource("AllFiles_FileGroup")} (*.*)|*.* ";
+
+            return result;
         }
     }
 }

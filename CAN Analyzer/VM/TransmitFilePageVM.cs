@@ -351,7 +351,7 @@ namespace CANAnalyzer.VM
         {
             string result = "";
 
-            foreach (var el in traceProviders)
+            foreach (var el in source)
             {
                 if (result == "")
                     result += $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource(el.GetType().ToString() + "_FileGroup")}({el.SupportedFiles})|{el.SupportedFiles}";

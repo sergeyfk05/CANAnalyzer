@@ -232,8 +232,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
             {
                 if(!isDisposed)
                 {
-                    _process?.CloseMainWindow();
-                    _process?.Close();
+                    _process?.Kill();
                     _process?.Dispose();
                 }
             }
