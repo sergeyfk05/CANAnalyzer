@@ -117,6 +117,8 @@
     <Compile Include="Models\ChannelsProxy\ConsoleChannelProxy.cs" />
     <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
     <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
+    <Compile Include="Models\Extensions\Comparers\CanIdComparer.cs" />
+    <Compile Include="Models\Extensions\DataGridHelpers.cs" />
     <Compile Include="Models\Extensions\Extensions.cs" />
     <Compile Include="Models\RecieveState.cs" />
     <Compile Include="Models\ViewData\ContentPageData.cs" />
@@ -138,6 +140,8 @@
     <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
     <Compile Include="Models\TraceFilters\CanIdTraceFilter.cs" />
     <Compile Include="Models\TraceFilters\ITraceFilter.cs" />
+    <Compile Include="Models\ViewData\MonitorByteViewData.cs" />
+    <Compile Include="Models\ViewData\MonitorChannelPageData.cs" />
     <Compile Include="Models\ViewData\ProxyChannelViewData.cs" />
     <Compile Include="Models\ViewData\TransmitToViewData.cs" />
     <Compile Include="Pages\AppSettingsPage.xaml.cs">

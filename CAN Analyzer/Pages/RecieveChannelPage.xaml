@@ -135,7 +135,8 @@
                 Grid.Column="0"
                 Grid.Row="1"
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" ScrollViewer.ScrollChanged="DataGrid_ScrollChanged">
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" 
+                CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" ScrollViewer.ScrollChanged="DataGrid_ScrollChanged" LoadingRow="DataGrid_LoadingRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>

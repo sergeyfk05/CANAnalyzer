@@ -30,9 +30,14 @@ namespace CANAnalyzer.Pages
             if (sender is DataGrid grid)
             {
                 grid.SelectedIndex = grid.Items.Count - 1;
-                if (grid.SelectedItem != null)
-                    grid.ScrollIntoView(grid.SelectedItem);
+                //if (grid.SelectedItem != null)
+                //    grid.ScrollIntoView(grid.SelectedItem);
             }
+        }
+
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
         }
     }
 }

@@ -99,7 +99,7 @@ namespace CANAnalyzer.VM
 
                 //monitorPage
                 var monitorPage = new MonitorChannelPage();
-                monitorPage.DataContext = new MonitorChannelPageVM();
+                monitorPage.DataContext = new MonitorChannelPageVM(el);
 
                 ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                     "#NavMenuMonitorChannelPage",
@@ -156,7 +156,7 @@ namespace CANAnalyzer.VM
                         _context.Send((s) =>
                         {
                             monitorPage = new MonitorChannelPage();
-                            monitorPage.DataContext = new MonitorChannelPageVM();
+                            monitorPage.DataContext = new MonitorChannelPageVM(proxy);
                         }, null);
 
                         ContentPageData monitorPageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },

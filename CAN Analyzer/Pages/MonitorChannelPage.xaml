@@ -4,9 +4,113 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
+             xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
+             xmlns:comparers="clr-namespace:CANAnalyzer.Models.Extensions.Comparers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" 
+                    Background="Aqua"
+                    DockPanel.Dock="Left"
+                    Height="36"
+                    CornerRadius="4"
+                    BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+            </Border.Effect>
+
+            <DockPanel DockPanel.Dock="Left"
+                           Height="30"
+                           VerticalAlignment="Center">
+
+                <Button x:Name="saveAsButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveAsFileCommand}">
+                    <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                                   Source="{resources:Theme RecievePageSaveAsButtonIcon}"/>
+
+                    <Button.ToolTip>
+                        <ToolTip Content="{resources:Language #RecievePageSaveAsButtonToolTip}"/>
+                    </Button.ToolTip>
+                </Button>
+
+                <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+
+                <Button x:Name="recieveButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding RecieveStartCommand}">
+                    <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme RecievePageRecieveStartButtonIcon}"/>
+
+                    <Button.ToolTip>
+                        <ToolTip Content="{resources:Language #RecievePageRecieveStartButtonToolTip}"/>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button x:Name="pauseButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding PauseRecievingCommand}">
+                    <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme RecievePagePauseuttonIcon}"/>
+
+                    <Button.ToolTip>
+                        <ToolTip Content="{resources:Language #RecievePagePauseButtonToolTip}"/>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button x:Name="clearButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding ClearTraceCommand}">
+                    <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme RecievePageClearButtonIcon}"/>
+
+                    <Button.ToolTip>
+                        <ToolTip Content="{resources:Language #RecievePageClearButtonToolTip}"/>
+                    </Button.ToolTip>
+                </Button>
+
+            </DockPanel>
+
+        </Border>
+
+        
+        <DataGrid extensions:DataGridHelpers.UseCustomSort="True"
+                Grid.Row="1"
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserSortColumns="True" CanUserResizeRows="False"  CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" LoadingRow="DataGrid_LoadingRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{resources:Language #MonitorDataCanIdColumnName}" IsReadOnly="True" extensions:DataGridHelpers.CustomSorterType="{x:Type comparers:CanIdComparer}"
+                             Binding="{Binding CanId, StringFormat='X3',Mode=OneWay}"/>
+                <DataGridCheckBoxColumn Header="{resources:Language #MonitorDataExtIdColumnName}" IsReadOnly="True"
+                             Binding="{Binding IsExtId ,Mode=OneWay}"/>
+                <DataGridTextColumn Header="{resources:Language #MonitorDataDLCColumnName}" IsReadOnly="True"
+                             Binding="{Binding DLC ,Mode=OneWay}"/>
+                <DataGridTemplateColumn Header="{resources:Language #MonitorDataPeriodColumnName}" IsReadOnly="True" CanUserSort="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Period,Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="{resources:Language #MonitorDataPayloadColumnName}" IsReadOnly="True" CanUserSort="False">
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
