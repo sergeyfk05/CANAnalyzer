@@ -119,6 +119,7 @@
     <Compile Include="Models\ChannelsProxy\Creators\ConsoleChannelProxyCreator.cs" />
     <Compile Include="Models\ChannelsProxy\Creators\IChannelProxyCreator.cs" />
     <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
+    <Compile Include="Models\Converters\MillisecondsToHumanFriendlyStringConverter.cs" />
     <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
     <Compile Include="Models\Extensions\Comparers\CanIdComparer.cs" />
     <Compile Include="Models\Extensions\DataGridHelpers.cs" />

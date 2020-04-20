@@ -5,19 +5,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
-namespace CANAnalyzer.Models.Extensions.Comparers
+namespace CANAnalyzer.Models.Converters
 {
-    public class CanIdComparer : Comparer<int>
+    class MillisecondsToHumanFriendlyStringConverter : IValueConverter
     {
-
-        /// <inheritdoc />
-        public override int Compare(int x, int y)
-        {
-            return x.CompareTo(y);
-        }
     }
 }
