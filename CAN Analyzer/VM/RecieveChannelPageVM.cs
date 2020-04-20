@@ -25,7 +25,7 @@ using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
-    public class RecieveChannelPageVM : BaseVM
+    public class RecieveChannelPageVM : BaseVM, IDisposable
     {
         public RecieveChannelPageVM(IChannel ch)
         {

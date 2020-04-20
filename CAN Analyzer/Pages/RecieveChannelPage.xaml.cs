@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,8 +41,8 @@ namespace CANAnalyzer.Pages
                     var scroll = border.Child as ScrollViewer;
 
                     //if the scroll was bottom
-                    if (scroll.VerticalOffset == scroll.ScrollableHeight - e.ExtentHeightChange)
-                    {  
+                    if (Math.Abs(scroll.VerticalOffset - (scroll.ScrollableHeight - e.ExtentHeightChange)) < 0.1)
+                    {
                         //scroll to bottom
                         scroll.ScrollToVerticalOffset(scroll.ExtentHeight);
                     }
