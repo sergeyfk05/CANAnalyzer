@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CANAnalyzer.Models.ViewData
 {
-    public interface ReadOnlyMonitorByteViewData
+    public interface ReadOnlyMonitorByteViewData: INotifyPropertyChanged
     {
         bool IsChanged { get; }
         byte Data { get; }
@@ -28,6 +28,7 @@ namespace CANAnalyzer.Models.ViewData
                 if (value == IsChanged)
                     return;
 
+                _isChanged = value;
                 RaisePropertyChanged();
             }
         }
@@ -44,12 +45,12 @@ namespace CANAnalyzer.Models.ViewData
                     return;
                 }
 
-
+                _data = value;
                 RaisePropertyChanged();
                 IsChanged = true;
             }
         }
-        private byte _data;
+        private byte _data = 0;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")

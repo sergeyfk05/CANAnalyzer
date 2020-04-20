@@ -27,11 +27,23 @@ namespace CANAnalyzer.Pages
 
         private void DataGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+
             if (sender is DataGrid grid)
             {
-                grid.SelectedIndex = grid.Items.Count - 1;
-                //if (grid.SelectedItem != null)
-                //    grid.ScrollIntoView(grid.SelectedItem);
+                var border = VisualTreeHelper.GetChild(grid, 0) as Decorator;
+                if (border != null)
+                {
+                    //find ScrollViewer UI control
+                    var scroll = border.Child as ScrollViewer;
+
+                    //if the scroll was bottom
+                    if (scroll.VerticalOffset == scroll.ScrollableHeight - e.ExtentHeightChange)
+                    {  
+                        //scroll to bottom
+                        scroll.ScrollToVerticalOffset(scroll.ExtentHeight);
+                    }
+
+                }
             }
         }
 

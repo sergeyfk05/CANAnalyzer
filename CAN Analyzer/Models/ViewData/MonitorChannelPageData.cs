@@ -20,9 +20,9 @@ namespace CANAnalyzer.Models.ViewData
             this.IsExtId = isExtId;
             this.DLC = dlc;
 
-            data = new MonitorByteViewData[dlc];
+            _data = new MonitorByteViewData[dlc];
             for (int i = 0; i < dlc;  i++)
-                data[i] = new MonitorByteViewData();
+                _data[i] = new MonitorByteViewData();
 
             RaisePropertyChanged("Data");
 
@@ -99,9 +99,9 @@ namespace CANAnalyzer.Models.ViewData
 
         public ReadOnlyMonitorByteViewData[] Data
         {
-            get { return data; }
+            get { return _data; }
         }
-        private MonitorByteViewData[] data;
+        private MonitorByteViewData[] _data;
 
 
         public void SetPayload(byte[] payload, double time)
@@ -110,7 +110,7 @@ namespace CANAnalyzer.Models.ViewData
                 throw new ArgumentException("payload.Length should be equals with DLC");
 
             for (int i = 0; i < DLC; i++)
-                data[i].Data = payload[i];
+                _data[i].Data = payload[i];
 
             //convert to ms
             Period = Convert.ToInt32(Math.Abs(time - _lastSet) * 1000);

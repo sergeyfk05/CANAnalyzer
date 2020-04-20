@@ -156,6 +156,14 @@
       <dark>Resources\Icons\1.png</dark>
       <white>Resources\Icons\1.png</white>
     </Record>
+    <Record name="MonitorChannelPagePaylodNotChangedTextForeground">
+      <dark>Black</dark>
+      <white>Black</white>
+    </Record>
+    <Record name="MonitorChannelPagePaylodChangedTextForeground">
+      <dark>Red</dark>
+      <white>Red</white>
+    </Record>
 
     <!--CanHacker Device-->
     <Record name="CanHackerChannelIcon">

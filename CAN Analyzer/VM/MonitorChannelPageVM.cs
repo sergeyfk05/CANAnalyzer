@@ -22,7 +22,14 @@ namespace CANAnalyzer.VM
         {
             Channel = ch;
             Channel.ReceivedData += Channel_ReceivedData;
+            PropertyChanged += MonitorChannelPageVM_PropertyChanged;
+            Status = RecieveState.Blocked;
+        }
 
+        private void MonitorChannelPageVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            MonitorStartCommand.RaiseCanExecuteChanged();
+            PauseRecievingCommand.RaiseCanExecuteChanged();
         }
 
         private void Channel_ReceivedData(object sender, CANAnalyzerDevices.Devices.DeviceChannels.Events.ChannelDataReceivedEventArgs e)
@@ -57,7 +64,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private RecieveState _status = RecieveState.Recieving;
+        private RecieveState _status;
 
         public IChannel Channel
         {
@@ -86,5 +93,54 @@ namespace CANAnalyzer.VM
             }
         }
         private ObservableCollection<MonitorChannelPageData> _items;
+
+
+        private RelayCommand _monitorStartCommand;
+        public RelayCommand MonitorStartCommand
+        {
+            get
+            {
+                if (_monitorStartCommand == null)
+                    _monitorStartCommand = new RelayCommand(this.MonitorStartCommand_Execute, () => { return this.Status == RecieveState.Blocked; });
+
+                return _monitorStartCommand;
+            }
+        }
+        private void MonitorStartCommand_Execute()
+        {
+            Status = RecieveState.Recieving;
+        }
+
+        private RelayCommand _pauseRecievingCommand;
+        public RelayCommand PauseRecievingCommand
+        {
+            get
+            {
+                if (_pauseRecievingCommand == null)
+                    _pauseRecievingCommand = new RelayCommand(this.PauseRecievingCommand_Execute, () => { return this.Status == RecieveState.Recieving; });
+
+                return _pauseRecievingCommand;
+            }
+        }
+        private void PauseRecievingCommand_Execute()
+        {
+            Status = RecieveState.Blocked;
+        }
+
+        private RelayCommand _clearMonitorCommand;
+        public RelayCommand ClearMonitorCommand
+        {
+            get
+            {
+                if (_clearMonitorCommand == null)
+                    _clearMonitorCommand = new RelayCommand(this.ClearMonitorCommand_Execute);
+
+                return _clearMonitorCommand;
+            }
+        }
+        private void ClearMonitorCommand_Execute()
+        {
+            Items.Clear();
+        }
     }
 }

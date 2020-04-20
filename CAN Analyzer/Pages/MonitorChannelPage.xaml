@@ -7,6 +7,7 @@
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
              xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
              xmlns:comparers="clr-namespace:CANAnalyzer.Models.Extensions.Comparers"
+             xmlns:viewdata="clr-namespace:CANAnalyzer.Models.ViewData"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -21,6 +22,7 @@
         </Grid.RowDefinitions>
         
         <Border Grid.Row="0" 
+                HorizontalAlignment="Left"
                     Background="Aqua"
                     DockPanel.Dock="Left"
                     Height="36"
@@ -30,61 +32,44 @@
                 <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
             </Border.Effect>
 
-            <DockPanel DockPanel.Dock="Left"
-                           Height="30"
-                           VerticalAlignment="Center">
-
-                <Button x:Name="saveAsButton" 
-                                DockPanel.Dock="Left" 
-                                Style="{DynamicResource ShortcutButtonStyle}"
-                                Command="{Binding SaveAsFileCommand}">
-                    <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                                   Source="{resources:Theme RecievePageSaveAsButtonIcon}"/>
-
-                    <Button.ToolTip>
-                        <ToolTip Content="{resources:Language #RecievePageSaveAsButtonToolTip}"/>
-                    </Button.ToolTip>
-                </Button>
-
-                <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+            <StackPanel Height="30"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
 
                 <Button x:Name="recieveButton" 
-                                DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
-                                Command="{Binding RecieveStartCommand}">
+                                Command="{Binding MonitorStartCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePageRecieveStartButtonIcon}"/>
+                       Source="{resources:Theme MonitorPageRecieveStartButtonIcon}"/>
 
                     <Button.ToolTip>
-                        <ToolTip Content="{resources:Language #RecievePageRecieveStartButtonToolTip}"/>
+                        <ToolTip Content="{resources:Language #MonitorPageRecieveStartButtonToolTip}"/>
                     </Button.ToolTip>
                 </Button>
 
                 <Button x:Name="pauseButton" 
-                                DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding PauseRecievingCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePagePauseuttonIcon}"/>
+                       Source="{resources:Theme MonitorPagePauseuttonIcon}"/>
 
                     <Button.ToolTip>
-                        <ToolTip Content="{resources:Language #RecievePagePauseButtonToolTip}"/>
+                        <ToolTip Content="{resources:Language #MonitorPagePauseButtonToolTip}"/>
                     </Button.ToolTip>
                 </Button>
 
                 <Button x:Name="clearButton" 
-                                DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
-                                Command="{Binding ClearTraceCommand}">
+                                Command="{Binding ClearMonitorCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePageClearButtonIcon}"/>
+                       Source="{resources:Theme MonitorPageClearButtonIcon}"/>
 
                     <Button.ToolTip>
-                        <ToolTip Content="{resources:Language #RecievePageClearButtonToolTip}"/>
+                        <ToolTip Content="{resources:Language #MonitorPageClearButtonToolTip}"/>
                     </Button.ToolTip>
                 </Button>
 
-            </DockPanel>
+            </StackPanel>
 
         </Border>
 
@@ -100,15 +85,53 @@
                              Binding="{Binding IsExtId ,Mode=OneWay}"/>
                 <DataGridTextColumn Header="{resources:Language #MonitorDataDLCColumnName}" IsReadOnly="True"
                              Binding="{Binding DLC ,Mode=OneWay}"/>
-                <DataGridTemplateColumn Header="{resources:Language #MonitorDataPeriodColumnName}" IsReadOnly="True" CanUserSort="False">
+                <DataGridTextColumn Header="{resources:Language #MonitorDataPeriodColumnName}" IsReadOnly="True" CanUserSort="False"
+                                    Binding="{Binding Path=Period, Converter={StaticResource MillisecondsToHumanFriendlyStringConverter}}"/>
+
+                <DataGridTemplateColumn Header="{resources:Language #MonitorDataPayloadColumnName}" IsReadOnly="True" CanUserSort="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Period,Mode=OneWay}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="0x" Foreground="{resources:Theme MonitorChannelPagePaylodNotChangedTextForeground}"/>
+                                <ItemsControl ItemsSource="{Binding Data}">
+
+                                    <ItemsControl.Style>
+                                        <Style TargetType="ItemsControl">
+                                            <Setter Property="ItemsPanel">
+                                                <Setter.Value>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+
+                                            <Setter Property="ItemTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate DataType="{x:Type viewdata:MonitorByteViewData}">
+                                                        <TextBlock Text="{Binding Data, StringFormat='X2',Mode=OneWay}">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Margin" Value="0 0 5 0"/>
+                                                                    <Setter Property="Foreground" Value="{resources:Theme MonitorChannelPagePaylodNotChangedTextForeground}"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding IsChanged}" Value="True">
+                                                                            <Setter Property="Foreground" Value="{resources:Theme MonitorChannelPagePaylodChangedTextForeground}"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ItemsControl.Style>
+
+                                </ItemsControl>
+                            </StackPanel>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="{resources:Language #MonitorDataPayloadColumnName}" IsReadOnly="True" CanUserSort="False">
-
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
