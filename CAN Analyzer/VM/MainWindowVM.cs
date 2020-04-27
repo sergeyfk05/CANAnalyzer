@@ -40,6 +40,15 @@ namespace CANAnalyzer.VM
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
 
+
+            buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                "#addBomberPageMenu",
+                "AddBomberPageeIcon",
+                PageKind.Settings,
+                (data) => { AddUserPage(new BomberPage(), new BomberPageVM(), "#NavMenuBomberPage", "BomberPageIcon"); });
+            PagesData.Add(buf);
+            BottomItemSource.Insert(0, buf.NavData);
+
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addTransmitPageMenu",
                 "AddTransmitPageeIcon",

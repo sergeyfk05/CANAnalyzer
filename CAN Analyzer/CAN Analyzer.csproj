@@ -151,6 +151,9 @@
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BomberPage.xaml.cs">
+      <DependentUpon>BomberPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MonitorChannelPage.xaml.cs">
       <DependentUpon>MonitorChannelPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,7 @@
     <Compile Include="VM\AppSettingPageVM.cs" />
     <Compile Include="VM\BaseClosableVM.cs" />
     <Compile Include="VM\BaseVM.cs" />
+    <Compile Include="VM\BomberPageVM.cs" />
     <Compile Include="VM\MainWindowVM.cs" />
     <Compile Include="VM\MonitorChannelPageVM.cs" />
     <Compile Include="VM\RecieveChannelPageVM.cs" />
@@ -187,6 +191,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AppSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BomberPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
