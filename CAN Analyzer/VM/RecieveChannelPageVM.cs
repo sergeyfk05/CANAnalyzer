@@ -54,7 +54,7 @@ namespace CANAnalyzer.VM
             {
                 tempfile = new Uri(
                     new Uri(Path.GetTempPath(), UriKind.Absolute),
-                    new Uri(Path.GetRandomFileName() + ".sqlite3", UriKind.Relative)
+                    new Uri(Path.GetRandomFileName() + ".traceDB", UriKind.Relative)
                     ).AbsolutePath;
                 if (!File.Exists(tempfile))
                 {

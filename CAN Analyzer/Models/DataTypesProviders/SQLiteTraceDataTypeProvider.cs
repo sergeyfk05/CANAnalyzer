@@ -66,7 +66,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
             var splittedPath = filePath.ToLower().Split('.');
             var extension = splittedPath[splittedPath.Length - 1];
 
-            return extension == "sqlite3" || extension == "db";
+            return extension == "traceSQLite3" || extension == "traceDB";
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// <summary>
         /// Supported files
         /// </summary>
-        public string SupportedFiles => "*.db;*.sqlite3";
+        public string SupportedFiles => "*.traceDB;*.traceSQLite3";
 
 
         private TraceContext context;
@@ -92,6 +92,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             if (File.Exists(path))
                 File.Delete(path);
+
+            SQLiteConnection.CreateFile(path);
 
             using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
             {

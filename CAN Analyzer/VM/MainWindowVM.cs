@@ -40,6 +40,14 @@ namespace CANAnalyzer.VM
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
 
+            buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                "#addTransmitPageMenu",
+                "AddTransmitPageeIcon",
+                PageKind.Settings,
+                (data) => { AddUserPage(new TransmitPage(), new TransmitFilePageVM(), "#NavMenuTransmitFilePage", "TransmitFilePageIcon"); });
+            PagesData.Add(buf);
+            BottomItemSource.Insert(0, buf.NavData);
+
 
             Settings.Instance.Proxies.CollectionChanged += OnProxiesCollectionChanged;
             Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
@@ -220,12 +228,19 @@ namespace CANAnalyzer.VM
         }
 
 
+        /// <summary>
+        /// Remove all pages with PageKind == PageKind.Proxy | PageKind.Channel.
+        /// </summary>
         private void ClearChannelsAndProxies()
         {
             //clear channels and proxies
             ClearChannels();
             ClearProxies();
         }
+
+        /// <summary>
+        /// Remove all pages with PageKind == PageKind.Channel.
+        /// </summary>
         private void ClearChannels()
         {
             //clear channels
@@ -237,6 +252,10 @@ namespace CANAnalyzer.VM
 
             PagesData.RemoveAll(x => x.Kind == PageKind.Channel);
         }
+
+        /// <summary>
+        /// Remove all pages with PageKind == PageKind.Proxy.
+        /// </summary>
         private void ClearProxies()
         {
             //clear proxies
@@ -250,13 +269,61 @@ namespace CANAnalyzer.VM
         }
 
 
+        /// <summary>
+        /// Changing active page.
+        /// </summary>
+        /// <param name="data">Page which should be active.</param>
         private void ChangePage(ContentPageData data)
         {
+            if (data.Page == null || data.NavData == null)
+                return;
+
             MainContent = data.Page;
             ResetSelectedItems();
             data.NavData.IsSelected = true;
         }
 
+        /// <summary>
+        /// Adds user page into top navigation menu.
+        /// </summary>
+        /// <param name="page">Page which should be added to top navigation menu.</param>
+        /// <param name="vm">ViewModel for page.</param>
+        /// <param name="navMenuLabelKey">Localization key for label in navigation menu.</param>
+        /// <param name="navMenuIconKey">Localization key for icon in navigation menu.</param>
+        private void AddUserPage(UserControl page, BaseClosableVM vm, string navMenuLabelKey = "", string navMenuIconKey = "")
+        {
+            page.DataContext = vm;
+
+            ContentPageData pageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                navMenuLabelKey,
+                navMenuIconKey,
+                PageKind.UserPages,
+                page,
+                ChangePage);
+
+            vm.Closed += (object sender, EventArgs e) => { DelPageFromMenu(pageData); };
+
+            PagesData.Add(pageData);
+            TopItemSource.Add(pageData.NavData);
+
+            ResetSelectedItems();
+            MainContent = page;
+            pageData.NavData.IsSelected = true;
+        }
+
+        /// <summary>
+        /// Delete page from navigation menu.
+        /// </summary>
+        /// <param name="page">Page which should be deleted</param>
+        private void DelPageFromMenu(ContentPageData page)
+        {
+            MainContent = null;
+            ResetSelectedItems();
+
+            PagesData.Remove(page);
+            TopItemSource.Remove(page.NavData);
+            BottomItemSource.Remove(page.NavData);
+        }
 
 
 
@@ -365,7 +432,7 @@ namespace CANAnalyzer.VM
         private void NavMenuClicked_Execute(NavMenuItemData arg)
         {
             ContentPageData pageData = PagesData.FirstOrDefault(x => x.NavData == arg);
-            if ((pageData == null) || (pageData.Page == null))
+            if ((pageData == null))
                 return;
 
             _context.Post((s) =>

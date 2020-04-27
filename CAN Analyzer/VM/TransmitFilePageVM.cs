@@ -23,7 +23,7 @@ using CANAnalyzer.Models.ViewData;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitFilePageVM : BaseVM
+    public class TransmitFilePageVM : BaseClosableVM
     {
         public TransmitFilePageVM()
         {
@@ -344,6 +344,23 @@ namespace CANAnalyzer.VM
         {
             if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
                 vm.SaveAsFileCommand.RaiseCanExecuteChanged();
+        }
+
+
+        private RelayCommand _closePageCommand;
+        public RelayCommand ClosePageCommand
+        {
+            get
+            {
+                if (_closePageCommand == null)
+                    _closePageCommand = new RelayCommand(this.ClosePageCommand_Execute);
+
+                return _closePageCommand;
+            }
+        }
+        private void ClosePageCommand_Execute()
+        {
+            RaiseClosedEvent();
         }
 
 

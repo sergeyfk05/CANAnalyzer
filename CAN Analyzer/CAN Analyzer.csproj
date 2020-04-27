@@ -168,6 +168,7 @@
     <Compile Include="Resources\DynamicResources\Providers\XMLThemeChangerProvider.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\AppSettingPageVM.cs" />
+    <Compile Include="VM\BaseClosableVM.cs" />
     <Compile Include="VM\BaseVM.cs" />
     <Compile Include="VM\MainWindowVM.cs" />
     <Compile Include="VM\MonitorChannelPageVM.cs" />

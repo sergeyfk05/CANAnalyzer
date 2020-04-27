@@ -49,7 +49,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
                         RedirectStandardOutput = true,
                         RedirectStandardInput = true,
                         CreateNoWindow = true
-                    }
+                    };
 #endif
 
                     

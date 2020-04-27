@@ -21,7 +21,8 @@ namespace CANAnalyzer.Models.ViewData
         Undefined,
         Channel,
         Proxy,
-        Settings
+        Settings,
+        UserPages
     }
     public class ContentPageData
     {
