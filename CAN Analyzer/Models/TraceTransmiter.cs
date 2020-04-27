@@ -36,7 +36,7 @@ namespace CANAnalyzer.Models
                 do
                 {
                     if (ElapsedMilliseconds >= (int)(_enumerator.Current.Time * 1000))
-                        _transmitTo?.Invoke(new TransmitData()
+                        TransmitTo?.Invoke(new TransmitData()
                         {
                             CanId = _enumerator.Current.CanHeader.CanId,
                             IsExtId = _enumerator.Current.CanHeader.IsExtId,
