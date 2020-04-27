@@ -8,13 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CANAnalyzer.Models
+namespace CANAnalyzer.Models.States
 {
-    public enum FileState
+    public enum RecieveState
     {
-        Closed,
-        Opened,
-        Opening,
-        Temporary
+        Recieving,
+        Blocked
     }
 }

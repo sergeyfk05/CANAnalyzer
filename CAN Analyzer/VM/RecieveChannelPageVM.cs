@@ -22,6 +22,8 @@ using System.Windows;
 using DynamicResource;
 using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzer.Models.ViewData;
+using CANAnalyzer.Models.States;
+using CANAnalyzer.Models.Delegates;
 
 namespace CANAnalyzer.VM
 {
@@ -252,8 +254,7 @@ namespace CANAnalyzer.VM
             //}
         }
 
-        private delegate void TransmitToMethod(TransmitData data);
-        private TransmitToMethod TransmitToSelectedChannels;
+        private TransmitToDelegate TransmitToSelectedChannels;
 
 
 

@@ -20,6 +20,9 @@ using CANAnalyzer.Resources.DynamicResources;
 using System.IO;
 using CANAnalyzer.Models.TraceFilters;
 using CANAnalyzer.Models.ViewData;
+using CANAnalyzerDevices.Devices.DeviceChannels;
+using CANAnalyzer.Models.States;
+using CANAnalyzer.Models.Delegates;
 
 namespace CANAnalyzer.VM
 {
@@ -27,14 +30,45 @@ namespace CANAnalyzer.VM
     {
         public TransmitFilePageVM()
         {
-            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "ss" });
-            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = false, DescriptionKey = "s" });
-            TransmitToItems.Add(new TransmitToViewData() { IsTransmit = true, DescriptionKey = "s" });
+            //create ViewData for  transmitable channels
+            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
+            {
+                foreach (var el in Settings.Instance.Device.Channels)
+                {
+                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
+                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
+                    TransmitToItems.Add(viewData);
+                }
+            }
 
             PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
         }
+
+        private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if ((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
+            {
+                if (viewData.IsTransmit)
+                {
+                    if (TransmitToSelectedChannels == null)
+                        TransmitToSelectedChannels = viewData.Transmit;
+                    else
+                        TransmitToSelectedChannels += viewData.Transmit;
+                }
+                else
+                {
+                    try
+                    {
+                        TransmitToSelectedChannels -= viewData.Transmit;
+                    }
+                    catch { }
+                }
+            }
+        }
+        
+        private TransmitToDelegate TransmitToSelectedChannels;
 
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;

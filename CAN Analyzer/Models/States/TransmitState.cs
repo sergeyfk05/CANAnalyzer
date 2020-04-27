@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CANAnalyzer.Models
+namespace CANAnalyzer.Models.States
 {
-    public enum RecieveState
+    public enum TransmitState
     {
-        Recieving,
-        Blocked
+        Undefined,
+        Transmiting,
+        Paused
     }
 }
