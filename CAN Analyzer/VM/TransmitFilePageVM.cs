@@ -360,7 +360,13 @@ namespace CANAnalyzer.VM
         }
         private void ClosePageCommand_Execute()
         {
-            RaiseClosedEvent();
+
+            if(MessageBox.Show("are you want close the page?", "???", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                RaiseClosedEvent();
+                currentTraceProvider?.CloseConnection();
+            }
+
         }
 
 
