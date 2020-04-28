@@ -31,7 +31,6 @@ namespace CANAnalyzer.VM
         public TransmitFilePageVM()
         {
 
-
             PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
@@ -185,7 +184,7 @@ namespace CANAnalyzer.VM
                             currentTraceProvider?.CloseConnection();
                             el.TargetFile = openFileDialog.FileName;
                             currentTraceProvider = el;
-                            UpdateDataAndFilters();
+                            UpdateDataAndFiltersCommand.Execute();
                         }
                         catch (Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -269,7 +268,7 @@ namespace CANAnalyzer.VM
                         try
                         {
                             currentTraceProvider = await el.SaveAsAsync(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
-                            UpdateDataAndFilters();
+                            UpdateDataAndFiltersCommand.Execute();
                         }
                         catch (Exception e)
                         { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -367,12 +366,23 @@ namespace CANAnalyzer.VM
 
         #region private local-use methods
 
-        private async void UpdateDataAndFilters()
+        private RelayCommandAsync _updateDataAndFiltersCommand;
+        public RelayCommandAsync UpdateDataAndFiltersCommand
+        {
+            get
+            {
+                if (_updateDataAndFiltersCommand == null)
+                    _updateDataAndFiltersCommand = new RelayCommandAsync(this.UpdateDataAndFilters_Execute);
+
+                return _updateDataAndFiltersCommand;
+            }
+        }
+        private void UpdateDataAndFilters_Execute()
         {
             try
             {
                 var newFilters = new List<CanIdTraceFilter>();
-                foreach(var el in await currentTraceProvider.CanHeaders.ToListAsync())
+                foreach(var el in currentTraceProvider.CanHeaders.ToList())
                 {
                     var entity =new CanIdTraceFilter(el.CanId, el.IsExtId);
                     entity.PropertyChanged += FilterIsActive_PropertyChanged;
@@ -380,7 +390,7 @@ namespace CANAnalyzer.VM
                 }
                 Filters = newFilters;
 
-                UpdateData();
+                UpdateDataCommand.Execute();
 
             }
             catch(Exception e)
@@ -388,24 +398,41 @@ namespace CANAnalyzer.VM
                 MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-        }      
-        public async void UpdateData()
+        }
+
+        private RelayCommandAsync _updateDataCommand;
+        public RelayCommandAsync UpdateDataCommand
+        {
+            get
+            {
+                if (_updateDataCommand == null)
+                    _updateDataCommand = new RelayCommandAsync(this.UpdateData_Execute);
+
+                return _updateDataCommand;
+            }
+        }
+        public void UpdateData_Execute()
         {
             try
             {
+                IsEnabled = false;
                 var data = currentTraceProvider.Traces;
                 foreach (var el in Filters)
                 {
                     data = el.Filter(data);
                 }
 
-                ShowedData = await data.Include("CanHeader").ToListAsync();
+                ShowedData = data.Include("CanHeader").ToList();
                 FileIsOpened = FileState.Opened;
 
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                IsEnabled = true;
             }
 
         }
@@ -476,7 +503,7 @@ namespace CANAnalyzer.VM
             if (e.PropertyName != "IsActive")
                 return;
 
-            UpdateData();
+            UpdateDataCommand.Execute();
 
         }
         private void OnSaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

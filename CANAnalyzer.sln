@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerMenu", "HamburgerM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanAnalyzerDevicesTests", "CanAnalyzerDevicesTests\CanAnalyzerDevicesTests.csproj", "{DA797630-41B3-48C2-B62A-B00D6417E191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanHackerDataTypeConverter", "CanHackerDataTypeConverter\CanHackerDataTypeConverter.csproj", "{B3B8FA98-34C4-4D88-93F4-736BFB832656}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{DA797630-41B3-48C2-B62A-B00D6417E191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA797630-41B3-48C2-B62A-B00D6417E191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA797630-41B3-48C2-B62A-B00D6417E191}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3B8FA98-34C4-4D88-93F4-736BFB832656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3B8FA98-34C4-4D88-93F4-736BFB832656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3B8FA98-34C4-4D88-93F4-736BFB832656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3B8FA98-34C4-4D88-93F4-736BFB832656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
