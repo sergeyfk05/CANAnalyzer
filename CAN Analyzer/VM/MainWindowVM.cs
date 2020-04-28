@@ -446,7 +446,7 @@ namespace CANAnalyzer.VM
 
             _context.Post((s) =>
             {
-                pageData.ClickAction(pageData);
+                pageData?.ClickAction?.Invoke(pageData);
             }, null);
         }
 

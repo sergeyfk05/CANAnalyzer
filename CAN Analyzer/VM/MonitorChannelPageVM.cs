@@ -13,6 +13,7 @@ using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Models;
 using System.Threading;
 using System.Collections.ObjectModel;
+using CANAnalyzer.Models.States;
 
 namespace CANAnalyzer.VM
 {
