@@ -24,7 +24,7 @@ namespace CANAnalyzer
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            CANAnalyzer.Models.CanHackerDataTypeConverter.convert();
             Settings.ImportFromJson(Settings.Instance.SettingsPath);
 
             Manager<ThemeCultureInfo>.StaticInstance.Provider = new XMLThemeChangerProvider(Settings.Instance.ThemesXmlPath, Settings.Instance.ThemeCulture);

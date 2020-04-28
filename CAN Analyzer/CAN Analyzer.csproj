@@ -114,6 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CanHackerDataTypeConverter.cs" />
     <Compile Include="Models\ChannelsProxy\ConsoleChannelProxy.cs" />
     <Compile Include="Models\ChannelsProxy\Creators\ChannelProxyCreatorsListBuilder.cs" />
     <Compile Include="Models\ChannelsProxy\Creators\ConsoleChannelProxyCreator.cs" />
