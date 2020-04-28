@@ -187,7 +187,7 @@
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
-                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" >
+                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="True" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
@@ -203,6 +203,13 @@
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
 
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
+                        <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                
                 <i:Interaction.Behaviors>
                     <extensions:ScrollIntoViewBehavior/>
                 </i:Interaction.Behaviors>
