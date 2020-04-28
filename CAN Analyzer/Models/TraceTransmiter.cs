@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -32,18 +36,14 @@ namespace CANAnalyzer.Models
         {
             if (Status == TraceTransmiterStatus.Working)
             {
-                ElapsedMilliseconds += 100;
+                ElapsedMilliseconds += _timeAccuracy;
 
                 do
                 {
-                    if(_enumerator.Current == null)
-                    {
-                        while(_enumerator.MoveNext())
-                        {
-                            if (_enumerator.Current != null)
-                                break;
-                        }
-                    }
+                    CurrentIndex++;
+
+                    if (_enumerator.Current == null)
+                        continue;
 
                     if (ElapsedMilliseconds >= (int)(_enumerator.Current.Time * 1000))
                     {
@@ -63,6 +63,7 @@ namespace CANAnalyzer.Models
 
 
                 } while (_enumerator.MoveNext());
+
             }
         }
 
@@ -110,6 +111,7 @@ namespace CANAnalyzer.Models
                     return;
 
                 _enumerator = _source.GetEnumerator();
+                SetCurrentItemIndex(0);
             }
         }
         private IEnumerable<TraceModel> _source;
@@ -170,8 +172,13 @@ namespace CANAnalyzer.Models
 
             if (Status == TraceTransmiterStatus.Reseted || Status == TraceTransmiterStatus.Undefined)
             {
-                ElapsedMilliseconds = (int)(Source.First().Time * 1000);
-                _enumerator.Reset();
+                //while(_enumerator.MoveNext())
+                //{
+                //    if (_enumerator.Current != null)
+                //        break;
+                //}
+
+                //ElapsedMilliseconds = (int)(_enumerator.Current.Time * 1000);
                 _timer.Start();
                 Status = TraceTransmiterStatus.Working;
             }
@@ -186,6 +193,7 @@ namespace CANAnalyzer.Models
         {
             _timer.Stop();
             Status = TraceTransmiterStatus.Reseted;
+            SetCurrentItemIndex(0);
         }
         public void Pause()
         {

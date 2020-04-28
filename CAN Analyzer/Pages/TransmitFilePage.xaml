@@ -8,6 +8,7 @@
              xmlns:models="clr-namespace:CANAnalyzer.Models"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -147,10 +148,6 @@
 
 
                 <ComboBox x:Name="TransmiToComboBox" 
-                      DockPanel.Dock="Right"
-                      Height="30" 
-                      VerticalAlignment="Center"
-                      Width="150" 
                       ItemsSource="{Binding TransmitToItems}"
                       ItemTemplate="{StaticResource TransmitToComboBoxItemTemplate}"
                       ItemContainerStyle="{StaticResource TransmitToComboBoxItemStyle}">
@@ -166,6 +163,17 @@
                                                CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="DockPanel.Dock" Value="Right"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Width" Value="150"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </ComboBox.Style>
+                    
                 </ComboBox>
 
                 <!--This TextBlock need for fix ComboBox dockpanel's position-->
@@ -177,7 +185,7 @@
             Grid.Column="0" 
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}"
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
                 LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" >
                 <DataGrid.Columns>
@@ -194,6 +202,10 @@
                     <DataGridTextColumn Header="{resources:Language #TraceDataCommentColumnName}" IsReadOnly="False"
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
+
+                <i:Interaction.Behaviors>
+                    <extensions:ScrollIntoViewBehavior/>
+                </i:Interaction.Behaviors>
             </DataGrid>
 
 
@@ -220,6 +232,27 @@
                             </GridView.Columns>
                         </GridView>
                     </ListView.View>
+
+                    <ListView.Style>
+                        <Style TargetType="ListView">
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Working}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                                
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Paused}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
                 </ListView>
             </Grid>
 

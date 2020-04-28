@@ -23,6 +23,7 @@ using CANAnalyzer.Models.ViewData;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.Delegates;
+using static CANAnalyzer.Models.TraceTransmiter;
 
 namespace CANAnalyzer.VM
 {
@@ -131,6 +132,8 @@ namespace CANAnalyzer.VM
             }
         }
         private int _selectedItemIndex;
+
+        public TraceTransmiterStatus Status => _transmiter.Status;
 
         #endregion
 
@@ -344,6 +347,7 @@ namespace CANAnalyzer.VM
         }
         private void StartTraceCommand_Execute()
         {
+            _transmiter.SetCurrentItemIndex(SelectedItemIndex);
             _transmiter.Start();
         }
 
@@ -547,6 +551,7 @@ namespace CANAnalyzer.VM
         }
         private void _transmiter_StatusChanged(object sender, EventArgs e)
         {
+            RaisePropertyChanged("Status");
             StartTraceCommand.RaiseCanExecuteChanged();
             PauseTraceCommand.RaiseCanExecuteChanged();
             StopTraceCommand.RaiseCanExecuteChanged();
