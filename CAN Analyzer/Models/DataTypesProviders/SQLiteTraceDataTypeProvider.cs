@@ -64,9 +64,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
         public bool CanWorkWithIt(string filePath)
         {
             var splittedPath = filePath.ToLower().Split('.');
-            var extension = splittedPath[splittedPath.Length - 1];
+            var extension = splittedPath[splittedPath.Length - 1].ToLower();
 
-            return extension == "traceSQLite3" || extension == "traceDB";
+            return extension == "traceSQLite3".ToLower() || extension == "traceDB".ToLower();
         }
 
         /// <summary>
