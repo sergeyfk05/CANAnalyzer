@@ -92,7 +92,8 @@
                         <Button x:Name="startButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
-                                IsEnabled="{Binding FileIsOpened}">
+                                IsEnabled="{Binding FileIsOpened}"
+                                Command="{Binding StartTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStartButtonIcon}"/>
 
@@ -103,7 +104,8 @@
 
                         <Button x:Name="pauseButton" 
                                 DockPanel.Dock="Left" 
-                                Style="{DynamicResource ShortcutButtonStyle}">
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding PauseTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
 
@@ -114,7 +116,8 @@
 
                         <Button x:Name="stopButton" 
                                 DockPanel.Dock="Left" 
-                                Style="{DynamicResource ShortcutButtonStyle}">
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding StopTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStopButtonIcon}"/>
 
@@ -174,7 +177,9 @@
             Grid.Column="0" 
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" AutoGenerateColumns="False" CanUserResizeRows="False" LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False">
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}"
+                SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
+                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>

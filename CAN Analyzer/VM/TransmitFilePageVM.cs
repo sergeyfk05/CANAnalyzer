@@ -34,11 +34,17 @@ namespace CANAnalyzer.VM
             PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged += ShowedData_PropertyChanged;
+
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
 
             _transmiter = new TraceTransmiter();
             _transmiter.StatusChanged += _transmiter_StatusChanged;
+            _transmiter.CurrentIndexChanged += _transmiter_CurrentIndexChanged;
+
+            Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
         }
+
 
         #region properties
 
@@ -111,6 +117,20 @@ namespace CANAnalyzer.VM
             }
         }
         private FileState _fileIsOpened = FileState.Closed;
+
+        public int SelectedItemIndex
+        {
+            get { return _selectedItemIndex; }
+            set
+            {
+                if (_selectedItemIndex == value)
+                    return;
+
+                _selectedItemIndex = value;
+                RaisePropertyChanged();
+            }
+        }
+        private int _selectedItemIndex;
 
         #endregion
 
@@ -198,8 +218,6 @@ namespace CANAnalyzer.VM
                 {
                     MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                IsEnabled = true;
             }
         }
         
@@ -472,6 +490,15 @@ namespace CANAnalyzer.VM
 
         #region eventHandlers
 
+
+        private void _transmiter_CurrentIndexChanged(object sender, EventArgs e)
+        {
+            SelectedItemIndex = _transmiter.CurrentIndex;
+        }
+        private void ShowedData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            _transmiter.Source = ShowedData;
+        }
         private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
@@ -491,6 +518,8 @@ namespace CANAnalyzer.VM
                     }
                     catch { }
                 }
+
+                _transmiter.TransmitTo = TransmitToSelectedChannels;
             }
         }
         private void OnOpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -524,6 +553,9 @@ namespace CANAnalyzer.VM
         }
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName != "Device")
+                return;
+
             //create ViewData for  transmitable channels
             TransmitToItems.Clear();
             TransmitToSelectedChannels = null;
