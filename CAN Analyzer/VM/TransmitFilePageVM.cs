@@ -30,20 +30,12 @@ namespace CANAnalyzer.VM
     {
         public TransmitFilePageVM()
         {
-            //create ViewData for  transmitable channels
-            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
-            {
-                foreach (var el in Settings.Instance.Device.Channels)
-                {
-                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    TransmitToItems.Add(viewData);
-                }
-            }
+
 
             PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
+            Settings.Instance.PropertyChanged += Device_PropertyChanged;
 
             _transmiter = new TraceTransmiter();
             _transmiter.StatusChanged += _transmiter_StatusChanged;
@@ -502,6 +494,21 @@ namespace CANAnalyzer.VM
             StartTraceCommand.RaiseCanExecuteChanged();
             PauseTraceCommand.RaiseCanExecuteChanged();
             StopTraceCommand.RaiseCanExecuteChanged();
+        }
+        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //create ViewData for  transmitable channels
+            TransmitToItems.Clear();
+            TransmitToSelectedChannels = null;
+            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
+            {
+                foreach (var el in Settings.Instance.Device.Channels)
+                {
+                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
+                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
+                    TransmitToItems.Add(viewData);
+                }
+            }
         }
 
         #endregion
