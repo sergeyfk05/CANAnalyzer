@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -58,7 +59,19 @@ namespace CANAnalyzer.Models
             Paused,
             Reseted
         };
-        public TraceTransmiterStatus Status { get; private set; }
+        public TraceTransmiterStatus Status
+        {
+            get { return _status; }
+            private set
+            {
+                if (_status == value)
+                    return;
+
+                _status = value;
+                RaiseStatusChanged();
+            }
+        }
+        private TraceTransmiterStatus _status;
 
         public IEnumerable<TraceModel> Source
         {
@@ -121,7 +134,6 @@ namespace CANAnalyzer.Models
                 Status = TraceTransmiterStatus.Working;
             }
         }
-
         public void Stop()
         {
             _timer.Stop();
@@ -136,5 +148,11 @@ namespace CANAnalyzer.Models
 
 
         private System.Timers.Timer _timer;
+
+        public event EventHandler StatusChanged;
+        private void RaiseStatusChanged()
+        {
+            StatusChanged?.Invoke(this, new EventArgs());
+        }
     }
 }
