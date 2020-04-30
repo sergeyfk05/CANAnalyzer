@@ -24,6 +24,8 @@ using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.Delegates;
 using static CANAnalyzer.Models.TraceTransmiter;
+using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace CANAnalyzer.VM
 {
@@ -49,9 +51,9 @@ namespace CANAnalyzer.VM
 
         #region properties
 
-        public List<TransmitToViewData> TransmitToItems
+        public ObservableCollection<TransmitToViewData> TransmitToItems
         {
-            get { return _transmitToItems ?? (_transmitToItems = new List<TransmitToViewData>()); }
+            get { return _transmitToItems ?? (_transmitToItems = new ObservableCollection<TransmitToViewData>()); }
             set
             {
                 if (_transmitToItems == value)
@@ -61,9 +63,9 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private List<TransmitToViewData> _transmitToItems;
+        private ObservableCollection<TransmitToViewData> _transmitToItems;
 
-        public List<TraceModel> ShowedData
+        public ObservableCollection<TraceModel> ShowedData
         {
             get { return _showedData; }
             set
@@ -71,11 +73,17 @@ namespace CANAnalyzer.VM
                 if (value == _showedData)
                     return;
 
+                if(_showedData != null)
+                    _showedData.CollectionChanged -= ShowedData_CollectionChanged;
+
                 _showedData = value;
+                if (_showedData != null)
+                    _showedData.CollectionChanged += ShowedData_CollectionChanged;
                 RaisePropertyChanged();
             }
         }
-        private List<TraceModel> _showedData;
+
+        private ObservableCollection<TraceModel> _showedData;
 
         public List<CanIdTraceFilter> Filters
         {
@@ -154,8 +162,7 @@ namespace CANAnalyzer.VM
         private void TransmitToComboBoxSelected_Execute(ComboBox arg)
         {
             arg.SelectedIndex = 0;
-        }
-        
+        }       
 
 
         private RelayCommandAsync _openFileCommand;
@@ -172,6 +179,7 @@ namespace CANAnalyzer.VM
         private void OpenFileCommand_Execute()
         {
 
+            var prevStatus = FileIsOpened;
             FileIsOpened = FileState.Opening;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
@@ -221,6 +229,10 @@ namespace CANAnalyzer.VM
                 {
                     MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            else
+            {
+                FileIsOpened = prevStatus;
             }
         }
         
@@ -444,7 +456,8 @@ namespace CANAnalyzer.VM
                     data = el.Filter(data);
                 }
 
-                ShowedData = data.Include("CanHeader").ToList();
+
+                ShowedData = new ObservableCollection<TraceModel>(data.Include("CanHeader").ToList());
                 FileIsOpened = FileState.Opened;
 
             }
@@ -456,6 +469,36 @@ namespace CANAnalyzer.VM
             {
                 IsEnabled = true;
             }
+
+        }
+
+        private RelayCommandWithParameterAsync<IList> _removeDataCommand;
+        public RelayCommandWithParameterAsync<IList> RemoveDataCommand
+        {
+            get
+            {
+                if (_removeDataCommand == null)
+                    _removeDataCommand = new RelayCommandWithParameterAsync<IList>(this.RemoveDataCommand_Execute);
+
+                return _removeDataCommand;
+            }
+        }
+        public void RemoveDataCommand_Execute(IList data)
+        {
+            IsEnabled = false;
+
+            if (data == null)
+                return;
+
+            foreach (var item in data)
+            {
+                if (item is TraceModel model)
+                {
+                    try { currentTraceProvider.Remove(model); } catch { }
+                }
+            }
+
+            IsEnabled = true;
 
         }
 
@@ -493,7 +536,6 @@ namespace CANAnalyzer.VM
 
 
         #region eventHandlers
-
 
         private void _transmiter_CurrentIndexChanged(object sender, EventArgs e)
         {
@@ -572,6 +614,16 @@ namespace CANAnalyzer.VM
                     viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
                     TransmitToItems.Add(viewData);
                 }
+            }
+        }
+        private void ShowedData_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (!((sender is ObservableCollection<TraceModel> data) && (ShowedData == data)))
+                return;
+
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                RemoveDataCommand.Execute(e.OldItems);
             }
         }
 

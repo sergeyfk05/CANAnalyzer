@@ -136,7 +136,7 @@
                 Grid.Row="1"
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedItems}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserSortColumns="False" 
-                CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" ScrollViewer.ScrollChanged="DataGrid_ScrollChanged" LoadingRow="DataGrid_LoadingRow">
+                CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ScrollViewer.ScrollChanged="DataGrid_ScrollChanged" LoadingRow="DataGrid_LoadingRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
@@ -151,13 +151,6 @@
                     <DataGridTextColumn Header="{resources:Language #TraceDataCommentColumnName}" IsReadOnly="False"
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
-
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
-                        <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
             </DataGrid>
 
             <Grid Grid.Column="1"

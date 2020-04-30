@@ -170,7 +170,6 @@
                             <Setter Property="Height" Value="30"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
                             <Setter Property="Width" Value="150"/>
-                            <Setter Property="IsEnabled" Value="False"/>
                         </Style>
                     </ComboBox.Style>
                     
