@@ -45,8 +45,17 @@ namespace CANAnalyzer.Models.DataTypesProviders
         }
         private string _targetFile;
 
-        private void TargetFileChanged()
+        private async void TargetFileChanged()
         {
+            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={TargetFile}"))
+            {
+                dbConnection.Open();
+                string sql = "DELETE FROM CanHeaders WHERE((SELECT count(*) from Traces Where Traces.CanHeaderId = CanHeaders.Id) = 0); ";
+
+                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                await command.ExecuteNonQueryAsync();
+            }
+
             context = new TraceContext(TargetFile);
         }
 
