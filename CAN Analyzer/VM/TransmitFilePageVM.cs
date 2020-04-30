@@ -38,6 +38,7 @@ namespace CANAnalyzer.VM
             PropertyChanged += OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += OnOpenFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged += ShowedData_PropertyChanged;
+            PropertyChanged += TransmitToSelectedChannels_PropertyChanged;
 
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
 
@@ -140,6 +141,20 @@ namespace CANAnalyzer.VM
             }
         }
         private int _selectedItemIndex;
+
+        public TransmitToDelegate TransmitToSelectedChannels
+        {
+            get { return _transmitToSelectedChannels; }
+            private set
+            {
+                if (value == _transmitToSelectedChannels)
+                    return;
+
+                _transmitToSelectedChannels = value;
+                RaisePropertyChanged();
+            }
+        }
+        private TransmitToDelegate _transmitToSelectedChannels;
 
         public TraceTransmiterStatus Status => _transmiter.Status;
 
@@ -527,10 +542,10 @@ namespace CANAnalyzer.VM
 
         #region private varibles
 
-        private TransmitToDelegate TransmitToSelectedChannels;
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;
         private TraceTransmiter _transmiter;
+        private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
 
         #endregion
 
@@ -564,9 +579,11 @@ namespace CANAnalyzer.VM
                     }
                     catch { }
                 }
-
-                _transmiter.TransmitTo = TransmitToSelectedChannels;
             }
+        }
+        private void TransmitToSelectedChannels_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            _transmiter.TransmitTo = TransmitToSelectedChannels;
         }
         private void OnOpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -604,16 +621,30 @@ namespace CANAnalyzer.VM
                 return;
 
             //create ViewData for  transmitable channels
-            TransmitToItems.Clear();
-            TransmitToSelectedChannels = null;
-            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
+            _context.Send((s) => 
             {
+                TransmitToItems.Clear();
+            }, null);
+            TransmitToSelectedChannels = null;
+            if (Settings.Instance.Device != null && Settings.Instance.Device.IsConnected && Settings.Instance.Device.Channels != null)
+            {
+                Settings.Instance.Device.IsConnectedChanged += Device_IsConnectedChanged;
                 foreach (var el in Settings.Instance.Device.Channels)
                 {
                     var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
                     viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    TransmitToItems.Add(viewData);
+                    _context.Send((s) =>
+                    {
+                        TransmitToItems.Add(viewData);
+                    }, null);
                 }
+            }
+        }
+        private void Device_IsConnectedChanged(object sender, EventArgs e)
+        {
+            if(Settings.Instance.Device == sender)
+            {
+                Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
             }
         }
         private void ShowedData_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
