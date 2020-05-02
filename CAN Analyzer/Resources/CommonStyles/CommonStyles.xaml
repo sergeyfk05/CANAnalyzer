@@ -70,57 +70,6 @@
                 <Setter Property="Control.Height" Value="15"/>
             </Style>
 
-            <Style x:Key="TransmitToComboBoxItemStyle">
-                <Setter Property="Control.Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                            <Border BorderThickness="1"
-                                                HorizontalAlignment="Stretch">
-                                <Border.BorderBrush>
-                                    <LinearGradientBrush>
-                                        <GradientStop Offset="0" Color="{resources:Theme TransmitToControlBorderBrushStart}"/>
-                                        <GradientStop Offset="1" Color="{resources:Theme TransmitToControlBorderBrushStop}"/>
-                                    </LinearGradientBrush>
-                                </Border.BorderBrush>
-
-                                <StackPanel Orientation="Horizontal" 
-                                                HorizontalAlignment="Stretch"                                                
-                                                Height="25">
-                                    <StackPanel.Background>
-                                        <LinearGradientBrush>
-                                            <GradientStop Offset="0" Color="{resources:Theme TransmitToControlItemBackgroundBrushStart}"/>
-                                            <GradientStop Offset="1" Color="{resources:Theme TransmitToControlItemBackgroundBrushStop}"/>
-                                        </LinearGradientBrush>
-                                    </StackPanel.Background>
-
-                                    <CheckBox IsChecked="{Binding IsTransmit}"
-                                                  VerticalAlignment="Center"
-                                                  Margin="10 0 10 0"/>
-                                    <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"
-                                                   FontSize="{resources:Theme TransmitToControlFontSize}" 
-                                                   FontFamily="{resources:Theme TransmitToControlFontFamily}" 
-                                                   FontWeight="{resources:Theme TransmitToControlFontWeight}"
-                                                   Foreground="{resources:Theme TransmitToControlFontColor}"
-                                                   VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <DataTemplate x:Key="TransmitToComboBoxItemTemplate" DataType="{x:Type models:TransmitToViewData}">
-                <Grid Height="23">
-                    <TextBlock Text="{resources:Language TransmitToControlPreviewText}" 
-                                       VerticalAlignment="Center" 
-                                       FontSize="{resources:Theme TransmitToControlToggleButtonFontSize}" 
-                                       FontFamily="{resources:Theme TransmitToControlToggleButtonFontFamily}" 
-                                       FontWeight="{resources:Theme TransmitToControlToggleButtonFontWeight}"
-                                       Foreground="{resources:Theme TransmitToControlToggleButtonFontColor}"/>
-                </Grid>
-            </DataTemplate>
-
             <converters:BiteArrayToHexStringConverter x:Key="BiteArrayToHexStringConverter"/>
             <converters:RelativePathToUriConverter x:Key="RelativePathToUriConverter"/>
             <converters:MillisecondsToHumanFriendlyStringConverter x:Key="MillisecondsToHumanFriendlyStringConverter"/>

@@ -13,7 +13,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
@@ -145,12 +150,10 @@
 
                 </Border>
 
-
-
                 <ComboBox x:Name="TransmiToComboBox" 
                       ItemsSource="{Binding TransmitToItems}"
-                      ItemTemplate="{StaticResource TransmitToComboBoxItemTemplate}"
-                      ItemContainerStyle="{StaticResource TransmitToComboBoxItemStyle}">
+                          Style="{StaticResource TransmitToComboBoxStyle}"
+                          Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
 
 
                     <i:Interaction.Triggers>
@@ -163,16 +166,6 @@
                                                CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-
-                    <ComboBox.Style>
-                        <Style TargetType="ComboBox">
-                            <Setter Property="DockPanel.Dock" Value="Right"/>
-                            <Setter Property="Height" Value="30"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="Width" Value="150"/>
-                        </Style>
-                    </ComboBox.Style>
-                    
                 </ComboBox>
 
                 <!--This TextBlock need for fix ComboBox dockpanel's position-->
