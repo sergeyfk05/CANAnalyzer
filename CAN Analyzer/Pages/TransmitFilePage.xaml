@@ -8,11 +8,17 @@
              xmlns:models="clr-namespace:CANAnalyzer.Models"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
@@ -144,16 +150,10 @@
 
                 </Border>
 
-
-
                 <ComboBox x:Name="TransmiToComboBox" 
-                      DockPanel.Dock="Right"
-                      Height="30" 
-                      VerticalAlignment="Center"
-                      Width="150" 
                       ItemsSource="{Binding TransmitToItems}"
-                      ItemTemplate="{StaticResource TransmitToComboBoxItemTemplate}"
-                      ItemContainerStyle="{StaticResource TransmitToComboBoxItemStyle}">
+                          Style="{StaticResource TransmitToComboBoxStyle}"
+                          Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
 
 
                     <i:Interaction.Triggers>
@@ -177,9 +177,9 @@
             Grid.Column="0" 
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
-            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}"
+            HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
-                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" >
+                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="True" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
@@ -194,6 +194,17 @@
                     <DataGridTextColumn Header="{resources:Language #TraceDataCommentColumnName}" IsReadOnly="False"
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
+                        <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                
+                <i:Interaction.Behaviors>
+                    <extensions:ScrollIntoViewBehavior/>
+                </i:Interaction.Behaviors>
             </DataGrid>
 
 
@@ -220,6 +231,27 @@
                             </GridView.Columns>
                         </GridView>
                     </ListView.View>
+
+                    <ListView.Style>
+                        <Style TargetType="ListView">
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Working}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                                
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Paused}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
                 </ListView>
             </Grid>
 

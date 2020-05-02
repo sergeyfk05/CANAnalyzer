@@ -4,124 +4,82 @@
                     xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
                     xmlns:models="clr-namespace:CANAnalyzer.Models.ViewData"
                     xmlns:converters="clr-namespace:CANAnalyzer.Models.Converters">
-    
-    <Style x:Key="ShortcutButtonStyle">
-        <Setter Property="Control.Background">
-            <Setter.Value>
-                <LinearGradientBrush>
-                    <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStartBrush}" Offset="0"/>
-                    <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStopBrush}" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Control.BorderThickness" Value="{resources:Theme TransmitPageIconButtonBorderThickness}"/>
-        <Setter Property="Control.BorderBrush">
-            <Setter.Value>
-                <LinearGradientBrush>
-                    <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStartBrush}" Offset="0"/>
-                    <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStopBrush}" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Control.Width" Value="30"/>
-        <Setter Property="Control.Height" Value="30"/>
-        <Setter Property="Control.Cursor" Value="Hand"/>
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="{resources:Theme TransmitPageIconButtonCornerRaduis}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="Button.IsMouseOver" Value="True">
+
+    <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CustomComboBoxStyles.xaml"/>
+
+
+        <ResourceDictionary>
+            <Style x:Key="ShortcutButtonStyle">
                 <Setter Property="Control.Background">
                     <Setter.Value>
                         <LinearGradientBrush>
-                            <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStartBrush}" Offset="0"/>
-                            <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStopBrush}" Offset="1"/>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStartBrush}" Offset="0"/>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonBackgroundStopBrush}" Offset="1"/>
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Control.IsEnabled" Value="False">
-                <Setter Property="Control.Background">
+                <Setter Property="Control.BorderThickness" Value="{resources:Theme TransmitPageIconButtonBorderThickness}"/>
+                <Setter Property="Control.BorderBrush">
                     <Setter.Value>
                         <LinearGradientBrush>
-                            <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStartBrush}" Offset="0"/>
-                            <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStopBrush}" Offset="1"/>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStartBrush}" Offset="0"/>
+                            <GradientStop Color="{resources:Theme TransmitPageIconButtonBorderStopBrush}" Offset="1"/>
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="ShortcutButtonImageStyle">
-        <Setter Property="Control.Width" Value="15"/>
-        <Setter Property="Control.Height" Value="15"/>
-    </Style>
-
-    <Style x:Key="TransmitToComboBoxItemStyle">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Border BorderThickness="1"
-                                                HorizontalAlignment="Stretch">
-                        <Border.BorderBrush>
-                            <LinearGradientBrush>
-                                <GradientStop Offset="0" Color="{resources:Theme TransmitToControlBorderBrushStart}"/>
-                                <GradientStop Offset="1" Color="{resources:Theme TransmitToControlBorderBrushStop}"/>
-                            </LinearGradientBrush>
-                        </Border.BorderBrush>
-
-                        <StackPanel Orientation="Horizontal" 
-                                                HorizontalAlignment="Stretch"                                                
-                                                Height="25">
-                            <StackPanel.Background>
+                <Setter Property="Control.Width" Value="30"/>
+                <Setter Property="Control.Height" Value="30"/>
+                <Setter Property="Control.Cursor" Value="Hand"/>
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="{resources:Theme TransmitPageIconButtonCornerRaduis}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="Button.IsMouseOver" Value="True">
+                        <Setter Property="Control.Background">
+                            <Setter.Value>
                                 <LinearGradientBrush>
-                                    <GradientStop Offset="0" Color="{resources:Theme TransmitToControlItemBackgroundBrushStart}"/>
-                                    <GradientStop Offset="1" Color="{resources:Theme TransmitToControlItemBackgroundBrushStop}"/>
+                                    <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStartBrush}" Offset="0"/>
+                                    <GradientStop Color="{resources:Theme TransmitPageIconButtonMouseEnterBackgroundStopBrush}" Offset="1"/>
                                 </LinearGradientBrush>
-                            </StackPanel.Background>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    <Trigger Property="Control.IsEnabled" Value="False">
+                        <Setter Property="Control.Background">
+                            <Setter.Value>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStartBrush}" Offset="0"/>
+                                    <GradientStop Color="{resources:Theme TransmitPageIconButtonDisabledBackgroundStopBrush}" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
-                            <CheckBox IsChecked="{Binding IsTransmit}"
-                                                  VerticalAlignment="Center"
-                                                  Margin="10 0 10 0"/>
-                            <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"
-                                                   FontSize="{resources:Theme TransmitToControlFontSize}" 
-                                                   FontFamily="{resources:Theme TransmitToControlFontFamily}" 
-                                                   FontWeight="{resources:Theme TransmitToControlFontWeight}"
-                                                   Foreground="{resources:Theme TransmitToControlFontColor}"
-                                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
+            <Style x:Key="ShortcutButtonImageStyle">
+                <Setter Property="Control.Width" Value="15"/>
+                <Setter Property="Control.Height" Value="15"/>
+            </Style>
 
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+            <converters:BiteArrayToHexStringConverter x:Key="BiteArrayToHexStringConverter"/>
+            <converters:RelativePathToUriConverter x:Key="RelativePathToUriConverter"/>
+            <converters:MillisecondsToHumanFriendlyStringConverter x:Key="MillisecondsToHumanFriendlyStringConverter"/>
 
-    <DataTemplate x:Key="TransmitToComboBoxItemTemplate" DataType="{x:Type models:TransmitToViewData}">
-        <Grid Height="23">
-            <TextBlock Text="{resources:Language TransmitToControlPreviewText}" 
-                                       VerticalAlignment="Center" 
-                                       FontSize="{resources:Theme TransmitToControlToggleButtonFontSize}" 
-                                       FontFamily="{resources:Theme TransmitToControlToggleButtonFontFamily}" 
-                                       FontWeight="{resources:Theme TransmitToControlToggleButtonFontWeight}"
-                                       Foreground="{resources:Theme TransmitToControlToggleButtonFontColor}"/>
-        </Grid>
-    </DataTemplate>
+            <Style x:Key="TraceFilterListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Style>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>   
+    
 
-    <converters:BiteArrayToHexStringConverter x:Key="BiteArrayToHexStringConverter"/>
-    <converters:RelativePathToUriConverter x:Key="RelativePathToUriConverter"/>
-    <converters:MillisecondsToHumanFriendlyStringConverter x:Key="MillisecondsToHumanFriendlyStringConverter"/>
-
-    <Style x:Key="TraceFilterListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="Visibility" Value="Collapsed" />
-    </Style>
-
-
+ 
 </ResourceDictionary>

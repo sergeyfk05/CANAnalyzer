@@ -125,6 +125,7 @@
     <Compile Include="Models\Extensions\Comparers\CanIdComparer.cs" />
     <Compile Include="Models\Extensions\DataGridHelpers.cs" />
     <Compile Include="Models\Extensions\Extensions.cs" />
+    <Compile Include="Models\Extensions\ScrollIntoViewBehavior.cs" />
     <Compile Include="Models\States\RecieveState.cs" />
     <Compile Include="Models\States\TransmitState.cs" />
     <Compile Include="Models\TraceTransmiter.cs" />
@@ -214,6 +215,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TransmitFilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonStyles\CustomComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonStyles\TransmitToComboBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

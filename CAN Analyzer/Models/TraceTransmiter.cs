@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,7 +17,7 @@ namespace CANAnalyzer.Models
 {
     public class TraceTransmiter
     {
-        public TraceTransmiter(int timerAccuracy = 2)
+        public TraceTransmiter(int timerAccuracy = 10)
         {
             _timeAccuracy = timerAccuracy;
             Status = TraceTransmiterStatus.Reseted;
@@ -32,17 +36,16 @@ namespace CANAnalyzer.Models
         {
             if (Status == TraceTransmiterStatus.Working)
             {
-                ElapsedMilliseconds += 100;
+                ElapsedMilliseconds += _timeAccuracy;
+
+                bool isEnd = false;
 
                 do
                 {
-                    if(_enumerator.Current == null)
+                    if (_enumerator.Current == null)
                     {
-                        while(_enumerator.MoveNext())
-                        {
-                            if (_enumerator.Current != null)
-                                break;
-                        }
+                        isEnd =  !_enumerator.MoveNext();
+                        continue;
                     }
 
                     if (ElapsedMilliseconds >= (int)(_enumerator.Current.Time * 1000))
@@ -55,6 +58,7 @@ namespace CANAnalyzer.Models
                             Payload = _enumerator.Current.Payload
                         });
                         CurrentIndex++;
+                        isEnd = !_enumerator.MoveNext();
                     }
                     else
                     {
@@ -62,7 +66,13 @@ namespace CANAnalyzer.Models
                     }
 
 
-                } while (_enumerator.MoveNext());
+                } while (!isEnd);
+
+                if(isEnd)
+                {
+                    Stop();
+                }
+
             }
         }
 
@@ -110,6 +120,7 @@ namespace CANAnalyzer.Models
                     return;
 
                 _enumerator = _source.GetEnumerator();
+                SetCurrentItemIndex(0);
             }
         }
         private IEnumerable<TraceModel> _source;
@@ -167,25 +178,14 @@ namespace CANAnalyzer.Models
             if (_enumerator == null)
                 throw new ArgumentException("Need to set the Source propery first");
 
-
-            if (Status == TraceTransmiterStatus.Reseted || Status == TraceTransmiterStatus.Undefined)
-            {
-                ElapsedMilliseconds = (int)(Source.First().Time * 1000);
-                _enumerator.Reset();
-                _timer.Start();
-                Status = TraceTransmiterStatus.Working;
-            }
-
-            if(Status == TraceTransmiterStatus.Paused)
-            {
-                _timer.Start();
-                Status = TraceTransmiterStatus.Working;
-            }
+            _timer.Start();
+            Status = TraceTransmiterStatus.Working;
         }
         public void Stop()
         {
             _timer.Stop();
             Status = TraceTransmiterStatus.Reseted;
+            SetCurrentItemIndex(0);
         }
         public void Pause()
         {

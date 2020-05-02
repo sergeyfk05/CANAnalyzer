@@ -21,7 +21,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             if (!File.Exists(TargetFile))
                 throw new ArgumentException("TargetFile does not exist.");
-            
+
             await context.SaveChangesAsync();
         }
 
@@ -45,8 +45,17 @@ namespace CANAnalyzer.Models.DataTypesProviders
         }
         private string _targetFile;
 
-        private void TargetFileChanged()
+        private async void TargetFileChanged()
         {
+            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={TargetFile}"))
+            {
+                dbConnection.Open();
+                string sql = "DELETE FROM CanHeaders WHERE((SELECT count(*) from Traces Where Traces.CanHeaderId = CanHeaders.Id) = 0); ";
+
+                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                await command.ExecuteNonQueryAsync();
+            }
+
             context = new TraceContext(TargetFile);
         }
 
@@ -118,7 +127,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
             var result = new SQLiteTraceDataTypeProvider();
             result.TargetFile = path;
 
-            if(canHeaders != null)
+            if (canHeaders != null)
                 result.AddRange(canHeaders);
 
             if (traces != null)
@@ -164,21 +173,66 @@ namespace CANAnalyzer.Models.DataTypesProviders
             return result;
         }
 
-        public void Add(TraceModel entity) => context?.Traces.Add(entity);
+        public void Add(TraceModel entity)
+        {
+            lock (context)
+            {
+                context?.Traces.Add(entity);
+            }
+        }
         public void Add(CanHeaderModel entity)
         {
-            context?.CanHeaders.Add(entity);
+            lock (context)
+            {
+                context?.CanHeaders.Add(entity);
+            }
         }
 
-        public void Remove(TraceModel entity) => context?.Traces.Remove(entity);
-        public void Remove(CanHeaderModel entity) => context?.CanHeaders.Remove(entity);
+        public void Remove(TraceModel entity)
+        {
+            lock (context)
+            {
+                context?.Traces.Remove(entity);
+            }
+        }
+        public void Remove(CanHeaderModel entity)
+        {
+            lock (context)
+            {
+                context?.CanHeaders.Remove(entity);
+            }
+        }
 
 
-        public void AddRange(IEnumerable<TraceModel> entities) => context?.Traces.AddRange(entities);
-        public void AddRange(IEnumerable<CanHeaderModel> entities) => context?.CanHeaders.AddRange(entities);
+        public void AddRange(IEnumerable<TraceModel> entities)
+        {
+            lock (context)
+            {
+                context?.Traces.AddRange(entities);
+            }
+        }
+        public void AddRange(IEnumerable<CanHeaderModel> entities)
+        {
+            lock (context)
+            {
+                context?.CanHeaders.AddRange(entities);
+            }
+        }
 
-        public void RemoveRange(IEnumerable<TraceModel> entities) => context?.Traces.RemoveRange(entities);
-        public void RemoveRange(IEnumerable<CanHeaderModel> entities) => context?.CanHeaders.RemoveRange(entities);
+        public void RemoveRange(IEnumerable<TraceModel> entities)
+        {
+            lock (context)
+            {
+                context?.Traces.RemoveRange(entities);
+            }
+        }
+        public void RemoveRange(IEnumerable<CanHeaderModel> entities)
+        {
+            lock (context)
+            {
+                context?.CanHeaders.RemoveRange(entities);
+            }
+        }
 
         public void Dispose()
         {
