@@ -8,13 +8,22 @@
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:AppSettingPageVM/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <ResourceDictionary Source="../Resources/CommonStyles/CommonStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+
+                <ResourceDictionary>
+                    <system:Double x:Key="StandartControlHeight">26</system:Double>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -54,7 +63,8 @@
                   VerticalAlignment="Center"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Languages}"
-                  SelectedItem="{Binding CurrentLanguage}"/>
+                  SelectedItem="{Binding CurrentLanguage}"
+                        Height="{DynamicResource StandartControlHeight}"/>
                 </GroupBox>
 
                 <GroupBox Grid.Column="2" Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5">
@@ -63,7 +73,8 @@
                   VerticalAlignment="Center"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Themes}"
-                  SelectedItem="{Binding CurrentTheme}"/>
+                  SelectedItem="{Binding CurrentTheme}"
+                        Height="{DynamicResource StandartControlHeight}"/>
                 </GroupBox>
             </Grid>
 
@@ -87,7 +98,8 @@
                               HorizontalAlignment="Stretch"
                               DockPanel.Dock="Left"
                               ItemsSource="{Binding Devices}"
-                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                              SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"
+                                  Height="{DynamicResource StandartControlHeight}">
 
                             <ComboBox.Style>
                                 <Style TargetType="ComboBox" BasedOn="{StaticResource CustomComboBoxStyle}">
@@ -106,7 +118,7 @@
                             </i:Interaction.Triggers>
                         </ComboBox>
 
-                        <Button Grid.Column="2" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0" Height="{Binding ElementName=SelectDeviceComboBox, Path=Height}">
+                        <Button Grid.Column="2" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0" Height="{DynamicResource StandartControlHeight}">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Style.Triggers>
@@ -121,12 +133,12 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        
+
                     </Grid>
                 </GroupBox>
 
 
-                <Button Grid.Column="2" VerticalAlignment="Center" Height="22" Padding="5 0 5 0" Margin="0 10.5 0 0" 
+                <Button Grid.Column="2" VerticalAlignment="Center" Padding="5 0 5 0" Margin="0 10.5 0 0" Height="{DynamicResource StandartControlHeight}"
                     Content="{resources:Language #AppSettingsPageAddProxyChannel}" Command="{Binding AddProxyCommand}">
                     <Button.Style>
                         <Style>
@@ -157,11 +169,13 @@
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
+                                        
+
 
                                         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch">
                                             <TextBlock Text="{resources:Language #AppSettingsPageSelectBitrateLabel}"/>
-                                            <Grid Height="22" HorizontalAlignment="Stretch">
-                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding BitrateText}">
+                                            <Grid Height="{DynamicResource StandartControlHeight}" HorizontalAlignment="Stretch">
+                                                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding BitrateText}" VerticalContentAlignment="Center">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="PreviewTextInput" >
                                                             <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
@@ -182,7 +196,7 @@
                                             </StackPanel.Style>
                                         </StackPanel>
 
-                                        <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" VerticalAlignment="Bottom" Margin="10 0 0 3">
+                                        <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" VerticalAlignment="Bottom" VerticalContentAlignment="Center">
                                             <CheckBox.Style>
                                                 <Style>
                                                     <Style.Triggers>
@@ -194,7 +208,7 @@
                                             </CheckBox.Style>
                                         </CheckBox>
 
-                                        <Button Grid.Column="2" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ChannelConnectCommand}">
+                                        <Button Grid.Column="2" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" Command="{Binding ChannelConnectCommand}">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Content" Value="{resources:Language #AppSettingsPageOpenChannel}"/>
@@ -231,7 +245,7 @@
                                 <DataTemplate>
                                     <Expander Margin="0 0 0 10">
                                         <Expander.Header>
-                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="22"/>
+                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"/>
                                         </Expander.Header>
                                         <Grid Margin="25 0 0 0">
 
@@ -248,13 +262,13 @@
 
                                             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Stretch">
                                                 <TextBlock Text="{resources:Language #AppSettingsPageProxyFilePathLabel}"/>
-                                                <Grid Height="22" HorizontalAlignment="Stretch">
-                                                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path, Mode=OneWay}"/>
+                                                <Grid Height="{DynamicResource StandartControlHeight}" HorizontalAlignment="Stretch">
+                                                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path, Mode=OneWay}" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"/>
                                                 </Grid>
                                             </StackPanel>
 
-                                            <ComboBox Grid.Row="2" Grid.Column="0" Height="22" VerticalAlignment="Bottom" 
-                                                      HorizontalAlignment="Stretch" 
+                                            <ComboBox Grid.Row="2" Grid.Column="0"
+                                                      HorizontalAlignment="Stretch" Height="{DynamicResource StandartControlHeight}"
                                                       ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChannelsData}" 
                                                       SelectedItem="{Binding OwnerChannel}" DisplayMemberPath="Name">
 
@@ -270,7 +284,7 @@
                                                 </ComboBox.Style>
                                             </ComboBox>
 
-                                            <Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding ProxyOpenCommand}">
+                                            <Button Grid.Row="2" Grid.Column="1"  Padding="5 0 5 0" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" Command="{Binding ProxyOpenCommand}">
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Setter Property="Content" Value="{resources:Language #AppSettingsPageOpenChannel}"/>
@@ -283,7 +297,7 @@
                                                 </Button.Style>
                                             </Button>
 
-                                            <Button Grid.Row="2" Grid.Column="2" Content="{resources:Language #AppSettingsPageDeleteProxyChannel}" VerticalAlignment="Bottom" Padding="5 0 5 0" Margin="10 0 0 0" Height="22" Command="{Binding RemoveProxyCommand}"/>
+                                            <Button Grid.Row="2" Grid.Column="2" Content="{resources:Language #AppSettingsPageDeleteProxyChannel}" Padding="5 0 5 0" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" Command="{Binding RemoveProxyCommand}"/>
                                         </Grid>
                                     </Expander>
                                 </DataTemplate>
@@ -302,5 +316,5 @@
         </ScrollViewer>
 
     </Grid>
-    
+
 </UserControl>
