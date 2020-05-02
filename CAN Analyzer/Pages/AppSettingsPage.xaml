@@ -49,7 +49,8 @@
                 </Grid.ColumnDefinitions>
 
                 <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectLanguage}" Padding="5">
-                    <ComboBox
+                    <ComboBox 
+                        Style="{StaticResource CustomComboBoxStyle}"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Languages}"
@@ -58,6 +59,7 @@
 
                 <GroupBox Grid.Column="2" Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5">
                     <ComboBox
+                        Style="{StaticResource CustomComboBoxStyle}"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Themes}"
@@ -80,14 +82,15 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <ComboBox Grid.Column="0" VerticalAlignment="Center"
+                        <ComboBox x:Name="SelectDeviceComboBox" 
+                            Grid.Column="0" VerticalAlignment="Center"
                               HorizontalAlignment="Stretch"
                               DockPanel.Dock="Left"
                               ItemsSource="{Binding Devices}"
                               SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
 
                             <ComboBox.Style>
-                                <Style>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource CustomComboBoxStyle}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsConnected}" Value="True">
                                             <Setter Property="Control.IsEnabled" Value="False"/>
@@ -103,7 +106,7 @@
                             </i:Interaction.Triggers>
                         </ComboBox>
 
-                        <Button Grid.Column="2" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0">
+                        <Button Grid.Column="2" Command="{Binding DeviceConnectCommand}" Padding="5 0 5 0" Height="{Binding ElementName=SelectDeviceComboBox, Path=Height}">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Style.Triggers>
@@ -250,10 +253,13 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <ComboBox Grid.Row="2" Grid.Column="0" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChannelsData}" SelectedItem="{Binding OwnerChannel}" DisplayMemberPath="Name">
+                                            <ComboBox Grid.Row="2" Grid.Column="0" Height="22" VerticalAlignment="Bottom" 
+                                                      HorizontalAlignment="Stretch" 
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChannelsData}" 
+                                                      SelectedItem="{Binding OwnerChannel}" DisplayMemberPath="Name">
 
                                                 <ComboBox.Style>
-                                                    <Style>
+                                                    <Style TargetType="ComboBox" BasedOn="{StaticResource CustomComboBoxStyle}">
                                                         <Setter Property="Control.IsEnabled" Value="True"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsOpen}" Value="True">
