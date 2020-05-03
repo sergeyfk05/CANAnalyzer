@@ -101,8 +101,27 @@ namespace CANAnalyzer.Resources.UIControls
             if(sender is TextBox tb)
             {
                 tb.Text = tb.Text.TrimStart('0');
-                UInt64 newValue = String.IsNullOrEmpty(tb.Text) ? 0 : Convert.ToUInt64(tb.Text, 16);
-                if ((MaxValue != 0) && (newValue > MaxValue))
+                try
+                {
+                    UInt64 newValue = String.IsNullOrEmpty(tb.Text) ? 0 : Convert.ToUInt64(tb.Text, 16);
+                    if ((MaxValue != 0) && (newValue > MaxValue))
+                    {
+                        HandlingOnValueChanged = false;
+                        this.Value = MaxValue;
+                        tb.Text = MaxValue.ToString("X");
+                        tb.CaretIndex = tb.Text.Length;
+                        SystemSounds.Beep.Play();
+                    }
+                    else
+                    {
+                        HandlingOnValueChanged = false;
+                        this.Value = newValue;
+                        int pos = tb.CaretIndex;
+                        tb.Text = tb.Text.ToUpper();
+                        tb.CaretIndex = pos;
+                    }
+                }
+                catch
                 {
                     HandlingOnValueChanged = false;
                     this.Value = MaxValue;
@@ -110,15 +129,8 @@ namespace CANAnalyzer.Resources.UIControls
                     tb.CaretIndex = tb.Text.Length;
                     SystemSounds.Beep.Play();
                 }
-                else
-                {
-                    HandlingOnValueChanged = false;
-                    this.Value = newValue;
-                    int pos = tb.CaretIndex;
-                    tb.Text = tb.Text.ToUpper();
-                    tb.CaretIndex = pos;
-                }
             }
         }
+
     }
 }

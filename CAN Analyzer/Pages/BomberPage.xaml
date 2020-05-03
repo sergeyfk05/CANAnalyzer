@@ -144,7 +144,7 @@
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom">
                 <TextBlock Text="msg per step"/>
-                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <controls:NumericTextBox MaxValue="100" Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom">

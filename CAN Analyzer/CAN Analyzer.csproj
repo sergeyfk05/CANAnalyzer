@@ -179,6 +179,9 @@
     <Compile Include="Resources\UIControls\HexTextBox.xaml.cs">
       <DependentUpon>HexTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UIControls\NumericTextBox.xaml.cs">
+      <DependentUpon>NumericTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\AppSettingPageVM.cs" />
     <Compile Include="VM\BaseClosableVM.cs" />
@@ -237,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UIControls\HexTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UIControls\NumericTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
