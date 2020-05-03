@@ -6,11 +6,155 @@
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
              xmlns:controls="clr-namespace:CANAnalyzer.Resources.UIControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <controls:HexTextBox MaxValue="256"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+
+
+                <ResourceDictionary>
+                    <system:Double x:Key="StandartControlHeight">26</system:Double>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" 
+                   Height="36"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Stretch">
+
+
+            <Border Background="Aqua"
+                    DockPanel.Dock="Left"
+                    Height="36"
+                    CornerRadius="4"
+                    BorderThickness="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <DockPanel DockPanel.Dock="Left"
+                           Height="30"
+                           VerticalAlignment="Center">
+
+
+                    <Button x:Name="closeButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding ClosePageCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                </DockPanel>
+
+            </Border>
+
+
+
+            <ComboBox x:Name="TransmiToComboBox" 
+                      ItemsSource="{Binding TransmitToItems}"
+                      Style="{StaticResource TransmitToComboBoxStyle}"
+                          Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
+
+            </ComboBox>
+
+            <!--This TextBlock need for fix ComboBox dockpanel's position-->
+            <TextBlock Width="0" DockPanel.Dock="Right"/>
+
+        </DockPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="0" VerticalAlignment="Bottom">
+                <TextBlock Text="ID:"/>
+                <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
+                    <controls:HexTextBox.Style>
+                        <Style TargetType="controls:HexTextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsExtId}" Value="True">
+                                    <Setter Property="MaxValue" Value="0x1FFFFFFF"/>
+                                    <Setter Property="Width" Value="55"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsExtId}" Value="False">
+                                    <Setter Property="MaxValue" Value="0x7FF"/>
+                                    <Setter Property="Width" Value="25"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:HexTextBox.Style>
+                </controls:HexTextBox>
+            </StackPanel>
+            <CheckBox Content="isExtId" Grid.Row="5" Grid.ColumnSpan="5" IsChecked="{Binding IsExtId}"/>
+
+
+            <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Bottom">
+                <TextBlock Text="DLC"/>
+                <controls:HexTextBox MaxValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom">
+                <TextBlock Text="increment"/>
+                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Increment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom">
+                <TextBlock Text="value"/>
+                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom">
+                <TextBlock Text="msg per step"/>
+                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom">
+                <TextBlock Text="period"/>
+                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="8" VerticalAlignment="Bottom">
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </UserControl>

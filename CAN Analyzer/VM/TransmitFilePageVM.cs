@@ -163,23 +163,6 @@ namespace CANAnalyzer.VM
 
         #region commands
 
-        private RelayCommandWithParameter<ComboBox> _transmitToComboBoxSelected;
-        public RelayCommandWithParameter<ComboBox> TransmitToComboBoxSelected
-        {
-            get
-            {
-                if (_transmitToComboBoxSelected == null)
-                    _transmitToComboBoxSelected = new RelayCommandWithParameter<ComboBox>(this.TransmitToComboBoxSelected_Execute);
-
-                return _transmitToComboBoxSelected;
-            }
-        }
-        private void TransmitToComboBoxSelected_Execute(ComboBox arg)
-        {
-            arg.SelectedIndex = 0;
-        }       
-
-
         private RelayCommandAsync _openFileCommand;
         public RelayCommandAsync OpenFileCommand
         {

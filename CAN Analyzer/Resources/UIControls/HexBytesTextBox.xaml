@@ -19,7 +19,7 @@
     
     <UserControl.Template>
         <ControlTemplate TargetType="local:HexBytesTextBox">
-            <TextBox Text="{TemplateBinding RealText}" PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown" SelectionChanged="TextBox_SelectionChanged" ContextMenu="{StaticResource emptyContextMenu}" 
+            <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RealText, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown" SelectionChanged="TextBox_SelectionChanged" ContextMenu="{StaticResource emptyContextMenu}" 
                      Width="{TemplateBinding Width}" MinWidth="{TemplateBinding MinWidth}" MaxWidth="{TemplateBinding MaxWidth}" 
                      Height="{TemplateBinding Height}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxHeight}"
                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"

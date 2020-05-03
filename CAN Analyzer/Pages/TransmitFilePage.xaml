@@ -154,18 +154,6 @@
                       ItemsSource="{Binding TransmitToItems}"
                           Style="{StaticResource TransmitToComboBoxStyle}"
                           Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
-
-
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
-                                               CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="Loaded">
-                            <i:InvokeCommandAction Command="{Binding TransmitToComboBoxSelected}" 
-                                               CommandParameter="{Binding ElementName=TransmiToComboBox}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
                 </ComboBox>
 
                 <!--This TextBlock need for fix ComboBox dockpanel's position-->

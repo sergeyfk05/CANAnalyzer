@@ -24,13 +24,17 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <CheckBox IsChecked="{Binding IsTransmit}"
                                                   VerticalAlignment="Center"
-                                                  Margin="10 0 10 0"/>
-                                                <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"
+                                                  Margin="10 0 10 0">
+                                                    <CheckBox.Content>
+                                                        <TextBlock Text="{resources:Language KeyBinding={Binding DescriptionKey}}"
                                                    FontSize="{resources:Theme TransmitToControlFontSize}" 
                                                    FontFamily="{resources:Theme TransmitToControlFontFamily}" 
                                                    FontWeight="{resources:Theme TransmitToControlFontWeight}"
                                                    Foreground="{resources:Theme TransmitToControlFontColor}"
                                                    VerticalAlignment="Center"/>
+                                                    </CheckBox.Content>
+                                                </CheckBox>
+
                                             </StackPanel>
                                         </Border>
                                         <ControlTemplate.Triggers>

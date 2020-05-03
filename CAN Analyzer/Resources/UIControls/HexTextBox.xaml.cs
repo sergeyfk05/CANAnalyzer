@@ -28,15 +28,17 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
 
-        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(HexTextBox), new PropertyMetadata(""));
+
+        public string RealText
+        {
+            get { return (string)GetValue(RealTextProperty); }
+            set { SetValue(RealTextProperty, value); }
+        }
+        public static readonly DependencyProperty RealTextProperty =
+            DependencyProperty.Register("RealText", typeof(string), typeof(HexTextBox), new PropertyMetadata(""));
+
+
 
 
 
@@ -47,9 +49,20 @@ namespace CANAnalyzer.Resources.UIControls
             set { SetValue(MaxValueProperty, value); }
         }
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexTextBox), new PropertyMetadata((UInt64)0));
+            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexTextBox), new UIPropertyMetadata((UInt64)0, OnMaxValueChanged));
 
-
+        private static void OnMaxValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if(d is HexTextBox control)
+            {
+                if ((control.MaxValue != 0) && (control.Value > control.MaxValue))
+                {
+                    control.HandlingOnValueChanged = true;
+                    control.Value = control.MaxValue;
+                }
+                    
+            }
+        }
 
         public UInt64 Value
         {
@@ -66,7 +79,7 @@ namespace CANAnalyzer.Resources.UIControls
             {
                 if(control.HandlingOnValueChanged)
                 {
-                    control.Text = control.MaxValue.ToString("X");
+                    control.RealText = control.Value.ToString("X");
                 }
 
                 control.HandlingOnValueChanged = true;
@@ -87,17 +100,20 @@ namespace CANAnalyzer.Resources.UIControls
         {
             if(sender is TextBox tb)
             {
-                UInt64 newValue = Convert.ToUInt64(tb.Text, 16);
+                tb.Text = tb.Text.TrimStart('0');
+                UInt64 newValue = String.IsNullOrEmpty(tb.Text) ? 0 : Convert.ToUInt64(tb.Text, 16);
                 if ((MaxValue != 0) && (newValue > MaxValue))
                 {
                     HandlingOnValueChanged = false;
-                    this.Value = newValue;
+                    this.Value = MaxValue;
                     tb.Text = MaxValue.ToString("X");
                     tb.CaretIndex = tb.Text.Length;
                     SystemSounds.Beep.Play();
                 }
                 else
                 {
+                    HandlingOnValueChanged = false;
+                    this.Value = newValue;
                     int pos = tb.CaretIndex;
                     tb.Text = tb.Text.ToUpper();
                     tb.CaretIndex = pos;
