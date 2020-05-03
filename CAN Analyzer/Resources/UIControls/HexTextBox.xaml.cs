@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -169,6 +170,14 @@ namespace CANAnalyzer.Resources.UIControls
                         tb.Text = newStr;
                         tb.CaretIndex = pos;
                     }
+                    else
+                    {
+                        SystemSounds.Beep.Play();
+                    }
+                }
+                else
+                {
+                    SystemSounds.Beep.Play();
                 }
             }
 
