@@ -30,12 +30,12 @@ namespace CANAnalyzer.Models.ViewData
 
             if(IsOpen)
             {
-                BitrateText = this.Channel.Bitrate.ToString();
+                Bitrate = (uint)this.Channel.Bitrate;
                 IsListenOnlyViewable = this.Channel.IsListenOnly;
             }
             else
             {
-                BitrateText = "500";
+                Bitrate = 500;
                 IsListenOnlyViewable = true;
             }
 
@@ -52,19 +52,19 @@ namespace CANAnalyzer.Models.ViewData
             RaisePropertyChanged("IsOpen");
         }
 
-        public string BitrateText
+        public uint Bitrate
         {
-            get { return _bitrateText; }
+            get { return _bitrate; }
             set
             {
-                if (value == _bitrateText)
+                if (value == _bitrate)
                     return;
 
-                _bitrateText = value;
+                _bitrate = value;
                 RaisePropertyChanged();
             }
         }
-        private string _bitrateText;
+        private uint _bitrate;
 
         public bool IsListenOnlyViewable
         {
@@ -134,7 +134,7 @@ namespace CANAnalyzer.Models.ViewData
             }
             else
             {
-                Channel?.Open(Convert.ToInt32(BitrateText), IsListenOnlyViewable);
+                Channel?.Open((int)Bitrate, IsListenOnlyViewable);
             }
         }
 
