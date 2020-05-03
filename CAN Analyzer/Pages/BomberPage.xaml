@@ -11,6 +11,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <controls:HexBytesTextBox MaxValue="100"/>
+        <controls:HexTextBox MaxValue="256"/>
     </Grid>
 </UserControl>
