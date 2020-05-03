@@ -46,10 +46,10 @@ namespace CANAnalyzer.Resources.UIControls
         public static readonly DependencyProperty DataProperty =
             DependencyProperty.Register("Data", typeof(byte[]), typeof(HexTextBox), new UIPropertyMetadata(new byte[8], OnDataChanged));
 
-        private bool OnDataChangedHandlingIsEnabled = false; 
+        private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if(d is HexTextBox control)
+            if (d is HexTextBox control)
             {
                 if (control.OnDataChangedHandlingIsEnabled)
                     control.RealText = RenderText(control.Data);
@@ -57,6 +57,22 @@ namespace CANAnalyzer.Resources.UIControls
                 control.OnDataChangedHandlingIsEnabled = true;
             }
         }
+
+
+
+        public UInt64 MaxValue
+        {
+            get { return (UInt64)GetValue(MaxValueProperty); }
+            set { SetValue(MaxValueProperty, value); }
+        }
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexTextBox), new PropertyMetadata((UInt64)0));
+
+
+
+
+
+
 
         private static string RenderText(byte[] data)
         {
@@ -79,9 +95,9 @@ namespace CANAnalyzer.Resources.UIControls
             string[] bytes = str.Split(' ');
             byte[] result = new byte[bytes.Length];
 
-            for(int i = 0; i < bytes.Length; i++)
+            for (int i = 0; i < bytes.Length; i++)
             {
-                if(bytes[i].Length != 2)
+                if (bytes[i].Length != 2)
                     throw new ArgumentException("invalid string");
 
                 if (!Byte.TryParse(bytes[i], System.Globalization.NumberStyles.HexNumber, null, out result[i]))
@@ -93,24 +109,24 @@ namespace CANAnalyzer.Resources.UIControls
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if(sender is TextBox tb)
+            if (sender is TextBox tb)
             {
                 string prev = tb.Text;
                 int pos = tb.CaretIndex;
                 string newStr = tb.Text;
                 bool isOk = true;
 
-                foreach(char el in e.Text)
+                foreach (char el in e.Text)
                 {
                     //проверка выхода курсора за границы
-                    if(pos>=tb.Text.Length)
+                    if (pos >= tb.Text.Length)
                     {
                         isOk = false;
                         break;
                     }
 
                     //если курсор перед пробелом
-                    if((pos >= 4) && ((pos -4) % 3 == 0))
+                    if ((pos >= 4) && ((pos - 4) % 3 == 0))
                     {
                         if (el != ' ')
                         {
@@ -138,26 +154,44 @@ namespace CANAnalyzer.Resources.UIControls
                 }
 
 
-                if(isOk)
+                if (isOk)
                 {
-                    OnDataChangedHandlingIsEnabled = false;
-                    Data = StringToBytes(newStr);
+                    byte[] newData = StringToBytes(newStr);
 
-                    tb.Text = newStr;
-                    tb.CaretIndex = pos;
+                    //convert bytes to uint
+                    UInt64 value = BytesToUInt(newData);
 
+                    if (MaxValue == 0 || value <= MaxValue)
+                    {
+                        OnDataChangedHandlingIsEnabled = false;
+                        Data = StringToBytes(newStr);
+
+                        tb.Text = newStr;
+                        tb.CaretIndex = pos;
+                    }
                 }
             }
 
 
 
-            if(e.RoutedEvent !=null)
+            if (e.RoutedEvent != null)
                 e.Handled = true;
+        }
+
+        private static UInt64 BytesToUInt(byte[] source)
+        {
+            UInt64 value = 0;
+            for (int i = 0; i < source.Length; i++)
+            {
+                value |= (UInt64)source[i] << (8 * (source.Length - i - 1));
+            }
+
+            return value;
         }
 
         private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(sender is TextBox tb)
+            if (sender is TextBox tb)
             {
                 //disable opportunity to select text
                 if (tb.SelectionLength > 0)
@@ -175,7 +209,7 @@ namespace CANAnalyzer.Resources.UIControls
                 //check the caret position for logical trust position and fix it
                 if ((tb.CaretIndex >= 4) && (tb.CaretIndex - 4) % 3 == 0)
                 {
-                    if(tb.CaretIndex >= tb.Text.Length - 1)
+                    if (tb.CaretIndex >= tb.Text.Length - 1)
                     {
                         tb.CaretIndex -= 1;
                     }
@@ -191,22 +225,22 @@ namespace CANAnalyzer.Resources.UIControls
         {
             if (sender is TextBox tb)
             {
-                if(e.Key == Key.Left)
+                if (e.Key == Key.Left)
                 {
-                    if((tb.CaretIndex >=4) && ((tb.CaretIndex - 5) % 3 == 0))
+                    if ((tb.CaretIndex >= 4) && ((tb.CaretIndex - 5) % 3 == 0))
                     {
                         tb.CaretIndex -= 2;
                         e.Handled = true;
-                    }                       
+                    }
                 }
 
-                if(e.Key == Key.Right)
+                if (e.Key == Key.Right)
                 {
-                    if(tb.CaretIndex % 3 == 0)
+                    if (tb.CaretIndex % 3 == 0)
                     {
                         tb.CaretIndex += 2;
                         e.Handled = true;
-                    }                                   
+                    }
                 }
 
                 if ((e.Key == Key.Delete) || (e.Key == Key.Back))

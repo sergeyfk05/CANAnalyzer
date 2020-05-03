@@ -11,6 +11,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <controls:HexTextBox Width="200" Height="30"/>
+        <controls:HexTextBox MaxValue="0"/>
     </Grid>
 </UserControl>
