@@ -28,6 +28,19 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(HexTextBox), new PropertyMetadata(""));
+
+
+
+
         public UInt64 MaxValue
         {
             get { return (UInt64)GetValue(MaxValueProperty); }
@@ -37,6 +50,28 @@ namespace CANAnalyzer.Resources.UIControls
             DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexTextBox), new PropertyMetadata((UInt64)0));
 
 
+
+        public UInt64 Value
+        {
+            get { return (UInt64)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(UInt64), typeof(HexTextBox), new UIPropertyMetadata((UInt64)0, OnValueChanged));
+
+        private bool HandlingOnValueChanged = true;
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is HexTextBox control)
+            {
+                if(control.HandlingOnValueChanged)
+                {
+                    control.Text = control.MaxValue.ToString("X");
+                }
+
+                control.HandlingOnValueChanged = true;
+            }
+        }
 
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -52,8 +87,11 @@ namespace CANAnalyzer.Resources.UIControls
         {
             if(sender is TextBox tb)
             {
-                if((MaxValue != 0) && (Convert.ToUInt64(tb.Text, 16) > MaxValue))
+                UInt64 newValue = Convert.ToUInt64(tb.Text, 16);
+                if ((MaxValue != 0) && (newValue > MaxValue))
                 {
+                    HandlingOnValueChanged = false;
+                    this.Value = newValue;
                     tb.Text = MaxValue.ToString("X");
                     tb.CaretIndex = tb.Text.Length;
                     SystemSounds.Beep.Play();

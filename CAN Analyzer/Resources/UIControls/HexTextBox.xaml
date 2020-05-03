@@ -18,7 +18,7 @@
 
     <UserControl.Template>
         <ControlTemplate TargetType="local:HexTextBox">
-            <TextBox PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" ContextMenu="{StaticResource emptyContextMenu}" 
+            <TextBox Text="{TemplateBinding Text}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" ContextMenu="{StaticResource emptyContextMenu}" 
                      Width="{TemplateBinding Width}" MinWidth="{TemplateBinding MinWidth}" MaxWidth="{TemplateBinding MaxWidth}" 
                      Height="{TemplateBinding Height}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxHeight}"
                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
