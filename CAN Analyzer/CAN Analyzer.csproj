@@ -173,8 +173,8 @@
     <Compile Include="Resources\DynamicResources\CultureInfos\ThemeCultureInfo.cs" />
     <Compile Include="Resources\DynamicResources\Providers\XMLLanguageChangerProvider.cs" />
     <Compile Include="Resources\DynamicResources\Providers\XMLThemeChangerProvider.cs" />
-    <Compile Include="Resources\UIControls\HexTextBox.xaml.cs">
-      <DependentUpon>HexTextBox.xaml</DependentUpon>
+    <Compile Include="Resources\UIControls\HexBytesTextBox.xaml.cs">
+      <DependentUpon>HexBytesTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VM\AppSettingPageVM.cs" />
@@ -229,7 +229,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UIControls\HexTextBox.xaml">
+    <Page Include="Resources\UIControls\HexBytesTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

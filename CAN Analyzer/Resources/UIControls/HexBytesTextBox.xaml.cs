@@ -19,9 +19,9 @@ namespace CANAnalyzer.Resources.UIControls
     /// <summary>
     /// Interaction logic for HexTextBox.xaml
     /// </summary>
-    public partial class HexTextBox : UserControl
+    public partial class HexBytesTextBox : UserControl
     {
-        public HexTextBox()
+        public HexBytesTextBox()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace CANAnalyzer.Resources.UIControls
             private set { SetValue(RealTextProperty, value); }
         }
         public static readonly DependencyProperty RealTextProperty =
-            DependencyProperty.Register("RealText", typeof(string), typeof(HexTextBox), new PropertyMetadata("0x00 00 00 00 00 00 00 00"));
+            DependencyProperty.Register("RealText", typeof(string), typeof(HexBytesTextBox), new PropertyMetadata("0x00 00 00 00 00 00 00 00"));
 
 
 
@@ -45,12 +45,12 @@ namespace CANAnalyzer.Resources.UIControls
             set { SetValue(DataProperty, value); }
         }
         public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(byte[]), typeof(HexTextBox), new UIPropertyMetadata(new byte[8], OnDataChanged));
+            DependencyProperty.Register("Data", typeof(byte[]), typeof(HexBytesTextBox), new UIPropertyMetadata(new byte[8], OnDataChanged));
 
         private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is HexTextBox control)
+            if (d is HexBytesTextBox control)
             {
                 if (control.OnDataChangedHandlingIsEnabled)
                     control.RealText = RenderText(control.Data);
@@ -67,7 +67,7 @@ namespace CANAnalyzer.Resources.UIControls
             set { SetValue(MaxValueProperty, value); }
         }
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexTextBox), new PropertyMetadata((UInt64)0));
+            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexBytesTextBox), new PropertyMetadata((UInt64)0));
 
 
 
