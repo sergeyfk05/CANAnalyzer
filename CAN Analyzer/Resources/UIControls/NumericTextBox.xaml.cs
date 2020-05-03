@@ -28,6 +28,16 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
+        public uint NullStrValue
+        {
+            get { return (uint)GetValue(NullStrValueProperty); }
+            set { SetValue(NullStrValueProperty, value); }
+        }
+        public static readonly DependencyProperty NullStrValueProperty =
+            DependencyProperty.Register("NullStrValue", typeof(uint), typeof(NumericTextBox), new PropertyMetadata((uint)0));
+
+
+
         public string RealText
         {
             get { return (string)GetValue(RealTextProperty); }
@@ -98,7 +108,7 @@ namespace CANAnalyzer.Resources.UIControls
                 if(String.IsNullOrEmpty(tb.Text))
                 {
                     HandlingValueChangedCallback = false;
-                    Value = 0;
+                    Value = NullStrValue;
                     return;
                 }
 

@@ -144,12 +144,12 @@
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom">
                 <TextBlock Text="msg per step"/>
-                <controls:NumericTextBox MaxValue="100" Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <controls:NumericTextBox Value="{Binding MsgPerStep, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="1" Height="{StaticResource StandartControlHeight}" MaxValue="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom">
                 <TextBlock Text="period"/>
-                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <controls:NumericTextBox Value="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="20" Height="{StaticResource StandartControlHeight}" MaxValue="1000" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="8" VerticalAlignment="Bottom">

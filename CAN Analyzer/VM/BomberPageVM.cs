@@ -124,6 +124,34 @@ namespace CANAnalyzer.VM
         }
         private byte[] _increment = new byte[8];
 
+        public uint MsgPerStep
+        {
+            get { return _msgPerStep; }
+            set
+            {
+                if (_msgPerStep == value)
+                    return;
+
+                _msgPerStep = value;
+                RaisePropertyChanged();
+            }
+        }
+        private uint _msgPerStep = 5;
+
+        public uint Period
+        {
+            get { return _period; }
+            set
+            {
+                if (_period == value)
+                    return;
+
+                _period = value;
+                RaisePropertyChanged();
+            }
+        }
+        private uint _period = 200;
+
         private RelayCommand _closePageCommand;
         public RelayCommand ClosePageCommand
         {
