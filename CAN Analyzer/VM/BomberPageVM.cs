@@ -1,5 +1,6 @@
 ﻿using CANAnalyzer.Models;
 using CANAnalyzer.Models.Delegates;
+using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.ViewData;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Timers;
+using CANAnalyzerDevices.Devices.DeviceChannels;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace CANAnalyzer.VM
 {
@@ -18,8 +23,14 @@ namespace CANAnalyzer.VM
         {
             PropertyChanged += TransmitToSelectedChannels_PropertyChanged;
             PropertyChanged += DLC_PropertyChanged;
+            PropertyChanged += Status_PropertyChanged;
+
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
             Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
+
+            _timer.Stop();
+            _timer.AutoReset = true;
+            _timer.Elapsed += _timer_Elapsed;
         }
 
         public ObservableCollection<TransmitToViewData> TransmitToItems
@@ -50,7 +61,7 @@ namespace CANAnalyzer.VM
         }
         private TransmitToDelegate _transmitToSelectedChannels;
 
-        
+
 
         public bool IsExtId
         {
@@ -152,6 +163,22 @@ namespace CANAnalyzer.VM
         }
         private uint _period = 200;
 
+        public TransmitState Status
+        {
+            get { return _status; }
+            set
+            {
+                if (_status == value)
+                    return;
+
+                _status = value;
+                RaisePropertyChanged();
+            }
+        }
+        private TransmitState _status;
+
+
+
         private RelayCommand _closePageCommand;
         public RelayCommand ClosePageCommand
         {
@@ -172,6 +199,116 @@ namespace CANAnalyzer.VM
             }
 
         }
+
+        private RelayCommandAsync _stepForwardCommand;
+        public RelayCommandAsync StepForwardCommand
+        {
+            get
+            {
+                if (_stepForwardCommand == null)
+                    _stepForwardCommand = new RelayCommandAsync(this.StepForwardCommand_Execute, () => { return Status != TransmitState.Transmiting; });
+
+                return _stepForwardCommand;
+            }
+        }
+        private void StepForwardCommand_Execute()
+        {
+            byte[] newPayload = new byte[DLC];
+            for (int i = 0; i < Payload.Length; i++)
+            {
+                newPayload[i] = (byte)((byte)Payload[i] + (byte)Increment[i]);
+            }
+            Payload = newPayload;
+        }
+
+        private RelayCommandAsync _stepBackCommand;
+        public RelayCommandAsync StepBackCommand
+        {
+            get
+            {
+                if (_stepBackCommand == null)
+                    _stepBackCommand = new RelayCommandAsync(this.StepBackCommand_Execute, () => { return Status != TransmitState.Transmiting; });
+
+                return _stepBackCommand;
+            }
+        }
+        private void StepBackCommand_Execute()
+        {
+            byte[] newPayload = new byte[DLC];
+            for (int i = 0; i < Payload.Length; i++)
+            {
+                newPayload[i] = (byte)((byte)Payload[i] - (byte)Increment[i]);
+            }
+            Payload = newPayload;
+        }
+
+        private RelayCommandAsync _shotCommand;
+        public RelayCommandAsync ShotCommand
+        {
+            get
+            {
+                if (_shotCommand == null)
+                    _shotCommand = new RelayCommandAsync(this.ShotCommand_Execute, () => { return Status != TransmitState.Transmiting; });
+
+                return _shotCommand;
+            }
+        }
+        private void ShotCommand_Execute()
+        {
+            TransmitData data = new TransmitData()
+            {
+                CanId = (int)this.CanId,
+                IsExtId = this.IsExtId,
+                DLC = (int)this.DLC,
+                Payload = this.Payload.ToArray()
+            };
+
+            var results = new List<ValidationResult>();
+            if (!Validator.TryValidateObject(data, new ValidationContext(data), results, true))
+            {
+                foreach (var error in results)
+                {
+                    MessageBox.Show(error.ErrorMessage, "warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                if (Status == TransmitState.Transmiting)
+                    RunCommand.Execute();
+
+                return;
+            }
+
+
+            TransmitToSelectedChannels?.BeginInvoke(data, null, null);
+        }
+
+        private RelayCommandAsync _runCommand;
+        public RelayCommandAsync RunCommand
+        {
+            get
+            {
+                if (_runCommand == null)
+                    _runCommand = new RelayCommandAsync(this.RunCommand_Execute);
+
+                return _runCommand;
+            }
+        }
+        private void RunCommand_Execute()
+        {
+            if (Status == TransmitState.Transmiting)
+            {
+                Status = TransmitState.Paused;
+                _timer.Stop();
+            }
+            else
+            {
+                Status = TransmitState.Transmiting;
+                _msgPerStepComleted = 0;
+                _timer.Interval = Period;
+                _timer.Start();
+            }
+        }
+
+
 
 
         private void TransmitToSelectedChannels_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -238,8 +375,8 @@ namespace CANAnalyzer.VM
 
             if (DLC == 0)
                 return;
-            
-            if(Payload.Length >= (int)DLC)
+
+            if (Payload.Length >= (int)DLC)
             {
                 byte[] newPayload = new byte[DLC];
                 Array.Copy(Payload, Payload.Length - (int)DLC, newPayload, 0, (int)DLC);
@@ -265,8 +402,54 @@ namespace CANAnalyzer.VM
                 Increment = newIncrement;
             }
         }
+        private void Status_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "Status")
+                return;
+
+            StepForwardCommand.RaiseCanExecuteChanged();
+            StepBackCommand.RaiseCanExecuteChanged();
+            ShotCommand.RaiseCanExecuteChanged();
+            RunCommand.RaiseCanExecuteChanged();
+        }
+        private void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (_msgPerStepComleted >= MsgPerStep)
+            {
+                _msgPerStepComleted = 0;
+                StepForwardCommand_Execute();
+            }
+
+            TransmitData data = new TransmitData()
+            {
+                CanId = (int)this.CanId,
+                IsExtId = this.IsExtId,
+                DLC = (int)this.DLC,
+                Payload = this.Payload.ToArray()
+            };
+            _msgPerStepComleted++;
+
+            var results = new List<ValidationResult>();
+            if (!Validator.TryValidateObject(data, new ValidationContext(data), results, true))
+            {
+                foreach (var error in results)
+                {
+                    MessageBox.Show(error.ErrorMessage, "warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                if (Status == TransmitState.Transmiting)
+                    RunCommand.Execute();
+
+                return;
+            }
 
 
+            TransmitToSelectedChannels?.BeginInvoke(data, null, null);
+        }
+
+
+        private uint _msgPerStepComleted = 0;
+        private Timer _timer = new Timer();
         private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
     }
 }

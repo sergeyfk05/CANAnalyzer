@@ -33,7 +33,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 errors.Add(new ValidationResult("Invalid payload. Payload array length less than DLC or invalid DLC."));
 
             if(CanId < 0)
-                errors.Add(new ValidationResult("Не указано имя"));
+                errors.Add(new ValidationResult("Invalid CanId"));
 
             if (IsExtId)
             {

@@ -8,6 +8,7 @@
              xmlns:controls="clr-namespace:CANAnalyzer.Resources.UIControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
+             xmlns:states="clr-namespace:CANAnalyzer.Models.States"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -102,12 +103,14 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="0" VerticalAlignment="Bottom">
                 <TextBlock Text="ID:"/>
-                <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId}" NullStrValue="0x7ff" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
+                <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x7ff" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
                     <controls:HexTextBox.Style>
                         <Style TargetType="controls:HexTextBox">
                             <Style.Triggers>
@@ -119,17 +122,40 @@
                                     <Setter Property="MaxValue" Value="0x7FF"/>
                                     <Setter Property="Width" Value="25"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </controls:HexTextBox.Style>
                 </controls:HexTextBox>
             </StackPanel>
-            <CheckBox Content="isExtId" Grid.Row="5" Grid.ColumnSpan="5" IsChecked="{Binding IsExtId}"/>
+            <CheckBox Content="isExtId" Grid.Row="5" Grid.ColumnSpan="5" IsChecked="{Binding IsExtId}">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
 
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Bottom">
                 <TextBlock Text="DLC"/>
-                <controls:HexTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <controls:HexTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                    <controls:HexTextBox.Style>
+                        <Style TargetType="controls:HexTextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:HexTextBox.Style>
+                </controls:HexTextBox>
             </StackPanel>
             
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom">
@@ -139,21 +165,65 @@
             
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom">
                 <TextBlock Text="value"/>
-                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+                <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center">
+                    <controls:HexBytesTextBox.Style>
+                        <Style TargetType="controls:HexBytesTextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:HexBytesTextBox.Style>
+                </controls:HexBytesTextBox>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom">
                 <TextBlock Text="msg per step"/>
-                <controls:NumericTextBox Value="{Binding MsgPerStep, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="1" Height="{StaticResource StandartControlHeight}" MaxValue="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <controls:NumericTextBox Value="{Binding MsgPerStep, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="1" Height="{StaticResource StandartControlHeight}" MaxValue="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <controls:NumericTextBox.Style>
+                        <Style TargetType="controls:NumericTextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:NumericTextBox.Style>
+                </controls:NumericTextBox>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom">
                 <TextBlock Text="period"/>
-                <controls:NumericTextBox Value="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="20" Height="{StaticResource StandartControlHeight}" MaxValue="1000" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <controls:NumericTextBox Value="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="20" Height="{StaticResource StandartControlHeight}" MaxValue="1000" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                    <controls:NumericTextBox.Style>
+                        <Style TargetType="controls:NumericTextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:NumericTextBox.Style>
+                </controls:NumericTextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="8" VerticalAlignment="Bottom">
-            </StackPanel>
+            <Button Content="step +" Command="{Binding StepForwardCommand}" Padding="5" Grid.Row="0" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Content="step -" Command="{Binding StepBackCommand}" Padding="5" Grid.Row="2" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Content="shot" Command="{Binding ShotCommand}" Padding="5" Grid.Row="0" Grid.Column="10" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Command="{Binding RunCommand}" Padding="5" Grid.Row="2" Grid.Column="10" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Content" Value="run"/>
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
+                                <Setter Property="Content" Value="stop"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
         
     </Grid>
