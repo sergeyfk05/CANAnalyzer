@@ -107,7 +107,7 @@
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="0" VerticalAlignment="Bottom">
                 <TextBlock Text="ID:"/>
-                <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
+                <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId}" NullStrValue="0x7ff" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
                     <controls:HexTextBox.Style>
                         <Style TargetType="controls:HexTextBox">
                             <Style.Triggers>
@@ -129,7 +129,7 @@
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Bottom">
                 <TextBlock Text="DLC"/>
-                <controls:HexTextBox MaxValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <controls:HexTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom">

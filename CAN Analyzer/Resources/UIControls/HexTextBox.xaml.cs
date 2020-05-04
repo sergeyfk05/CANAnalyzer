@@ -41,6 +41,18 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
+        public UInt64 NullStrValue
+        {
+            get { return (UInt64)GetValue(NullStrValueProperty); }
+            set { SetValue(NullStrValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for NullStrValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NullStrValueProperty =
+            DependencyProperty.Register("NullStrValue", typeof(UInt64), typeof(HexTextBox), new PropertyMetadata((UInt64)0));
+
+
+
 
 
         public UInt64 MaxValue
@@ -132,5 +144,18 @@ namespace CANAnalyzer.Resources.UIControls
             }
         }
 
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox tb)
+            {
+                if (string.IsNullOrEmpty(tb.Text))
+                {
+                    HandlingOnValueChanged = false;
+                    Value = NullStrValue;
+                    tb.Text = NullStrValue.ToString("X");
+                    tb.CaretIndex = tb.Text.Length;
+                }
+            }
+        }
     }
 }

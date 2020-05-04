@@ -134,5 +134,19 @@ namespace CANAnalyzer.Resources.UIControls
                 }
             }
         }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(sender is TextBox tb)
+            {
+                if(string.IsNullOrEmpty(tb.Text))
+                {
+                    HandlingValueChangedCallback = false;
+                    Value = NullStrValue;
+                    tb.Text = NullStrValue.ToString();
+                    tb.CaretIndex = tb.Text.Length;
+                }
+            }
+        }
     }
 }
