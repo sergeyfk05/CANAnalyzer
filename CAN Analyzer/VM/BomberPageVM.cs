@@ -107,7 +107,7 @@ namespace CANAnalyzer.VM
         private UInt64 _canId = UInt64.MaxValue;
 
 
-        public BindingList<byte> Payload
+        public ObservableCollection<byte> Payload
         {
             get { return _payload; }
             set
@@ -119,9 +119,9 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private BindingList<byte> _payload = CreateEmptyBindingList(8);
+        private ObservableCollection<byte> _payload = CreateEmptyBindingList(8);
 
-        public BindingList<byte> Increment
+        public ObservableCollection<byte> Increment
         {
             get { return _increment; }
             set
@@ -133,7 +133,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private BindingList<byte> _increment = CreateEmptyBindingList(8);
+        private ObservableCollection<byte> _increment = CreateEmptyBindingList(8);
 
         public uint MsgPerStep
         {
@@ -215,15 +215,8 @@ namespace CANAnalyzer.VM
         {
             for (int i = 0; i < Payload.Count; i++)
             {
-                Payload[i] += Increment[i];
+                Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] += Increment[i]; }));
             }
-
-            //ObservableCollection<byte> newPayload = new ObservableCollection<byte>(new byte[DLC]);
-            //for (int i = 0; i < Payload.Count; i++)
-            //{
-            //    newPayload[i] = (byte)((byte)Payload[i] + (byte)Increment[i]);
-            //}
-            //Payload = newPayload;
         }
 
         private RelayCommandAsync _stepBackCommand;
@@ -239,12 +232,10 @@ namespace CANAnalyzer.VM
         }
         private void StepBackCommand_Execute()
         {
-            BindingList<byte> newPayload = CreateEmptyBindingList((int)DLC);
             for (int i = 0; i < Payload.Count; i++)
             {
-                newPayload[i] = (byte)((byte)Payload[i] - (byte)Increment[i]);
+                Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] -= Increment[i]; }));
             }
-            Payload = newPayload;
         }
 
         private RelayCommandAsync _shotCommand;
@@ -381,31 +372,35 @@ namespace CANAnalyzer.VM
             if (DLC == 0)
                 return;
 
-            //if (Payload.Length >= (int)DLC)
-            //{
-            //    byte[] newPayload = new byte[DLC];
-            //    Array.Copy(Payload, Payload.Length - (int)DLC, newPayload, 0, (int)DLC);
-            //    Payload = newPayload;
-            //}
-            //else
-            //{
-            //    byte[] newPayload = new byte[DLC];
-            //    Array.Copy(Payload, 0, newPayload, (int)DLC - Payload.Length, Payload.Length);
-            //    Payload = newPayload;
-            //}
+            if (Payload.Count >= (int)DLC)
+            {
+                while (Payload.Count > (int)DLC)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Payload.RemoveAt(0); }));
+                }
+            }
+            else
+            {
+                while (Payload.Count < (int)DLC)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Payload.Insert(0, 0); }));
+                }
+            }
 
-            //if (Increment.Length >= (int)DLC)
-            //{
-            //    byte[] newIncrement = new byte[DLC];
-            //    Array.Copy(Increment, Increment.Length - (int)DLC, newIncrement, 0, (int)DLC);
-            //    Increment = newIncrement;
-            //}
-            //else
-            //{
-            //    byte[] newIncrement = new byte[DLC];
-            //    Array.Copy(Increment, 0, newIncrement, (int)DLC - Increment.Length, Increment.Length);
-            //    Increment = newIncrement;
-            //}
+            if (Increment.Count >= (int)DLC)
+            {
+                while (Increment.Count > (int)DLC)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Increment.RemoveAt(0); }));
+                }
+            }
+            else
+            {
+                while (Increment.Count < (int)DLC)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Increment.Insert(0, 0); }));
+                }
+            }
         }
         private void Status_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -458,9 +453,9 @@ namespace CANAnalyzer.VM
         private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
 
 
-        private static BindingList<byte> CreateEmptyBindingList(int c)
+        private static ObservableCollection<byte> CreateEmptyBindingList(int c)
         {
-            BindingList<byte> result = new BindingList<byte>();
+            ObservableCollection<byte> result = new ObservableCollection<byte>();
             for (uint i = 0; i < c; i++)
             {
                 result.Add(0);

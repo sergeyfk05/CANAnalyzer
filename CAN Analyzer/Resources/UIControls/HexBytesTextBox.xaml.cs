@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -25,14 +26,14 @@ namespace CANAnalyzer.Resources.UIControls
     {
         public HexBytesTextBox()
         {
-            DataCollectionChangedHandler = (object s, ListChangedEventArgs e) => { Data_CollectionChanged(this, s, e); };
+            DataCollectionChangedHandler = (object s, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => { Data_CollectionChanged(this, s, e); };
             InitializeComponent();
 
         }
 
-        private static BindingList<byte> CreateEmpty(uint c)
+        private static ObservableCollection<byte> CreateEmpty(uint c)
         {
-            BindingList<byte> result = new BindingList<byte>();
+            ObservableCollection<byte> result = new ObservableCollection<byte>();
             for(uint i = 0;i<c;i++)
             {
                 result.Add(0);
@@ -52,14 +53,14 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
-        private static ListChangedEventHandler DataCollectionChangedHandler;
-        public BindingList<byte> Data
+        private System.Collections.Specialized.NotifyCollectionChangedEventHandler DataCollectionChangedHandler;
+        public ObservableCollection<byte> Data
         {
-            get { return (BindingList<byte>)GetValue(DataProperty); }
+            get { return (ObservableCollection<byte>)GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
         public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(BindingList<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(CreateEmpty(8), OnDataChanged));
+            DependencyProperty.Register("Data", typeof(ObservableCollection<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(CreateEmpty(8), OnDataChanged));
 
         private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -69,26 +70,17 @@ namespace CANAnalyzer.Resources.UIControls
                 control.RealText = RenderText(control.Data);
 
                 if (e.OldValue != null)
-                    ((BindingList<byte>)e.OldValue).ListChanged -= DataCollectionChangedHandler;
+                    ((ObservableCollection<byte>)e.OldValue).CollectionChanged -= control.DataCollectionChangedHandler;
 
-                control.Data.ListChanged += DataCollectionChangedHandler;
+                control.Data.CollectionChanged += control.DataCollectionChangedHandler;
             }
         }
 
-        private static void Data_CollectionChanged(HexBytesTextBox owner, object sender, ListChangedEventArgs e)
+        private static void Data_CollectionChanged(HexBytesTextBox owner, object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            //if (!(sender is BindingList<byte> collection && owner.Data == collection))
-            //    return;
-
-            if(sender is BindingList<byte> collection)
-            {
-                if (owner.Data != collection)
-                    return;
-            }
-            else
-            {
+            if (!(sender is ObservableCollection<byte> collection && owner.Data == collection))
                 return;
-            }
+
 
             if (owner.OnDataChangedHandlingIsEnabled)
                 owner.RealText = RenderText(owner.Data);
@@ -112,7 +104,7 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
-        private static string RenderText(BindingList<byte> data)
+        private static string RenderText(ObservableCollection<byte> data)
         {
             string result = "0x";
             foreach (var b in data)
@@ -124,14 +116,14 @@ namespace CANAnalyzer.Resources.UIControls
             return result.Trim();
         }
 
-        private static BindingList<byte> StringToBytes(string str)
+        private static ObservableCollection<byte> StringToBytes(string str)
         {
             if (str.Substring(0, 2) != "0x")
                 throw new ArgumentException("invalid string");
 
             str = str.Remove(0, 2);
             string[] bytes = str.Split(' ');
-            BindingList<byte> result = CreateEmpty((uint)bytes.Length);
+            ObservableCollection<byte> result = CreateEmpty((uint)bytes.Length);
 
             for (int i = 0; i < bytes.Length; i++)
             {
@@ -197,7 +189,7 @@ namespace CANAnalyzer.Resources.UIControls
 
                 if (isOk)
                 {
-                    BindingList<byte> newData = StringToBytes(newStr);
+                    ObservableCollection<byte> newData = StringToBytes(newStr);
 
                     //convert bytes to uint
                     UInt64 value = BytesToUInt(newData);
@@ -227,7 +219,7 @@ namespace CANAnalyzer.Resources.UIControls
                 e.Handled = true;
         }
 
-        private static UInt64 BytesToUInt(BindingList<byte> source)
+        private static UInt64 BytesToUInt(ObservableCollection<byte> source)
         {
             UInt64 value = 0;
             for (int i = 0; i < source.Count; i++)
