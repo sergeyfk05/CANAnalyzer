@@ -218,7 +218,7 @@
 
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
-                            <!--<controls:HexBytesTextBox Data="{Binding Path=Payload, Source=Model}"/>-->
+                            <controls:HexBytesTextBox Data="{Binding Path=PayloadCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>

@@ -62,7 +62,7 @@ namespace CANAnalyzer.Resources.UIControls
         public static readonly DependencyProperty DataProperty =
             DependencyProperty.Register("Data", typeof(ObservableCollection<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(CreateEmpty(8), OnDataChanged));
 
-        private bool OnDataChangedHandlingIsEnabled = false;
+        //private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is HexBytesTextBox control)
@@ -81,22 +81,9 @@ namespace CANAnalyzer.Resources.UIControls
             if (!(sender is ObservableCollection<byte> collection && owner.Data == collection))
                 return;
 
-
-            if (owner.OnDataChangedHandlingIsEnabled)
+            //if (owner.OnDataChangedHandlingIsEnabled)
                 owner.RealText = RenderText(owner.Data);
-
-            owner.OnDataChangedHandlingIsEnabled = true;
-
-
         }
-
-        public UInt64 MaxValue
-        {
-            get { return (UInt64)GetValue(MaxValueProperty); }
-            set { SetValue(MaxValueProperty, value); }
-        }
-        public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register("MaxValue", typeof(UInt64), typeof(HexBytesTextBox), new PropertyMetadata((UInt64)0));
 
 
 
@@ -116,14 +103,13 @@ namespace CANAnalyzer.Resources.UIControls
             return result.Trim();
         }
 
-        private static ObservableCollection<byte> StringToBytes(string str)
+        private static void StringToBytes(string str, ObservableCollection<byte> destination)
         {
             if (str.Substring(0, 2) != "0x")
                 throw new ArgumentException("invalid string");
 
             str = str.Remove(0, 2);
             string[] bytes = str.Split(' ');
-            ObservableCollection<byte> result = CreateEmpty((uint)bytes.Length);
 
             for (int i = 0; i < bytes.Length; i++)
             {
@@ -134,10 +120,11 @@ namespace CANAnalyzer.Resources.UIControls
                 if (!Byte.TryParse(bytes[i], System.Globalization.NumberStyles.HexNumber, null, out buf))
                     throw new ArgumentException("invalid string");
 
-                result[i] = buf;
+                if (destination.Count <= i)
+                    destination.Add(buf);
+                else
+                    destination[i] = buf;
             }
-
-            return result;
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -189,23 +176,12 @@ namespace CANAnalyzer.Resources.UIControls
 
                 if (isOk)
                 {
-                    ObservableCollection<byte> newData = StringToBytes(newStr);
+                    int caretIndex = tb.CaretIndex;
+                    //OnDataChangedHandlingIsEnabled = false;
+                    StringToBytes(newStr, Data);
+                    //OnDataChangedHandlingIsEnabled = true;
+                    tb.CaretIndex = caretIndex + 1;
 
-                    //convert bytes to uint
-                    UInt64 value = BytesToUInt(newData);
-
-                    if (MaxValue == 0 || value <= MaxValue)
-                    {
-                        OnDataChangedHandlingIsEnabled = false;
-                        Data = StringToBytes(newStr);
-
-                        tb.Text = newStr;
-                        tb.CaretIndex = pos;
-                    }
-                    else
-                    {
-                        SystemSounds.Beep.Play();
-                    }
                 }
                 else
                 {

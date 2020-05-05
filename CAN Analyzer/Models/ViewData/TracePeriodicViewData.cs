@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace CANAnalyzer.Models.ViewData
 {
-    public class TracePeriodicViewData :INotifyPropertyChanged
+    public class TracePeriodicViewData : INotifyPropertyChanged
     {
         public TracePeriodicViewData(TracePeriodicModel _m)
         {
@@ -17,7 +17,43 @@ namespace CANAnalyzer.Models.ViewData
 
             Model.PropertyChanged += DLC_PropertyChanged;
             Model.PropertyChanged += IsExtId_PropertyChanged;
+
+            PayloadCollection = new ObservableCollection<byte>();
+            for (int i = 0; i < _m.DLC; i++)
+            { PayloadCollection.Add(0); }
         }
+
+        private void PayloadCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (sender is ObservableCollection<byte> collection && collection == PayloadCollection)
+            {
+                if (Model.DLC != collection.Count)
+                    return;
+
+                byte[] buf = new byte[collection.Count];
+                for (int i = 0; i < collection.Count; i++)
+                {
+                    buf[i] = collection[i];
+                }
+
+                Model.Payload = buf;
+            }
+        }
+
+        public ObservableCollection<byte> PayloadCollection
+        {
+            get { return _payloadCollection; }
+            set
+            {
+                if (value == _payloadCollection)
+                    return;
+
+                _payloadCollection = value;
+                _payloadCollection.CollectionChanged += PayloadCollection_CollectionChanged;
+                RaisePropertyChanged();
+            }
+        }
+        private ObservableCollection<byte> _payloadCollection;
 
         public TracePeriodicModel Model
         {
@@ -28,7 +64,7 @@ namespace CANAnalyzer.Models.ViewData
                     return;
 
                 _model = value;
-                
+
             }
         }
         private TracePeriodicModel _model;
@@ -73,7 +109,7 @@ namespace CANAnalyzer.Models.ViewData
             if (e.PropertyName != "IsExtId")
                 return;
 
-            if(Model.IsExtId)
+            if (Model.IsExtId)
             {
                 if (Model.CanId > 0x1fffffff)
                     Model.CanId = 0x1fffffff;
