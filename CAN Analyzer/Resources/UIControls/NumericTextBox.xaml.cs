@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -123,6 +124,7 @@ namespace CANAnalyzer.Resources.UIControls
                         newValue = MaxValue;
                         tb.Text = newValue.ToString();
                         tb.CaretIndex = tb.Text.Length;
+                        SystemSounds.Beep.Play();
                     }
 
                     Value = newValue;
@@ -131,6 +133,7 @@ namespace CANAnalyzer.Resources.UIControls
                 {
                     HandlingValueChangedCallback = true;
                     Value = MaxValue;
+                    SystemSounds.Beep.Play();
                 }
             }
         }

@@ -8,6 +8,8 @@
              xmlns:models="clr-namespace:CANAnalyzer.Models"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:controls="clr-namespace:CANAnalyzer.Resources.UIControls"
+             xmlns:viewData="clr-namespace:CANAnalyzer.Models.ViewData"
              xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -24,10 +26,13 @@
 
     <Grid Margin="10">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
 
         <DockPanel Grid.Row="0" 
-                   Grid.ColumnSpan="2"  
                    Height="36"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
@@ -150,6 +155,100 @@
             <TextBlock Width="0" DockPanel.Dock="Right"/>
 
         </DockPanel>
+
+
+        <DataGrid ItemsSource="{Binding Data}"
+            Grid.Row="1" 
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch"
+                SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
+                CanUserAddRows="True" CanUserDeleteRows="True" CanUserSortColumns="True">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="CAN ID" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                            
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:HexTextBox Value="{Binding Model.CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x001">
+                                <controls:HexTextBox.Style>
+                                    <Style TargetType="controls:HexTextBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                <Setter Property="MaxValue" Value="0x1FFFFFFF"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                <Setter Property="MaxValue" Value="0x7FF"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:HexTextBox.Style>
+                            </controls:HexTextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridCheckBoxColumn Header="IsExtId" IsReadOnly="False"
+                             Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                
+                <DataGridTemplateColumn Header="DLC" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:NumericTextBox Value="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="8" NullStrValue="8"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Payload" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Model.Payload, Converter={StaticResource BiteArrayToHexStringConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
+                            <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Period" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Model.Period}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:NumericTextBox Value="{Binding Model.Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="99999" NullStrValue="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Count" IsReadOnly="True"
+                             Binding="{Binding Count}"/>
+                <DataGridTextColumn Header="Comment" IsReadOnly="False"
+                             Binding="{Binding Model.Comment, Mode=TwoWay}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
+                    <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
 
     </Grid>
     

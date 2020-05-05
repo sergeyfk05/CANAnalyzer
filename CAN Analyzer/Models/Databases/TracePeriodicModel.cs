@@ -11,7 +11,7 @@ namespace CANAnalyzer.Models.Databases
     public class TracePeriodicModel : BaseModel
     {
         private bool _isExtId;
-        private int _canId;
+        private UInt64 _canId;
         private int _dlc = 8;
         private byte[] _payload;
         private uint _period;
@@ -45,7 +45,7 @@ namespace CANAnalyzer.Models.Databases
         /// </summary>
         [Required]
         [Range(0, 0x1FFFFFFF)]
-        public int CanId
+        public UInt64 CanId
         {
             get
             {
@@ -99,6 +99,9 @@ namespace CANAnalyzer.Models.Databases
                 if (value == _payload)
                     return;
 
+                if (value.Length != DLC)
+                    throw new ArgumentException("value.Length != DLC");
+
                 _payload = value;
                 OnPropertyChanged();
             }
@@ -145,7 +148,7 @@ namespace CANAnalyzer.Models.Databases
         {
             if (obj is TracePeriodicModel model)
             {
-                return (model.IsExtId == IsExtId) && (model.CanId == CanId) && (model.DLC == DLC) && (model.Period == Period) && (model.Payload.Equals(Payload);
+                return (model.IsExtId == IsExtId) && (model.CanId == CanId) && (model.DLC == DLC) && (model.Period == Period) && (model.Payload != null) && (Payload != null) && (model.Payload.Equals(Payload));
             }
 
             return false;

@@ -3,6 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzer.Models;
+using CANAnalyzer.Models.Databases;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.ViewData;
 using System;
@@ -24,10 +25,31 @@ namespace CANAnalyzer.VM
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
 
             Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
+
+            Data.Add(new TracePeriodicViewData(new TracePeriodicModel()
+            {
+                CanId = 0x123,
+                DLC = 8,
+                IsExtId = false,
+                Period = 100,
+                Payload = new byte[8]
+            }));
         }
 
 
+        public ObservableCollection<TracePeriodicViewData> Data
+        {
+            get { return _data; }
+            private set
+            {
+                if (_data == value)
+                    return;
 
+                _data = value;
+                RaisePropertyChanged();
+            }
+        }
+        private ObservableCollection<TracePeriodicViewData> _data = new ObservableCollection<TracePeriodicViewData>();
 
         public ObservableCollection<TransmitToViewData> TransmitToItems
         {

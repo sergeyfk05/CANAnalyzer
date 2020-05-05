@@ -156,6 +156,7 @@
     <Compile Include="Models\ViewData\MonitorByteViewData.cs" />
     <Compile Include="Models\ViewData\MonitorChannelPageData.cs" />
     <Compile Include="Models\ViewData\ProxyChannelViewData.cs" />
+    <Compile Include="Models\ViewData\TracePeriodicViewData.cs" />
     <Compile Include="Models\ViewData\TransmitToViewData.cs" />
     <Compile Include="Pages\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
