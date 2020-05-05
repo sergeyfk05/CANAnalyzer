@@ -4,9 +4,153 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
+             xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
+             xmlns:models="clr-namespace:CANAnalyzer.Models"
+             xmlns:vm="clr-namespace:CANAnalyzer.VM"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid Margin="10">
+
+
+
+        <DockPanel Grid.Row="0" 
+                   Grid.ColumnSpan="2"  
+                   Height="36"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Stretch">
+
+
+            <Border Background="Aqua"
+                    DockPanel.Dock="Left"
+                    Height="36"
+                    CornerRadius="4"
+                    BorderThickness="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                </Border.Effect>
+
+                <DockPanel DockPanel.Dock="Left"
+                           Height="30"
+                           VerticalAlignment="Center">
+
+                    <Button x:Name="openButton"
+                                Margin="2 0 0 0"
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding OpenFileCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="saveButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveFileCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="saveAsButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding SaveAsFileCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                                   Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+
+                    <Button x:Name="startButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                IsEnabled="{Binding FileIsOpened}"
+                                Command="{Binding StartTraceCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStartButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="pauseButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding PauseTraceCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button x:Name="stopButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding StopTraceCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageStopButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+
+                    <Button x:Name="closeButton" 
+                                DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding ClosePageCommand}">
+                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
+
+                        <Button.ToolTip>
+                            <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                </DockPanel>
+
+            </Border>
+
+            <ComboBox x:Name="TransmiToComboBox" 
+                      ItemsSource="{Binding TransmitToItems}"
+                          Style="{StaticResource TransmitToComboBoxStyle}"
+                          Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
+            </ComboBox>
+
+            <!--This TextBlock need for fix ComboBox dockpanel's position-->
+            <TextBlock Width="0" DockPanel.Dock="Right"/>
+
+        </DockPanel>
+
     </Grid>
+    
 </UserControl>
