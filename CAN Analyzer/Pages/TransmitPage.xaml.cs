@@ -1,8 +1,4 @@
-﻿/*
-* This is a personal academic project. Dear PVS-Studio, please check it.
-* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,16 +18,11 @@ namespace CANAnalyzer.Pages
     /// <summary>
     /// Interaction logic for TransmitPage.xaml
     /// </summary>
-    public partial class TransmitFilePage : UserControl
+    public partial class TransmitPage : UserControl
     {
-        public TransmitFilePage()
+        public TransmitPage()
         {
             InitializeComponent();
-        }
-
-        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            e.Row.Header = e.Row.GetIndex() + 1;
         }
     }
 }

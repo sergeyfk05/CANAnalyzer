@@ -50,10 +50,18 @@ namespace CANAnalyzer.VM
             BottomItemSource.Insert(0, buf.NavData);
 
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
+                "#addTransmitFilePageMenu",
+                "AddTransmitFilePageeIcon",
+                PageKind.Settings,
+                (data) => { AddUserPage(new TransmitFilePage(), new TransmitFilePageVM(), "#NavMenuTransmitFilePage", "TransmitFilePageIcon"); });
+            PagesData.Add(buf);
+            BottomItemSource.Insert(0, buf.NavData);
+
+            buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addTransmitPageMenu",
                 "AddTransmitPageeIcon",
                 PageKind.Settings,
-                (data) => { AddUserPage(new TransmitPage(), new TransmitFilePageVM(), "#NavMenuTransmitFilePage", "TransmitFilePageIcon"); });
+                (data) => { AddUserPage(new TransmitPage(), new TransmitPageVM(), "#NavMenuTransmitPage", "TransmitPageIcon"); });
             PagesData.Add(buf);
             BottomItemSource.Insert(0, buf.NavData);
 
