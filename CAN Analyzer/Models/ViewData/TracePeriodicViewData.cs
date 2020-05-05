@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace CANAnalyzer.Models.ViewData
@@ -30,13 +31,7 @@ namespace CANAnalyzer.Models.ViewData
                 if (Model.DLC != collection.Count)
                     return;
 
-                byte[] buf = new byte[collection.Count];
-                for (int i = 0; i < collection.Count; i++)
-                {
-                    buf[i] = collection[i];
-                }
-
-                Model.Payload = buf;
+                Model.Payload = collection.ToArray();
             }
         }
 
