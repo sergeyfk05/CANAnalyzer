@@ -171,7 +171,7 @@
                             <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                            
+
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <controls:HexTextBox Value="{Binding Model.CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x001">
@@ -194,7 +194,7 @@
 
                 <DataGridCheckBoxColumn Header="IsExtId" IsReadOnly="False"
                              Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                
+
                 <DataGridTemplateColumn Header="DLC" IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -218,7 +218,7 @@
 
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
-                            <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, UpdateSourceTrigger=LostFocus}"/>
+                            <!--<controls:HexBytesTextBox Data="{Binding Path=Payload, Source=Model}"/>-->
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -251,5 +251,5 @@
         </DataGrid>
 
     </Grid>
-    
+
 </UserControl>

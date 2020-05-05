@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -23,9 +25,21 @@ namespace CANAnalyzer.Resources.UIControls
     {
         public HexBytesTextBox()
         {
+            DataCollectionChangedHandler = (object s, ListChangedEventArgs e) => { Data_CollectionChanged(this, s, e); };
             InitializeComponent();
+
         }
 
+        private static BindingList<byte> CreateEmpty(uint c)
+        {
+            BindingList<byte> result = new BindingList<byte>();
+            for(uint i = 0;i<c;i++)
+            {
+                result.Add(0);
+            }
+
+            return result;
+        }
 
 
         public string RealText
@@ -38,28 +52,51 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
-
-        public byte[] Data
+        private static ListChangedEventHandler DataCollectionChangedHandler;
+        public BindingList<byte> Data
         {
-            get { return (byte[])GetValue(DataProperty); }
+            get { return (BindingList<byte>)GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
         public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(byte[]), typeof(HexBytesTextBox), new UIPropertyMetadata(new byte[8], OnDataChanged));
+            DependencyProperty.Register("Data", typeof(BindingList<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(CreateEmpty(8), OnDataChanged));
 
         private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is HexBytesTextBox control)
             {
-                if (control.OnDataChangedHandlingIsEnabled)
-                    control.RealText = RenderText(control.Data);
+                control.RealText = RenderText(control.Data);
 
-                control.OnDataChangedHandlingIsEnabled = true;
+                if (e.OldValue != null)
+                    ((BindingList<byte>)e.OldValue).ListChanged -= DataCollectionChangedHandler;
+
+                control.Data.ListChanged += DataCollectionChangedHandler;
             }
         }
 
+        private static void Data_CollectionChanged(HexBytesTextBox owner, object sender, ListChangedEventArgs e)
+        {
+            //if (!(sender is BindingList<byte> collection && owner.Data == collection))
+            //    return;
 
+            if(sender is BindingList<byte> collection)
+            {
+                if (owner.Data != collection)
+                    return;
+            }
+            else
+            {
+                return;
+            }
+
+            if (owner.OnDataChangedHandlingIsEnabled)
+                owner.RealText = RenderText(owner.Data);
+
+            owner.OnDataChangedHandlingIsEnabled = true;
+
+
+        }
 
         public UInt64 MaxValue
         {
@@ -75,7 +112,7 @@ namespace CANAnalyzer.Resources.UIControls
 
 
 
-        private static string RenderText(byte[] data)
+        private static string RenderText(BindingList<byte> data)
         {
             string result = "0x";
             foreach (var b in data)
@@ -87,22 +124,25 @@ namespace CANAnalyzer.Resources.UIControls
             return result.Trim();
         }
 
-        private static byte[] StringToBytes(string str)
+        private static BindingList<byte> StringToBytes(string str)
         {
             if (str.Substring(0, 2) != "0x")
                 throw new ArgumentException("invalid string");
 
             str = str.Remove(0, 2);
             string[] bytes = str.Split(' ');
-            byte[] result = new byte[bytes.Length];
+            BindingList<byte> result = CreateEmpty((uint)bytes.Length);
 
             for (int i = 0; i < bytes.Length; i++)
             {
                 if (bytes[i].Length != 2)
                     throw new ArgumentException("invalid string");
 
-                if (!Byte.TryParse(bytes[i], System.Globalization.NumberStyles.HexNumber, null, out result[i]))
+                byte buf;
+                if (!Byte.TryParse(bytes[i], System.Globalization.NumberStyles.HexNumber, null, out buf))
                     throw new ArgumentException("invalid string");
+
+                result[i] = buf;
             }
 
             return result;
@@ -157,7 +197,7 @@ namespace CANAnalyzer.Resources.UIControls
 
                 if (isOk)
                 {
-                    byte[] newData = StringToBytes(newStr);
+                    BindingList<byte> newData = StringToBytes(newStr);
 
                     //convert bytes to uint
                     UInt64 value = BytesToUInt(newData);
@@ -187,12 +227,12 @@ namespace CANAnalyzer.Resources.UIControls
                 e.Handled = true;
         }
 
-        private static UInt64 BytesToUInt(byte[] source)
+        private static UInt64 BytesToUInt(BindingList<byte> source)
         {
             UInt64 value = 0;
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < source.Count; i++)
             {
-                value |= (UInt64)source[i] << (8 * (source.Length - i - 1));
+                value |= (UInt64)source[i] << (8 * (source.Count - i - 1));
             }
 
             return value;

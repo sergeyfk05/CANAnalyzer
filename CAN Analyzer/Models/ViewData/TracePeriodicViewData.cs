@@ -47,7 +47,6 @@ namespace CANAnalyzer.Models.ViewData
         }
         private int _count;
 
-
         private void DLC_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "DLC")

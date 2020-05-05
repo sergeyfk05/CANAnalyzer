@@ -107,7 +107,7 @@ namespace CANAnalyzer.VM
         private UInt64 _canId = UInt64.MaxValue;
 
 
-        public byte[] Payload
+        public BindingList<byte> Payload
         {
             get { return _payload; }
             set
@@ -119,9 +119,9 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private byte[] _payload = new byte[8];
+        private BindingList<byte> _payload = CreateEmptyBindingList(8);
 
-        public byte[] Increment
+        public BindingList<byte> Increment
         {
             get { return _increment; }
             set
@@ -133,7 +133,7 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-        private byte[] _increment = new byte[8];
+        private BindingList<byte> _increment = CreateEmptyBindingList(8);
 
         public uint MsgPerStep
         {
@@ -213,12 +213,17 @@ namespace CANAnalyzer.VM
         }
         private void StepForwardCommand_Execute()
         {
-            byte[] newPayload = new byte[DLC];
-            for (int i = 0; i < Payload.Length; i++)
+            for (int i = 0; i < Payload.Count; i++)
             {
-                newPayload[i] = (byte)((byte)Payload[i] + (byte)Increment[i]);
+                Payload[i] += Increment[i];
             }
-            Payload = newPayload;
+
+            //ObservableCollection<byte> newPayload = new ObservableCollection<byte>(new byte[DLC]);
+            //for (int i = 0; i < Payload.Count; i++)
+            //{
+            //    newPayload[i] = (byte)((byte)Payload[i] + (byte)Increment[i]);
+            //}
+            //Payload = newPayload;
         }
 
         private RelayCommandAsync _stepBackCommand;
@@ -234,8 +239,8 @@ namespace CANAnalyzer.VM
         }
         private void StepBackCommand_Execute()
         {
-            byte[] newPayload = new byte[DLC];
-            for (int i = 0; i < Payload.Length; i++)
+            BindingList<byte> newPayload = CreateEmptyBindingList((int)DLC);
+            for (int i = 0; i < Payload.Count; i++)
             {
                 newPayload[i] = (byte)((byte)Payload[i] - (byte)Increment[i]);
             }
@@ -376,31 +381,31 @@ namespace CANAnalyzer.VM
             if (DLC == 0)
                 return;
 
-            if (Payload.Length >= (int)DLC)
-            {
-                byte[] newPayload = new byte[DLC];
-                Array.Copy(Payload, Payload.Length - (int)DLC, newPayload, 0, (int)DLC);
-                Payload = newPayload;
-            }
-            else
-            {
-                byte[] newPayload = new byte[DLC];
-                Array.Copy(Payload, 0, newPayload, (int)DLC - Payload.Length, Payload.Length);
-                Payload = newPayload;
-            }
+            //if (Payload.Length >= (int)DLC)
+            //{
+            //    byte[] newPayload = new byte[DLC];
+            //    Array.Copy(Payload, Payload.Length - (int)DLC, newPayload, 0, (int)DLC);
+            //    Payload = newPayload;
+            //}
+            //else
+            //{
+            //    byte[] newPayload = new byte[DLC];
+            //    Array.Copy(Payload, 0, newPayload, (int)DLC - Payload.Length, Payload.Length);
+            //    Payload = newPayload;
+            //}
 
-            if (Increment.Length >= (int)DLC)
-            {
-                byte[] newIncrement = new byte[DLC];
-                Array.Copy(Increment, Increment.Length - (int)DLC, newIncrement, 0, (int)DLC);
-                Increment = newIncrement;
-            }
-            else
-            {
-                byte[] newIncrement = new byte[DLC];
-                Array.Copy(Increment, 0, newIncrement, (int)DLC - Increment.Length, Increment.Length);
-                Increment = newIncrement;
-            }
+            //if (Increment.Length >= (int)DLC)
+            //{
+            //    byte[] newIncrement = new byte[DLC];
+            //    Array.Copy(Increment, Increment.Length - (int)DLC, newIncrement, 0, (int)DLC);
+            //    Increment = newIncrement;
+            //}
+            //else
+            //{
+            //    byte[] newIncrement = new byte[DLC];
+            //    Array.Copy(Increment, 0, newIncrement, (int)DLC - Increment.Length, Increment.Length);
+            //    Increment = newIncrement;
+            //}
         }
         private void Status_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -451,5 +456,17 @@ namespace CANAnalyzer.VM
         private uint _msgPerStepComleted = 0;
         private Timer _timer = new Timer();
         private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
+
+
+        private static BindingList<byte> CreateEmptyBindingList(int c)
+        {
+            BindingList<byte> result = new BindingList<byte>();
+            for (uint i = 0; i < c; i++)
+            {
+                result.Add(0);
+            }
+
+            return result;
+        }
     }
 }
