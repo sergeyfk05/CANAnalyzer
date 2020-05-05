@@ -56,7 +56,7 @@
                         <ControlTemplate TargetType="ComboBox">
                             <Grid>
                                 <ToggleButton Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false"
-                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Cursor="Hand"/>
                                 <TextBlock Name="ContentSite" IsHitTestVisible="False" Text="{resources:Language #TransmitToControlPreviewText}" Margin="6,3,23,3" VerticalAlignment="Center"
                                           HorizontalAlignment="Left" />
                                 <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" 

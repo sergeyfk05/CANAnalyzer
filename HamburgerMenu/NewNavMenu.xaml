@@ -33,6 +33,7 @@
                                                   CanUserDropdowning="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=CanUserDropdowning}"
                                                   DropdownAnimationDuration="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationDuration}"
                                                   DropdownAnimationFunction="{Binding RelativeSource={RelativeSource AncestorType=local:NewNavMenu}, Path=DropdownAnimationFunction}"
+                                                  Cursor="Hand"
                                                   Clicked="NewNavMenuItem_Clicked">
                         </local:NewNavMenuItem>
                     </DataTemplate>
