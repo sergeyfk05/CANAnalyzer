@@ -29,7 +29,7 @@ using System.Collections;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitFilePageVM : BaseClosableVM
+    public class TransmitFilePageVM : BaseClosableVM, IDisposable
     {
         public TransmitFilePageVM()
         {
@@ -639,6 +639,15 @@ namespace CANAnalyzer.VM
             {
                 RemoveDataCommand.Execute(e.OldItems);
             }
+        }
+
+        public void Dispose()
+        {
+            _transmiter?.Dispose();
+        }
+        ~TransmitFilePageVM()
+        {
+            this.Dispose();
         }
 
         #endregion

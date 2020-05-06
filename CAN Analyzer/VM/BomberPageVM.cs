@@ -1,4 +1,8 @@
-﻿using CANAnalyzer.Models;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using CANAnalyzer.Models;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.ViewData;
@@ -16,7 +20,7 @@ using System.ComponentModel;
 
 namespace CANAnalyzer.VM
 {
-    public class BomberPageVM : BaseClosableVM
+    public class BomberPageVM : BaseClosableVM, IDisposable
     {
 
         public BomberPageVM()
@@ -462,6 +466,15 @@ namespace CANAnalyzer.VM
             }
 
             return result;
+        }
+
+        public void Dispose()
+        {
+            _timer?.Dispose();
+        }
+        ~BomberPageVM()
+        {
+            this.Dispose();
         }
     }
 }

@@ -15,7 +15,7 @@ using CANAnalyzerDevices.Devices.DeviceChannels;
 
 namespace CANAnalyzer.Models
 {
-    public class TraceTransmiter
+    public class TraceTransmiter : IDisposable
     {
         public TraceTransmiter(int timerAccuracy = 10)
         {
@@ -201,6 +201,16 @@ namespace CANAnalyzer.Models
         private void RaiseStatusChanged()
         {
             StatusChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void Dispose()
+        {
+            _timer?.Dispose();
+        }
+
+        ~TraceTransmiter()
+        {
+            this.Dispose();
         }
     }
 }
