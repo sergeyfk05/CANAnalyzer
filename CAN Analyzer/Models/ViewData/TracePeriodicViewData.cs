@@ -3,48 +3,57 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzer.Models.Databases;
+using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.Extensions;
+using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace CANAnalyzer.Models.ViewData
 {
-    public class TracePeriodicViewData : INotifyPropertyChanged
+    public class TracePeriodicViewData : INotifyPropertyChanged, IDisposable
     {
         public TracePeriodicViewData()
         {
+            _timer.AutoReset = true;
+            _timer.Elapsed += _timer_Elapsed;
+
             PropertyChanged += Model_PropertyChanged;
 
             Model = new TracePeriodicModel();
             Model.Payload = ObservableCollectionExtension.CreateEmpty((uint)Model.DLC);
         }
+
         public TracePeriodicViewData(TracePeriodicModel _m)
         {
             if (_m == null)
                 throw new ArgumentNullException();
 
+            _timer.AutoReset = true;
+            _timer.Elapsed += _timer_Elapsed;
+
             PropertyChanged += Model_PropertyChanged;
             Model = _m;
         }
 
-        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "Model")
-                return;
 
-            Model.PropertyChanged += DLC_PropertyChanged;
-            Model.PropertyChanged += IsExtId_PropertyChanged;
-        }
+
 
         public TracePeriodicModel Model
         {
             get { return _model; }
             private set
             {
+                if (value == null)
+                    throw new ArgumentNullException();
+
                 if (_model == value)
                     return;
 
@@ -53,6 +62,34 @@ namespace CANAnalyzer.Models.ViewData
             }
         }
         private TracePeriodicModel _model;
+
+        public TransmitToDelegate TransmitToSelectedChannels
+        {
+            get { return _transmitToSelectedChannels; }
+            set
+            {
+                if (value == _transmitToSelectedChannels)
+                    return;
+
+                _transmitToSelectedChannels = value;
+                RaisePropertyChanged();
+            }
+        }
+        private TransmitToDelegate _transmitToSelectedChannels;
+
+        public bool IsTrasmiting
+        {
+            get { return _isTrasmiting; }
+            private set
+            {
+                if (value == _isTrasmiting)
+                    return;
+
+                _isTrasmiting = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool _isTrasmiting = false;
 
         public int Count
         {
@@ -115,6 +152,73 @@ namespace CANAnalyzer.Models.ViewData
                     Model.CanId = 0x7ff;
             }
         }
+        private void Period_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if ((e.PropertyName == "Period") && (sender is TracePeriodicModel model) && (model == Model))
+            {
+                if (Model.Period < 10)
+                    Model.Period = 10;
+
+                _timer.Interval = Model.Period;
+            }
+        }
+        private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (Model == null)
+                StopTransmiting();
+
+            Shot();
+
+        }
+        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "Model")
+                return;
+
+            StopTransmiting();
+
+            Model.PropertyChanged += DLC_PropertyChanged;
+            Model.PropertyChanged += IsExtId_PropertyChanged;
+            Model.PropertyChanged += Period_PropertyChanged;
+        }
+
+
+        public void Shot()
+        {
+            Task.Run(() =>
+            {
+                if (TransmitToSelectedChannels == null)
+                    return;
+
+                var dataToTrasmit = new TransmitData() { CanId = (int)Model.CanId, DLC = Model.DLC, IsExtId = Model.IsExtId, Payload = Model.Payload.ToByteArray() };
+                if (!Validator.TryValidateObject(dataToTrasmit, new ValidationContext(dataToTrasmit), null, true))
+                {
+                    StopTransmiting();
+                    return;
+                }
+
+                TransmitToSelectedChannels.Invoke(dataToTrasmit);
+
+                Count++;
+            });
+        }
+        public void StartTransmiting()
+        {
+            if (Model.Period < 10)
+                Model.Period = 10;
+
+            _timer.Interval = Model.Period;
+            _timer.Start();
+
+            IsTrasmiting = true;
+        }
+        public void StopTransmiting()
+        {
+            _timer?.Stop();
+            IsTrasmiting = false;
+        }
+        private System.Timers.Timer _timer = new System.Timers.Timer();
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -123,5 +227,13 @@ namespace CANAnalyzer.Models.ViewData
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
+        public void Dispose()
+        {
+            _timer?.Dispose();
+        }
+        ~TracePeriodicViewData()
+        {
+            this.Dispose();
+        }
     }
 }

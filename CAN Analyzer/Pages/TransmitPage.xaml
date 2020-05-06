@@ -8,6 +8,7 @@
              xmlns:models="clr-namespace:CANAnalyzer.Models"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:controls="clr-namespace:CANAnalyzer.Resources.UIControls"
              xmlns:viewData="clr-namespace:CANAnalyzer.Models.ViewData"
              xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
@@ -106,7 +107,7 @@
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 IsEnabled="{Binding FileIsOpened}"
-                                Command="{Binding StartTraceCommand}">
+                                Command="{Binding StartTransmitingCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStartButtonIcon}"/>
 
@@ -115,27 +116,26 @@
                             </Button.ToolTip>
                         </Button>
 
-                        <Button x:Name="pauseButton" 
-                                DockPanel.Dock="Left" 
-                                Style="{DynamicResource ShortcutButtonStyle}"
-                                Command="{Binding PauseTraceCommand}">
-                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
-
-                            <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
-                            </Button.ToolTip>
-                        </Button>
-
                         <Button x:Name="stopButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
-                                Command="{Binding StopTraceCommand}">
+                                Command="{Binding StopTransmitingCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStopButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding ShotCommand}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                       Source="{resources:Theme TransmitPageShotButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageShotButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -173,8 +173,16 @@
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch"
-                SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
+               AutoGenerateColumns="False" CanUserResizeRows="False" 
                 CanUserAddRows="True" CanUserDeleteRows="True" CanUserSortColumns="True">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <!--CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"-->
+                        <i:InvokeCommandAction Command="{Binding SelectedItemsChangedCommand}" CommandParameter="{Binding Path=SelectedItems, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
                 <DataGrid.Columns>
 
                     <DataGridTemplateColumn Header="CAN ID" IsReadOnly="False">
@@ -186,7 +194,7 @@
 
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <controls:HexTextBox Value="{Binding Model.CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x001">
+                                <controls:HexTextBox Value="{Binding Model.CanId, Mode=TwoWay}" NullStrValue="0x001">
                                     <controls:HexTextBox.Style>
                                         <Style TargetType="controls:HexTextBox">
                                             <Style.Triggers>
@@ -221,6 +229,27 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
+                    <DataGridTemplateColumn Header="status" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsTrasmiting}" Value="True">
+                                                    <Setter Property="Text" Value="transmiting"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsTrasmiting}" Value="False">
+                                                    <Setter Property="Text" Value="stoped"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                     <DataGridTemplateColumn Header="Payload" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -230,7 +259,7 @@
 
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
-                                <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, Mode=TwoWay}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
@@ -244,7 +273,7 @@
 
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <controls:NumericTextBox Value="{Binding Model.Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="99999" NullStrValue="100"/>
+                                <controls:NumericTextBox Value="{Binding Model.Period, Mode=TwoWay}" MaxValue="99999" NullStrValue="100"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>

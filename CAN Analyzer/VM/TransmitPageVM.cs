@@ -20,6 +20,7 @@ using DynamicResource;
 using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzer.Models.DataTypesProviders;
 using CANAnalyzer.Models.DataTypesProviders.Builders;
+using System.Collections;
 
 namespace CANAnalyzer.VM
 {
@@ -45,7 +46,7 @@ namespace CANAnalyzer.VM
 
                 _data = value;
 
-                if(_data != null)
+                if (_data != null)
                     _data.CollectionChanged += Data_CollectionChanged;
 
                 RaisePropertyChanged();
@@ -82,6 +83,20 @@ namespace CANAnalyzer.VM
             }
         }
         private TransmitToDelegate _transmitToSelectedChannels;
+
+        public List<TracePeriodicViewData> SelectedItems
+        {
+            get { return _selectedItems; }
+            private set
+            {
+                if (_selectedItems == value)
+                    return;
+
+                _selectedItems = value;
+                RaisePropertyChanged();
+            }
+        }
+        private List<TracePeriodicViewData> _selectedItems = new List<TracePeriodicViewData>();
 
         public bool IsEnabled
         {
@@ -120,6 +135,99 @@ namespace CANAnalyzer.VM
 
         }
 
+        private RelayCommandWithParameterAsync<IList> _selectedItemsChangedCommand;
+        public RelayCommandWithParameterAsync<IList> SelectedItemsChangedCommand
+        {
+            get
+            {
+                if (_selectedItemsChangedCommand == null)
+                    _selectedItemsChangedCommand = new RelayCommandWithParameterAsync<IList>(this.SelectedItemsChangedCommand_Execute);
+
+                return _selectedItemsChangedCommand;
+            }
+        }
+        private void SelectedItemsChangedCommand_Execute(IList ts)
+        {
+            _selectedItems.Clear();
+
+            foreach (var el in ts)
+            {
+                if (el is TracePeriodicViewData viewData)
+                {
+                    _selectedItems.Add(viewData);
+                }
+            }
+
+            StartTransmitingCommand.RaiseCanExecuteChanged();
+            StopTransmitingCommand.RaiseCanExecuteChanged();
+            ShotCommand.RaiseCanExecuteChanged();
+        }
+
+        private RelayCommandAsync _startTransmitingCommand;
+        public RelayCommandAsync StartTransmitingCommand
+        {
+            get
+            {
+                if (_startTransmitingCommand == null)
+                    _startTransmitingCommand = new RelayCommandAsync(this.StartTransmitingCommand_Execute, () =>
+                    {
+                        if (SelectedItems == null)
+                            return false;
+
+                        return SelectedItems.Count((x) => !x.IsTrasmiting) > 0;
+                    });
+
+                return _startTransmitingCommand;
+            }
+        }
+        private void StartTransmitingCommand_Execute()
+        {
+
+            SelectedItems.ForEach((el) =>
+            {
+                el.StartTransmiting();
+                el.TransmitToSelectedChannels = TransmitToSelectedChannels;
+            });
+        }
+
+        private RelayCommandAsync _shotCommand;
+        public RelayCommandAsync ShotCommand
+        {
+            get
+            {
+                if (_shotCommand == null)
+                    _shotCommand = new RelayCommandAsync(this.ShotCommand_Execute, () => { return SelectedItems != null && SelectedItems.Count > 0; });
+
+                return _shotCommand;
+            }
+        }
+        private void ShotCommand_Execute()
+        {
+            SelectedItems.ForEach((el) => el.Shot());
+        }
+
+        private RelayCommandAsync _stopTransmitingCommand;
+        public RelayCommandAsync StopTransmitingCommand
+        {
+            get
+            {
+                if (_stopTransmitingCommand == null)
+                    _stopTransmitingCommand = new RelayCommandAsync(this.StopTransmitingCommand_Execute, () =>
+                    {
+                        if (SelectedItems == null)
+                            return false;
+
+                        return SelectedItems.Count((x) => x.IsTrasmiting) > 0;
+                    });
+
+                return _stopTransmitingCommand;
+            }
+        }
+        private void StopTransmitingCommand_Execute()
+        {
+            SelectedItems.ForEach((el) => el.StopTransmiting());
+        }
+
         private RelayCommandAsync _openFileCommand;
         public RelayCommandAsync OpenFileCommand
         {
@@ -133,6 +241,7 @@ namespace CANAnalyzer.VM
         }
         private void OpenFileCommand_Execute()
         {
+            IsEnabled = false;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
             openFileDialog.CheckFileExists = true;
@@ -183,8 +292,8 @@ namespace CANAnalyzer.VM
                     MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-                IsEnabled = true;
             }
+            IsEnabled = true;
         }
 
         private RelayCommandAsync _saveFileCommand;
@@ -251,7 +360,7 @@ namespace CANAnalyzer.VM
 
                         try
                         {
-                            CurrentTraceProvider = await el.SaveAsAsync(saveFileDialog.FileName, Data.Select(x=> x.Model));
+                            CurrentTraceProvider = await el.SaveAsAsync(saveFileDialog.FileName, Data.Select(x => x.Model));
                             UpdateDataCommand_Execute();
                         }
                         catch (Exception e)
@@ -303,7 +412,7 @@ namespace CANAnalyzer.VM
             if (CurrentTraceProvider == null)
                 return;
 
-            Data = new ObservableCollection<TracePeriodicViewData>(CurrentTraceProvider.TransmitModels.ToList().Select(x=> new TracePeriodicViewData(x)));
+            Data = new ObservableCollection<TracePeriodicViewData>(CurrentTraceProvider.TransmitModels.ToList().Select(x => new TracePeriodicViewData(x)));
         }
 
 
@@ -332,7 +441,7 @@ namespace CANAnalyzer.VM
 
         private void CurrentTraceProvider_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "CurrentTraceProvider")
+            if (e.PropertyName == "CurrentTraceProvider")
             {
                 SaveFileCommand.RaiseCanExecuteChanged();
             }
@@ -379,7 +488,11 @@ namespace CANAnalyzer.VM
         }
         private void TransmitToSelectedChannels_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //_transmiter.TransmitTo = TransmitToSelectedChannels;
+            foreach (var el in Data)
+            {
+                if (el != null)
+                    el.TransmitToSelectedChannels = TransmitToSelectedChannels;
+            }
         }
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
