@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Data.Entity;
-using System.Data.SQLite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace CANAnalyzer.Models.Databases
         /// <param name="connection"> An existing connection to use for the new context.</param>
         /// <param name="contextOwnsConnection"> If set to true the connection is disposed when the context is disposed, otherwise the caller must dispose the connection.
         /// /// </param>
-        public TraceContext(DbConnection connection, bool contextOwnsConnection) : base(connection, contextOwnsConnection)
+        public TraceContext(DbConnection connection, bool contextOwnsConnection)// : base(connection, contextOwnsConnection)
         {
         }
 
@@ -37,10 +37,17 @@ namespace CANAnalyzer.Models.Databases
         ///    a database. The connection will be disposed when the context is disposed.
         /// </summary>
         /// <param name="sqliteFile">path to SQLite DB file</param>
-        public TraceContext(string sqliteFile) : base(new SQLiteConnection($"Data Source={sqliteFile}"), true)
+        public TraceContext(string sqliteFile)// : base(new SqliteConnection($"Data Source={sqliteFile}"), true)
         {
+            _path = sqliteFile;
         }
+
+        private string _path;
         public DbSet<TraceModel> Traces { get; set; }
         public DbSet<CanHeaderModel> CanHeaders { get; set; }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+    => options.UseSqlite($"Data Source={_path}");
     }
 }

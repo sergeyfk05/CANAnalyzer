@@ -170,17 +170,15 @@ namespace CANAnalyzer
             _settings = JsonSerializer.Deserialize<Settings>(fs);
         }
 
-        public static async void SaveToJsonAsync(string path)
+        public static void SaveToJsonAsync(string path)
         {
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
-            
-            using (FileStream fs = new FileStream(path, FileMode.CreateNew))
-            {
-                await JsonSerializer.SerializeAsync<Settings>(fs, _settings);
-            }
+
+
+            _ = Task.Run(() => { File.WriteAllText(path, JsonSerializer.Serialize<Settings>(_settings)); });
         }
     }
 }

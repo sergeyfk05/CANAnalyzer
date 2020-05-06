@@ -15,7 +15,7 @@ using Microsoft.Win32;
 using CANAnalyzer.Models.DataTypesProviders;
 using System.Windows;
 using CANAnalyzer.Models.Databases;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using CANAnalyzer.Resources.DynamicResources;
 using System.IO;
 using CANAnalyzer.Models.TraceFilters;
@@ -281,7 +281,7 @@ namespace CANAnalyzer.VM
                     if (File.Exists(saveFileDialog.FileName))
                         File.Delete(saveFileDialog.FileName);
                 }
-                catch (Exception e)
+                catch
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("FileError"),
                         (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"),

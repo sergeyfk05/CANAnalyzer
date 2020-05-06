@@ -70,7 +70,7 @@ namespace CANAnalyzer.VM
                         }, null);
                     }
                 }
-                catch (Exception ee)
+                catch
                 {
                     return;
                 }
@@ -397,7 +397,7 @@ namespace CANAnalyzer.VM
                     UpdateDevicesInfoCommand.Execute();
                     IsConnected = false;
                 }
-                catch (Exception e)
+                catch
                 {
                     IsConnected = false;
                     Settings.Instance.Device = null;
@@ -418,7 +418,7 @@ namespace CANAnalyzer.VM
                     Settings.Instance.Device = SelectedDevice;
                     IsConnected = true;
                 }
-                catch (Exception e)
+                catch
                 {
                     IsConnected = false;
                     Settings.Instance.Device = null;
@@ -465,7 +465,7 @@ namespace CANAnalyzer.VM
                         }
                     }
                 }
-                catch(Exception e)
+                catch
                 {
                     MessageBox.Show("не верный файл", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 }

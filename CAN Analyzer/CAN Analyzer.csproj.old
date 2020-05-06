@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4255161-5CD9-4FF5-AAF7-101B50A99022}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CANAnalyzer</RootNamespace>
+    <AssemblyName>CAN Analyzer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>.\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Models\ChannelsProxy\ConsoleChannelProxy.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\ChannelProxyCreatorsListBuilder.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\ConsoleChannelProxyCreator.cs" />
+    <Compile Include="Models\ChannelsProxy\Creators\IChannelProxyCreator.cs" />
+    <Compile Include="Models\ChannelsProxy\IChannelProxy.cs" />
+    <Compile Include="Models\Converters\MillisecondsToHumanFriendlyStringConverter.cs" />
+    <Compile Include="Models\Converters\RelativePathToUriConverter.cs" />
+    <Compile Include="Models\Databases\TracePeriodicContext.cs" />
+    <Compile Include="Models\Databases\TracePeriodicModel.cs" />
+    <Compile Include="Models\DataTypesProviders\Builders\TransmitPeriodicDataTypeProvidedsBuilder.cs" />
+    <Compile Include="Models\DataTypesProviders\ITransmitPeriodicDataTypeProvider.cs" />
+    <Compile Include="Models\DataTypesProviders\SQLiteTransmitPeriodicDataTypeProvider.cs" />
+    <Compile Include="Models\Delegates\TransmitToDelegate.cs" />
+    <Compile Include="Models\Extensions\Comparers\CanIdComparer.cs" />
+    <Compile Include="Models\Extensions\DataGridHelpers.cs" />
+    <Compile Include="Models\Extensions\Extensions.cs" />
+    <Compile Include="Models\Extensions\ScrollIntoViewBehavior.cs" />
+    <Compile Include="Models\States\RecieveState.cs" />
+    <Compile Include="Models\States\TransmitState.cs" />
+    <Compile Include="Models\TraceTransmiter.cs" />
+    <Compile Include="Models\ViewData\ContentPageData.cs" />
+    <Compile Include="Models\Converters\BiteArrayToHexStringConverter.cs" />
+    <Compile Include="Models\Databases\BaseModel.cs" />
+    <Compile Include="Models\Databases\CanHeaderModel.cs" />
+    <Compile Include="Models\Databases\TraceContext.cs" />
+    <Compile Include="Models\Databases\TraceModel.cs" />
+    <Compile Include="Models\DataTypesProviders\Builders\TraceDataTypeProvidersListBuilder.cs" />
+    <Compile Include="Models\DataTypesProviders\ITraceDataTypeProvider.cs" />
+    <Compile Include="Models\DataTypesProviders\SQLiteTraceDataTypeProvider.cs" />
+    <Compile Include="Models\ViewData\ContentPageDataForProxy.cs" />
+    <Compile Include="Models\ViewData\DeviceChannelViewData.cs" />
+    <Compile Include="Models\States\FileState.cs" />
+    <Compile Include="Models\RelayCommands\BaseCommand.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommand.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandAsync.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandWithParameter.cs" />
+    <Compile Include="Models\RelayCommands\RelayCommandWithParameterAsync.cs" />
+    <Compile Include="Models\TraceFilters\CanIdTraceFilter.cs" />
+    <Compile Include="Models\TraceFilters\ITraceFilter.cs" />
+    <Compile Include="Models\ViewData\MonitorByteViewData.cs" />
+    <Compile Include="Models\ViewData\MonitorChannelPageData.cs" />
+    <Compile Include="Models\ViewData\ProxyChannelViewData.cs" />
+    <Compile Include="Models\ViewData\TracePeriodicViewData.cs" />
+    <Compile Include="Models\ViewData\TransmitToViewData.cs" />
+    <Compile Include="Pages\AppSettingsPage.xaml.cs">
+      <DependentUpon>AppSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BomberPage.xaml.cs">
+      <DependentUpon>BomberPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MonitorChannelPage.xaml.cs">
+      <DependentUpon>MonitorChannelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecieveChannelPage.xaml.cs">
+      <DependentUpon>RecieveChannelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransmitFilePage.xaml.cs">
+      <DependentUpon>TransmitFilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransmitPage.xaml.cs">
+      <DependentUpon>TransmitPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\DynamicResources\CultureInfos\LanguageCultureInfo.cs" />
+    <Compile Include="Resources\DynamicResources\Extensions\LanguageExtension.cs" />
+    <Compile Include="Resources\DynamicResources\Extensions\ThemeExtension.cs" />
+    <Compile Include="Resources\DynamicResources\CultureInfos\ThemeCultureInfo.cs" />
+    <Compile Include="Resources\DynamicResources\Providers\XMLLanguageChangerProvider.cs" />
+    <Compile Include="Resources\DynamicResources\Providers\XMLThemeChangerProvider.cs" />
+    <Compile Include="Resources\UIControls\HexBytesTextBox.xaml.cs">
+      <DependentUpon>HexBytesTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UIControls\HexTextBox.xaml.cs">
+      <DependentUpon>HexTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UIControls\NumericTextBox.xaml.cs">
+      <DependentUpon>NumericTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="VM\AppSettingPageVM.cs" />
+    <Compile Include="VM\BaseClosableVM.cs" />
+    <Compile Include="VM\BaseVM.cs" />
+    <Compile Include="VM\BomberPageVM.cs" />
+    <Compile Include="VM\MainWindowVM.cs" />
+    <Compile Include="VM\MonitorChannelPageVM.cs" />
+    <Compile Include="VM\RecieveChannelPageVM.cs" />
+    <Compile Include="VM\TransmitFilePageVM.cs" />
+    <Compile Include="VM\TransmitPageVM.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AppSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BomberPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MonitorChannelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecieveChannelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TransmitPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonStyles\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TransmitFilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonStyles\CustomComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonStyles\TransmitToComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UIControls\HexBytesTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UIControls\HexTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UIControls\NumericTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DynamicResources\Themes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DynamicResources\Languages.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Icons\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CANAnalyzerDevices\CANAnalyzerDevices.csproj">
+      <Project>{bdf1d1fd-8609-4acc-832b-50d1df71617a}</Project>
+      <Name>CANAnalyzerDevices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicResource\DynamicResource.csproj">
+      <Project>{92e9dc45-b6ad-4bb9-aad9-c7a88da4a279}</Project>
+      <Name>DynamicResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HamburgerMenu\HamburgerMenu.csproj">
+      <Project>{eb2b307d-68eb-4e4a-8999-90db4db48342}</Project>
+      <Name>HamburgerMenu</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="MicrosoftExpressionInteractions">
+      <Version>3.0.40218</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.112</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core">
+      <Version>1.0.112</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>4.7.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using System.ComponentModel;
-using System.Runtime.Remoting.Channels;
 using IChannel = CANAnalyzerDevices.Devices.DeviceChannels.IChannel;
 
 namespace CANAnalyzerDevices.Devices

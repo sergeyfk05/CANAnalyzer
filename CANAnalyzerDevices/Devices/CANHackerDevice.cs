@@ -11,7 +11,6 @@ using System.IO.Ports;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
-using System.Runtime.Remoting.Channels;
 using IChannel = CANAnalyzerDevices.Devices.DeviceChannels.IChannel;
 
 namespace CANAnalyzerDevices.Devices

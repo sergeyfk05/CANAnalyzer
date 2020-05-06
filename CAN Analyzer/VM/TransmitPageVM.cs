@@ -32,10 +32,19 @@ namespace CANAnalyzer.VM
                 DLC = 8,
                 IsExtId = false,
                 Period = 100,
-                Payload = new byte[8]
+                Payload = CreateEmpty(8)
             }));
         }
+        private static ObservableCollection<byte> CreateEmpty(uint c)
+        {
+            ObservableCollection<byte> result = new ObservableCollection<byte>();
+            for (uint i = 0; i < c; i++)
+            {
+                result.Add(0);
+            }
 
+            return result;
+        }
 
         public ObservableCollection<TracePeriodicViewData> Data
         {

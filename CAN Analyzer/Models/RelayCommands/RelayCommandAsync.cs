@@ -3,6 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CANAnalyzer.Models
@@ -43,7 +44,7 @@ namespace CANAnalyzer.Models
         public void Execute(object parameter = null)
         {
             if (CanExecute())
-                execute?.BeginInvoke(null, null);
+                Task.Run(() => execute.Invoke());
         }
 
     }

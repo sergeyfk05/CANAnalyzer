@@ -1,11 +1,12 @@
 ﻿using CANAnalyzer.Models.Databases;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
@@ -83,9 +84,10 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            SQLiteConnection.CreateFile(path);
+            
+            //SqliteConnection.create(path);
 
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
                 string sql = "CREATE TABLE \"CanHeaders\"(" +
@@ -96,7 +98,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
                     "\"Period\" INTEGER NOT NULL" +
                     "\"Comment\" TEXT NOT NULL DEFAULT \"\");";
 
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                SqliteCommand command = new SqliteCommand(sql, dbConnection);
                 command.ExecuteNonQuery();
             }
 
@@ -114,9 +116,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            SQLiteConnection.CreateFile(path);
-
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            //SQLiteConnection.CreateFile(path);
+            
+            using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
                 string sql = "CREATE TABLE \"CanHeaders\"(" +
@@ -127,7 +129,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
                     "\"Period\" INTEGER NOT NULL" +
                     "\"Comment\" TEXT NOT NULL DEFAULT \"\");";
 
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                SqliteCommand command = new SqliteCommand(sql, dbConnection);
                 await command.ExecuteNonQueryAsync();
             }
 
@@ -176,9 +178,10 @@ namespace CANAnalyzer.Models.DataTypesProviders
             context?.Dispose();
         }
 
+
         public async void RemoveAll()
         {
-            await context.Database.ExecuteSqlCommandAsync("DELETE FROM Traces");
+            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
         }
 
         ~SQLiteTransmitPeriodicDataTypeProvider()

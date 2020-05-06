@@ -264,7 +264,7 @@
               Grid.RowSpan="2"
               Panel.ZIndex="450">
 
-            <fa:ImageAwesome Icon="Cog" 
+            <!--<fa:ImageAwesome Icon="Cog" 
                              Spin="True" 
                              SpinDuration="2" 
                              Foreground="Red" 
@@ -285,7 +285,7 @@
                         </Style.Triggers>
                     </Style>
                 </fa:ImageAwesome.Style>
-            </fa:ImageAwesome>
+            </fa:ImageAwesome>-->
 
         </Grid>
 

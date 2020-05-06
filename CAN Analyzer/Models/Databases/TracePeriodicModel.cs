@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CANAnalyzer.Models.Databases
         private bool _isExtId;
         private UInt64 _canId;
         private int _dlc = 8;
-        private byte[] _payload;
+        private ObservableCollection<byte> _payload;
         private uint _period;
         private string _comment = "";
 
@@ -88,7 +89,7 @@ namespace CANAnalyzer.Models.Databases
         /// Package payload. It's bytes converted to string
         /// </summary>
         [Required]
-        public byte[] Payload
+        public ObservableCollection<byte> Payload
         {
             get
             {
@@ -99,7 +100,7 @@ namespace CANAnalyzer.Models.Databases
                 if (value == _payload)
                     return;
 
-                if (value.Length != DLC)
+                if (value.Count != DLC)
                     throw new ArgumentException("value.Length != DLC");
 
                 _payload = value;

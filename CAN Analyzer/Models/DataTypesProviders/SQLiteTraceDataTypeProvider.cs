@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Data.SQLite;
-using System.Data.Entity;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
@@ -47,12 +47,12 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         private async void TargetFileChanged()
         {
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={TargetFile}"))
+            using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={TargetFile}"))
             {
                 dbConnection.Open();
                 string sql = "DELETE FROM CanHeaders WHERE((SELECT count(*) from Traces Where Traces.CanHeaderId = CanHeaders.Id) = 0); ";
 
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                SqliteCommand command = new SqliteCommand(sql, dbConnection);
                 await command.ExecuteNonQueryAsync();
             }
 
@@ -102,9 +102,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            SQLiteConnection.CreateFile(path);
+            //SqliteConnection.CreateFile(path);
 
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
                 string sql = "CREATE TABLE \"CanHeaders\"(" +
@@ -120,7 +120,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
                     "\"CanHeaderId\" INTEGER NOT NULL," +
                     "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
 
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                SqliteCommand command = new SqliteCommand(sql, dbConnection);
                 command.ExecuteNonQuery();
             }
 
@@ -141,9 +141,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            SQLiteConnection.CreateFile(path);
+            //SqliteConnection.CreateFile(path);
 
-            using (SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={path}"))
+            using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
                 string sql = "CREATE TABLE \"CanHeaders\"(" +
@@ -159,7 +159,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
                     "\"CanHeaderId\" INTEGER NOT NULL," +
                     "FOREIGN KEY(\"CanHeaderId\") REFERENCES \"CanHeaders\"(\"Id\"));";
 
-                SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+                SqliteCommand command = new SqliteCommand(sql, dbConnection);
                 await command.ExecuteNonQueryAsync();
             }
 
@@ -241,8 +241,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         public async void RemoveAll()
         {
-            await context.Database.ExecuteSqlCommandAsync("DELETE FROM CanHeaders");
-            await context.Database.ExecuteSqlCommandAsync("DELETE FROM Traces");
+            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM CanHeaders");
+            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
         }
 
         ~SQLiteTraceDataTypeProvider()
