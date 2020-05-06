@@ -20,24 +20,13 @@ namespace CANAnalyzer.Models.Databases
     /// </summary>
     public class TraceContext : DbContext
     {
-        /// <summary>
-        /// Constructs a new context instance using the existing connection to connect to
-        ///a database.The connection will not be disposed when the context is disposed
-        ///if contextOwnsConnection is false.
-        /// </summary>
-        /// <param name="connection"> An existing connection to use for the new context.</param>
-        /// <param name="contextOwnsConnection"> If set to true the connection is disposed when the context is disposed, otherwise the caller must dispose the connection.
-        /// /// </param>
-        public TraceContext(DbConnection connection, bool contextOwnsConnection)// : base(connection, contextOwnsConnection)
-        {
-        }
 
         /// <summary>
         ///    Constructs a new context instance using the existing connection to connect to
         ///    a database. The connection will be disposed when the context is disposed.
         /// </summary>
         /// <param name="sqliteFile">path to SQLite DB file</param>
-        public TraceContext(string sqliteFile)// : base(new SqliteConnection($"Data Source={sqliteFile}"), true)
+        public TraceContext(string sqliteFile)
         {
             _path = sqliteFile;
         }
@@ -47,7 +36,6 @@ namespace CANAnalyzer.Models.Databases
         public DbSet<CanHeaderModel> CanHeaders { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlite($"Data Source={_path}");
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={_path}");
     }
 }

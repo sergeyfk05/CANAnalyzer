@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using CANAnalyzer.Models.Extensions;
 
 namespace CANAnalyzer.Models.Databases
 {
@@ -22,23 +24,11 @@ namespace CANAnalyzer.Models.Databases
     class TracePeriodicContext : DbContext
     {
         /// <summary>
-        /// Constructs a new context instance using the existing connection to connect to
-        ///a database.The connection will not be disposed when the context is disposed
-        ///if contextOwnsConnection is false.
-        /// </summary>
-        /// <param name="connection"> An existing connection to use for the new context.</param>
-        /// <param name="contextOwnsConnection"> If set to true the connection is disposed when the context is disposed, otherwise the caller must dispose the connection.
-        /// /// </param>
-        public TracePeriodicContext(DbConnection connection, bool contextOwnsConnection)// : base(connection, contextOwnsConnection)
-        {
-        }
-
-        /// <summary>
         ///    Constructs a new context instance using the existing connection to connect to
         ///    a database. The connection will be disposed when the context is disposed.
         /// </summary>
         /// <param name="sqliteFile">path to SQLite DB file</param>
-        public TracePeriodicContext(string sqliteFile)// : base(new SqliteConnection($"Data Source={sqliteFile}"), true)
+        public TracePeriodicContext(string sqliteFile)
         {
             _path = sqliteFile;
         }
@@ -46,8 +36,8 @@ namespace CANAnalyzer.Models.Databases
         private string _path;
         public DbSet<TracePeriodicModel> Traces { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-=> options.UseSqlite($"Data Source={_path}");
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={_path}");
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,8 +45,8 @@ namespace CANAnalyzer.Models.Databases
                 .Entity<TracePeriodicModel>()
                 .Property(e => e.Payload)
                 .HasConversion(
-                    v => v.ToArray(),
-                    v => new ObservableCollection<byte>(new byte[] { 1,2,3,4,5,6,7,8}));
+                    v => v.ToByteArray(),
+                    v => v.ToObservableCollection());
         }
     }
 }
