@@ -89,6 +89,17 @@
                             </Button.ToolTip>
                         </Button>
 
+                        <Button DockPanel.Dock="Left" 
+                                Style="{DynamicResource ShortcutButtonStyle}"
+                                Command="{Binding ClearDataCommand}">
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                                   Source="{resources:Theme TransmitPageClearButtonIcon}"/>
+
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageClearButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
+
                         <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
 
                         <Button x:Name="startButton" 

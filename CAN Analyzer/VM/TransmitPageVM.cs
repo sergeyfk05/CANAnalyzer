@@ -114,6 +114,73 @@ namespace CANAnalyzer.VM
 
         }
 
+        private RelayCommandAsync _openFileCommand;
+        public RelayCommandAsync OpenFileCommand
+        {
+            get
+            {
+                if (_openFileCommand == null)
+                    _openFileCommand = new RelayCommandAsync(this.OpenFileCommand_Execute);
+
+                return _openFileCommand;
+            }
+        }
+        private void OpenFileCommand_Execute()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.Multiselect = false;
+
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                if (openFileDialog.FileName == CurrentTraceProvider?.TargetFile)
+                {
+                    MessageBox.Show("Файл уже открыт", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                //reset data and closing connection
+                CurrentTraceProvider?.CloseConnection();
+                CurrentTraceProvider = null;
+                _context.Post((s) => { Data.Clear(); }, null);
+
+
+                //find provider and load data
+                bool findedProvider = false;
+                foreach (var el in traceProviders)
+                {
+                    if (el.CanWorkWithIt(openFileDialog.FileName))
+                    {
+                        IsEnabled = false;
+                        findedProvider = true;
+
+                        try
+                        {
+                            CurrentTraceProvider?.CloseConnection();
+                            el.TargetFile = openFileDialog.FileName;
+                            CurrentTraceProvider = el;
+                            UpdateDataCommand_Execute();
+                        }
+                        catch (Exception e)
+                        { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+
+                        break;
+                    }
+                }
+
+                //if provider not founded
+                if (!findedProvider)
+                {
+                    MessageBox.Show("Added successfully", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                IsEnabled = true;
+            }
+        }
+
         private RelayCommandAsync _saveFileCommand;
         public RelayCommandAsync SaveFileCommand
         {
@@ -196,6 +263,22 @@ namespace CANAnalyzer.VM
                 IsEnabled = true;
             }
 
+        }
+
+        private RelayCommand _clearDataCommand;
+        public RelayCommand ClearDataCommand
+        {
+            get
+            {
+                if (_clearDataCommand == null)
+                    _clearDataCommand = new RelayCommand(this.ClearDataCommand_Execute);
+
+                return _clearDataCommand;
+            }
+        }
+        private void ClearDataCommand_Execute()
+        {
+            Data.Clear();
         }
 
         private RelayCommandAsync _updateDataCommand;
