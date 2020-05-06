@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzer.Models.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,12 +16,35 @@ namespace CANAnalyzer.Models.Databases
 {
     public class TracePeriodicModel : BaseModel
     {
+
+        public TracePeriodicModel()
+        {
+        }
+
         private bool _isExtId;
         private UInt64 _canId;
         private int _dlc = 8;
         private ObservableCollection<byte> _payload;
         private uint _period;
         private string _comment = "";
+        private int _id;
+
+        [Key]
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value == _id)
+                    return;
+
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         /// <summary>

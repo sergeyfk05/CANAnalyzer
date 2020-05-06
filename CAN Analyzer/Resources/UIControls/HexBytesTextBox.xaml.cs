@@ -19,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using CANAnalyzer.Models.Extensions;
 using System.Windows.Shapes;
 
 namespace CANAnalyzer.Resources.UIControls
@@ -33,17 +34,6 @@ namespace CANAnalyzer.Resources.UIControls
             DataCollectionChangedHandler = (object s, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => { Data_CollectionChanged(this, s, e); };
             InitializeComponent();
 
-        }
-
-        private static ObservableCollection<byte> CreateEmpty(uint c)
-        {
-            ObservableCollection<byte> result = new ObservableCollection<byte>();
-            for(uint i = 0;i<c;i++)
-            {
-                result.Add(0);
-            }
-
-            return result;
         }
 
 
@@ -64,7 +54,7 @@ namespace CANAnalyzer.Resources.UIControls
             set { SetValue(DataProperty, value); }
         }
         public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(ObservableCollection<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(CreateEmpty(8), OnDataChanged));
+            DependencyProperty.Register("Data", typeof(ObservableCollection<byte>), typeof(HexBytesTextBox), new UIPropertyMetadata(ObservableCollectionExtension.CreateEmpty(8), OnDataChanged));
 
         //private bool OnDataChangedHandlingIsEnabled = false;
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -98,6 +88,10 @@ namespace CANAnalyzer.Resources.UIControls
         private static string RenderText(ObservableCollection<byte> data)
         {
             string result = "0x";
+
+            if (data == null)
+                return result;
+
             foreach (var b in data)
             {
                 result += b.ToString("X2");

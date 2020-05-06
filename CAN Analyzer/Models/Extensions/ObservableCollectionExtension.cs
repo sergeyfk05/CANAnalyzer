@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace CANAnalyzer.Models.Extensions
@@ -29,6 +30,29 @@ namespace CANAnalyzer.Models.Extensions
             }
 
             return result;
+        }
+
+        public static ObservableCollection<byte> CreateEmpty(uint c)
+        {
+            ObservableCollection<byte> result = new ObservableCollection<byte>();
+            for (uint i = 0; i < c; i++)
+            {
+                result.Add(0);
+            }
+
+            return result;
+        }
+
+        public static int RemoveAll<T>(this ObservableCollection<T> coll, Func<T, bool> condition)
+        {
+            var itemsToRemove = coll.Where(condition).ToList();
+
+            foreach (var itemToRemove in itemsToRemove)
+            {
+                coll.Remove(itemToRemove);
+            }
+
+            return itemsToRemove.Count;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace CANAnalyzer.Models.Databases
         }
 
         private string _path;
-        public DbSet<TracePeriodicModel> Traces { get; set; }
+        public DbSet<TracePeriodicModel> TransmitModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={_path}");
 
@@ -42,8 +42,7 @@ namespace CANAnalyzer.Models.Databases
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<TracePeriodicModel>()
-                .Property(e => e.Payload)
+                .Entity<TracePeriodicModel>().Property(e => e.Payload)
                 .HasConversion(
                     v => v.ToByteArray(),
                     v => v.ToObservableCollection());

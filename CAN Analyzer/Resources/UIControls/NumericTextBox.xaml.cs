@@ -102,7 +102,10 @@ namespace CANAnalyzer.Resources.UIControls
             foreach (var el in e.Text)
             {
                 if (!(el >= '0' && el <= '9'))
+                {
                     e.Handled = true;
+                    SystemSounds.Beep.Play();
+                }                   
             }
         }
 

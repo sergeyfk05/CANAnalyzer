@@ -260,9 +260,7 @@
 
 
 
-        <Grid Grid.ColumnSpan="2"
-              Grid.RowSpan="2"
-              Panel.ZIndex="450">
+        <Grid Panel.ZIndex="450">
 
             <fa:ImageAwesome Icon="Cog" 
                              Spin="True" 

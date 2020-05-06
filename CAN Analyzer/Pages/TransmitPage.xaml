@@ -23,233 +23,279 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <Grid>
 
-    <Grid Margin="10">
+        <Grid Margin="10" IsEnabled="{Binding IsEnabled}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
 
-        <DockPanel Grid.Row="0" 
+            <DockPanel Grid.Row="0" 
                    Height="36"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
 
 
-            <Border Background="Aqua"
+                <Border Background="Aqua"
                     DockPanel.Dock="Left"
                     Height="36"
                     CornerRadius="4"
                     BorderThickness="0">
-                <Border.Effect>
-                    <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
-                </Border.Effect>
+                    <Border.Effect>
+                        <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                    </Border.Effect>
 
-                <DockPanel DockPanel.Dock="Left"
+                    <DockPanel DockPanel.Dock="Left"
                            Height="30"
                            VerticalAlignment="Center">
 
-                    <Button x:Name="openButton"
+                        <Button x:Name="openButton"
                                 Margin="2 0 0 0"
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding OpenFileCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button x:Name="saveButton" 
+                        <Button x:Name="saveButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveFileCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button x:Name="saveAsButton" 
+                        <Button x:Name="saveAsButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveAsFileCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                                    Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+                        <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
 
-                    <Button x:Name="startButton" 
+                        <Button x:Name="startButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 IsEnabled="{Binding FileIsOpened}"
                                 Command="{Binding StartTraceCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStartButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button x:Name="pauseButton" 
+                        <Button x:Name="pauseButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding PauseTraceCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Button x:Name="stopButton" 
+                        <Button x:Name="stopButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding StopTraceCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageStopButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                    <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
+                        <Grid Margin="4 0 4 0" VerticalAlignment="Stretch" Width="1" Background="Gray"/>
 
-                    <Button x:Name="closeButton" 
+                        <Button x:Name="closeButton" 
                                 DockPanel.Dock="Left" 
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClosePageCommand}">
-                        <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
+                            <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
                        Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
 
-                        <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
-                        </Button.ToolTip>
-                    </Button>
+                            <Button.ToolTip>
+                                <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
+                            </Button.ToolTip>
+                        </Button>
 
-                </DockPanel>
+                    </DockPanel>
 
-            </Border>
+                </Border>
 
-            <ComboBox x:Name="TransmiToComboBox" 
+                <ComboBox x:Name="TransmiToComboBox" 
                       ItemsSource="{Binding TransmitToItems}"
                           Style="{StaticResource TransmitToComboBoxStyle}"
                           Height="30" DockPanel.Dock="Right" MinWidth="200" VerticalAlignment="Center">
-            </ComboBox>
+                </ComboBox>
 
-            <!--This TextBlock need for fix ComboBox dockpanel's position-->
-            <TextBlock Width="0" DockPanel.Dock="Right"/>
+                <!--This TextBlock need for fix ComboBox dockpanel's position-->
+                <TextBlock Width="0" DockPanel.Dock="Right"/>
 
-        </DockPanel>
+            </DockPanel>
 
 
-        <DataGrid ItemsSource="{Binding Data}"
+            <DataGrid ItemsSource="{Binding Data}"
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch"
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
                 CanUserAddRows="True" CanUserDeleteRows="True" CanUserSortColumns="True">
-            <DataGrid.Columns>
+                <DataGrid.Columns>
 
-                <DataGridTemplateColumn Header="CAN ID" IsReadOnly="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn Header="CAN ID" IsReadOnly="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <controls:HexTextBox Value="{Binding Model.CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x001">
-                                <controls:HexTextBox.Style>
-                                    <Style TargetType="controls:HexTextBox">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                                                <Setter Property="MaxValue" Value="0x1FFFFFFF"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="False">
-                                                <Setter Property="MaxValue" Value="0x7FF"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </controls:HexTextBox.Style>
-                            </controls:HexTextBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <controls:HexTextBox Value="{Binding Model.CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x001">
+                                    <controls:HexTextBox.Style>
+                                        <Style TargetType="controls:HexTextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                    <Setter Property="MaxValue" Value="0x1FFFFFFF"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                    <Setter Property="MaxValue" Value="0x7FF"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </controls:HexTextBox.Style>
+                                </controls:HexTextBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridCheckBoxColumn Header="IsExtId" IsReadOnly="False"
+                    <DataGridCheckBoxColumn Header="IsExtId" IsReadOnly="False"
                              Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-                <DataGridTemplateColumn Header="DLC" IsReadOnly="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn Header="DLC" IsReadOnly="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <controls:NumericTextBox Value="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="8" NullStrValue="8"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <controls:NumericTextBox Value="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="8" NullStrValue="8"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Payload" IsReadOnly="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Model.Payload, Converter={StaticResource BiteArrayToHexStringConverter}}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn Header="Payload" IsReadOnly="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Model.Payload, Converter={StaticResource BiteArrayToHexStringConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
-                            <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate DataType="{x:Type viewData:TracePeriodicViewData}">
+                                <controls:HexBytesTextBox Data="{Binding Path=Model.Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Period" IsReadOnly="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Model.Period}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn Header="Period" IsReadOnly="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Model.Period}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <controls:NumericTextBox Value="{Binding Model.Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="99999" NullStrValue="100"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Count" IsReadOnly="True"
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <controls:NumericTextBox Value="{Binding Model.Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxValue="99999" NullStrValue="100"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Count" IsReadOnly="True"
                              Binding="{Binding Count}"/>
-                <DataGridTextColumn Header="Comment" IsReadOnly="False"
+                    <DataGridTextColumn Header="Comment" IsReadOnly="False"
                              Binding="{Binding Model.Comment, Mode=TwoWay}"/>
-            </DataGrid.Columns>
+                </DataGrid.Columns>
 
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
-                    <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
+                        <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
 
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <Trigger Property="Control.IsEnabled" Value="False">
+                            <Setter Property="Control.Effect">
+                                <Setter.Value>
+                                    <BlurEffect Radius="5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+        </Grid>
+
+
+        <Grid Panel.ZIndex="450">
+
+            <fa:ImageAwesome Icon="Cog" 
+                             Spin="True" 
+                             SpinDuration="2" 
+                             Foreground="Red" 
+                             Height="48" 
+                             Width="48" 
+                             VerticalAlignment="Center" 
+                             HorizontalAlignment="Center"
+                             IsEnabled="{Binding IsEnabled}">
+                <fa:ImageAwesome.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Control.IsEnabled" Value="False">
+                                <Setter Property="Control.Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="Control.IsEnabled" Value="True">
+                                <Setter Property="Control.Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </fa:ImageAwesome.Style>
+            </fa:ImageAwesome>
+
+        </Grid>
     </Grid>
+
+    
 
 </UserControl>

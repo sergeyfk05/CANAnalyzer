@@ -32,7 +32,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// <summary>
         /// Traces dataset
         /// </summary>
-        IQueryable<TracePeriodicModel> Traces { get; }
+        IQueryable<TracePeriodicModel> TransmitModels { get; }
 
         /// <summary>
         /// Supported files

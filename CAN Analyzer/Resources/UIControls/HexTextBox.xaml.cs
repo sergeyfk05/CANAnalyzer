@@ -108,7 +108,11 @@ namespace CANAnalyzer.Resources.UIControls
             foreach(var el in e.Text)
             {
                 if (!((el >= '0' && el <= '9') || (el >= 'a' && el <= 'f') || (el >= 'A' && el <= 'F')))
+                {
                     e.Handled = true;
+                    SystemSounds.Beep.Play();
+                }
+
             }
         }
 

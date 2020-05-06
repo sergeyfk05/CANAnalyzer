@@ -4,6 +4,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -28,10 +29,22 @@ namespace CANAnalyzer.Models.Converters
 
                 return result.Trim();
             }
-            else
+
+
+            if (value is ObservableCollection<byte> collection && targetType == typeof(string))
             {
-                return null;
+                string result = "0x";
+                foreach (var b in collection)
+                {
+                    result += b.ToString("X2");
+                    result += " ";
+                }
+
+                return result.Trim();
             }
+
+
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
@@ -20,6 +21,13 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             if (!File.Exists(TargetFile))
                 throw new ArgumentException("TargetFile does not exist.");
+
+            foreach(var el in TransmitModels)
+            {
+                context.TransmitModels.Attach(el);
+                context.Entry(el)
+                    .Property(c => c.Payload).IsModified = true;
+            }
 
             await context.SaveChangesAsync();
         }
@@ -71,7 +79,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// <summary>
         /// Traces dataset
         /// </summary>
-        public IQueryable<TracePeriodicModel> Traces => context?.Traces;
+        public IQueryable<TracePeriodicModel> TransmitModels => context?.TransmitModels;
 
 
 
@@ -94,7 +102,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
             using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
-                string sql = "CREATE TABLE \"CanHeaders\"(" +
+                string sql = "CREATE TABLE \"TransmitModels\"(" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                     "\"CanId\" INTEGER NOT NULL," +
                     "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
                     "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
@@ -125,12 +134,13 @@ namespace CANAnalyzer.Models.DataTypesProviders
             using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
-                string sql = "CREATE TABLE \"CanHeaders\"(" +
+                string sql = "CREATE TABLE \"TransmitModels\"(" +
+                    "\"Id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                     "\"CanId\" INTEGER NOT NULL," +
                     "\"IsExtId\" INTEGER NOT NULL DEFAULT 0 CHECK(IsExtId == 0 OR IsExtId == 1)," +
                     "\"DLC\" INTEGER NOT NULL DEFAULT 8 CHECK(DLC >= 0 AND DLC <= 8)," +
                     "\"Payload\" BLOB NOT NULL," +
-                    "\"Period\" INTEGER NOT NULL" +
+                    "\"Period\" INTEGER NOT NULL," +
                     "\"Comment\" TEXT NOT NULL DEFAULT \"\");";
 
                 SqliteCommand command = new SqliteCommand(sql, dbConnection);
@@ -150,14 +160,14 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             lock (context)
             {
-                context?.Traces.Add(entity);
+                context?.TransmitModels.Add(entity);
             }
         }
         public void AddRange(IEnumerable<TracePeriodicModel> entities)
         {
             lock (context)
             {
-                context?.Traces.AddRange(entities);
+                context?.TransmitModels.AddRange(entities);
             }
         }
 
@@ -165,14 +175,14 @@ namespace CANAnalyzer.Models.DataTypesProviders
         {
             lock (context)
             {
-                context?.Traces.Remove(entity);
+                context?.TransmitModels.Remove(entity);
             }
         }
         public void RemoveRange(IEnumerable<TracePeriodicModel> entities)
         {
             lock (context)
             {
-                context?.Traces.RemoveRange(entities);
+                context?.TransmitModels.RemoveRange(entities);
             }
         }
 
