@@ -239,10 +239,12 @@ namespace CANAnalyzer.Models.DataTypesProviders
             context?.Dispose();
         }
 
-        public async void RemoveAll()
+        public void RemoveAll()
         {
-            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM CanHeaders");
-            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
+            context?.Traces.RemoveRange(context?.Traces);
+            context?.CanHeaders.RemoveRange(context?.CanHeaders);
+            //await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM CanHeaders");
+            //await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
         }
 
         ~SQLiteTraceDataTypeProvider()

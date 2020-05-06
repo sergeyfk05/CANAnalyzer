@@ -22,7 +22,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (!File.Exists(TargetFile))
                 throw new ArgumentException("TargetFile does not exist.");
 
-            foreach(var el in TransmitModels)
+            await context.SaveChangesAsync();
+
+            foreach (var el in TransmitModels)
             {
                 context.TransmitModels.Attach(el);
                 context.Entry(el)
@@ -193,9 +195,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
         }
 
 
-        public async void RemoveAll()
+        public void RemoveAll()
         {
-            await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
+            context?.TransmitModels.RemoveRange(context?.TransmitModels);
         }
 
         ~SQLiteTransmitPeriodicDataTypeProvider()

@@ -44,9 +44,15 @@ namespace CANAnalyzer.VM
                     return;
 
                 _data = value;
+
+                if(_data != null)
+                    _data.CollectionChanged += Data_CollectionChanged;
+
                 RaisePropertyChanged();
             }
         }
+
+
         private ObservableCollection<TracePeriodicViewData> _data = new ObservableCollection<TracePeriodicViewData>();
 
         public ObservableCollection<TransmitToViewData> TransmitToItems
@@ -405,6 +411,35 @@ namespace CANAnalyzer.VM
             if (Settings.Instance.Device == sender)
             {
                 Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
+            }
+        }
+        private void Data_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (sender is ObservableCollection<TracePeriodicViewData> collection && collection == Data)
+            {
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                {
+                    foreach (var el in e.NewItems)
+                    {
+                        if (el is TracePeriodicViewData viewData)
+                            CurrentTraceProvider?.Add(viewData.Model);
+                    }
+                }
+
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (var el in e.OldItems)
+                    {
+                        if (el is TracePeriodicViewData viewData)
+                            CurrentTraceProvider?.Remove(viewData.Model);
+                    }
+                }
+
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+                {
+                    CurrentTraceProvider?.RemoveAll();
+                }
+
             }
         }
     }
