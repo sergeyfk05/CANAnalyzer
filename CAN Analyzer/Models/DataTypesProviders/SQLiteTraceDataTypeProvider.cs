@@ -241,8 +241,8 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         public void RemoveAll()
         {
-            context?.Traces.RemoveRange(context?.Traces);
-            context?.CanHeaders.RemoveRange(context?.CanHeaders);
+            context?.Traces.RemoveRange(context.Traces);
+            context?.CanHeaders.RemoveRange(context.CanHeaders);
             //await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM CanHeaders");
             //await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
         }

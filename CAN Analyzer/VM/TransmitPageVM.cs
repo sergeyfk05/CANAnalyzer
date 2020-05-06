@@ -274,7 +274,7 @@ namespace CANAnalyzer.VM
 
                         try
                         {
-                            CurrentTraceProvider?.CloseConnection();
+                            CurrentTraceProvider?.CloseConnection(); //-V3022
                             el.TargetFile = openFileDialog.FileName;
                             CurrentTraceProvider = el;
                             UpdateDataCommand_Execute();

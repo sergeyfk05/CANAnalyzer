@@ -197,7 +197,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         public void RemoveAll()
         {
-            context?.TransmitModels.RemoveRange(context?.TransmitModels);
+            context?.TransmitModels.RemoveRange(context.TransmitModels);
         }
 
         ~SQLiteTransmitPeriodicDataTypeProvider()
