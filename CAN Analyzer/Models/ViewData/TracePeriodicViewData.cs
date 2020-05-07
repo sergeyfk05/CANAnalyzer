@@ -130,6 +130,7 @@ namespace CANAnalyzer.Models.ViewData
                     Application.Current.Dispatcher.Invoke((Action)(() => { Model.Payload.Insert(0, 0); }));
                 }
             }
+            RaisePropertyChanged("Model");
         }
         private void IsExtId_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
