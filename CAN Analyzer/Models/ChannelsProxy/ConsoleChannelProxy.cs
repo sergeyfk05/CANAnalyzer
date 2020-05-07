@@ -226,23 +226,6 @@ namespace CANAnalyzer.Models.ChannelsProxy
             //throw new NotImplementedException();
         }
 
-        public void Dispose()
-        {
-            try
-            {
-                if(!isDisposed)
-                {
-                    _process?.Kill();
-                    _process?.Dispose();
-                }
-            }
-            finally
-            {
-                isDisposed = true;
-                GC.SuppressFinalize(this);
-            }
-        }
-        private bool isDisposed = false;
 
         public string Name
         {
@@ -264,10 +247,36 @@ namespace CANAnalyzer.Models.ChannelsProxy
             NameChanged?.Invoke(this, new EventArgs());
         }
 
+
+        private bool isDisposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (isDisposed)
+                return;
+
+            if (disposing)
+            {
+
+            }
+
+            _process?.Kill();
+            _process?.Dispose();
+
+            isDisposed = true;
+        }
+
         ~ConsoleChannelProxy()
         {
-            this.Dispose();
+            Dispose(false);
         }
+
 
         public override string ToString()
         {

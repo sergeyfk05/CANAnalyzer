@@ -16,6 +16,7 @@ using CANAnalyzer.Models.ChannelsProxy;
 using System.Text.Json.Serialization;
 using System.Collections.ObjectModel;
 using System.Threading;
+using CANAnalyzer.Models.Extensions;
 
 namespace CANAnalyzer
 {
@@ -34,7 +35,16 @@ namespace CANAnalyzer
             if (e.PropertyName != "Device")
                 return;
 
-            _proxies.Clear();
+            if(Device != null)
+                Device.IsConnectedChanged += Device_IsConnectedChanged;
+
+            _proxies.RemoveAll((x) => true);
+        }
+
+        private void Device_IsConnectedChanged(object sender, EventArgs e)
+        {
+            if(sender is IDevice dev && dev == Device && !Device.IsConnected)
+                Proxies.RemoveAll((x) => true);
         }
 
         public string LanguagesXmlPath
@@ -189,7 +199,7 @@ namespace CANAnalyzer
             if (Proxies == null)
                 return;
 
-            foreach(var el in Proxies)
+            foreach (var el in Proxies)
             {
                 try
                 {

@@ -156,11 +156,11 @@ namespace CANAnalyzer.VM
 
         private void OnProxiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                foreach(var el in e.NewItems)
+                foreach (var el in e.NewItems)
                 {
-                    if(el is IChannelProxy proxy)
+                    if (el is IChannelProxy proxy)
                     {
                         //recievePage
                         RecieveChannelPage recievePage = null;
@@ -168,7 +168,7 @@ namespace CANAnalyzer.VM
                         {
                             recievePage = new RecieveChannelPage();
                             recievePage.DataContext = new RecieveChannelPageVM(proxy);
-                        }, null);                        
+                        }, null);
 
                         ContentPageData recievePageData = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                             "#NavMenuRecieveProxyPage",
@@ -213,7 +213,7 @@ namespace CANAnalyzer.VM
                             else
                                 insertIndex++;
 
-                            TopItemSource.Insert(insertIndex ,channelViewData.NavData);
+                            TopItemSource.Insert(insertIndex, channelViewData.NavData);
                         }, null);
                     }
                 }
@@ -235,6 +235,13 @@ namespace CANAnalyzer.VM
                 {
                     TopItemSource.RemoveAll(x => objectsToRemove.Contains(x));
                 }, null);
+
+                if (e.OldItems != null)
+                    foreach (var el in e.OldItems)
+                    {
+                        if (el is IChannelProxy proxy)
+                            proxy?.Dispose();
+                    }
             }
         }
 
@@ -246,7 +253,7 @@ namespace CANAnalyzer.VM
         /// <returns></returns>
         private bool IsContentPageDataContainsProxies(ContentPageData data, IList proxies)
         {
-            if(data is ContentPageDataForProxy proxyData)
+            if (data is ContentPageDataForProxy proxyData)
             {
                 return proxies.Contains(proxyData.Proxy);
             }
