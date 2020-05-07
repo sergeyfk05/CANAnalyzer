@@ -41,6 +41,8 @@ namespace CANAnalyzer
             Settings.Instance.ThemeCulture = Manager<ThemeCultureInfo>.StaticInstance.CurrentCulture.Name;
 
             Settings.SaveToJsonAsync(Settings.Instance.SettingsPath);
+
+            Settings.Instance.Dispose();
         }
     }
 }

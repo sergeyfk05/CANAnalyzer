@@ -146,7 +146,10 @@ namespace CANAnalyzer.VM
 
                 _context.Post((s) =>
                 {
-                    TopItemSource.Add(channelViewData.NavData);
+                    int insertIndex = PagesData.Where(x => x.Kind == PageKind.Channel).Max(x => TopItemSource.IndexOf(x.NavData));
+                    if (insertIndex < 0)
+                        insertIndex = 0;
+                    TopItemSource.Insert(insertIndex, channelViewData.NavData);
                 }, null);
             }
         }
@@ -204,7 +207,13 @@ namespace CANAnalyzer.VM
 
                         _context.Post((s) =>
                         {
-                            TopItemSource.Add(channelViewData.NavData);
+                            int insertIndex = PagesData.Where(x => x.Kind == PageKind.Channel || x.Kind == PageKind.Proxy).Max(x => TopItemSource.IndexOf(x.NavData));
+                            if (insertIndex < 0)
+                                insertIndex = 0;
+                            else
+                                insertIndex++;
+
+                            TopItemSource.Insert(insertIndex ,channelViewData.NavData);
                         }, null);
                     }
                 }

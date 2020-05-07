@@ -61,6 +61,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
 
                     message = process.StandardOutput.ReadLine();
                     process.Kill();
+                    process.Dispose();
                     
                 }
 
