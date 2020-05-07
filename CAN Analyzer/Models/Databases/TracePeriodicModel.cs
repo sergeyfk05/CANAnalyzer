@@ -132,8 +132,13 @@ namespace CANAnalyzer.Models.Databases
                     throw new ArgumentException("value.Length != DLC");
 
                 _payload = value;
+                _payload.CollectionChanged += Payload_CollectionChanged;
                 OnPropertyChanged();
             }
+        }
+        private void Payload_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("Payload");
         }
 
         /// <summary>
