@@ -185,7 +185,7 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTemplateColumn Header="CAN ID" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
@@ -212,10 +212,10 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridCheckBoxColumn Header="IsExtId" IsReadOnly="False"
+                    <DataGridCheckBoxColumn Header="{resources:Language #TraceDataExtIdColumnName}" IsReadOnly="False"
                              Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-                    <DataGridTemplateColumn Header="DLC" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged}"/>
@@ -229,7 +229,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="status" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataStatusColumnName}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -237,10 +237,10 @@
                                         <Style TargetType="TextBlock">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsTrasmiting}" Value="True">
-                                                    <Setter Property="Text" Value="transmiting"/>
+                                                    <Setter Property="Text" Value="{resources:Language #TraceDataTransmitingStatus}"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding IsTrasmiting}" Value="False">
-                                                    <Setter Property="Text" Value="stoped"/>
+                                                    <Setter Property="Text" Value="{resources:Language #TraceDataStopedStatus}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -250,7 +250,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Payload" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Model.Payload, Converter={StaticResource BiteArrayToHexStringConverter}, UpdateSourceTrigger=PropertyChanged}"/>
@@ -264,7 +264,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Period" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPeriodColumnName}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Model.Period}"/>

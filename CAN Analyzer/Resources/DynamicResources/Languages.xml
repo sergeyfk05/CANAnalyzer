@@ -1,186 +1,543 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Languages>
-  <Cultures>
-    <Culture>ru</Culture>
-    <Culture>en</Culture>
-  </Cultures>
+	<Cultures>
+		<Culture>ru</Culture>
+		<Culture>en</Culture>
+	</Cultures>
 
-  <Recordings>
-    <Record name="#ru">
-      <ru>Русский</ru>
-      <en>Русский</en>
-    </Record>
-    <Record name="#en">
-      <ru>English</ru>
-      <en>English</en>
-    </Record>
-
-
-
-    <Record name="#dark">
-      <ru>Тёмная</ru>
-      <en>Dark</en>
-    </Record>
-    <Record name="#white">
-      <ru>Светлая</ru>
-      <en>Bright</en>
-    </Record>
-
-    <!--NavMenu-->
-    <Record name="#appSettingsMenu">
-      <ru>Настройки</ru>
-      <en>Settings</en>
-    </Record>
-    <Record name="#NavMenuRecieveChannelPage">
-      <en>Tracer</en>
-    </Record>
-    <Record name="#NavMenuMonitorChannelPage">
-      <en>Monitor</en>
-    </Record>
+	<Recordings>
+		<Record name="#ru">
+			<ru>Русский</ru>
+			<en>Русский</en>
+		</Record>
+		<Record name="#en">
+			<ru>English</ru>
+			<en>English</en>
+		</Record>
 
 
-    <!--TransmitPage-->
-    <Record name="#TransmitPageOpenButtonToolTip">
-      <ru>Открыть файл</ru>
-      <en>Open file</en>
-    </Record>
-    <Record name="#TransmitPageSaveButtonToolTip">
-      <ru>Сохранить в файл</ru>
-      <en>Save in file</en>
-    </Record>
-    <Record name="#TransmitPageSaveAsButtonToolTip">
-      <ru>Сохранить как</ru>
-      <en>Save as</en>
-    </Record>
-    <Record name="#TransmitPageClearButtonToolTip">
-      <ru>Очистить всё</ru>
-      <en>Clear all</en>
-    </Record>
-    <Record name="#TransmitPageStartButtonToolTip">
-      <ru>Очистить всё</ru>
-      <en>Start trasmit</en>
-    </Record>
-    <Record name="#TransmitPagePauseButtonToolTip">
-      <ru>Очистить всё</ru>
-      <en>Stop transmit</en>
-    </Record>
-    <Record name="#TransmitPageStopButtonToolTip">
-      <ru>Очистить всё</ru>
-      <en>Pause transmit</en>
-    </Record>
-    <Record name="#TraceFilterById">
-      <en>Filter by CAN id:</en>
-    </Record>
 
-    <!--TransmitTo Control-->
-    <Record name="#TransmitToControlPreviewText">
-      <ru>Транслировать в:</ru>
-      <en>Transmit to:</en>
-    </Record>
-    
-    
-    <!--Trace DataGrid-->
-    <Record name="#TraceDataTimeColumnName">
-      <en>Time</en>
-    </Record>
-    <Record name="#TraceDataCanIdColumnName">
-      <en>ID</en>
-    </Record>
-    <Record name="#TraceDataExtIdColumnName">
-      <en>External ID</en>
-    </Record>
-    <Record name="#TraceDataDLCColumnName">
-      <en>DLC</en>
-    </Record>
-    <Record name="#TraceDataPayloadColumnName">
-      <en>Payload</en>
-    </Record>
-    <Record name="#TraceDataCommentColumnName">
-      <en>CAN header comment</en>
-    </Record>
-    <Record name="#TraceDataGridDeleteContextMenuCommand">
-      <en>Delete</en>
-    </Record>
-    <Record name="#TraceDataGridCopyContextMenuCommand">
-      <en>Copy</en>
-    </Record>
-    
-    
-    
-    <!--DataTypeProviders-->
-    <Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
-      <en>SQLite3 database</en>
-    </Record>
-    <Record name="#AllFiles_FileGroup">
-      <en>All files</en>
-    </Record>
-    
-    <!--ProxyDataTypes-->
-    <Record name="#Proxy_FileGroup">
-      <en>Execute file</en>
-    </Record>
+		<Record name="#dark">
+			<en>Dark</en>
+		</Record>
+		<Record name="#white">
+			<en>Bright</en>
+		</Record>
 
-    <!--AppSettingPage-->
-    <Record name="#AppSettingsPageTitle">
-      <en>Application settings</en>
-    </Record>
-    <Record name="#AppSettingPageSelectLanguage">
-      <en>Select language:</en>
-    </Record>
-    <Record name="#AppSettingPageSelectTheme">
-      <en>Select theme:</en>
-    </Record>
-    <Record name="#AppSettingPageSelectDevice">
-      <en>Select device:</en>
-    </Record>
-    <Record name="#AppSettingPageConnectDevice">
-      <en>Connect</en>
-    </Record>
-    <Record name="#AppSettingPageDisconnectDevice">
-      <en>Disconnect</en>
-    </Record>
-    <Record name="#AppSettingsPageSelectBitrateLabel">
-      <en>Bitrate:</en>
-    </Record>
-    <Record name="#AppSettingsPageBitrateUnitsOfMeasure">
-      <en>kbps</en>
-    </Record>
-    <Record name="#AppSettingsPageListenOnlyLabel">
-      <en>Listen only</en>
-    </Record>
-    <Record name="#AppSettingsPageOpenChannel">
-      <en>Open channel</en>
-    </Record>
-    <Record name="#AppSettingsPageCloseChannel">
-      <en>Close channel</en>
-    </Record>
-    <Record name="#AppSettingsPageDeleteProxyChannel">
-      <en>Delete proxy</en>
-    </Record>
-    <Record name="#AppSettingsPageAddProxyChannel">
-      <en>Add proxy</en>
-    </Record>
-    <Record name="#AppSettingsPageProxyFilePathLabel">
-      <en>Path:</en>
-    </Record>
-    
-    
-    
-    <!--CanHacker Device-->
-    <Record name="#CanHackerChannelNavMenu">
-      <en>CanHacker Channel1234</en>
-      <ru>Канал CanHacker'а</ru>
-    </Record>
-    <Record name="#AppSettingsPageAddProxyChannel">
-      <en>Add proxy</en>
-    </Record>
-    
+		<Record name="#appTitle">
+			<en>CAN Analyzer</en>
+		</Record>
 
-    <Record name="#ErrorMsgBoxTitle">
-      <en>Error</en>
-    </Record>
-    <Record name="#FileError">
-      <en>File in use by another program or inaccessible.</en>
-    </Record>
-  </Recordings>
+
+		<!--NavMenu-->
+		<Record name="#appSettingsMenu">
+			<en>Settings</en>
+		</Record>
+		<Record name="#NavMenuRecieveChannelPage">
+			<en>Tracer</en>
+		</Record>
+		<Record name="#NavMenuMonitorChannelPage">
+			<en>Monitor</en>
+		</Record>
+		<Record name="#addTransmitPageMenu">
+			<en>Add transmiter</en>
+		</Record>
+		<Record name="#addTransmitFilePageMenu">
+			<en>Add file transmiter</en>
+		</Record>
+		<Record name="#addBomberPageMenu">
+			<en>Add bomber</en>
+		</Record>
+		<Record name="#NavMenuTransmitPage">
+			<en>Transmiter</en>
+		</Record>
+		<Record name="#NavMenuTransmitFilePage">
+			<en>File transmiter</en>
+		</Record>
+		<Record name="#NavMenuBomberPage">
+			<en>Bomber</en>
+		</Record>
+		<Record name="#NavMenuRecieveProxyPage">
+			<en>Tracer</en>
+		</Record>
+		<Record name="#NavMenuMonitorProxyPage">
+			<en>Monitor</en>
+		</Record>
+
+
+		<!--TransmitPage-->
+		<Record name="#TransmitPageOpenButtonToolTip">
+			<en>Open file</en>
+		</Record>
+		<Record name="#TransmitPageSaveButtonToolTip">
+			<en>Save in file</en>
+		</Record>
+		<Record name="#TransmitPageSaveAsButtonToolTip">
+			<en>Save as</en>
+		</Record>
+		<Record name="#TransmitPageClearButtonToolTip">
+			<en>Clear all</en>
+		</Record>
+		<Record name="#TransmitPageStartButtonToolTip">
+			<en>Start trasmit</en>
+		</Record>
+		<Record name="#TransmitPagePauseButtonToolTip">
+			<en>Stop transmit</en>
+		</Record>
+		<Record name="#TransmitPageStopButtonToolTip">
+			<en>Pause transmit</en>
+		</Record>
+		<Record name="#TransmitPageCloseButtonToolTip">
+			<en>Close page</en>
+		</Record>
+		<Record name="#TraceFilterById">
+			<en>Filter by CAN id:</en>
+		</Record>
+
+		<!--TransmitFilePage-->
+		<Record name="#TransmitFilePageOpenButtonToolTip">
+			<en>Open file</en>
+		</Record>
+		<Record name="#TransmitFilePageSaveButtonToolTip">
+			<en>Save in file</en>
+		</Record>
+		<Record name="#TransmitFilePageSaveAsButtonToolTip">
+			<en>Save as</en>
+		</Record>
+		<Record name="#TransmitFilePageClearButtonToolTip">
+			<en>Clear all</en>
+		</Record>
+		<Record name="#TransmitFilePageStartButtonToolTip">
+			<en>Start trasmit</en>
+		</Record>
+		<Record name="#TransmitFilePagePauseButtonToolTip">
+			<en>Stop transmit</en>
+		</Record>
+		<Record name="#TransmitFilePageStopButtonToolTip">
+			<en>Pause transmit</en>
+		</Record>
+		<Record name="#TransmitFilePageCloseButtonToolTip">
+			<en>Close page</en>
+		</Record>
+		<Record name="#TraceFilterById">
+			<en>Filter by CAN id:</en>
+		</Record>
+
+		<!--TransmitTo Control-->
+		<Record name="#TransmitToControlPreviewText">
+			<en>Transmit to:</en>
+		</Record>
+
+
+		<!--Trace DataGrid-->
+		<Record name="#TraceDataTimeColumnName">
+			<en>Time</en>
+		</Record>
+		<Record name="#TraceDataCanIdColumnName">
+			<en>ID</en>
+		</Record>
+		<Record name="#TraceDataExtIdColumnName">
+			<en>External ID</en>
+		</Record>
+		<Record name="#TraceDataDLCColumnName">
+			<en>DLC</en>
+		</Record>
+		<Record name="#TraceDataPayloadColumnName">
+			<en>Payload</en>
+		</Record>
+		<Record name="#TraceDataCommentColumnName">
+			<en>CAN header comment</en>
+		</Record>
+		<Record name="#TraceDataStatusColumnName">
+			<en>Status</en>
+		</Record>
+		<Record name="#TraceDataTransmitingStatus">
+			<en>Transmiting</en>
+		</Record>
+		<Record name="#TraceDataStopedStatus">
+			<en>Stoped</en>
+		</Record>
+		<Record name="#TraceDataPeriodColumnName">
+			<en>Period</en>
+		</Record>
+		<Record name="#TraceDataGridDeleteContextMenuCommand">
+			<en>Delete</en>
+		</Record>
+		<Record name="#TraceDataGridCopyContextMenuCommand">
+			<en>Copy</en>
+		</Record>
+
+
+
+		<!--DataTypeProviders-->
+		<Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
+			<en>Trace database</en>
+		</Record>
+		<Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTransmitPeriodicDataTypeProvider_FileGroup">
+			<en>Transmit periodic database</en>
+		</Record>
+		<Record name="#AllFiles_FileGroup">
+			<en>All files</en>
+		</Record>
+
+		<!--ProxyDataTypes-->
+		<Record name="#CANAnalyzer.Models.ChannelsProxy.Creators.ConsoleChannelProxyCreator_ProxyFileGroup">
+			<en>Execute files</en>
+		</Record>
+		<Record name="#Proxy_FileGroup">
+			<en>Execute files</en>
+		</Record>
+
+		<!--AppSettingPage-->
+		<Record name="#AppSettingsPageTitle">
+			<en>Application settings</en>
+		</Record>
+		<Record name="#AppSettingPageSelectLanguage">
+			<en>Select language:</en>
+		</Record>
+		<Record name="#AppSettingPageSelectTheme">
+			<en>Select theme:</en>
+		</Record>
+		<Record name="#AppSettingPageSelectDevice">
+			<en>Select device:</en>
+		</Record>
+		<Record name="#AppSettingPageConnectDevice">
+			<en>Connect</en>
+		</Record>
+		<Record name="#AppSettingPageDisconnectDevice">
+			<en>Disconnect</en>
+		</Record>
+		<Record name="#AppSettingsPageSelectBitrateLabel">
+			<en>Bitrate:</en>
+		</Record>
+		<Record name="#AppSettingsPageBitrateUnitsOfMeasure">
+			<en>kbps</en>
+		</Record>
+		<Record name="#AppSettingsPageListenOnlyLabel">
+			<en>Listen only</en>
+		</Record>
+		<Record name="#AppSettingsPageOpenChannel">
+			<en>Open channel</en>
+		</Record>
+		<Record name="#AppSettingsPageCloseChannel">
+			<en>Close channel</en>
+		</Record>
+		<Record name="#AppSettingsPageDeleteProxyChannel">
+			<en>Delete proxy</en>
+		</Record>
+		<Record name="#AppSettingsPageAddProxyChannel">
+			<en>Add proxy</en>
+		</Record>
+		<Record name="#AppSettingsPageProxyFilePathLabel">
+			<en>Path:</en>
+		</Record>
+
+
+
+		<!--CanHacker Device-->
+		<Record name="#CanHackerChannelNavMenu">
+			<en>CanHacker Channel</en>
+		</Record>
+		<Record name="#AppSettingsPageAddProxyChannel">
+			<en>Add proxy</en>
+		</Record>
+
+
+		<!--BomberPage-->
+		<Record name="#BomberPageCloseButtonToolTip">
+			<en>Close page</en>
+		</Record>
+		<Record name="#BomberPageCanIdFieldLabel">
+			<en>ID:</en>
+		</Record>
+		<Record name="#BomberPageIsExtIdFieldLabel">
+			<en>Extended ID</en>
+		</Record>
+		<Record name="#BomberPageDLCFieldLabel">
+			<en>DLC</en>
+		</Record>
+		<Record name="#BomberPageIncrementFieldLabel">
+			<en>Increment</en>
+		</Record>
+		<Record name="#BomberPageValueFieldLabel">
+			<en>Payload</en>
+		</Record>
+		<Record name="#BomberPageMsgPerStepFieldLabel">
+			<en>Msg per step</en>
+		</Record>
+		<Record name="#BomberPagePeriodFieldLabel">
+			<en>Period</en>
+		</Record>
+		<Record name="#BomberPageStepForwardButtonContent">
+			<en>Step +</en>
+		</Record>
+		<Record name="#BomberPageStepBackButtonContent">
+			<en>Step -</en>
+		</Record>
+		<Record name="#BomberPageShotButtonContent">
+			<en>Shot</en>
+		</Record>
+		<Record name="#BomberPageStartStopButtonStartContent">
+			<en>Run</en>
+		</Record>
+		<Record name="#BomberPageStartStopButtonStopContent">
+			<en>Stop</en>
+		</Record>
+
+
+		<!--MonitorPage-->
+		<Record name="#MonitorPageRecieveStartButtonToolTip">
+			<en>Start monitoring</en>
+		</Record>
+		<Record name="#MonitorPagePauseButtonToolTip">
+			<en>Pause monitoring</en>
+		</Record>
+		<Record name="#MonitorPageClearButtonToolTip">
+			<en>Clear list</en>
+		</Record>
+
+
+		<!--RecievePage-->
+		<Record name="#RecievePageSaveAsButtonToolTip">
+			<en>Save as</en>
+		</Record>
+		<Record name="#RecievePageRecieveStartButtonToolTip">
+			<en>Start recieving</en>
+		</Record>
+		<Record name="#RecievePagePauseButtonToolTip">
+			<en>Pause recieving</en>
+		</Record>
+		<Record name="#RecievePageClearButtonToolTip">
+			<en>Stop recieving</en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+		<Record name="#">
+			<en></en>
+		</Record>
+
+
+
+
+		<Record name="#ErrorMsgBoxTitle">
+			<en>Error</en>
+		</Record>
+		<Record name="#FileError">
+			<en>File in use by another program or inaccessible.</en>
+		</Record>
+	</Recordings>
 </Languages>

@@ -303,6 +303,10 @@ namespace CANAnalyzer.VM
             {
                 Status = TransmitState.Transmiting;
                 _msgPerStepComleted = 0;
+
+                if (Period < 10)
+                    Period = 10;
+
                 _timer.Interval = Period;
                 _timer.Start();
             }

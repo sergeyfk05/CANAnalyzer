@@ -62,7 +62,7 @@
                        Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
 
                         <Button.ToolTip>
-                            <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
+                            <ToolTip Content="{resources:Language #BomberPageCloseButtonToolTip}"/>
                         </Button.ToolTip>
                     </Button>
 
@@ -109,7 +109,7 @@
 
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="0" VerticalAlignment="Bottom">
-                <TextBlock Text="ID:"/>
+                <TextBlock Text="{resources:Language #BomberPageCanIdFieldLabel}"/>
                 <controls:HexTextBox x:Name="CanIdTextBox" Height="{StaticResource StandartControlHeight}" Value="{Binding CanId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="0x7ff" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">
                     <controls:HexTextBox.Style>
                         <Style TargetType="controls:HexTextBox">
@@ -130,7 +130,7 @@
                     </controls:HexTextBox.Style>
                 </controls:HexTextBox>
             </StackPanel>
-            <CheckBox Content="isExtId" Grid.Row="5" Grid.ColumnSpan="5" IsChecked="{Binding IsExtId}">
+            <CheckBox Content="{resources:Language #BomberPageIsExtIdFieldLabel}" Grid.Row="5" Grid.ColumnSpan="5" IsChecked="{Binding IsExtId}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Style.Triggers>
@@ -144,7 +144,7 @@
 
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Bottom">
-                <TextBlock Text="DLC"/>
+                <TextBlock Text="{resources:Language #BomberPageDLCFieldLabel}"/>
                 <controls:HexTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                     <controls:HexTextBox.Style>
                         <Style TargetType="controls:HexTextBox">
@@ -159,12 +159,12 @@
             </StackPanel>
             
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom">
-                <TextBlock Text="increment"/>
+                <TextBlock Text="{resources:Language #BomberPageIncrementFieldLabel}"/>
                 <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Increment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center"/>
             </StackPanel>
             
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom">
-                <TextBlock Text="value"/>
+                <TextBlock Text="{resources:Language #BomberPageValueFieldLabel}"/>
                 <controls:HexBytesTextBox Height="{StaticResource StandartControlHeight}" Data="{Binding Payload, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center">
                     <controls:HexBytesTextBox.Style>
                         <Style TargetType="controls:HexBytesTextBox">
@@ -179,7 +179,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="6" VerticalAlignment="Bottom">
-                <TextBlock Text="msg per step"/>
+                <TextBlock Text="{resources:Language #BomberPageMsgPerStepFieldLabel}"/>
                 <controls:NumericTextBox Value="{Binding MsgPerStep, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="1" Height="{StaticResource StandartControlHeight}" MaxValue="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
                     <controls:NumericTextBox.Style>
                         <Style TargetType="controls:NumericTextBox">
@@ -194,7 +194,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom">
-                <TextBlock Text="period"/>
+                <TextBlock Text="{resources:Language #BomberPagePeriodFieldLabel}"/>
                 <controls:NumericTextBox Value="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" NullStrValue="20" Height="{StaticResource StandartControlHeight}" MaxValue="1000" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
                     <controls:NumericTextBox.Style>
                         <Style TargetType="controls:NumericTextBox">
@@ -208,17 +208,17 @@
                 </controls:NumericTextBox>
             </StackPanel>
 
-            <Button Content="step +" Command="{Binding StepForwardCommand}" Padding="5" Grid.Row="0" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
-            <Button Content="step -" Command="{Binding StepBackCommand}" Padding="5" Grid.Row="2" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
-            <Button Content="shot" Command="{Binding ShotCommand}" Padding="5" Grid.Row="0" Grid.Column="10" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Content="{resources:Language #BomberPageStepForwardButtonContent}" Command="{Binding StepForwardCommand}" Padding="5" Grid.Row="0" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Content="{resources:Language #BomberPageStepBackButtonContent}" Command="{Binding StepBackCommand}" Padding="5" Grid.Row="2" Grid.Column="8" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
+            <Button Content="{resources:Language #BomberPageShotButtonContent}" Command="{Binding ShotCommand}" Padding="5" Grid.Row="0" Grid.Column="10" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}"/>
             <Button Command="{Binding RunCommand}" Padding="5" Grid.Row="2" Grid.Column="10" VerticalAlignment="Bottom" Height="{StaticResource StandartControlHeight}">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Content" Value="run"/>
+                        <Setter Property="Content" Value="{resources:Language #BomberPageStartStopButtonStartContent}"/>
 
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
-                                <Setter Property="Content" Value="stop"/>
+                                <Setter Property="Content" Value="{resources:Language #BomberPageStartStopButtonStopContent}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

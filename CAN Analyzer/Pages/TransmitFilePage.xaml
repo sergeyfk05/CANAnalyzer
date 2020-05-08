@@ -62,10 +62,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding OpenFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePageOpenButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageOpenButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -74,10 +74,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePageSaveButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageSaveButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -86,10 +86,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveAsFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                                   Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+                                   Source="{resources:Theme TransmitFilePageSaveAsButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageSaveAsButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -101,10 +101,10 @@
                                 IsEnabled="{Binding FileIsOpened}"
                                 Command="{Binding StartTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageStartButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePageStartButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageStartButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -113,10 +113,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding PauseTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPagePauseButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePagePauseButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPagePauseButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePagePauseButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -125,10 +125,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding StopTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageStopButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePageStopButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageStopButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -139,10 +139,10 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClosePageCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
+                       Source="{resources:Theme TransmitFilePageCloseButtonIcon}"/>
 
                             <Button.ToolTip>
-                                <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>
+                                <ToolTip Content="{resources:Language #TransmitFilePageCloseButtonToolTip}"/>
                             </Button.ToolTip>
                         </Button>
 

@@ -68,11 +68,184 @@ namespace CANAnalyzer.VM
 
             Settings.Instance.Proxies.CollectionChanged += OnProxiesCollectionChanged;
             Settings.Instance.PropertyChanged += OnDevicePropertyChanged;
+            PropertyChanged += TitleKey_PropertyChanged;
 
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
             Manager<ThemeCultureInfo>.StaticInstance.CultureChanged += Theme_CultureChanged;
+
+            TitleKey_PropertyChanged(this, new PropertyChangedEventArgs("TitleKey"));
         }
 
-        private SynchronizationContext _context = SynchronizationContext.Current;
+        private void Language_CultureChanged(object sender, EventArgs e)
+        {
+            TitleKey_PropertyChanged(this, new PropertyChangedEventArgs("TitleKey"));
+        }
+
+        private void TitleKey_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != "TitleKey")
+                return;
+
+            if(string.IsNullOrEmpty(TitleKey))
+                Title = (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#appTitle");
+            else
+                Title = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("#appTitle")} - {Manager<LanguageCultureInfo>.StaticInstance.GetResource(TitleKey)}";
+
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            private set
+            {
+                if (_title == value)
+                    return;
+
+                _title = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _title;
+        
+        public string TitleKey
+        {
+            get { return _titleKey; }
+            set
+            {
+                if (_titleKey == value)
+                    return;
+
+                _titleKey = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _titleKey;
+
+        public ObservableCollection<NavMenuItemData> TopItemSource
+        {
+            get
+            {
+                return _topItemSource ?? (_topItemSource = new ObservableCollection<NavMenuItemData>());
+            }
+            set
+            {
+                if (_topItemSource == value)
+                    return;
+
+                _topItemSource = value;
+                RaisePropertyChanged();
+            }
+        }
+        private ObservableCollection<NavMenuItemData> _topItemSource;
+
+
+        public ObservableCollection<NavMenuItemData> BottomItemSource
+        {
+            get
+            {
+                return _bottomItemSource ?? (_bottomItemSource = new ObservableCollection<NavMenuItemData>());
+            }
+            set
+            {
+                if (_bottomItemSource == value)
+                    return;
+
+                _bottomItemSource = value;
+                RaisePropertyChanged();
+            }
+        }
+        private ObservableCollection<NavMenuItemData> _bottomItemSource;
+
+
+        public ImageSource NavMenuDropdownIconSource
+        {
+            get
+            {
+                try
+                {
+                    return new BitmapImage(new Uri(
+                                        new Uri(Assembly.GetExecutingAssembly().Location),
+                                        (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource("NavMenuDropdownIcon")));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+
+        public bool MenuIsCollapsed
+        {
+            get { return _menuIsCollapsed; }
+            set
+            {
+                if (_menuIsCollapsed == value)
+                    return;
+
+                _menuIsCollapsed = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool _menuIsCollapsed = true;
+
+
+        public UserControl MainContent
+        {
+            get { return _mainContent; }
+            set
+            {
+                if (value == _mainContent)
+                    return;
+
+                _mainContent = value;
+                RaisePropertyChanged();
+            }
+        }
+        private UserControl _mainContent;
+
+        private ICommand _navMenuClicked;
+        public ICommand NavMenuClicked
+        {
+            get
+            {
+                if (_navMenuClicked == null)
+                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
+
+                return _navMenuClicked;
+            }
+        }
+        private void NavMenuClicked_Execute(NavMenuItemData arg)
+        {
+            ContentPageData pageData = PagesData.FirstOrDefault(x => x.NavData == arg);
+            if ((pageData == null))
+                return;
+
+            _context.Post((s) =>
+            {
+                pageData?.ClickAction?.Invoke(pageData);
+            }, null);
+        }
+
+
+        private ICommand _clickContent;
+        public ICommand ClickContent
+        {
+            get
+            {
+                if (_clickContent == null)
+                    _clickContent = new RelayCommand(this.ClickContent_Execute);
+
+                return _clickContent;
+            }
+        }
+        private void ClickContent_Execute()
+        {
+            MenuIsCollapsed = true;
+        }
+
+
+
 
         private void Theme_CultureChanged(object sender, EventArgs e)
         {
@@ -301,7 +474,6 @@ namespace CANAnalyzer.VM
             PagesData.RemoveAll(x => x.Kind == PageKind.Proxy);
         }
 
-
         /// <summary>
         /// Changing active page.
         /// </summary>
@@ -314,6 +486,7 @@ namespace CANAnalyzer.VM
             MainContent = data.Page;
             ResetSelectedItems();
             data.NavData.IsSelected = true;
+            TitleKey = data.LocalizedKey;
         }
 
         /// <summary>
@@ -342,6 +515,7 @@ namespace CANAnalyzer.VM
             ResetSelectedItems();
             MainContent = page;
             pageData.NavData.IsSelected = true;
+            TitleKey = pageData.LocalizedKey;
         }
 
         /// <summary>
@@ -356,139 +530,17 @@ namespace CANAnalyzer.VM
             PagesData.Remove(page);
             TopItemSource.Remove(page.NavData);
             BottomItemSource.Remove(page.NavData);
+            TitleKey = "";
         }
-
-
-
-
-        private List<ContentPageData> PagesData = new List<ContentPageData>();
         private void ResetSelectedItems()
         {
             foreach (var el in PagesData)
                 el.NavData.ResetIsSelectedFlag();
         }
 
-        public ObservableCollection<NavMenuItemData> TopItemSource
-        {
-            get
-            {
-                return _topItemSource ?? (_topItemSource = new ObservableCollection<NavMenuItemData>());
-            }
-            set
-            {
-                if (_topItemSource == value)
-                    return;
 
-                _topItemSource = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ObservableCollection<NavMenuItemData> _topItemSource;
+        private List<ContentPageData> PagesData = new List<ContentPageData>();
+        private SynchronizationContext _context = SynchronizationContext.Current;
 
-
-        public ObservableCollection<NavMenuItemData> BottomItemSource
-        {
-            get
-            {
-                return _bottomItemSource ?? (_bottomItemSource = new ObservableCollection<NavMenuItemData>());
-            }
-            set
-            {
-                if (_bottomItemSource == value)
-                    return;
-
-                _bottomItemSource = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ObservableCollection<NavMenuItemData> _bottomItemSource;
-
-
-        public ImageSource NavMenuDropdownIconSource
-        {
-            get
-            {
-                try
-                {
-                    return new BitmapImage(new Uri(
-                                        new Uri(Assembly.GetExecutingAssembly().Location),
-                                        (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource("NavMenuDropdownIcon")));
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-        }
-
-
-        public bool MenuIsCollapsed
-        {
-            get { return _menuIsCollapsed; }
-            set
-            {
-                if (_menuIsCollapsed == value)
-                    return;
-
-                _menuIsCollapsed = value;
-                RaisePropertyChanged();
-            }
-        }
-        private bool _menuIsCollapsed = true;
-
-
-        public UserControl MainContent
-        {
-            get { return _mainContent; }
-            set
-            {
-                if (value == _mainContent)
-                    return;
-
-                _mainContent = value;
-                RaisePropertyChanged();
-            }
-        }
-        private UserControl _mainContent;
-
-        private ICommand _navMenuClicked;
-        public ICommand NavMenuClicked
-        {
-            get
-            {
-                if (_navMenuClicked == null)
-                    _navMenuClicked = new RelayCommandWithParameterAsync<NavMenuItemData>(this.NavMenuClicked_Execute);
-
-                return _navMenuClicked;
-            }
-        }
-        private void NavMenuClicked_Execute(NavMenuItemData arg)
-        {
-            ContentPageData pageData = PagesData.FirstOrDefault(x => x.NavData == arg);
-            if ((pageData == null))
-                return;
-
-            _context.Post((s) =>
-            {
-                pageData?.ClickAction?.Invoke(pageData);
-            }, null);
-        }
-
-
-        private ICommand _clickContent;
-        public ICommand ClickContent
-        {
-            get
-            {
-                if (_clickContent == null)
-                    _clickContent = new RelayCommand(this.ClickContent_Execute);
-
-                return _clickContent;
-            }
-        }
-        private void ClickContent_Execute()
-        {
-            MenuIsCollapsed = true;
-        }
     }
 }
