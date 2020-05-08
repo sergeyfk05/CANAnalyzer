@@ -234,6 +234,13 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         /// <param name="data">Data to be transmited.</param>
         public void Transmit(TransmitData data)
         {
+            if (_port == null)
+                return;
+
+            if (!_port.IsOpen)
+                Owner.Disconnect();
+
+
             var validatorResults = new List<ValidationResult>();
             if (!Validator.TryValidateObject(data, new ValidationContext(data), validatorResults, true))
             {
