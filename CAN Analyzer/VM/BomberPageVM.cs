@@ -453,8 +453,7 @@ namespace CANAnalyzer.VM
                 return;
             }
 
-
-            TransmitToSelectedChannels?.BeginInvoke(data, null, null);
+            Task.Run(() => { TransmitToSelectedChannels?.Invoke(data); });
         }
 
 

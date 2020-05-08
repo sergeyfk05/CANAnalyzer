@@ -45,9 +45,6 @@ namespace CANAnalyzerDevices.Devices
 
         public void Disconnect()
         {
-            if (!IsConnected)
-                return;
-
             lock(port)
                 port.Close();
 

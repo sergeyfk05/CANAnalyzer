@@ -52,8 +52,6 @@ namespace CANAnalyzer.VM
                 RaisePropertyChanged();
             }
         }
-
-
         private ObservableCollection<TracePeriodicViewData> _data = new ObservableCollection<TracePeriodicViewData>();
 
         public ObservableCollection<TransmitToViewData> TransmitToItems
@@ -188,6 +186,10 @@ namespace CANAnalyzer.VM
                 el.StartTransmiting();
                 el.TransmitToSelectedChannels = TransmitToSelectedChannels;
             });
+
+            StartTransmitingCommand.RaiseCanExecuteChanged();
+            StopTransmitingCommand.RaiseCanExecuteChanged();
+            ShotCommand.RaiseCanExecuteChanged();
         }
 
         private RelayCommandAsync _shotCommand;
@@ -226,6 +228,10 @@ namespace CANAnalyzer.VM
         private void StopTransmitingCommand_Execute()
         {
             SelectedItems.ForEach((el) => el.StopTransmiting());
+
+            StartTransmitingCommand.RaiseCanExecuteChanged();
+            StopTransmitingCommand.RaiseCanExecuteChanged();
+            ShotCommand.RaiseCanExecuteChanged();
         }
 
         private RelayCommandAsync _openFileCommand;
@@ -500,6 +506,7 @@ namespace CANAnalyzer.VM
                 return;
 
             //create ViewData for  transmitable channels
+            StopTransmitingAll();
             _context.Send((s) =>
             {
                 TransmitToItems.Clear();
@@ -553,6 +560,13 @@ namespace CANAnalyzer.VM
                     CurrentTraceProvider?.RemoveAll();
                 }
 
+            }
+        }
+        private void StopTransmitingAll()
+        {
+            foreach(var el in Data)
+            {
+                el.StopTransmiting();
             }
         }
     }
