@@ -113,7 +113,7 @@ namespace CANAnalyzer.Models.ViewData
             {
                 if(OwnerChannel == null)
                 {
-                    MessageBox.Show("не выбран родительский канал", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvaliseParrentChannelError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 

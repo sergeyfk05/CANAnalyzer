@@ -1,543 +1,5811 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Languages>
 	<Cultures>
 		<Culture>ru</Culture>
 		<Culture>en</Culture>
+		<Culture>az</Culture>
+		<Culture>ba</Culture>
+		<Culture>be</Culture>
+		<Culture>bg</Culture>
+		<Culture>cs</Culture>
+		<Culture>da</Culture>
+		<Culture>de</Culture>
+		<Culture>el</Culture>
+		<Culture>es</Culture>
+		<Culture>et</Culture>
+		<Culture>eu</Culture>
+		<Culture>fa</Culture>
+		<Culture>fi</Culture>
+		<Culture>fr</Culture>
+		<Culture>hu</Culture>
+		<Culture>hy</Culture>
+		<Culture>is</Culture>
+		<Culture>it</Culture>
+		<Culture>ja</Culture>
+		<Culture>ka</Culture>
+		<Culture>ko</Culture>
+		<Culture>ky</Culture>
+		<Culture>lt</Culture>
+		<Culture>lv</Culture>
+		<Culture>nl</Culture>
+		<Culture>no</Culture>
+		<Culture>pl</Culture>
+		<Culture>pt</Culture>
+		<Culture>ro</Culture>
+		<Culture>sk</Culture>
+		<Culture>sl</Culture>
+		<Culture>sr</Culture>
+		<Culture>tg</Culture>
+		<Culture>tr</Culture>
+		<Culture>tt</Culture>
+		<Culture>uk</Culture>
+		<Culture>uz</Culture>
+		<Culture>zh</Culture>
 	</Cultures>
-
 	<Recordings>
 		<Record name="#ru">
 			<ru>Русский</ru>
 			<en>Русский</en>
+			<az>Русский</az>
+			<ba>Русский</ba>
+			<be>Русский</be>
+			<bg>Русский</bg>
+			<cs>Русский</cs>
+			<da>Русский</da>
+			<de>Русский</de>
+			<el>Русский</el>
+			<es>Русский</es>
+			<et>Русский</et>
+			<eu>Русский</eu>
+			<fa>Русский</fa>
+			<fi>Русский</fi>
+			<fr>Русский</fr>
+			<hu>Русский</hu>
+			<hy>Русский</hy>
+			<is>Русский</is>
+			<it>Русский</it>
+			<ja>Русский</ja>
+			<ka>Русский</ka>
+			<ko>Русский</ko>
+			<ky>Русский</ky>
+			<lt>Русский</lt>
+			<lv>Русский</lv>
+			<nl>Русский</nl>
+			<no>Русский</no>
+			<pl>Русский</pl>
+			<pt>Русский</pt>
+			<ro>Русский</ro>
+			<sk>Русский</sk>
+			<sl>Русский</sl>
+			<sr>Русский</sr>
+			<tg>Русский</tg>
+			<tr>Русский</tr>
+			<tt>Русский</tt>
+			<uk>Русский</uk>
+			<uz>Русский</uz>
+			<zh>Русский</zh>
 		</Record>
+
 		<Record name="#en">
 			<ru>English</ru>
 			<en>English</en>
+			<az>English</az>
+			<ba>English</ba>
+			<be>English</be>
+			<bg>English</bg>
+			<cs>English</cs>
+			<da>English</da>
+			<de>English</de>
+			<el>English</el>
+			<es>English</es>
+			<et>English</et>
+			<eu>English</eu>
+			<fa>English</fa>
+			<fi>English</fi>
+			<fr>English</fr>
+			<hu>English</hu>
+			<hy>English</hy>
+			<is>English</is>
+			<it>English</it>
+			<ja>English</ja>
+			<ka>English</ka>
+			<ko>English</ko>
+			<ky>English</ky>
+			<lt>English</lt>
+			<lv>English</lv>
+			<nl>English</nl>
+			<no>English</no>
+			<pl>English</pl>
+			<pt>English</pt>
+			<ro>English</ro>
+			<sk>English</sk>
+			<sl>English</sl>
+			<sr>English</sr>
+			<tg>English</tg>
+			<tr>English</tr>
+			<tt>English</tt>
+			<uk>English</uk>
+			<uz>English</uz>
+			<zh>English</zh>
 		</Record>
+
+		<Record name="#az">
+			<ru>Azeybarjanca</ru>
+			<en>Azeybarjanca</en>
+			<az>Azeybarjanca</az>
+			<ba>Azeybarjanca</ba>
+			<be>Azeybarjanca</be>
+			<bg>Azeybarjanca</bg>
+			<cs>Azeybarjanca</cs>
+			<da>Azeybarjanca</da>
+			<de>Azeybarjanca</de>
+			<el>Azeybarjanca</el>
+			<es>Azeybarjanca</es>
+			<et>Azeybarjanca</et>
+			<eu>Azeybarjanca</eu>
+			<fa>Azeybarjanca</fa>
+			<fi>Azeybarjanca</fi>
+			<fr>Azeybarjanca</fr>
+			<hu>Azeybarjanca</hu>
+			<hy>Azeybarjanca</hy>
+			<is>Azeybarjanca</is>
+			<it>Azeybarjanca</it>
+			<ja>Azeybarjanca</ja>
+			<ka>Azeybarjanca</ka>
+			<ko>Azeybarjanca</ko>
+			<ky>Azeybarjanca</ky>
+			<lt>Azeybarjanca</lt>
+			<lv>Azeybarjanca</lv>
+			<nl>Azeybarjanca</nl>
+			<no>Azeybarjanca</no>
+			<pl>Azeybarjanca</pl>
+			<pt>Azeybarjanca</pt>
+			<ro>Azeybarjanca</ro>
+			<sk>Azeybarjanca</sk>
+			<sl>Azeybarjanca</sl>
+			<sr>Azeybarjanca</sr>
+			<tg>Azeybarjanca</tg>
+			<tr>Azeybarjanca</tr>
+			<tt>Azeybarjanca</tt>
+			<uk>Azeybarjanca</uk>
+			<uz>Azeybarjanca</uz>
+			<zh>Azeybarjanca</zh>
+		</Record>
+
+		<Record name="#ba">
+			<ru>Русский</ru>
+			<en>Башҡорт</en>
+			<az>Башҡорт</az>
+			<ba>Башҡорт</ba>
+			<be>Башҡорт</be>
+			<bg>Башҡорт</bg>
+			<cs>Башҡорт</cs>
+			<da>Башҡорт</da>
+			<de>Башҡорт</de>
+			<el>Башҡорт</el>
+			<es>Башҡорт</es>
+			<et>Башҡорт</et>
+			<eu>Башҡорт</eu>
+			<fa>Башҡорт</fa>
+			<fi>Башҡорт</fi>
+			<fr>Башҡорт</fr>
+			<hu>Башҡорт</hu>
+			<hy>Башҡорт</hy>
+			<is>Башҡорт</is>
+			<it>Башҡорт</it>
+			<ja>Башҡорт</ja>
+			<ka>Башҡорт</ka>
+			<ko>Башҡорт</ko>
+			<ky>Башҡорт</ky>
+			<lt>Башҡорт</lt>
+			<lv>Башҡорт</lv>
+			<nl>Башҡорт</nl>
+			<no>Башҡорт</no>
+			<pl>Башҡорт</pl>
+			<pt>Башҡорт</pt>
+			<ro>Башҡорт</ro>
+			<sk>Башҡорт</sk>
+			<sl>Башҡорт</sl>
+			<sr>Башҡорт</sr>
+			<tg>Башҡорт</tg>
+			<tr>Башҡорт</tr>
+			<tt>Башҡорт</tt>
+			<uk>Башҡорт</uk>
+			<uz>Башҡорт</uz>
+			<zh>Башҡорт</zh>
+		</Record>
+		<Record name="#be">
+			<ru>Беларускі</ru>
+			<en>Беларускі</en>
+			<az>Беларускі</az>
+			<ba>Беларускі</ba>
+			<be>Беларускі</be>
+			<bg>Беларускі</bg>
+			<cs>Беларускі</cs>
+			<da>Беларускі</da>
+			<de>Беларускі</de>
+			<el>Беларускі</el>
+			<es>Беларускі</es>
+			<et>Беларускі</et>
+			<eu>Беларускі</eu>
+			<fa>Беларускі</fa>
+			<fi>Беларускі</fi>
+			<fr>Беларускі</fr>
+			<hu>Беларускі</hu>
+			<hy>Беларускі</hy>
+			<is>Беларускі</is>
+			<it>Беларускі</it>
+			<ja>Беларускі</ja>
+			<ka>Беларускі</ka>
+			<ko>Беларускі</ko>
+			<ky>Беларускі</ky>
+			<lt>Беларускі</lt>
+			<lv>Беларускі</lv>
+			<nl>Беларускі</nl>
+			<no>Беларускі</no>
+			<pl>Беларускі</pl>
+			<pt>Беларускі</pt>
+			<ro>Беларускі</ro>
+			<sk>Беларускі</sk>
+			<sl>Беларускі</sl>
+			<sr>Беларускі</sr>
+			<tg>Беларускі</tg>
+			<tr>Беларускі</tr>
+			<tt>Беларускі</tt>
+			<uk>Беларускі</uk>
+			<uz>Беларускі</uz>
+			<zh>Беларускі</zh>
+		</Record>
+
+		<Record name="#bg">
+			<ru>Български</ru>
+			<en>Български</en>
+			<az>Български</az>
+			<ba>Български</ba>
+			<be>Български</be>
+			<bg>Български</bg>
+			<cs>Български</cs>
+			<da>Български</da>
+			<de>Български</de>
+			<el>Български</el>
+			<es>Български</es>
+			<et>Български</et>
+			<eu>Български</eu>
+			<fa>Български</fa>
+			<fi>Български</fi>
+			<fr>Български</fr>
+			<hu>Български</hu>
+			<hy>Български</hy>
+			<is>Български</is>
+			<it>Български</it>
+			<ja>Български</ja>
+			<ka>Български</ka>
+			<ko>Български</ko>
+			<ky>Български</ky>
+			<lt>Български</lt>
+			<lv>Български</lv>
+			<nl>Български</nl>
+			<no>Български</no>
+			<pl>Български</pl>
+			<pt>Български</pt>
+			<ro>Български</ro>
+			<sk>Български</sk>
+			<sl>Български</sl>
+			<sr>Български</sr>
+			<tg>Български</tg>
+			<tr>Български</tr>
+			<tt>Български</tt>
+			<uk>Български</uk>
+			<uz>Български</uz>
+			<zh>Български</zh>
+		</Record>
+
+		<Record name="#cs">
+			<ru>Český</ru>
+			<en>Český</en>
+			<az>Český</az>
+			<ba>Český</ba>
+			<be>Český</be>
+			<bg>Český</bg>
+			<cs>Český</cs>
+			<da>Český</da>
+			<de>Český</de>
+			<el>Český</el>
+			<es>Český</es>
+			<et>Český</et>
+			<eu>Český</eu>
+			<fa>Český</fa>
+			<fi>Český</fi>
+			<fr>Český</fr>
+			<hu>Český</hu>
+			<hy>Český</hy>
+			<is>Český</is>
+			<it>Český</it>
+			<ja>Český</ja>
+			<ka>Český</ka>
+			<ko>Český</ko>
+			<ky>Český</ky>
+			<lt>Český</lt>
+			<lv>Český</lv>
+			<nl>Český</nl>
+			<no>Český</no>
+			<pl>Český</pl>
+			<pt>Český</pt>
+			<ro>Český</ro>
+			<sk>Český</sk>
+			<sl>Český</sl>
+			<sr>Český</sr>
+			<tg>Český</tg>
+			<tr>Český</tr>
+			<tt>Český</tt>
+			<uk>Český</uk>
+			<uz>Český</uz>
+			<zh>Český</zh>
+		</Record>
+
+		<Record name="#da">
+			<ru>Dansk</ru>
+			<en>Dansk</en>
+			<az>Dansk</az>
+			<ba>Dansk</ba>
+			<be>Dansk</be>
+			<bg>Dansk</bg>
+			<cs>Dansk</cs>
+			<da>Dansk</da>
+			<de>Dansk</de>
+			<el>Dansk</el>
+			<es>Dansk</es>
+			<et>Dansk</et>
+			<eu>Dansk</eu>
+			<fa>Dansk</fa>
+			<fi>Dansk</fi>
+			<fr>Dansk</fr>
+			<hu>Dansk</hu>
+			<hy>Dansk</hy>
+			<is>Dansk</is>
+			<it>Dansk</it>
+			<ja>Dansk</ja>
+			<ka>Dansk</ka>
+			<ko>Dansk</ko>
+			<ky>Dansk</ky>
+			<lt>Dansk</lt>
+			<lv>Dansk</lv>
+			<nl>Dansk</nl>
+			<no>Dansk</no>
+			<pl>Dansk</pl>
+			<pt>Dansk</pt>
+			<ro>Dansk</ro>
+			<sk>Dansk</sk>
+			<sl>Dansk</sl>
+			<sr>Dansk</sr>
+			<tg>Dansk</tg>
+			<tr>Dansk</tr>
+			<tt>Dansk</tt>
+			<uk>Dansk</uk>
+			<uz>Dansk</uz>
+			<zh>Dansk</zh>
+		</Record>
+		<Record name="#de">
+			<ru>Germanisch</ru>
+			<en>Germanisch</en>
+			<az>Germanisch</az>
+			<ba>Germanisch</ba>
+			<be>Germanisch</be>
+			<bg>Germanisch</bg>
+			<cs>Germanisch</cs>
+			<da>Germanisch</da>
+			<de>Germanisch</de>
+			<el>Germanisch</el>
+			<es>Germanisch</es>
+			<et>Germanisch</et>
+			<eu>Germanisch</eu>
+			<fa>Germanisch</fa>
+			<fi>Germanisch</fi>
+			<fr>Germanisch</fr>
+			<hu>Germanisch</hu>
+			<hy>Germanisch</hy>
+			<is>Germanisch</is>
+			<it>Germanisch</it>
+			<ja>Germanisch</ja>
+			<ka>Germanisch</ka>
+			<ko>Germanisch</ko>
+			<ky>Germanisch</ky>
+			<lt>Germanisch</lt>
+			<lv>Germanisch</lv>
+			<nl>Germanisch</nl>
+			<no>Germanisch</no>
+			<pl>Germanisch</pl>
+			<pt>Germanisch</pt>
+			<ro>Germanisch</ro>
+			<sk>Germanisch</sk>
+			<sl>Germanisch</sl>
+			<sr>Germanisch</sr>
+			<tg>Germanisch</tg>
+			<tr>Germanisch</tr>
+			<tt>Germanisch</tt>
+			<uk>Germanisch</uk>
+			<uz>Germanisch</uz>
+			<zh>Germanisch</zh>
+		</Record>
+
+		<Record name="#el">
+			<ru>Ελληνική</ru>
+			<en>Ελληνική</en>
+			<az>Ελληνική</az>
+			<ba>Ελληνική</ba>
+			<be>Ελληνική</be>
+			<bg>Ελληνική</bg>
+			<cs>Ελληνική</cs>
+			<da>Ελληνική</da>
+			<de>Ελληνική</de>
+			<el>Ελληνική</el>
+			<es>Ελληνική</es>
+			<et>Ελληνική</et>
+			<eu>Ελληνική</eu>
+			<fa>Ελληνική</fa>
+			<fi>Ελληνική</fi>
+			<fr>Ελληνική</fr>
+			<hu>Ελληνική</hu>
+			<hy>Ελληνική</hy>
+			<is>Ελληνική</is>
+			<it>Ελληνική</it>
+			<ja>Ελληνική</ja>
+			<ka>Ελληνική</ka>
+			<ko>Ελληνική</ko>
+			<ky>Ελληνική</ky>
+			<lt>Ελληνική</lt>
+			<lv>Ελληνική</lv>
+			<nl>Ελληνική</nl>
+			<no>Ελληνική</no>
+			<pl>Ελληνική</pl>
+			<pt>Ελληνική</pt>
+			<ro>Ελληνική</ro>
+			<sk>Ελληνική</sk>
+			<sl>Ελληνική</sl>
+			<sr>Ελληνική</sr>
+			<tg>Ελληνική</tg>
+			<tr>Ελληνική</tr>
+			<tt>Ελληνική</tt>
+			<uk>Ελληνική</uk>
+			<uz>Ελληνική</uz>
+			<zh>Ελληνική</zh>
+		</Record>
+
+		<Record name="#es">
+			<ru>Español</ru>
+			<en>Español</en>
+			<az>Español</az>
+			<ba>Español</ba>
+			<be>Español</be>
+			<bg>Español</bg>
+			<cs>Español</cs>
+			<da>Español</da>
+			<de>Español</de>
+			<el>Español</el>
+			<es>Español</es>
+			<et>Español</et>
+			<eu>Español</eu>
+			<fa>Español</fa>
+			<fi>Español</fi>
+			<fr>Español</fr>
+			<hu>Español</hu>
+			<hy>Español</hy>
+			<is>Español</is>
+			<it>Español</it>
+			<ja>Español</ja>
+			<ka>Español</ka>
+			<ko>Español</ko>
+			<ky>Español</ky>
+			<lt>Español</lt>
+			<lv>Español</lv>
+			<nl>Español</nl>
+			<no>Español</no>
+			<pl>Español</pl>
+			<pt>Español</pt>
+			<ro>Español</ro>
+			<sk>Español</sk>
+			<sl>Español</sl>
+			<sr>Español</sr>
+			<tg>Español</tg>
+			<tr>Español</tr>
+			<tt>Español</tt>
+			<uk>Español</uk>
+			<uz>Español</uz>
+			<zh>Español</zh>
+		</Record>
+
+		<Record name="#et">
+			<ru>Estonio</ru>
+			<en>Estonio</en>
+			<az>Estonio</az>
+			<ba>Estonio</ba>
+			<be>Estonio</be>
+			<bg>Estonio</bg>
+			<cs>Estonio</cs>
+			<da>Estonio</da>
+			<de>Estonio</de>
+			<el>Estonio</el>
+			<es>Estonio</es>
+			<et>Estonio</et>
+			<eu>Estonio</eu>
+			<fa>Estonio</fa>
+			<fi>Estonio</fi>
+			<fr>Estonio</fr>
+			<hu>Estonio</hu>
+			<hy>Estonio</hy>
+			<is>Estonio</is>
+			<it>Estonio</it>
+			<ja>Estonio</ja>
+			<ka>Estonio</ka>
+			<ko>Estonio</ko>
+			<ky>Estonio</ky>
+			<lt>Estonio</lt>
+			<lv>Estonio</lv>
+			<nl>Estonio</nl>
+			<no>Estonio</no>
+			<pl>Estonio</pl>
+			<pt>Estonio</pt>
+			<ro>Estonio</ro>
+			<sk>Estonio</sk>
+			<sl>Estonio</sl>
+			<sr>Estonio</sr>
+			<tg>Estonio</tg>
+			<tr>Estonio</tr>
+			<tt>Estonio</tt>
+			<uk>Estonio</uk>
+			<uz>Estonio</uz>
+			<zh>Estonio</zh>
+		</Record>
+		<Record name="#eu">
+			<ru>Euskal</ru>
+			<en>Euskal</en>
+			<az>Euskal</az>
+			<ba>Euskal</ba>
+			<be>Euskal</be>
+			<bg>Euskal</bg>
+			<cs>Euskal</cs>
+			<da>Euskal</da>
+			<de>Euskal</de>
+			<el>Euskal</el>
+			<es>Euskal</es>
+			<et>Euskal</et>
+			<eu>Euskal</eu>
+			<fa>Euskal</fa>
+			<fi>Euskal</fi>
+			<fr>Euskal</fr>
+			<hu>Euskal</hu>
+			<hy>Euskal</hy>
+			<is>Euskal</is>
+			<it>Euskal</it>
+			<ja>Euskal</ja>
+			<ka>Euskal</ka>
+			<ko>Euskal</ko>
+			<ky>Euskal</ky>
+			<lt>Euskal</lt>
+			<lv>Euskal</lv>
+			<nl>Euskal</nl>
+			<no>Euskal</no>
+			<pl>Euskal</pl>
+			<pt>Euskal</pt>
+			<ro>Euskal</ro>
+			<sk>Euskal</sk>
+			<sl>Euskal</sl>
+			<sr>Euskal</sr>
+			<tg>Euskal</tg>
+			<tr>Euskal</tr>
+			<tt>Euskal</tt>
+			<uk>Euskal</uk>
+			<uz>Euskal</uz>
+			<zh>Euskal</zh>
+		</Record>
+
+		<Record name="#fa">
+			<ru>فارسی</ru>
+			<en>فارسی</en>
+			<az>فارسی</az>
+			<ba>فارسی</ba>
+			<be>فارسی</be>
+			<bg>فارسی</bg>
+			<cs>فارسی</cs>
+			<da>فارسی</da>
+			<de>فارسی</de>
+			<el>فارسی</el>
+			<es>فارسی</es>
+			<et>فارسی</et>
+			<eu>فارسی</eu>
+			<fa>فارسی</fa>
+			<fi>فارسی</fi>
+			<fr>فارسی</fr>
+			<hu>فارسی</hu>
+			<hy>فارسی</hy>
+			<is>فارسی</is>
+			<it>فارسی</it>
+			<ja>فارسی</ja>
+			<ka>فارسی</ka>
+			<ko>فارسی</ko>
+			<ky>فارسی</ky>
+			<lt>فارسی</lt>
+			<lv>فارسی</lv>
+			<nl>فارسی</nl>
+			<no>فارسی</no>
+			<pl>فارسی</pl>
+			<pt>فارسی</pt>
+			<ro>فارسی</ro>
+			<sk>فارسی</sk>
+			<sl>فارسی</sl>
+			<sr>فارسی</sr>
+			<tg>فارسی</tg>
+			<tr>فارسی</tr>
+			<tt>فارسی</tt>
+			<uk>فارسی</uk>
+			<uz>فارسی</uz>
+			<zh>فارسی</zh>
+		</Record>
+
+		<Record name="#fi">
+			<ru>Suomalainen</ru>
+			<en>Suomalainen</en>
+			<az>Suomalainen</az>
+			<ba>Suomalainen</ba>
+			<be>Suomalainen</be>
+			<bg>Suomalainen</bg>
+			<cs>Suomalainen</cs>
+			<da>Suomalainen</da>
+			<de>Suomalainen</de>
+			<el>Suomalainen</el>
+			<es>Suomalainen</es>
+			<et>Suomalainen</et>
+			<eu>Suomalainen</eu>
+			<fa>Suomalainen</fa>
+			<fi>Suomalainen</fi>
+			<fr>Suomalainen</fr>
+			<hu>Suomalainen</hu>
+			<hy>Suomalainen</hy>
+			<is>Suomalainen</is>
+			<it>Suomalainen</it>
+			<ja>Suomalainen</ja>
+			<ka>Suomalainen</ka>
+			<ko>Suomalainen</ko>
+			<ky>Suomalainen</ky>
+			<lt>Suomalainen</lt>
+			<lv>Suomalainen</lv>
+			<nl>Suomalainen</nl>
+			<no>Suomalainen</no>
+			<pl>Suomalainen</pl>
+			<pt>Suomalainen</pt>
+			<ro>Suomalainen</ro>
+			<sk>Suomalainen</sk>
+			<sl>Suomalainen</sl>
+			<sr>Suomalainen</sr>
+			<tg>Suomalainen</tg>
+			<tr>Suomalainen</tr>
+			<tt>Suomalainen</tt>
+			<uk>Suomalainen</uk>
+			<uz>Suomalainen</uz>
+			<zh>Suomalainen</zh>
+		</Record>
+
+		<Record name="#fr">
+			<ru>Français</ru>
+			<en>Français</en>
+			<az>Français</az>
+			<ba>Français</ba>
+			<be>Français</be>
+			<bg>Français</bg>
+			<cs>Français</cs>
+			<da>Français</da>
+			<de>Français</de>
+			<el>Français</el>
+			<es>Français</es>
+			<et>Français</et>
+			<eu>Français</eu>
+			<fa>Français</fa>
+			<fi>Français</fi>
+			<fr>Français</fr>
+			<hu>Français</hu>
+			<hy>Français</hy>
+			<is>Français</is>
+			<it>Français</it>
+			<ja>Français</ja>
+			<ka>Français</ka>
+			<ko>Français</ko>
+			<ky>Français</ky>
+			<lt>Français</lt>
+			<lv>Français</lv>
+			<nl>Français</nl>
+			<no>Français</no>
+			<pl>Français</pl>
+			<pt>Français</pt>
+			<ro>Français</ro>
+			<sk>Français</sk>
+			<sl>Français</sl>
+			<sr>Français</sr>
+			<tg>Français</tg>
+			<tr>Français</tr>
+			<tt>Français</tt>
+			<uk>Français</uk>
+			<uz>Français</uz>
+			<zh>Français</zh>
+		</Record>
+		<Record name="#hu">
+			<ru>Magyar</ru>
+			<en>Magyar</en>
+			<az>Magyar</az>
+			<ba>Magyar</ba>
+			<be>Magyar</be>
+			<bg>Magyar</bg>
+			<cs>Magyar</cs>
+			<da>Magyar</da>
+			<de>Magyar</de>
+			<el>Magyar</el>
+			<es>Magyar</es>
+			<et>Magyar</et>
+			<eu>Magyar</eu>
+			<fa>Magyar</fa>
+			<fi>Magyar</fi>
+			<fr>Magyar</fr>
+			<hu>Magyar</hu>
+			<hy>Magyar</hy>
+			<is>Magyar</is>
+			<it>Magyar</it>
+			<ja>Magyar</ja>
+			<ka>Magyar</ka>
+			<ko>Magyar</ko>
+			<ky>Magyar</ky>
+			<lt>Magyar</lt>
+			<lv>Magyar</lv>
+			<nl>Magyar</nl>
+			<no>Magyar</no>
+			<pl>Magyar</pl>
+			<pt>Magyar</pt>
+			<ro>Magyar</ro>
+			<sk>Magyar</sk>
+			<sl>Magyar</sl>
+			<sr>Magyar</sr>
+			<tg>Magyar</tg>
+			<tr>Magyar</tr>
+			<tt>Magyar</tt>
+			<uk>Magyar</uk>
+			<uz>Magyar</uz>
+			<zh>Magyar</zh>
+		</Record>
+
+		<Record name="#hy">
+			<ru>Հայերեն</ru>
+			<en>Հայերեն</en>
+			<az>Հայերեն</az>
+			<ba>Հայերեն</ba>
+			<be>Հայերեն</be>
+			<bg>Հայերեն</bg>
+			<cs>Հայերեն</cs>
+			<da>Հայերեն</da>
+			<de>Հայերեն</de>
+			<el>Հայերեն</el>
+			<es>Հայերեն</es>
+			<et>Հայերեն</et>
+			<eu>Հայերեն</eu>
+			<fa>Հայերեն</fa>
+			<fi>Հայերեն</fi>
+			<fr>Հայերեն</fr>
+			<hu>Հայերեն</hu>
+			<hy>Հայերեն</hy>
+			<is>Հայերեն</is>
+			<it>Հայերեն</it>
+			<ja>Հայերեն</ja>
+			<ka>Հայերեն</ka>
+			<ko>Հայերեն</ko>
+			<ky>Հայերեն</ky>
+			<lt>Հայերեն</lt>
+			<lv>Հայերեն</lv>
+			<nl>Հայերեն</nl>
+			<no>Հայերեն</no>
+			<pl>Հայերեն</pl>
+			<pt>Հայերեն</pt>
+			<ro>Հայերեն</ro>
+			<sk>Հայերեն</sk>
+			<sl>Հայերեն</sl>
+			<sr>Հայերեն</sr>
+			<tg>Հայերեն</tg>
+			<tr>Հայերեն</tr>
+			<tt>Հայերեն</tt>
+			<uk>Հայերեն</uk>
+			<uz>Հայերեն</uz>
+			<zh>Հայերեն</zh>
+		</Record>
+
+		<Record name="#is">
+			<ru>Íslensk</ru>
+			<en>Íslensk</en>
+			<az>Íslensk</az>
+			<ba>Íslensk</ba>
+			<be>Íslensk</be>
+			<bg>Íslensk</bg>
+			<cs>Íslensk</cs>
+			<da>Íslensk</da>
+			<de>Íslensk</de>
+			<el>Íslensk</el>
+			<es>Íslensk</es>
+			<et>Íslensk</et>
+			<eu>Íslensk</eu>
+			<fa>Íslensk</fa>
+			<fi>Íslensk</fi>
+			<fr>Íslensk</fr>
+			<hu>Íslensk</hu>
+			<hy>Íslensk</hy>
+			<is>Íslensk</is>
+			<it>Íslensk</it>
+			<ja>Íslensk</ja>
+			<ka>Íslensk</ka>
+			<ko>Íslensk</ko>
+			<ky>Íslensk</ky>
+			<lt>Íslensk</lt>
+			<lv>Íslensk</lv>
+			<nl>Íslensk</nl>
+			<no>Íslensk</no>
+			<pl>Íslensk</pl>
+			<pt>Íslensk</pt>
+			<ro>Íslensk</ro>
+			<sk>Íslensk</sk>
+			<sl>Íslensk</sl>
+			<sr>Íslensk</sr>
+			<tg>Íslensk</tg>
+			<tr>Íslensk</tr>
+			<tt>Íslensk</tt>
+			<uk>Íslensk</uk>
+			<uz>Íslensk</uz>
+			<zh>Íslensk</zh>
+		</Record>
+
+		<Record name="#it">
+			<ru>Italiano</ru>
+			<en>Italiano</en>
+			<az>Italiano</az>
+			<ba>Italiano</ba>
+			<be>Italiano</be>
+			<bg>Italiano</bg>
+			<cs>Italiano</cs>
+			<da>Italiano</da>
+			<de>Italiano</de>
+			<el>Italiano</el>
+			<es>Italiano</es>
+			<et>Italiano</et>
+			<eu>Italiano</eu>
+			<fa>Italiano</fa>
+			<fi>Italiano</fi>
+			<fr>Italiano</fr>
+			<hu>Italiano</hu>
+			<hy>Italiano</hy>
+			<is>Italiano</is>
+			<it>Italiano</it>
+			<ja>Italiano</ja>
+			<ka>Italiano</ka>
+			<ko>Italiano</ko>
+			<ky>Italiano</ky>
+			<lt>Italiano</lt>
+			<lv>Italiano</lv>
+			<nl>Italiano</nl>
+			<no>Italiano</no>
+			<pl>Italiano</pl>
+			<pt>Italiano</pt>
+			<ro>Italiano</ro>
+			<sk>Italiano</sk>
+			<sl>Italiano</sl>
+			<sr>Italiano</sr>
+			<tg>Italiano</tg>
+			<tr>Italiano</tr>
+			<tt>Italiano</tt>
+			<uk>Italiano</uk>
+			<uz>Italiano</uz>
+			<zh>Italiano</zh>
+		</Record>
+		<Record name="#ja">
+			<ru>日本語</ru>
+			<en>日本語</en>
+			<az>日本語</az>
+			<ba>日本語</ba>
+			<be>日本語</be>
+			<bg>日本語</bg>
+			<cs>日本語</cs>
+			<da>日本語</da>
+			<de>日本語</de>
+			<el>日本語</el>
+			<es>日本語</es>
+			<et>日本語</et>
+			<eu>日本語</eu>
+			<fa>日本語</fa>
+			<fi>日本語</fi>
+			<fr>日本語</fr>
+			<hu>日本語</hu>
+			<hy>日本語</hy>
+			<is>日本語</is>
+			<it>日本語</it>
+			<ja>日本語</ja>
+			<ka>日本語</ka>
+			<ko>日本語</ko>
+			<ky>日本語</ky>
+			<lt>日本語</lt>
+			<lv>日本語</lv>
+			<nl>日本語</nl>
+			<no>日本語</no>
+			<pl>日本語</pl>
+			<pt>日本語</pt>
+			<ro>日本語</ro>
+			<sk>日本語</sk>
+			<sl>日本語</sl>
+			<sr>日本語</sr>
+			<tg>日本語</tg>
+			<tr>日本語</tr>
+			<tt>日本語</tt>
+			<uk>日本語</uk>
+			<uz>日本語</uz>
+			<zh>日本語</zh>
+		</Record>
+
+		<Record name="#ka">
+			<ru>ქართული</ru>
+			<en>ქართული</en>
+			<az>ქართული</az>
+			<ba>ქართული</ba>
+			<be>ქართული</be>
+			<bg>ქართული</bg>
+			<cs>ქართული</cs>
+			<da>ქართული</da>
+			<de>ქართული</de>
+			<el>ქართული</el>
+			<es>ქართული</es>
+			<et>ქართული</et>
+			<eu>ქართული</eu>
+			<fa>ქართული</fa>
+			<fi>ქართული</fi>
+			<fr>ქართული</fr>
+			<hu>ქართული</hu>
+			<hy>ქართული</hy>
+			<is>ქართული</is>
+			<it>ქართული</it>
+			<ja>ქართული</ja>
+			<ka>ქართული</ka>
+			<ko>ქართული</ko>
+			<ky>ქართული</ky>
+			<lt>ქართული</lt>
+			<lv>ქართული</lv>
+			<nl>ქართული</nl>
+			<no>ქართული</no>
+			<pl>ქართული</pl>
+			<pt>ქართული</pt>
+			<ro>ქართული</ro>
+			<sk>ქართული</sk>
+			<sl>ქართული</sl>
+			<sr>ქართული</sr>
+			<tg>ქართული</tg>
+			<tr>ქართული</tr>
+			<tt>ქართული</tt>
+			<uk>ქართული</uk>
+			<uz>ქართული</uz>
+			<zh>ქართული</zh>
+		</Record>
+
+		<Record name="#ko">
+			<ru>한국어</ru>
+			<en>한국어</en>
+			<az>한국어</az>
+			<ba>한국어</ba>
+			<be>한국어</be>
+			<bg>한국어</bg>
+			<cs>한국어</cs>
+			<da>한국어</da>
+			<de>한국어</de>
+			<el>한국어</el>
+			<es>한국어</es>
+			<et>한국어</et>
+			<eu>한국어</eu>
+			<fa>한국어</fa>
+			<fi>한국어</fi>
+			<fr>한국어</fr>
+			<hu>한국어</hu>
+			<hy>한국어</hy>
+			<is>한국어</is>
+			<it>한국어</it>
+			<ja>한국어</ja>
+			<ka>한국어</ka>
+			<ko>한국어</ko>
+			<ky>한국어</ky>
+			<lt>한국어</lt>
+			<lv>한국어</lv>
+			<nl>한국어</nl>
+			<no>한국어</no>
+			<pl>한국어</pl>
+			<pt>한국어</pt>
+			<ro>한국어</ro>
+			<sk>한국어</sk>
+			<sl>한국어</sl>
+			<sr>한국어</sr>
+			<tg>한국어</tg>
+			<tr>한국어</tr>
+			<tt>한국어</tt>
+			<uk>한국어</uk>
+			<uz>한국어</uz>
+			<zh>한국어</zh>
+		</Record>
+
+		<Record name="#ky">
+			<ru>Кыргыз тили</ru>
+			<en>Кыргыз тили</en>
+			<az>Кыргыз тили</az>
+			<ba>Кыргыз тили</ba>
+			<be>Кыргыз тили</be>
+			<bg>Кыргыз тили</bg>
+			<cs>Кыргыз тили</cs>
+			<da>Кыргыз тили</da>
+			<de>Кыргыз тили</de>
+			<el>Кыргыз тили</el>
+			<es>Кыргыз тили</es>
+			<et>Кыргыз тили</et>
+			<eu>Кыргыз тили</eu>
+			<fa>Кыргыз тили</fa>
+			<fi>Кыргыз тили</fi>
+			<fr>Кыргыз тили</fr>
+			<hu>Кыргыз тили</hu>
+			<hy>Кыргыз тили</hy>
+			<is>Кыргыз тили</is>
+			<it>Кыргыз тили</it>
+			<ja>Кыргыз тили</ja>
+			<ka>Кыргыз тили</ka>
+			<ko>Кыргыз тили</ko>
+			<ky>Кыргыз тили</ky>
+			<lt>Кыргыз тили</lt>
+			<lv>Кыргыз тили</lv>
+			<nl>Кыргыз тили</nl>
+			<no>Кыргыз тили</no>
+			<pl>Кыргыз тили</pl>
+			<pt>Кыргыз тили</pt>
+			<ro>Кыргыз тили</ro>
+			<sk>Кыргыз тили</sk>
+			<sl>Кыргыз тили</sl>
+			<sr>Кыргыз тили</sr>
+			<tg>Кыргыз тили</tg>
+			<tr>Кыргыз тили</tr>
+			<tt>Кыргыз тили</tt>
+			<uk>Кыргыз тили</uk>
+			<uz>Кыргыз тили</uz>
+			<zh>Кыргыз тили</zh>
+		</Record>
+		<Record name="#lt">
+			<ru>Lietuviškas</ru>
+			<en>Lietuviškas</en>
+			<az>Lietuviškas</az>
+			<ba>Lietuviškas</ba>
+			<be>Lietuviškas</be>
+			<bg>Lietuviškas</bg>
+			<cs>Lietuviškas</cs>
+			<da>Lietuviškas</da>
+			<de>Lietuviškas</de>
+			<el>Lietuviškas</el>
+			<es>Lietuviškas</es>
+			<et>Lietuviškas</et>
+			<eu>Lietuviškas</eu>
+			<fa>Lietuviškas</fa>
+			<fi>Lietuviškas</fi>
+			<fr>Lietuviškas</fr>
+			<hu>Lietuviškas</hu>
+			<hy>Lietuviškas</hy>
+			<is>Lietuviškas</is>
+			<it>Lietuviškas</it>
+			<ja>Lietuviškas</ja>
+			<ka>Lietuviškas</ka>
+			<ko>Lietuviškas</ko>
+			<ky>Lietuviškas</ky>
+			<lt>Lietuviškas</lt>
+			<lv>Lietuviškas</lv>
+			<nl>Lietuviškas</nl>
+			<no>Lietuviškas</no>
+			<pl>Lietuviškas</pl>
+			<pt>Lietuviškas</pt>
+			<ro>Lietuviškas</ro>
+			<sk>Lietuviškas</sk>
+			<sl>Lietuviškas</sl>
+			<sr>Lietuviškas</sr>
+			<tg>Lietuviškas</tg>
+			<tr>Lietuviškas</tr>
+			<tt>Lietuviškas</tt>
+			<uk>Lietuviškas</uk>
+			<uz>Lietuviškas</uz>
+			<zh>Lietuviškas</zh>
+		</Record>
+
+		<Record name="#lv">
+			<ru>Latviešu</ru>
+			<en>Latviešu</en>
+			<az>Latviešu</az>
+			<ba>Latviešu</ba>
+			<be>Latviešu</be>
+			<bg>Latviešu</bg>
+			<cs>Latviešu</cs>
+			<da>Latviešu</da>
+			<de>Latviešu</de>
+			<el>Latviešu</el>
+			<es>Latviešu</es>
+			<et>Latviešu</et>
+			<eu>Latviešu</eu>
+			<fa>Latviešu</fa>
+			<fi>Latviešu</fi>
+			<fr>Latviešu</fr>
+			<hu>Latviešu</hu>
+			<hy>Latviešu</hy>
+			<is>Latviešu</is>
+			<it>Latviešu</it>
+			<ja>Latviešu</ja>
+			<ka>Latviešu</ka>
+			<ko>Latviešu</ko>
+			<ky>Latviešu</ky>
+			<lt>Latviešu</lt>
+			<lv>Latviešu</lv>
+			<nl>Latviešu</nl>
+			<no>Latviešu</no>
+			<pl>Latviešu</pl>
+			<pt>Latviešu</pt>
+			<ro>Latviešu</ro>
+			<sk>Latviešu</sk>
+			<sl>Latviešu</sl>
+			<sr>Latviešu</sr>
+			<tg>Latviešu</tg>
+			<tr>Latviešu</tr>
+			<tt>Latviešu</tt>
+			<uk>Latviešu</uk>
+			<uz>Latviešu</uz>
+			<zh>Latviešu</zh>
+		</Record>
+
+		<Record name="#nl">
+			<ru>Nederlands</ru>
+			<en>Nederlands</en>
+			<az>Nederlands</az>
+			<ba>Nederlands</ba>
+			<be>Nederlands</be>
+			<bg>Nederlands</bg>
+			<cs>Nederlands</cs>
+			<da>Nederlands</da>
+			<de>Nederlands</de>
+			<el>Nederlands</el>
+			<es>Nederlands</es>
+			<et>Nederlands</et>
+			<eu>Nederlands</eu>
+			<fa>Nederlands</fa>
+			<fi>Nederlands</fi>
+			<fr>Nederlands</fr>
+			<hu>Nederlands</hu>
+			<hy>Nederlands</hy>
+			<is>Nederlands</is>
+			<it>Nederlands</it>
+			<ja>Nederlands</ja>
+			<ka>Nederlands</ka>
+			<ko>Nederlands</ko>
+			<ky>Nederlands</ky>
+			<lt>Nederlands</lt>
+			<lv>Nederlands</lv>
+			<nl>Nederlands</nl>
+			<no>Nederlands</no>
+			<pl>Nederlands</pl>
+			<pt>Nederlands</pt>
+			<ro>Nederlands</ro>
+			<sk>Nederlands</sk>
+			<sl>Nederlands</sl>
+			<sr>Nederlands</sr>
+			<tg>Nederlands</tg>
+			<tr>Nederlands</tr>
+			<tt>Nederlands</tt>
+			<uk>Nederlands</uk>
+			<uz>Nederlands</uz>
+			<zh>Nederlands</zh>
+		</Record>
+
+		<Record name="#no">
+			<ru>Norsk</ru>
+			<en>Norsk</en>
+			<az>Norsk</az>
+			<ba>Norsk</ba>
+			<be>Norsk</be>
+			<bg>Norsk</bg>
+			<cs>Norsk</cs>
+			<da>Norsk</da>
+			<de>Norsk</de>
+			<el>Norsk</el>
+			<es>Norsk</es>
+			<et>Norsk</et>
+			<eu>Norsk</eu>
+			<fa>Norsk</fa>
+			<fi>Norsk</fi>
+			<fr>Norsk</fr>
+			<hu>Norsk</hu>
+			<hy>Norsk</hy>
+			<is>Norsk</is>
+			<it>Norsk</it>
+			<ja>Norsk</ja>
+			<ka>Norsk</ka>
+			<ko>Norsk</ko>
+			<ky>Norsk</ky>
+			<lt>Norsk</lt>
+			<lv>Norsk</lv>
+			<nl>Norsk</nl>
+			<no>Norsk</no>
+			<pl>Norsk</pl>
+			<pt>Norsk</pt>
+			<ro>Norsk</ro>
+			<sk>Norsk</sk>
+			<sl>Norsk</sl>
+			<sr>Norsk</sr>
+			<tg>Norsk</tg>
+			<tr>Norsk</tr>
+			<tt>Norsk</tt>
+			<uk>Norsk</uk>
+			<uz>Norsk</uz>
+			<zh>Norsk</zh>
+		</Record>
+		<Record name="#pl">
+			<ru>Polski</ru>
+			<en>Polski</en>
+			<az>Polski</az>
+			<ba>Polski</ba>
+			<be>Polski</be>
+			<bg>Polski</bg>
+			<cs>Polski</cs>
+			<da>Polski</da>
+			<de>Polski</de>
+			<el>Polski</el>
+			<es>Polski</es>
+			<et>Polski</et>
+			<eu>Polski</eu>
+			<fa>Polski</fa>
+			<fi>Polski</fi>
+			<fr>Polski</fr>
+			<hu>Polski</hu>
+			<hy>Polski</hy>
+			<is>Polski</is>
+			<it>Polski</it>
+			<ja>Polski</ja>
+			<ka>Polski</ka>
+			<ko>Polski</ko>
+			<ky>Polski</ky>
+			<lt>Polski</lt>
+			<lv>Polski</lv>
+			<nl>Polski</nl>
+			<no>Polski</no>
+			<pl>Polski</pl>
+			<pt>Polski</pt>
+			<ro>Polski</ro>
+			<sk>Polski</sk>
+			<sl>Polski</sl>
+			<sr>Polski</sr>
+			<tg>Polski</tg>
+			<tr>Polski</tr>
+			<tt>Polski</tt>
+			<uk>Polski</uk>
+			<uz>Polski</uz>
+			<zh>Polski</zh>
+		</Record>
+
+		<Record name="#pt">
+			<ru>Português</ru>
+			<en>Português</en>
+			<az>Português</az>
+			<ba>Português</ba>
+			<be>Português</be>
+			<bg>Português</bg>
+			<cs>Português</cs>
+			<da>Português</da>
+			<de>Português</de>
+			<el>Português</el>
+			<es>Português</es>
+			<et>Português</et>
+			<eu>Português</eu>
+			<fa>Português</fa>
+			<fi>Português</fi>
+			<fr>Português</fr>
+			<hu>Português</hu>
+			<hy>Português</hy>
+			<is>Português</is>
+			<it>Português</it>
+			<ja>Português</ja>
+			<ka>Português</ka>
+			<ko>Português</ko>
+			<ky>Português</ky>
+			<lt>Português</lt>
+			<lv>Português</lv>
+			<nl>Português</nl>
+			<no>Português</no>
+			<pl>Português</pl>
+			<pt>Português</pt>
+			<ro>Português</ro>
+			<sk>Português</sk>
+			<sl>Português</sl>
+			<sr>Português</sr>
+			<tg>Português</tg>
+			<tr>Português</tr>
+			<tt>Português</tt>
+			<uk>Português</uk>
+			<uz>Português</uz>
+			<zh>Português</zh>
+		</Record>
+
+		<Record name="#ro">
+			<ru>Română</ru>
+			<en>Română</en>
+			<az>Română</az>
+			<ba>Română</ba>
+			<be>Română</be>
+			<bg>Română</bg>
+			<cs>Română</cs>
+			<da>Română</da>
+			<de>Română</de>
+			<el>Română</el>
+			<es>Română</es>
+			<et>Română</et>
+			<eu>Română</eu>
+			<fa>Română</fa>
+			<fi>Română</fi>
+			<fr>Română</fr>
+			<hu>Română</hu>
+			<hy>Română</hy>
+			<is>Română</is>
+			<it>Română</it>
+			<ja>Română</ja>
+			<ka>Română</ka>
+			<ko>Română</ko>
+			<ky>Română</ky>
+			<lt>Română</lt>
+			<lv>Română</lv>
+			<nl>Română</nl>
+			<no>Română</no>
+			<pl>Română</pl>
+			<pt>Română</pt>
+			<ro>Română</ro>
+			<sk>Română</sk>
+			<sl>Română</sl>
+			<sr>Română</sr>
+			<tg>Română</tg>
+			<tr>Română</tr>
+			<tt>Română</tt>
+			<uk>Română</uk>
+			<uz>Română</uz>
+			<zh>Română</zh>
+		</Record>
+
+		<Record name="#sk">
+			<ru>Slovenský</ru>
+			<en>Slovenský</en>
+			<az>Slovenský</az>
+			<ba>Slovenský</ba>
+			<be>Slovenský</be>
+			<bg>Slovenský</bg>
+			<cs>Slovenský</cs>
+			<da>Slovenský</da>
+			<de>Slovenský</de>
+			<el>Slovenský</el>
+			<es>Slovenský</es>
+			<et>Slovenský</et>
+			<eu>Slovenský</eu>
+			<fa>Slovenský</fa>
+			<fi>Slovenský</fi>
+			<fr>Slovenský</fr>
+			<hu>Slovenský</hu>
+			<hy>Slovenský</hy>
+			<is>Slovenský</is>
+			<it>Slovenský</it>
+			<ja>Slovenský</ja>
+			<ka>Slovenský</ka>
+			<ko>Slovenský</ko>
+			<ky>Slovenský</ky>
+			<lt>Slovenský</lt>
+			<lv>Slovenský</lv>
+			<nl>Slovenský</nl>
+			<no>Slovenský</no>
+			<pl>Slovenský</pl>
+			<pt>Slovenský</pt>
+			<ro>Slovenský</ro>
+			<sk>Slovenský</sk>
+			<sl>Slovenský</sl>
+			<sr>Slovenský</sr>
+			<tg>Slovenský</tg>
+			<tr>Slovenský</tr>
+			<tt>Slovenský</tt>
+			<uk>Slovenský</uk>
+			<uz>Slovenský</uz>
+			<zh>Slovenský</zh>
+		</Record>
+		<Record name="#sl">
+			<ru>Slovenščina</ru>
+			<en>Slovenščina</en>
+			<az>Slovenščina</az>
+			<ba>Slovenščina</ba>
+			<be>Slovenščina</be>
+			<bg>Slovenščina</bg>
+			<cs>Slovenščina</cs>
+			<da>Slovenščina</da>
+			<de>Slovenščina</de>
+			<el>Slovenščina</el>
+			<es>Slovenščina</es>
+			<et>Slovenščina</et>
+			<eu>Slovenščina</eu>
+			<fa>Slovenščina</fa>
+			<fi>Slovenščina</fi>
+			<fr>Slovenščina</fr>
+			<hu>Slovenščina</hu>
+			<hy>Slovenščina</hy>
+			<is>Slovenščina</is>
+			<it>Slovenščina</it>
+			<ja>Slovenščina</ja>
+			<ka>Slovenščina</ka>
+			<ko>Slovenščina</ko>
+			<ky>Slovenščina</ky>
+			<lt>Slovenščina</lt>
+			<lv>Slovenščina</lv>
+			<nl>Slovenščina</nl>
+			<no>Slovenščina</no>
+			<pl>Slovenščina</pl>
+			<pt>Slovenščina</pt>
+			<ro>Slovenščina</ro>
+			<sk>Slovenščina</sk>
+			<sl>Slovenščina</sl>
+			<sr>Slovenščina</sr>
+			<tg>Slovenščina</tg>
+			<tr>Slovenščina</tr>
+			<tt>Slovenščina</tt>
+			<uk>Slovenščina</uk>
+			<uz>Slovenščina</uz>
+			<zh>Slovenščina</zh>
+		</Record>
+
+		<Record name="#sr">
+			<ru>Српски</ru>
+			<en>Српски</en>
+			<az>Српски</az>
+			<ba>Српски</ba>
+			<be>Српски</be>
+			<bg>Српски</bg>
+			<cs>Српски</cs>
+			<da>Српски</da>
+			<de>Српски</de>
+			<el>Српски</el>
+			<es>Српски</es>
+			<et>Српски</et>
+			<eu>Српски</eu>
+			<fa>Српски</fa>
+			<fi>Српски</fi>
+			<fr>Српски</fr>
+			<hu>Српски</hu>
+			<hy>Српски</hy>
+			<is>Српски</is>
+			<it>Српски</it>
+			<ja>Српски</ja>
+			<ka>Српски</ka>
+			<ko>Српски</ko>
+			<ky>Српски</ky>
+			<lt>Српски</lt>
+			<lv>Српски</lv>
+			<nl>Српски</nl>
+			<no>Српски</no>
+			<pl>Српски</pl>
+			<pt>Српски</pt>
+			<ro>Српски</ro>
+			<sk>Српски</sk>
+			<sl>Српски</sl>
+			<sr>Српски</sr>
+			<tg>Српски</tg>
+			<tr>Српски</tr>
+			<tt>Српски</tt>
+			<uk>Српски</uk>
+			<uz>Српски</uz>
+			<zh>Српски</zh>
+		</Record>
+
+		<Record name="#tg">
+			<ru>Тоҷикӣ</ru>
+			<en>Тоҷикӣ</en>
+			<az>Тоҷикӣ</az>
+			<ba>Тоҷикӣ</ba>
+			<be>Тоҷикӣ</be>
+			<bg>Тоҷикӣ</bg>
+			<cs>Тоҷикӣ</cs>
+			<da>Тоҷикӣ</da>
+			<de>Тоҷикӣ</de>
+			<el>Тоҷикӣ</el>
+			<es>Тоҷикӣ</es>
+			<et>Тоҷикӣ</et>
+			<eu>Тоҷикӣ</eu>
+			<fa>Тоҷикӣ</fa>
+			<fi>Тоҷикӣ</fi>
+			<fr>Тоҷикӣ</fr>
+			<hu>Тоҷикӣ</hu>
+			<hy>Тоҷикӣ</hy>
+			<is>Тоҷикӣ</is>
+			<it>Тоҷикӣ</it>
+			<ja>Тоҷикӣ</ja>
+			<ka>Тоҷикӣ</ka>
+			<ko>Тоҷикӣ</ko>
+			<ky>Тоҷикӣ</ky>
+			<lt>Тоҷикӣ</lt>
+			<lv>Тоҷикӣ</lv>
+			<nl>Тоҷикӣ</nl>
+			<no>Тоҷикӣ</no>
+			<pl>Тоҷикӣ</pl>
+			<pt>Тоҷикӣ</pt>
+			<ro>Тоҷикӣ</ro>
+			<sk>Тоҷикӣ</sk>
+			<sl>Тоҷикӣ</sl>
+			<sr>Тоҷикӣ</sr>
+			<tg>Тоҷикӣ</tg>
+			<tr>Тоҷикӣ</tr>
+			<tt>Тоҷикӣ</tt>
+			<uk>Тоҷикӣ</uk>
+			<uz>Тоҷикӣ</uz>
+			<zh>Тоҷикӣ</zh>
+		</Record>
+
+		<Record name="#tr">
+			<ru>Türk</ru>
+			<en>Türk</en>
+			<az>Türk</az>
+			<ba>Türk</ba>
+			<be>Türk</be>
+			<bg>Türk</bg>
+			<cs>Türk</cs>
+			<da>Türk</da>
+			<de>Türk</de>
+			<el>Türk</el>
+			<es>Türk</es>
+			<et>Türk</et>
+			<eu>Türk</eu>
+			<fa>Türk</fa>
+			<fi>Türk</fi>
+			<fr>Türk</fr>
+			<hu>Türk</hu>
+			<hy>Türk</hy>
+			<is>Türk</is>
+			<it>Türk</it>
+			<ja>Türk</ja>
+			<ka>Türk</ka>
+			<ko>Türk</ko>
+			<ky>Türk</ky>
+			<lt>Türk</lt>
+			<lv>Türk</lv>
+			<nl>Türk</nl>
+			<no>Türk</no>
+			<pl>Türk</pl>
+			<pt>Türk</pt>
+			<ro>Türk</ro>
+			<sk>Türk</sk>
+			<sl>Türk</sl>
+			<sr>Türk</sr>
+			<tg>Türk</tg>
+			<tr>Türk</tr>
+			<tt>Türk</tt>
+			<uk>Türk</uk>
+			<uz>Türk</uz>
+			<zh>Türk</zh>
+		</Record>
+		<Record name="#tt">
+			<ru>Татар</ru>
+			<en>Татар</en>
+			<az>Татар</az>
+			<ba>Татар</ba>
+			<be>Татар</be>
+			<bg>Татар</bg>
+			<cs>Татар</cs>
+			<da>Татар</da>
+			<de>Татар</de>
+			<el>Татар</el>
+			<es>Татар</es>
+			<et>Татар</et>
+			<eu>Татар</eu>
+			<fa>Татар</fa>
+			<fi>Татар</fi>
+			<fr>Татар</fr>
+			<hu>Татар</hu>
+			<hy>Татар</hy>
+			<is>Татар</is>
+			<it>Татар</it>
+			<ja>Татар</ja>
+			<ka>Татар</ka>
+			<ko>Татар</ko>
+			<ky>Татар</ky>
+			<lt>Татар</lt>
+			<lv>Татар</lv>
+			<nl>Татар</nl>
+			<no>Татар</no>
+			<pl>Татар</pl>
+			<pt>Татар</pt>
+			<ro>Татар</ro>
+			<sk>Татар</sk>
+			<sl>Татар</sl>
+			<sr>Татар</sr>
+			<tg>Татар</tg>
+			<tr>Татар</tr>
+			<tt>Татар</tt>
+			<uk>Татар</uk>
+			<uz>Татар</uz>
+			<zh>Татар</zh>
+		</Record>
+
+		<Record name="#uk">
+			<ru>Український</ru>
+			<en>Український</en>
+			<az>Український</az>
+			<ba>Український</ba>
+			<be>Український</be>
+			<bg>Український</bg>
+			<cs>Український</cs>
+			<da>Український</da>
+			<de>Український</de>
+			<el>Український</el>
+			<es>Український</es>
+			<et>Український</et>
+			<eu>Український</eu>
+			<fa>Український</fa>
+			<fi>Український</fi>
+			<fr>Український</fr>
+			<hu>Український</hu>
+			<hy>Український</hy>
+			<is>Український</is>
+			<it>Український</it>
+			<ja>Український</ja>
+			<ka>Український</ka>
+			<ko>Український</ko>
+			<ky>Український</ky>
+			<lt>Український</lt>
+			<lv>Український</lv>
+			<nl>Український</nl>
+			<no>Український</no>
+			<pl>Український</pl>
+			<pt>Український</pt>
+			<ro>Український</ro>
+			<sk>Український</sk>
+			<sl>Український</sl>
+			<sr>Український</sr>
+			<tg>Український</tg>
+			<tr>Український</tr>
+			<tt>Український</tt>
+			<uk>Український</uk>
+			<uz>Український</uz>
+			<zh>Український</zh>
+		</Record>
+
+		<Record name="#uz">
+			<ru>O'zbek tili</ru>
+			<en>O'zbek tili</en>
+			<az>O'zbek tili</az>
+			<ba>O'zbek tili</ba>
+			<be>O'zbek tili</be>
+			<bg>O'zbek tili</bg>
+			<cs>O'zbek tili</cs>
+			<da>O'zbek tili</da>
+			<de>O'zbek tili</de>
+			<el>O'zbek tili</el>
+			<es>O'zbek tili</es>
+			<et>O'zbek tili</et>
+			<eu>O'zbek tili</eu>
+			<fa>O'zbek tili</fa>
+			<fi>O'zbek tili</fi>
+			<fr>O'zbek tili</fr>
+			<hu>O'zbek tili</hu>
+			<hy>O'zbek tili</hy>
+			<is>O'zbek tili</is>
+			<it>O'zbek tili</it>
+			<ja>O'zbek tili</ja>
+			<ka>O'zbek tili</ka>
+			<ko>O'zbek tili</ko>
+			<ky>O'zbek tili</ky>
+			<lt>O'zbek tili</lt>
+			<lv>O'zbek tili</lv>
+			<nl>O'zbek tili</nl>
+			<no>O'zbek tili</no>
+			<pl>O'zbek tili</pl>
+			<pt>O'zbek tili</pt>
+			<ro>O'zbek tili</ro>
+			<sk>O'zbek tili</sk>
+			<sl>O'zbek tili</sl>
+			<sr>O'zbek tili</sr>
+			<tg>O'zbek tili</tg>
+			<tr>O'zbek tili</tr>
+			<tt>O'zbek tili</tt>
+			<uk>O'zbek tili</uk>
+			<uz>O'zbek tili</uz>
+			<zh>O'zbek tili</zh>
+		</Record>
+
+		<Record name="#zh">
+			<ru>中文</ru>
+			<en>中文</en>
+			<az>中文</az>
+			<ba>中文</ba>
+			<be>中文</be>
+			<bg>中文</bg>
+			<cs>中文</cs>
+			<da>中文</da>
+			<de>中文</de>
+			<el>中文</el>
+			<es>中文</es>
+			<et>中文</et>
+			<eu>中文</eu>
+			<fa>中文</fa>
+			<fi>中文</fi>
+			<fr>中文</fr>
+			<hu>中文</hu>
+			<hy>中文</hy>
+			<is>中文</is>
+			<it>中文</it>
+			<ja>中文</ja>
+			<ka>中文</ka>
+			<ko>中文</ko>
+			<ky>中文</ky>
+			<lt>中文</lt>
+			<lv>中文</lv>
+			<nl>中文</nl>
+			<no>中文</no>
+			<pl>中文</pl>
+			<pt>中文</pt>
+			<ro>中文</ro>
+			<sk>中文</sk>
+			<sl>中文</sl>
+			<sr>中文</sr>
+			<tg>中文</tg>
+			<tr>中文</tr>
+			<tt>中文</tt>
+			<uk>中文</uk>
+			<uz>中文</uz>
+			<zh>中文</zh>
+		</Record>
+
+
+
+
+
+
+
 
 
 
 		<Record name="#dark">
 			<en>Dark</en>
+			<ru>Темный</ru>
+			<az>Qaranlıq</az>
+			<ba>Ҡараңғы</ba>
+			<be>Цёмны</be>
+			<bg>Тъмен</bg>
+			<cs>Tmavé</cs>
+			<da>Mørk</da>
+			<de>Dunkel</de>
+			<el>Σκούρο</el>
+			<es>Oscuro</es>
+			<et>Tume</et>
+			<eu>Ilun</eu>
+			<fa>تیره</fa>
+			<fi>Tumma</fi>
+			<fr>Sombre</fr>
+			<hu>Sötét</hu>
+			<hy>Մութ է</hy>
+			<is>Dökk</is>
+			<it>Scuro</it>
+			<ja>暗</ja>
+			<ka>ბნელი</ka>
+			<ko>다크</ko>
+			<ky>Темный</ky>
+			<lt>Tamsus</lt>
+			<lv>Tumšs</lv>
+			<nl>Donker</nl>
+			<no>Mørk</no>
+			<pl>Ciemny</pl>
+			<pt>Escuro</pt>
+			<ro>Întuneric</ro>
+			<sk>Tmavé</sk>
+			<sl>Temno</sl>
+			<sr>Дарк</sr>
+			<tg>Торик</tg>
+			<tr>Karanlık</tr>
+			<tt>Кара</tt>
+			<uk>Темний</uk>
+			<uz>Qorong'u</uz>
+			<zh>黑暗</zh>
 		</Record>
 		<Record name="#white">
 			<en>Bright</en>
+			<ru>Яркий</ru>
+			<az>Parlaq</az>
+			<ba>Сағыу</ba>
+			<be>Яркі</be>
+			<bg>Ярка</bg>
+			<cs>Světlé</cs>
+			<da>Lyse</da>
+			<de>Helle</de>
+			<el>Φωτεινό</el>
+			<es>Brillante</es>
+			<et>Hele</et>
+			<eu>Distiratsua</eu>
+			<fa>روشن</fa>
+			<fi>Kirkas</fi>
+			<fr>Lumineux</fr>
+			<hu>Fényes</hu>
+			<hy>Պայծառ</hy>
+			<is>Björt</is>
+			<it>Luminoso</it>
+			<ja>明るい</ja>
+			<ka>ნათელი</ka>
+			<ko>밝</ko>
+			<ky>Яркий</ky>
+			<lt>Šviesi</lt>
+			<lv>Spilgti</lv>
+			<nl>Helder</nl>
+			<no>Lyse</no>
+			<pl>Jasne</pl>
+			<pt>Brilhante</pt>
+			<ro>Luminoase</ro>
+			<sk>Svetlé</sk>
+			<sl>Svetlo</sl>
+			<sr>Светао</sr>
+			<tg>Дурахшон</tg>
+			<tr>Parlak</tr>
+			<tt>Якты</tt>
+			<uk>Яскравий</uk>
+			<uz>Yorqin</uz>
+			<zh>明亮的</zh>
 		</Record>
-
 		<Record name="#appTitle">
 			<en>CAN Analyzer</en>
+			<ru>Может анализатор</ru>
+			<az>Ola bilər analizator</az>
+			<ba>Парса ала</ba>
+			<be>Можа аналізатар</be>
+			<bg>Може анализатор</bg>
+			<cs>MŮŽE Analyzer</cs>
+			<da>KAN Analyzer</da>
+			<de>KANN Analyzer</de>
+			<el>ΜΠΟΡΕΊ Ανάλυσης</el>
+			<es>PUEDE Analizador de</es>
+			<et>VÕIB Analyzer</et>
+			<eu>AHAL Analizatzaile</eu>
+			<fa>می تواند تجزیه و تحلیل</fa>
+			<fi>VOI Analyzer</fi>
+			<fr>PEUT Analyseur</fr>
+			<hu>LEHET Analyzer</hu>
+			<hy>Կարող անալիզատոր</hy>
+			<is>GETUR Þætti</is>
+			<it>PUÒ Analyzer</it>
+			<ja>できる分析装置</ja>
+			<ka>შეიძლება ანალიზატორი</ka>
+			<ko>할 수 있는 분석기</ko>
+			<ky>Мүмкүн анализатор</ky>
+			<lt>GALI Analizatorius</lt>
+			<lv>VAR Analyzer</lv>
+			<nl>CAN-Analyzer</nl>
+			<no>KAN Analyzer</no>
+			<pl>Może analizator</pl>
+			<pt>PODEM Analisador de</pt>
+			<ro>POATE Analizor</ro>
+			<sk>MÔŽE Analyzátor</sk>
+			<sl>LAHKO Analyzer</sl>
+			<sr>Може анализатор</sr>
+			<tg>Метавонад parser</tg>
+			<tr>OLABİLİR Çözümleyicisi</tr>
+			<tt>Бәлки, анализатор</tt>
+			<uk>Може аналізатор</uk>
+			<uz>MUMKIN Analyzer</uz>
+			<zh>可以分析</zh>
 		</Record>
-
-
 		<!--NavMenu-->
 		<Record name="#appSettingsMenu">
 			<en>Settings</en>
+			<ru>Параметры</ru>
+			<az>Parametrləri</az>
+			<ba>Параметрҙарын</ba>
+			<be>Параметры</be>
+			<bg>Опции</bg>
+			<cs>Nastavení</cs>
+			<da>Indstillinger</da>
+			<de>Einstellungen</de>
+			<el>Ρυθμίσεις</el>
+			<es>Configuración</es>
+			<et>Seaded</et>
+			<eu>Ezarpenak</eu>
+			<fa>تنظیمات</fa>
+			<fi>Asetukset</fi>
+			<fr>Paramètres</fr>
+			<hu>Beállítások</hu>
+			<hy>Ընտրանքներ</hy>
+			<is>Stillingar</is>
+			<it>Impostazioni</it>
+			<ja>設定</ja>
+			<ka>პარამეტრები</ka>
+			<ko>설정</ko>
+			<ky>Параметрлери</ky>
+			<lt>Parametrai</lt>
+			<lv>Uzstādījumi</lv>
+			<nl>Instellingen</nl>
+			<no>Innstillinger</no>
+			<pl>Parametry</pl>
+			<pt>Definições</pt>
+			<ro>Setări</ro>
+			<sk>Nastavenia</sk>
+			<sl>Nastavitve</sl>
+			<sr>Опције</sr>
+			<tg>Имконот</tg>
+			<tr>Ayarları</tr>
+			<tt>Параметрлары</tt>
+			<uk>Параметри</uk>
+			<uz>Sozlash</uz>
+			<zh>设置</zh>
 		</Record>
 		<Record name="#NavMenuRecieveChannelPage">
 			<en>Tracer</en>
+			<ru>Трейсер</ru>
+			<az>Трейсер</az>
+			<ba>Трейсер</ba>
+			<be>Трэйсер</be>
+			<bg>Трейсер</bg>
+			<cs>Tracer</cs>
+			<da>Tracer</da>
+			<de>Tracer</de>
+			<el>Tracer</el>
+			<es>Trazador</es>
+			<et>Märgistusgaasi</et>
+			<eu>Bektorizatzailea</eu>
+			<fa>تحقیقی</fa>
+			<fi>Tracer</fi>
+			<fr>Traceur</fr>
+			<hu>Tracer</hu>
+			<hy>Трейсер</hy>
+			<is>Eftirteiknari</is>
+			<it>Tracer</it>
+			<ja>トレーサー</ja>
+			<ka>Tracer</ka>
+			<ko>추적</ko>
+			<ky>Трейсер</ky>
+			<lt>Bandomųjų</lt>
+			<lv>Marķiergāzes</lv>
+			<nl>Tracer</nl>
+			<no>Tracer</no>
+			<pl>Tracer</pl>
+			<pt>Tracer</pt>
+			<ro>Tracer</ro>
+			<sk>Tracer</sk>
+			<sl>Sledilnik</sl>
+			<sr>Трейсер</sr>
+			<tg>Трейсер</tg>
+			<tr>Tracer</tr>
+			<tt>Трейсер</tt>
+			<uk>Трейсер</uk>
+			<uz>Tracer</uz>
+			<zh>跟踪</zh>
 		</Record>
 		<Record name="#NavMenuMonitorChannelPage">
 			<en>Monitor</en>
+			<ru>Монитор</ru>
+			<az>Monitor</az>
+			<ba>Монитор</ba>
+			<be>Манітор</be>
+			<bg>Монитор</bg>
+			<cs>Monitor</cs>
+			<da>Skærm</da>
+			<de>Monitor</de>
+			<el>Όργανο ελέγχου</el>
+			<es>Monitor</es>
+			<et>Ekraan</et>
+			<eu>Jarraipena</eu>
+			<fa>مانیتور</fa>
+			<fi>Monitor</fi>
+			<fr>Moniteur</fr>
+			<hu>Monitor</hu>
+			<hy>Մոնիտոր</hy>
+			<is>Fylgjast</is>
+			<it>Monitor</it>
+			<ja>モニター</ja>
+			<ka>მონიტორი</ka>
+			<ko>모니터링</ko>
+			<ky>Монитор</ky>
+			<lt>Stebėti</lt>
+			<lv>Monitora</lv>
+			<nl>Monitor</nl>
+			<no>Skjerm</no>
+			<pl>Monitor</pl>
+			<pt>Monitor</pt>
+			<ro>Monitor</ro>
+			<sk>Monitor</sk>
+			<sl>Zaslon</sl>
+			<sr>Монитор</sr>
+			<tg>Нозироти</tg>
+			<tr>Monitör</tr>
+			<tt>Монитор</tt>
+			<uk>Монітор</uk>
+			<uz>Monitor</uz>
+			<zh>监视器</zh>
 		</Record>
 		<Record name="#addTransmitPageMenu">
 			<en>Add transmiter</en>
+			<ru>Добавить передатчик</ru>
+			<az>Əlavə ötürücü</az>
+			<ba>Өҫтәп тапшыра</ba>
+			<be>Дадаць перадатчык</be>
+			<bg>Добави предавател</bg>
+			<cs>Přidat rádiovou</cs>
+			<da>Tilføj transmiter</da>
+			<de>Hinzufügen transmiter</de>
+			<el>Προσθέστε transmiter</el>
+			<es>Agregar transmiter</es>
+			<et>Lisada transmiter</et>
+			<eu>Gehitu transmiter</eu>
+			<fa>اضافه کردن transmiter</fa>
+			<fi>Lisää transmiter</fi>
+			<fr>Ajouter un émetteur</fr>
+			<hu>Add transmiter</hu>
+			<hy>Ավելացնել հաղորդիչ</hy>
+			<is>Bæta transmiter</is>
+			<it>Aggiungere trasmittente</it>
+			<ja>追加transmiter</ja>
+			<ka>რჩეულებში transmiter</ka>
+			<ko>추가 transmiter</ko>
+			<ky>Кошулсун берүүчү</ky>
+			<lt>Pridėti transmiter</lt>
+			<lv>Pievienot transmiter</lv>
+			<nl>Toevoegen zender</nl>
+			<no>Legg til transmiter</no>
+			<pl>Dodaj nadajnik</pl>
+			<pt>Adicionar transmiter</pt>
+			<ro>Adaugă transmiter</ro>
+			<sk>Pridať transmiter</sk>
+			<sl>Dodaj transmiter</sl>
+			<sr>Додајте предајник</sr>
+			<tg>Илова шумо ирсолкунанда</tg>
+			<tr>Transmiter Ekle </tr>
+			<tt>Өстәргә передатчик</tt>
+			<uk>Додати передавач</uk>
+			<uz>Transmiter qo'shish </uz>
+			<zh>添加方法</zh>
 		</Record>
 		<Record name="#addTransmitFilePageMenu">
 			<en>Add file transmiter</en>
+			<ru>Добавить передатчика файл </ru>
+			<az>Əlavə fayl ötürücü </az>
+			<ba>Файл өҫтәү тапшырылды </ba>
+			<be>Дадаць перадатчыка файл </be>
+			<bg>Добави предавателя файл </bg>
+			<cs>Přidat soubor rádiovou</cs>
+			<da>Tilføj fil transmiter</da>
+			<de>Hinzufügen von Datei-Transmitter</de>
+			<el>Προσθέστε το αρχείο transmiter</el>
+			<es>Agregar archivo transmiter</es>
+			<et>Lisa fail transmiter</et>
+			<eu>Gehitu fitxategia transmiter</eu>
+			<fa>اضافه کردن فایل transmiter</fa>
+			<fi>Lisää tiedosto transmiter</fi>
+			<fr>Ajouter un fichier émetteur</fr>
+			<hu>Fájl hozzáadása transmiter</hu>
+			<hy>Ավելացնել հաղորդիչ ֆայլը </hy>
+			<is>Bæta skrá transmiter</is>
+			<it>Aggiungere file trasmittente</it>
+			<ja>ファイル追加transmiter</ja>
+			<ka>Add file transmiter</ka>
+			<ko>파일 추가 transmiter</ko>
+			<ky>Кошулсун өткөргүчтүн файл </ky>
+			<lt>Pridėti failą transmiter</lt>
+			<lv>Pievienot failu transmiter</lv>
+			<nl>Bestand toevoegen zender</nl>
+			<no>Legg til fil transmiter</no>
+			<pl>Dodaj nadajnik plik </pl>
+			<pt>Adicionar arquivo transmiter</pt>
+			<ro>Adaugă fișier transmiter</ro>
+			<sk>Pridať súbor transmiter</sk>
+			<sl>Dodaj datoteko transmiter</sl>
+			<sr>Додајте предајника датотеку </sr>
+			<tg>Илова паст мешавад файл </tg>
+			<tr>Dosya transmiter Ekle </tr>
+			<tt>Өстәргә передатчика файл </tt>
+			<uk>Додати передавача файл </uk>
+			<uz>Fayl transmiter qo'shish </uz>
+			<zh>添加文件的方法</zh>
 		</Record>
 		<Record name="#addBomberPageMenu">
 			<en>Add bomber</en>
+			<ru>Добавить бомбер</ru>
+			<az>Əlavə бомбер</az>
+			<ba>Өҫтәп бомбер</ba>
+			<be>Дадаць бомбер</be>
+			<bg>Добави бомбер</bg>
+			<cs>Přidat bombardér</cs>
+			<da>Tilføj bomber</da>
+			<de>Add bomber</de>
+			<el>Προσθέστε βομβαρδιστικό</el>
+			<es>Agregar bombardero</es>
+			<et>Lisada pommitaja</et>
+			<eu>Bomber gehitu</eu>
+			<fa>اضافه کردن بمب افکن</fa>
+			<fi>Lisää pommikone</fi>
+			<fr>Ajouter bomber</fr>
+			<hu>Add bombázó</hu>
+			<hy>Ավելացնել бомбер</hy>
+			<is>Bæta sprengjuflugvél</is>
+			<it>Aggiungere bomber</it>
+			<ja>追加の爆撃機</ja>
+			<ka>რჩეულებში bomber</ka>
+			<ko>추가머</ko>
+			<ky>Кошулсун бомбер</ky>
+			<lt>Pridėti bombonešis</lt>
+			<lv>Pievienot bumbvedējs</lv>
+			<nl>Toevoegen bommenwerper</nl>
+			<no>Legg til bomber</no>
+			<pl>Dodaj бомбер</pl>
+			<pt>Adicionar bomber</pt>
+			<ro>Adaugă bombardier</ro>
+			<sk>Pridať bombardér</sk>
+			<sl>Dodaj bomber</sl>
+			<sr>Додајте бомбер</sr>
+			<tg>Илова бомбер</tg>
+			<tr>Bombacı Ekle </tr>
+			<tt>Өстәргә бомбер</tt>
+			<uk>Додати бомбер</uk>
+			<uz>Bomber qo'shish </uz>
+			<zh>添加轰炸机</zh>
 		</Record>
 		<Record name="#NavMenuTransmitPage">
 			<en>Transmiter</en>
+			<ru>Передатчика</ru>
+			<az>Ötürücü</az>
+			<ba>Быуын-быуын тапшырыла</ba>
+			<be>Перадатчыка</be>
+			<bg>Предавател</bg>
+			<cs>Baterie</cs>
+			<da>Transmiter</da>
+			<de>Transmiter</de>
+			<el>Transmiter</el>
+			<es>Transmiter</es>
+			<et>Transmiter</et>
+			<eu>Transmiter</eu>
+			<fa>Transmiter</fa>
+			<fi>Transmiter</fi>
+			<fr>Émetteur</fr>
+			<hu>Transmiter</hu>
+			<hy>Tx</hy>
+			<is>Transmiter</is>
+			<it>Trasmittente</it>
+			<ja>Transmiter</ja>
+			<ka>Transmiter</ka>
+			<ko>Transmiter</ko>
+			<ky>Өткөргүчтүн</ky>
+			<lt>Transmiter</lt>
+			<lv>Transmiter</lv>
+			<nl>Zender</nl>
+			<no>Transmiter</no>
+			<pl>Nadajnika</pl>
+			<pt>Transmiter</pt>
+			<ro>Transmiter</ro>
+			<sk>Transmiter</sk>
+			<sl>Transmiter</sl>
+			<sr>Предајник</sr>
+			<tg>Паст мешавад</tg>
+			<tr>Transmiter</tr>
+			<tt>Передатчика</tt>
+			<uk>Передавача</uk>
+			<uz>Transmiter</uz>
+			<zh>方法</zh>
 		</Record>
 		<Record name="#NavMenuTransmitFilePage">
 			<en>File transmiter</en>
+			<ru>Передатчика файл </ru>
+			<az>Ötürücü fayl </az>
+			<ba>Файл тапшырылды </ba>
+			<be>Перадатчыка файл </be>
+			<bg>Предавателя файл </bg>
+			<cs>Soubor rádiovou</cs>
+			<da>Fil transmiter</da>
+			<de>Datei-Transmitter</de>
+			<el>Αρχείο transmiter</el>
+			<es>Archivo transmiter</es>
+			<et>Faili transmiter</et>
+			<eu>Fitxategi transmiter</eu>
+			<fa>فایل transmiter</fa>
+			<fi>Tiedoston transmiter</fi>
+			<fr>Fichier émetteur</fr>
+			<hu>Fájl transmiter</hu>
+			<hy>Հաղորդիչ ֆայլը </hy>
+			<is>Skrá transmiter</is>
+			<it>File trasmittente</it>
+			<ja>ファイルtransmiter</ja>
+			<ka>ფაილი transmiter</ka>
+			<ko>파일 transmiter</ko>
+			<ky>Өткөргүчтүн файл </ky>
+			<lt>Failo transmiter</lt>
+			<lv>Failu transmiter</lv>
+			<nl>Bestand zender</nl>
+			<no>Fil transmiter</no>
+			<pl>Nadajnika plik </pl>
+			<pt>Arquivo transmiter</pt>
+			<ro>Fișier transmiter</ro>
+			<sk>Súbor transmiter</sk>
+			<sl>Datoteka transmiter</sl>
+			<sr>Предајник датотеку </sr>
+			<tg>Паст мешавад файл </tg>
+			<tr>Dosya transmiter</tr>
+			<tt>Передатчика файл </tt>
+			<uk>Передавача файл </uk>
+			<uz>Fayl transmiter</uz>
+			<zh>文件的方法</zh>
 		</Record>
 		<Record name="#NavMenuBomberPage">
 			<en>Bomber</en>
+			<ru>Бомбардировщик</ru>
+			<az>Bombardmançı</az>
+			<ba>Бомбардировщиктар</ba>
+			<be>Бамбавік</be>
+			<bg>Бомбардировач</bg>
+			<cs>Bombardér</cs>
+			<da>Bomber</da>
+			<de>Bomber</de>
+			<el>Βομβιστής</el>
+			<es>Bombardero</es>
+			<et>Pommitaja</et>
+			<eu>Bomber</eu>
+			<fa>بمب افکن</fa>
+			<fi>Pommikone</fi>
+			<fr>Bomber</fr>
+			<hu>Bombázó</hu>
+			<hy>Ռմբակոծիչ</hy>
+			<is>Sprengjuflugvél</is>
+			<it>Bomber</it>
+			<ja>爆撃機</ja>
+			<ka>Bomber</ka>
+			<ko>머</ko>
+			<ky>Бомбардировщик</ky>
+			<lt>Bombonešis</lt>
+			<lv>Bomber</lv>
+			<nl>Bomber</nl>
+			<no>Bomber</no>
+			<pl>Bombowiec</pl>
+			<pt>Bomber</pt>
+			<ro>Bombardier</ro>
+			<sk>Bombardér</sk>
+			<sl>Bomber</sl>
+			<sr>Бомбардер</sr>
+			<tg>Бомбардировщик</tg>
+			<tr>Bombacı</tr>
+			<tt>Бомбардировщик</tt>
+			<uk>Бомбардувальник</uk>
+			<uz>Bomber</uz>
+			<zh>轰炸机</zh>
 		</Record>
 		<Record name="#NavMenuRecieveProxyPage">
 			<en>Tracer</en>
+			<ru>Трейсер</ru>
+			<az>Трейсер</az>
+			<ba>Трейсер</ba>
+			<be>Трэйсер</be>
+			<bg>Трейсер</bg>
+			<cs>Tracer</cs>
+			<da>Tracer</da>
+			<de>Tracer</de>
+			<el>Tracer</el>
+			<es>Trazador</es>
+			<et>Märgistusgaasi</et>
+			<eu>Bektorizatzailea</eu>
+			<fa>تحقیقی</fa>
+			<fi>Tracer</fi>
+			<fr>Traceur</fr>
+			<hu>Tracer</hu>
+			<hy>Трейсер</hy>
+			<is>Eftirteiknari</is>
+			<it>Tracer</it>
+			<ja>トレーサー</ja>
+			<ka>Tracer</ka>
+			<ko>추적</ko>
+			<ky>Трейсер</ky>
+			<lt>Bandomųjų</lt>
+			<lv>Marķiergāzes</lv>
+			<nl>Tracer</nl>
+			<no>Tracer</no>
+			<pl>Tracer</pl>
+			<pt>Tracer</pt>
+			<ro>Tracer</ro>
+			<sk>Tracer</sk>
+			<sl>Sledilnik</sl>
+			<sr>Трейсер</sr>
+			<tg>Трейсер</tg>
+			<tr>Tracer</tr>
+			<tt>Трейсер</tt>
+			<uk>Трейсер</uk>
+			<uz>Tracer</uz>
+			<zh>跟踪</zh>
 		</Record>
 		<Record name="#NavMenuMonitorProxyPage">
 			<en>Monitor</en>
+			<ru>Монитор</ru>
+			<az>Monitor</az>
+			<ba>Монитор</ba>
+			<be>Манітор</be>
+			<bg>Монитор</bg>
+			<cs>Monitor</cs>
+			<da>Skærm</da>
+			<de>Monitor</de>
+			<el>Όργανο ελέγχου</el>
+			<es>Monitor</es>
+			<et>Ekraan</et>
+			<eu>Jarraipena</eu>
+			<fa>مانیتور</fa>
+			<fi>Monitor</fi>
+			<fr>Moniteur</fr>
+			<hu>Monitor</hu>
+			<hy>Մոնիտոր</hy>
+			<is>Fylgjast</is>
+			<it>Monitor</it>
+			<ja>モニター</ja>
+			<ka>მონიტორი</ka>
+			<ko>모니터링</ko>
+			<ky>Монитор</ky>
+			<lt>Stebėti</lt>
+			<lv>Monitora</lv>
+			<nl>Monitor</nl>
+			<no>Skjerm</no>
+			<pl>Monitor</pl>
+			<pt>Monitor</pt>
+			<ro>Monitor</ro>
+			<sk>Monitor</sk>
+			<sl>Zaslon</sl>
+			<sr>Монитор</sr>
+			<tg>Нозироти</tg>
+			<tr>Monitör</tr>
+			<tt>Монитор</tt>
+			<uk>Монітор</uk>
+			<uz>Monitor</uz>
+			<zh>监视器</zh>
 		</Record>
-
-
 		<!--TransmitPage-->
 		<Record name="#TransmitPageOpenButtonToolTip">
 			<en>Open file</en>
+			<ru>Открыть файл</ru>
+			<az>Fayl açmaq</az>
+			<ba>Файл асылды</ba>
+			<be>Адкрыць файл</be>
+			<bg>Отваряне на файл</bg>
+			<cs>Otevřete soubor</cs>
+			<da>Åbne en fil</da>
+			<de>Datei öffnen</de>
+			<el>Ανοίξτε το αρχείο</el>
+			<es>Abrir archivo</es>
+			<et>Ava fail</et>
+			<eu>Ireki fitxategia</eu>
+			<fa>باز کردن فایل</fa>
+			<fi>Avaa tiedosto</fi>
+			<fr>Ouvrir le fichier</fr>
+			<hu>Fájl megnyitása</hu>
+			<hy>Բացել ֆայլը</hy>
+			<is>Opna skrá</is>
+			<it>Aprire il file</it>
+			<ja>ファイルを開く</ja>
+			<ka>ფაილის გახსნა</ka>
+			<ko>파일 열기</ko>
+			<ky>Ачуу файл</ky>
+			<lt>Atidarykite failą</lt>
+			<lv>Atvērt failu</lv>
+			<nl>Open bestand</nl>
+			<no>Åpne fil</no>
+			<pl>Otwórz plik</pl>
+			<pt>Abrir arquivo</pt>
+			<ro>Deschide fișierul</ro>
+			<sk>Otvoriť súbor</sk>
+			<sl>Odpri datoteko</sl>
+			<sr>Отворите датотеку</sr>
+			<tg>Кушодани файл</tg>
+			<tr>Dosya Aç</tr>
+			<tt>Ачарга файл</tt>
+			<uk>Відкрити файл</uk>
+			<uz>Ochiq fayl</uz>
+			<zh>打开文件</zh>
 		</Record>
 		<Record name="#TransmitPageSaveButtonToolTip">
 			<en>Save in file</en>
+			<ru>Сохранить в файл</ru>
+			<az>Yadda saxlamaq, fayl</az>
+			<ba>Был файл һаҡлау</ba>
+			<be>Захаваць у файл</be>
+			<bg>Запис във файл</bg>
+			<cs>Uložit do souboru</cs>
+			<da>Gem i fil</da>
+			<de>Speichern in Datei</de>
+			<el>Αποθήκευση σε αρχείο</el>
+			<es>Guardar en archivo</es>
+			<et>Salvesta fail</et>
+			<eu>Gorde fitxategia</eu>
+			<fa>ذخیره در فایل</fa>
+			<fi>Tallenna tiedosto</fi>
+			<fr>Enregistrer dans le fichier</fr>
+			<hu>Mentse a fájlt</hu>
+			<hy>Պահպանել ֆայլը</hy>
+			<is>Sparaðu í skrá</is>
+			<it>Salvare il file</it>
+			<ja>保存ファイル</ja>
+			<ka>Save ფაილი</ka>
+			<ko>저장에서 파일</ko>
+			<ky>Сактап жалал-файл</ky>
+			<lt>Išsaugoti į failą</lt>
+			<lv>Saglabāt failu</lv>
+			<nl>Opslaan in bestand</nl>
+			<no>Lagre i fil</no>
+			<pl>Zapisz w pliku</pl>
+			<pt>Guardar em ficheiro</pt>
+			<ro>A salva în fișier</ro>
+			<sk>Uložiť do súboru</sk>
+			<sl>Shranjevanje v datoteko</sl>
+			<sr>Сачувај у фајл</sr>
+			<tg>Нигоҳ доштани файл</tg>
+			<tr>Dosya Kaydet </tr>
+			<tt>Саклап калу файл</tt>
+			<uk>Зберегти в файл</uk>
+			<uz>Fayl ichida saqlash </uz>
+			<zh>保存文件</zh>
 		</Record>
 		<Record name="#TransmitPageSaveAsButtonToolTip">
 			<en>Save as</en>
+			<ru>Сохранить как</ru>
+			<az>Kimi saxla</az>
+			<ba>Нисек һаҡланған</ba>
+			<be>Захаваць як</be>
+			<bg>Запиши като</bg>
+			<cs>Uložit jako</cs>
+			<da>Gem som</da>
+			<de>Speichern als</de>
+			<el>Αποθήκευση ως</el>
+			<es>Guardar como</es>
+			<et>Salvesta</et>
+			<eu>Gorde honela</eu>
+			<fa>ذخیره به عنوان</fa>
+			<fi>Tallenna nimellä</fi>
+			<fr>Enregistrer sous</fr>
+			<hu>Mentés másként</hu>
+			<hy>Պահպանել որպես</hy>
+			<is>Eins og að spara</is>
+			<it>Salva con nome</it>
+			<ja>として保存</ja>
+			<ka>შენახვა როგორც</ka>
+			<ko>으로 저장</ko>
+			<ky>Сактап катары</ky>
+			<lt>Įrašyti kaip</lt>
+			<lv>Saglabāt kā</lv>
+			<nl>Opslaan als</nl>
+			<no>Lagre som</no>
+			<pl>Zapisz jako</pl>
+			<pt>Salvar como</pt>
+			<ro>Salvare ca</ro>
+			<sk>Uložiť ako</sk>
+			<sl>Shrani kot</sl>
+			<sr>Сачувај као</sr>
+			<tg>Чӣ тавр ба наҷот</tg>
+			<tr>Kaydet </tr>
+			<tt>Ничек саклап калырга</tt>
+			<uk>Зберегти як</uk>
+			<uz>Saqlash kabi</uz>
+			<zh>保存</zh>
 		</Record>
 		<Record name="#TransmitPageClearButtonToolTip">
 			<en>Clear all</en>
+			<ru>Ясно все</ru>
+			<az>Aydın bütün</az>
+			<ba>Бөтәһе лә асыҡ</ba>
+			<be>Ясна ўсё</be>
+			<bg>Ясно на всички</bg>
+			<cs>Vymazat všechny</cs>
+			<da>Ryd alle</da>
+			<de>Deaktivieren Sie alle</de>
+			<el>Σαφή όλα</el>
+			<es>Borrar todos los</es>
+			<et>Selge kõik</et>
+			<eu>Argi guztiak</eu>
+			<fa>پاک کردن همه</fa>
+			<fi>Tyhjennä kaikki</fi>
+			<fr>Effacer tous les</fr>
+			<hu>Összes törlése</hu>
+			<hy>Ամեն ինչ պարզ</hy>
+			<is>Hreinsa allt</is>
+			<it>Cancella tutto</it>
+			<ja>すべてクリア</ja>
+			<ka>გასაგებია ყველაფერი</ka>
+			<ko>모</ko>
+			<ky>Ачык бардык</ky>
+			<lt>Aišku, visi</lt>
+			<lv>Notīrīt visu</lv>
+			<nl>Alles wissen</nl>
+			<no>Fjern alle</no>
+			<pl>Jasne wszystko</pl>
+			<pt>Desmarcar todos os</pt>
+			<ro>Clar toate</ro>
+			<sk>Vymazať všetko</sk>
+			<sl>Počisti vse</sl>
+			<sr>Све је јасно</sr>
+			<tg>Равшан ҳамаи</tg>
+			<tr>Tümünü sil</tr>
+			<tt>Билгеле бар да</tt>
+			<uk>Все Ясно</uk>
+			<uz>Barcha aniq </uz>
+			<zh>全部清除</zh>
 		</Record>
 		<Record name="#TransmitPageStartButtonToolTip">
 			<en>Start trasmit</en>
+			<ru>Начать trasmit</ru>
+			<az>Başlamaq trasmit</az>
+			<ba>Trasmit башланы.</ba>
+			<be>Пачаць trasmit</be>
+			<bg>Започнете trasmit</bg>
+			<cs>Start předáváme</cs>
+			<da>Start trasmit</da>
+			<de>Start trasmit</de>
+			<el>Έναρξη διαβιβάζουν</el>
+			<es>Inicio trasmit</es>
+			<et>Alusta trasmit</et>
+			<eu>Hasteko trasmit</eu>
+			<fa>شروع trasmit</fa>
+			<fi>Aloittaa trasmit</fi>
+			<fr>Début trasmit</fr>
+			<hu>Start trasmit</hu>
+			<hy>Սկսել trasmit</hy>
+			<is>Byrja trasmit</is>
+			<it>Inizio trasmissione</it>
+			<ja>開始trasmit</ja>
+			<ka>დაწყება trasmit</ka>
+			<ko>시작 trasmit</ko>
+			<ky>Баштоо trasmit</ky>
+			<lt>Pradėti trasmit</lt>
+			<lv>Sākt trasmit</lv>
+			<nl>Start trasmit</nl>
+			<no>Start trasmit</no>
+			<pl>Rozpocząć trasmit</pl>
+			<pt>Iniciar trasmit</pt>
+			<ro>Începe trasmit</ro>
+			<sk>Štart trasmit</sk>
+			<sl>Start trasmit</sl>
+			<sr>Почетак trasmit</sr>
+			<tg>Оғози trasmit</tg>
+			<tr>Başlangıç trasmit</tr>
+			<tt>Башларга trasmit</tt>
+			<uk>Почати trasmit</uk>
+			<uz>Boshlanish trasmit</uz>
+			<zh>开始trasmit</zh>
 		</Record>
 		<Record name="#TransmitPagePauseButtonToolTip">
 			<en>Stop transmit</en>
+			<ru>Остановка передачи</ru>
+			<az>Stop ötürülməsi</az>
+			<ba>Туҡталыш тапшырылды</ba>
+			<be>Прыпынак перадачы</be>
+			<bg>Спирка предаване</bg>
+			<cs>Přestat vysílat</cs>
+			<da>Stoppe med at sende</da>
+			<de>Stop übermitteln</de>
+			<el>Σταμάτα να μεταδώσει</el>
+			<es>Dejar de transmitir</es>
+			<et>Stop edastada</et>
+			<eu>Gelditu transmititu</eu>
+			<fa>توقف انتقال</fa>
+			<fi>Lopeta lähettää</fi>
+			<fr>Cesser de transmettre</fr>
+			<hu>Továbbítom Stop</hu>
+			<hy>Կանգառի փոխանցման</hy>
+			<is>Hættu að senda</is>
+			<it>Smettere di trasmettere</it>
+			<ja>発信停止</ja>
+			<ka>Stop გადაცემა</ka>
+			<ko>지 전송</ko>
+			<ky>Токтоо берүү</ky>
+			<lt>Stop perduoti</lt>
+			<lv>Pārraida Stop</lv>
+			<nl>Stop met zenden</nl>
+			<no>Stopp overføre</no>
+			<pl>Zatrzymanie transmisji</pl>
+			<pt>Parar de transmitir</pt>
+			<ro>Opri transmite</ro>
+			<sk>Zastaviť prenos</sk>
+			<sl>Ustavi prenos</sl>
+			<sr>Стоп пренос</sr>
+			<tg>Истгоҳи интиқоли</tg>
+			<tr>Dur iletmek</tr>
+			<tt>Тукталышы " тапшыруының</tt>
+			<uk>Зупинка передачі</uk>
+			<uz>To'xtatish va uzatish</uz>
+			<zh>停止发射</zh>
 		</Record>
 		<Record name="#TransmitPageStopButtonToolTip">
 			<en>Pause transmit</en>
+			<ru>Пауза передачи</ru>
+			<az>Fasilə verilməsi</az>
+			<ba>Паузаларҙы тапшырыуҙы</ba>
+			<be>Паўза перадачы</be>
+			<bg>Пауза предаване</bg>
+			<cs>Pauza přenášet</cs>
+			<da>Pause sender</da>
+			<de>Pause übermitteln</de>
+			<el>Παύση μετάδοση</el>
+			<es>Pausa transmitir</es>
+			<et>Paus edastada</et>
+			<eu>Eten transmititu</eu>
+			<fa>توقف انتقال</fa>
+			<fi>Tauko lähettää</fi>
+			<fr>Transmission de Pause</fr>
+			<hu>Szünet továbbítja</hu>
+			<hy>Դադար փոխանցման</hy>
+			<is>Hlé senda</is>
+			<it>Mettere in pausa la trasmissione</it>
+			<ja>送信一時停止</ja>
+			<ka>პაუზის გადაცემა</ka>
+			<ko>일시 중지 전송</ko>
+			<ky>Пауза берүү</ky>
+			<lt>Pristabdyti perduoti</lt>
+			<lv>Pārsūtīt pauze</lv>
+			<nl>Pauze verzenden</nl>
+			<no>Pause overføre</no>
+			<pl>Wstrzymywanie transmisji</pl>
+			<pt>Pausa transmitir</pt>
+			<ro>Pauză transmite</ro>
+			<sk>Prerušiť prenos</sk>
+			<sl>Začasno ustavite prenos</sl>
+			<sr>Пауза пренос</sr>
+			<tg>Пауза интиқоли</tg>
+			<tr>Pause iletmek</tr>
+			<tt>Тәнәфес тапшыру</tt>
+			<uk>Пауза передачі</uk>
+			<uz>Pause uzatish</uz>
+			<zh>暂停发射</zh>
 		</Record>
 		<Record name="#TransmitPageCloseButtonToolTip">
 			<en>Close page</en>
+			<ru>Закрыть страницу</ru>
+			<az>Yaxın səhifə</az>
+			<ba>Бите ябыла</ba>
+			<be>Зачыніць старонку</be>
+			<bg>Затваряне на страница</bg>
+			<cs>Zavřete stránku</cs>
+			<da>Luk side</da>
+			<de>Seite schließen</de>
+			<el>Κλείστε την σελίδα</el>
+			<es>Cerrar la página</es>
+			<et>Lähedal lk</et>
+			<eu>Itxi orria</eu>
+			<fa>بستن صفحه</fa>
+			<fi>Sulje sivu</fi>
+			<fr>Fermer une page</fr>
+			<hu>Lap bezárása</hu>
+			<hy>Փակել էջը</hy>
+			<is>Loka síðunni</is>
+			<it>Chiudere la pagina</it>
+			<ja>あページ</ja>
+			<ka>Close გვერდი</ka>
+			<ko>가까이 페이지</ko>
+			<ky>Жаба бер</ky>
+			<lt>Uždaryti puslapis</lt>
+			<lv>Aizvērt lapu</lv>
+			<nl>Pagina sluiten</nl>
+			<no>I nærheten side</no>
+			<pl>Zamknąć stronę</pl>
+			<pt>Fechar página</pt>
+			<ro>Închide pagina</ro>
+			<sk>Stránky v blízkosti</sk>
+			<sl>Zaprite strani</sl>
+			<sr>Затвори страницу</sr>
+			<tg>Бастани саҳифа</tg>
+			<tr>Yakın sayfa</tr>
+			<tt>Ябарга сәхифәне</tt>
+			<uk>Закрити сторінку</uk>
+			<uz>Yaqin sahifasi</uz>
+			<zh>近页</zh>
 		</Record>
 		<Record name="#TraceFilterById">
 			<en>Filter by CAN id:</en>
+			<ru>Фильтр может опознать:</ru>
+			<az>Filter bilər опознать:</az>
+			<ba>Фильтр икәнһең мөмкин:</ba>
+			<be>Фільтр можа апазнаць:</be>
+			<bg>Филтър може да признае:</bg>
+			<cs>Filtrovat podle id:</cs>
+			<da>Filter, som KAN id:</da>
+			<de>Filter nach CAN-id:</de>
+			<el>Το φίλτρο ΜΠΟΡΕΊ id:</el>
+			<es>Filtro PUEDE identificador:</es>
+			<et>Filtri abil SAAB id:</et>
+			<eu>Iragazi AHAL izango id:</eu>
+			<fa>فیلتر می id:</fa>
+			<fi>Suodata VOI tunnistaa:</fi>
+			<fr>Filtre à par PEUT-id:</fr>
+			<hu>A szűrő által azonosítani:</hu>
+			<hy>Ֆիլտր կարող է ճանաչել:</hy>
+			<is>Með því að sía GETUR skilríki:</is>
+			<it>Filtro PUÒ identificativo:</it>
+			<ja>フィルターできるid:</ja>
+			<ka>Filter by შეგიძლიათ id:</ka>
+			<ko>필터에 의해할 수 있는 id:</ko>
+			<ky>Фильтр мүмкүн опознать:</ky>
+			<lt>Filtruoti pagal GALĖTŲ id:</lt>
+			<lv>Filtru VAR id:</lv>
+			<nl>Filter door id:</nl>
+			<no>Filtrer etter KAN id:</no>
+			<pl>Filtr może zidentyfikować:</pl>
+			<pt>Filtro PODE id:</pt>
+			<ro>Filtru de POATE de identitate:</ro>
+			<sk>Filtrovať MÔŽETE ičo:</sk>
+			<sl>Filter, ki jih LAHKO id:</sl>
+			<sr>Филтер може препознати:</sr>
+			<tg>Филтр метавонад опознать:</tg>
+			<tr>Filtre tarafından teşhis EDEBİLİR:</tr>
+			<tt>Фильтр ала опознать:</tt>
+			<uk>Фільтр може впізнати:</uk>
+			<uz>MUMKIN id orqali filtr:</uz>
+			<zh>过滤器可以id:</zh>
 		</Record>
-
 		<!--TransmitFilePage-->
 		<Record name="#TransmitFilePageOpenButtonToolTip">
 			<en>Open file</en>
+			<ru>Открыть файл</ru>
+			<az>Fayl açmaq</az>
+			<ba>Файл асылды</ba>
+			<be>Адкрыць файл</be>
+			<bg>Отваряне на файл</bg>
+			<cs>Otevřete soubor</cs>
+			<da>Åbne en fil</da>
+			<de>Datei öffnen</de>
+			<el>Ανοίξτε το αρχείο</el>
+			<es>Abrir archivo</es>
+			<et>Ava fail</et>
+			<eu>Ireki fitxategia</eu>
+			<fa>باز کردن فایل</fa>
+			<fi>Avaa tiedosto</fi>
+			<fr>Ouvrir le fichier</fr>
+			<hu>Fájl megnyitása</hu>
+			<hy>Բացել ֆայլը</hy>
+			<is>Opna skrá</is>
+			<it>Aprire il file</it>
+			<ja>ファイルを開く</ja>
+			<ka>ფაილის გახსნა</ka>
+			<ko>파일 열기</ko>
+			<ky>Ачуу файл</ky>
+			<lt>Atidarykite failą</lt>
+			<lv>Atvērt failu</lv>
+			<nl>Open bestand</nl>
+			<no>Åpne fil</no>
+			<pl>Otwórz plik</pl>
+			<pt>Abrir arquivo</pt>
+			<ro>Deschide fișierul</ro>
+			<sk>Otvoriť súbor</sk>
+			<sl>Odpri datoteko</sl>
+			<sr>Отворите датотеку</sr>
+			<tg>Кушодани файл</tg>
+			<tr>Dosya Aç</tr>
+			<tt>Ачарга файл</tt>
+			<uk>Відкрити файл</uk>
+			<uz>Ochiq fayl</uz>
+			<zh>打开文件</zh>
 		</Record>
 		<Record name="#TransmitFilePageSaveButtonToolTip">
 			<en>Save in file</en>
+			<ru>Сохранить в файл</ru>
+			<az>Yadda saxlamaq, fayl</az>
+			<ba>Был файл һаҡлау</ba>
+			<be>Захаваць у файл</be>
+			<bg>Запис във файл</bg>
+			<cs>Uložit do souboru</cs>
+			<da>Gem i fil</da>
+			<de>Speichern in Datei</de>
+			<el>Αποθήκευση σε αρχείο</el>
+			<es>Guardar en archivo</es>
+			<et>Salvesta fail</et>
+			<eu>Gorde fitxategia</eu>
+			<fa>ذخیره در فایل</fa>
+			<fi>Tallenna tiedosto</fi>
+			<fr>Enregistrer dans le fichier</fr>
+			<hu>Mentse a fájlt</hu>
+			<hy>Պահպանել ֆայլը</hy>
+			<is>Sparaðu í skrá</is>
+			<it>Salvare il file</it>
+			<ja>保存ファイル</ja>
+			<ka>Save ფაილი</ka>
+			<ko>저장에서 파일</ko>
+			<ky>Сактап жалал-файл</ky>
+			<lt>Išsaugoti į failą</lt>
+			<lv>Saglabāt failu</lv>
+			<nl>Opslaan in bestand</nl>
+			<no>Lagre i fil</no>
+			<pl>Zapisz w pliku</pl>
+			<pt>Guardar em ficheiro</pt>
+			<ro>A salva în fișier</ro>
+			<sk>Uložiť do súboru</sk>
+			<sl>Shranjevanje v datoteko</sl>
+			<sr>Сачувај у фајл</sr>
+			<tg>Нигоҳ доштани файл</tg>
+			<tr>Dosya Kaydet </tr>
+			<tt>Саклап калу файл</tt>
+			<uk>Зберегти в файл</uk>
+			<uz>Fayl ichida saqlash </uz>
+			<zh>保存文件</zh>
 		</Record>
 		<Record name="#TransmitFilePageSaveAsButtonToolTip">
 			<en>Save as</en>
+			<ru>Сохранить как</ru>
+			<az>Kimi saxla</az>
+			<ba>Нисек һаҡланған</ba>
+			<be>Захаваць як</be>
+			<bg>Запиши като</bg>
+			<cs>Uložit jako</cs>
+			<da>Gem som</da>
+			<de>Speichern als</de>
+			<el>Αποθήκευση ως</el>
+			<es>Guardar como</es>
+			<et>Salvesta</et>
+			<eu>Gorde honela</eu>
+			<fa>ذخیره به عنوان</fa>
+			<fi>Tallenna nimellä</fi>
+			<fr>Enregistrer sous</fr>
+			<hu>Mentés másként</hu>
+			<hy>Պահպանել որպես</hy>
+			<is>Eins og að spara</is>
+			<it>Salva con nome</it>
+			<ja>として保存</ja>
+			<ka>შენახვა როგორც</ka>
+			<ko>으로 저장</ko>
+			<ky>Сактап катары</ky>
+			<lt>Įrašyti kaip</lt>
+			<lv>Saglabāt kā</lv>
+			<nl>Opslaan als</nl>
+			<no>Lagre som</no>
+			<pl>Zapisz jako</pl>
+			<pt>Salvar como</pt>
+			<ro>Salvare ca</ro>
+			<sk>Uložiť ako</sk>
+			<sl>Shrani kot</sl>
+			<sr>Сачувај као</sr>
+			<tg>Чӣ тавр ба наҷот</tg>
+			<tr>Kaydet </tr>
+			<tt>Ничек саклап калырга</tt>
+			<uk>Зберегти як</uk>
+			<uz>Saqlash kabi</uz>
+			<zh>保存</zh>
 		</Record>
 		<Record name="#TransmitFilePageClearButtonToolTip">
 			<en>Clear all</en>
+			<ru>Ясно все</ru>
+			<az>Aydın bütün</az>
+			<ba>Бөтәһе лә асыҡ</ba>
+			<be>Ясна ўсё</be>
+			<bg>Ясно на всички</bg>
+			<cs>Vymazat všechny</cs>
+			<da>Ryd alle</da>
+			<de>Deaktivieren Sie alle</de>
+			<el>Σαφή όλα</el>
+			<es>Borrar todos los</es>
+			<et>Selge kõik</et>
+			<eu>Argi guztiak</eu>
+			<fa>پاک کردن همه</fa>
+			<fi>Tyhjennä kaikki</fi>
+			<fr>Effacer tous les</fr>
+			<hu>Összes törlése</hu>
+			<hy>Ամեն ինչ պարզ</hy>
+			<is>Hreinsa allt</is>
+			<it>Cancella tutto</it>
+			<ja>すべてクリア</ja>
+			<ka>გასაგებია ყველაფერი</ka>
+			<ko>모</ko>
+			<ky>Ачык бардык</ky>
+			<lt>Aišku, visi</lt>
+			<lv>Notīrīt visu</lv>
+			<nl>Alles wissen</nl>
+			<no>Fjern alle</no>
+			<pl>Jasne wszystko</pl>
+			<pt>Desmarcar todos os</pt>
+			<ro>Clar toate</ro>
+			<sk>Vymazať všetko</sk>
+			<sl>Počisti vse</sl>
+			<sr>Све је јасно</sr>
+			<tg>Равшан ҳамаи</tg>
+			<tr>Tümünü sil</tr>
+			<tt>Билгеле бар да</tt>
+			<uk>Все Ясно</uk>
+			<uz>Barcha aniq </uz>
+			<zh>全部清除</zh>
 		</Record>
 		<Record name="#TransmitFilePageStartButtonToolTip">
 			<en>Start trasmit</en>
+			<ru>Начать trasmit</ru>
+			<az>Başlamaq trasmit</az>
+			<ba>Trasmit башланы.</ba>
+			<be>Пачаць trasmit</be>
+			<bg>Започнете trasmit</bg>
+			<cs>Start předáváme</cs>
+			<da>Start trasmit</da>
+			<de>Start trasmit</de>
+			<el>Έναρξη διαβιβάζουν</el>
+			<es>Inicio trasmit</es>
+			<et>Alusta trasmit</et>
+			<eu>Hasteko trasmit</eu>
+			<fa>شروع trasmit</fa>
+			<fi>Aloittaa trasmit</fi>
+			<fr>Début trasmit</fr>
+			<hu>Start trasmit</hu>
+			<hy>Սկսել trasmit</hy>
+			<is>Byrja trasmit</is>
+			<it>Inizio trasmissione</it>
+			<ja>開始trasmit</ja>
+			<ka>დაწყება trasmit</ka>
+			<ko>시작 trasmit</ko>
+			<ky>Баштоо trasmit</ky>
+			<lt>Pradėti trasmit</lt>
+			<lv>Sākt trasmit</lv>
+			<nl>Start trasmit</nl>
+			<no>Start trasmit</no>
+			<pl>Rozpocząć trasmit</pl>
+			<pt>Iniciar trasmit</pt>
+			<ro>Începe trasmit</ro>
+			<sk>Štart trasmit</sk>
+			<sl>Start trasmit</sl>
+			<sr>Почетак trasmit</sr>
+			<tg>Оғози trasmit</tg>
+			<tr>Başlangıç trasmit</tr>
+			<tt>Башларга trasmit</tt>
+			<uk>Почати trasmit</uk>
+			<uz>Boshlanish trasmit</uz>
+			<zh>开始trasmit</zh>
 		</Record>
 		<Record name="#TransmitFilePagePauseButtonToolTip">
 			<en>Stop transmit</en>
+			<ru>Остановка передачи</ru>
+			<az>Stop ötürülməsi</az>
+			<ba>Туҡталыш тапшырылды</ba>
+			<be>Прыпынак перадачы</be>
+			<bg>Спирка предаване</bg>
+			<cs>Přestat vysílat</cs>
+			<da>Stoppe med at sende</da>
+			<de>Stop übermitteln</de>
+			<el>Σταμάτα να μεταδώσει</el>
+			<es>Dejar de transmitir</es>
+			<et>Stop edastada</et>
+			<eu>Gelditu transmititu</eu>
+			<fa>توقف انتقال</fa>
+			<fi>Lopeta lähettää</fi>
+			<fr>Cesser de transmettre</fr>
+			<hu>Továbbítom Stop</hu>
+			<hy>Կանգառի փոխանցման</hy>
+			<is>Hættu að senda</is>
+			<it>Smettere di trasmettere</it>
+			<ja>発信停止</ja>
+			<ka>Stop გადაცემა</ka>
+			<ko>지 전송</ko>
+			<ky>Токтоо берүү</ky>
+			<lt>Stop perduoti</lt>
+			<lv>Pārraida Stop</lv>
+			<nl>Stop met zenden</nl>
+			<no>Stopp overføre</no>
+			<pl>Zatrzymanie transmisji</pl>
+			<pt>Parar de transmitir</pt>
+			<ro>Opri transmite</ro>
+			<sk>Zastaviť prenos</sk>
+			<sl>Ustavi prenos</sl>
+			<sr>Стоп пренос</sr>
+			<tg>Истгоҳи интиқоли</tg>
+			<tr>Dur iletmek</tr>
+			<tt>Тукталышы " тапшыруының</tt>
+			<uk>Зупинка передачі</uk>
+			<uz>To'xtatish va uzatish</uz>
+			<zh>停止发射</zh>
 		</Record>
 		<Record name="#TransmitFilePageStopButtonToolTip">
 			<en>Pause transmit</en>
+			<ru>Пауза передачи</ru>
+			<az>Fasilə verilməsi</az>
+			<ba>Паузаларҙы тапшырыуҙы</ba>
+			<be>Паўза перадачы</be>
+			<bg>Пауза предаване</bg>
+			<cs>Pauza přenášet</cs>
+			<da>Pause sender</da>
+			<de>Pause übermitteln</de>
+			<el>Παύση μετάδοση</el>
+			<es>Pausa transmitir</es>
+			<et>Paus edastada</et>
+			<eu>Eten transmititu</eu>
+			<fa>توقف انتقال</fa>
+			<fi>Tauko lähettää</fi>
+			<fr>Transmission de Pause</fr>
+			<hu>Szünet továbbítja</hu>
+			<hy>Դադար փոխանցման</hy>
+			<is>Hlé senda</is>
+			<it>Mettere in pausa la trasmissione</it>
+			<ja>送信一時停止</ja>
+			<ka>პაუზის გადაცემა</ka>
+			<ko>일시 중지 전송</ko>
+			<ky>Пауза берүү</ky>
+			<lt>Pristabdyti perduoti</lt>
+			<lv>Pārsūtīt pauze</lv>
+			<nl>Pauze verzenden</nl>
+			<no>Pause overføre</no>
+			<pl>Wstrzymywanie transmisji</pl>
+			<pt>Pausa transmitir</pt>
+			<ro>Pauză transmite</ro>
+			<sk>Prerušiť prenos</sk>
+			<sl>Začasno ustavite prenos</sl>
+			<sr>Пауза пренос</sr>
+			<tg>Пауза интиқоли</tg>
+			<tr>Pause iletmek</tr>
+			<tt>Тәнәфес тапшыру</tt>
+			<uk>Пауза передачі</uk>
+			<uz>Pause uzatish</uz>
+			<zh>暂停发射</zh>
 		</Record>
 		<Record name="#TransmitFilePageCloseButtonToolTip">
 			<en>Close page</en>
+			<ru>Закрыть страницу</ru>
+			<az>Yaxın səhifə</az>
+			<ba>Бите ябыла</ba>
+			<be>Зачыніць старонку</be>
+			<bg>Затваряне на страница</bg>
+			<cs>Zavřete stránku</cs>
+			<da>Luk side</da>
+			<de>Seite schließen</de>
+			<el>Κλείστε την σελίδα</el>
+			<es>Cerrar la página</es>
+			<et>Lähedal lk</et>
+			<eu>Itxi orria</eu>
+			<fa>بستن صفحه</fa>
+			<fi>Sulje sivu</fi>
+			<fr>Fermer une page</fr>
+			<hu>Lap bezárása</hu>
+			<hy>Փակել էջը</hy>
+			<is>Loka síðunni</is>
+			<it>Chiudere la pagina</it>
+			<ja>あページ</ja>
+			<ka>Close გვერდი</ka>
+			<ko>가까이 페이지</ko>
+			<ky>Жаба бер</ky>
+			<lt>Uždaryti puslapis</lt>
+			<lv>Aizvērt lapu</lv>
+			<nl>Pagina sluiten</nl>
+			<no>I nærheten side</no>
+			<pl>Zamknąć stronę</pl>
+			<pt>Fechar página</pt>
+			<ro>Închide pagina</ro>
+			<sk>Stránky v blízkosti</sk>
+			<sl>Zaprite strani</sl>
+			<sr>Затвори страницу</sr>
+			<tg>Бастани саҳифа</tg>
+			<tr>Yakın sayfa</tr>
+			<tt>Ябарга сәхифәне</tt>
+			<uk>Закрити сторінку</uk>
+			<uz>Yaqin sahifasi</uz>
+			<zh>近页</zh>
 		</Record>
 		<Record name="#TraceFilterById">
 			<en>Filter by CAN id:</en>
+			<ru>Фильтр может опознать:</ru>
+			<az>Filter bilər опознать:</az>
+			<ba>Фильтр икәнһең мөмкин:</ba>
+			<be>Фільтр можа апазнаць:</be>
+			<bg>Филтър може да признае:</bg>
+			<cs>Filtrovat podle id:</cs>
+			<da>Filter, som KAN id:</da>
+			<de>Filter nach CAN-id:</de>
+			<el>Το φίλτρο ΜΠΟΡΕΊ id:</el>
+			<es>Filtro PUEDE identificador:</es>
+			<et>Filtri abil SAAB id:</et>
+			<eu>Iragazi AHAL izango id:</eu>
+			<fa>فیلتر می id:</fa>
+			<fi>Suodata VOI tunnistaa:</fi>
+			<fr>Filtre à par PEUT-id:</fr>
+			<hu>A szűrő által azonosítani:</hu>
+			<hy>Ֆիլտր կարող է ճանաչել:</hy>
+			<is>Með því að sía GETUR skilríki:</is>
+			<it>Filtro PUÒ identificativo:</it>
+			<ja>フィルターできるid:</ja>
+			<ka>Filter by შეგიძლიათ id:</ka>
+			<ko>필터에 의해할 수 있는 id:</ko>
+			<ky>Фильтр мүмкүн опознать:</ky>
+			<lt>Filtruoti pagal GALĖTŲ id:</lt>
+			<lv>Filtru VAR id:</lv>
+			<nl>Filter door id:</nl>
+			<no>Filtrer etter KAN id:</no>
+			<pl>Filtr może zidentyfikować:</pl>
+			<pt>Filtro PODE id:</pt>
+			<ro>Filtru de POATE de identitate:</ro>
+			<sk>Filtrovať MÔŽETE ičo:</sk>
+			<sl>Filter, ki jih LAHKO id:</sl>
+			<sr>Филтер може препознати:</sr>
+			<tg>Филтр метавонад опознать:</tg>
+			<tr>Filtre tarafından teşhis EDEBİLİR:</tr>
+			<tt>Фильтр ала опознать:</tt>
+			<uk>Фільтр може впізнати:</uk>
+			<uz>MUMKIN id orqali filtr:</uz>
+			<zh>过滤器可以id:</zh>
 		</Record>
-
 		<!--TransmitTo Control-->
 		<Record name="#TransmitToControlPreviewText">
 			<en>Transmit to:</en>
+			<ru>Передать:</ru>
+			<az>Çatdırım:</az>
+			<ba>Бирелгән:</ba>
+			<be>Перадаць:</be>
+			<bg>Да предаде:</bg>
+			<cs>Předat:</cs>
+			<da>Sender:</da>
+			<de>Übermitteln:</de>
+			<el>Διαβιβάζουν:</el>
+			<es>Transmitir a:</es>
+			<et>Edastama:</et>
+			<eu>Transmititu:</eu>
+			<fa>انتقال به:</fa>
+			<fi>Toimitettava:</fi>
+			<fr>Transmettre à:</fr>
+			<hu>Továbbítom, hogy:</hu>
+			<hy>Փոխանցել:</hy>
+			<is>Senda:</is>
+			<it>Trasmettere a:</it>
+			<ja>送信:</ja>
+			<ka>გადასცემს:</ka>
+			<ko>를 전송하기:</ko>
+			<ky>Төмөнкүлөрдү өткөрүп берсин:</ky>
+			<lt>Perduoti:</lt>
+			<lv>Nosūta:</lv>
+			<nl>Verzenden naar:</nl>
+			<no>Sende til:</no>
+			<pl>Wyślij:</pl>
+			<pt>Transmitir:</pt>
+			<ro>Transmite:</ro>
+			<sk>Zaslať:</sk>
+			<sl>Posredujejo:</sl>
+			<sr>Да прође:</sr>
+			<tg>Ба мерасонам:</tg>
+			<tr>İletmek için:</tr>
+			<tt>Тапшырырга:</tt>
+			<uk>Передати:</uk>
+			<uz>Uzatish uchun:</uz>
+			<zh>发射：</zh>
 		</Record>
-
-
 		<!--Trace DataGrid-->
 		<Record name="#TraceDataTimeColumnName">
 			<en>Time</en>
+			<ru>Время</ru>
+			<az>Vaxt</az>
+			<ba>Ваҡыты</ba>
+			<be>Час</be>
+			<bg>Време</bg>
+			<cs>Čas</cs>
+			<da>Tid</da>
+			<de>Zeit</de>
+			<el>Ώρα</el>
+			<es>Tiempo</es>
+			<et>Aeg</et>
+			<eu>Denbora</eu>
+			<fa>زمان</fa>
+			<fi>Aika</fi>
+			<fr>Le temps</fr>
+			<hu>Idő</hu>
+			<hy>Ժամանակ</hy>
+			<is>Tíminn</is>
+			<it>Tempo</it>
+			<ja>時間</ja>
+			<ka>დრო</ka>
+			<ko>시간</ko>
+			<ky>Убактысы</ky>
+			<lt>Laikas</lt>
+			<lv>Laiks</lv>
+			<nl>Tijd</nl>
+			<no>Tid</no>
+			<pl>Czas</pl>
+			<pt>Horário</pt>
+			<ro>Timp</ro>
+			<sk>Čas</sk>
+			<sl>Čas</sl>
+			<sr>Време</sr>
+			<tg>Вақт</tg>
+			<tr>Zaman</tr>
+			<tt>Вакытта</tt>
+			<uk>Час</uk>
+			<uz>Vaqt</uz>
+			<zh>时间</zh>
 		</Record>
 		<Record name="#TraceDataCanIdColumnName">
 			<en>ID</en>
+			<ru>Идентификатор</ru>
+			<az>İdentifikatoru</az>
+			<ba>Идентификаторы</ba>
+			<be>Ідэнтыфікатар</be>
+			<bg>Идентификатор</bg>
+			<cs>ID</cs>
+			<da>ID</da>
+			<de>ID</de>
+			<el>ID</el>
+			<es>ID</es>
+			<et>ID</et>
+			<eu>ID</eu>
+			<fa>شناسه</fa>
+			<fi>ID</fi>
+			<fr>ID</fr>
+			<hu>AZONOSÍTÓ</hu>
+			<hy>Id</hy>
+			<is>SKILRÍKI</is>
+			<it>ID</it>
+			<ja>ID</ja>
+			<ka>ID</ka>
+			<ko>ID</ko>
+			<ky>Идентификатору</ky>
+			<lt>ID</lt>
+			<lv>ID</lv>
+			<nl>ID</nl>
+			<no>ID</no>
+			<pl>Identyfikator</pl>
+			<pt>ID</pt>
+			<ro>ID</ro>
+			<sk>ID</sk>
+			<sl>ID</sl>
+			<sr>Ид</sr>
+			<tg>Id</tg>
+			<tr>KİMLİĞİ</tr>
+			<tt>Идентификатор кертә</tt>
+			<uk>Ідентифікатор</uk>
+			<uz>ID</uz>
+			<zh>ID</zh>
 		</Record>
 		<Record name="#TraceDataExtIdColumnName">
 			<en>External ID</en>
+			<ru>Внешний идентификатор</ru>
+			<az>Xarici ıd</az>
+			<ba>Тышҡы идентификаторы</ba>
+			<be>Знешні ідэнтыфікатар</be>
+			<bg>Външен идентификатор</bg>
+			<cs>Externí ID</cs>
+			<da>Eksterne ID</da>
+			<de>Externe ID</de>
+			<el>Εξωτερική ID</el>
+			<es>Externos de IDENTIFICACIÓN de</es>
+			<et>Väline ID</et>
+			<eu>Kanpoko ID</eu>
+			<fa>خارجی ID</fa>
+			<fi>Ulkoinen TUNNUS</fi>
+			<fr>ID externe</fr>
+			<hu>Külső AZONOSÍTÓ</hu>
+			<hy>Արտաքին id</hy>
+			<is>Ytri SKILRÍKI</is>
+			<it>ID esterno</it>
+			<ja>外部ID</ja>
+			<ka>გარე ID</ka>
+			<ko>외부 ID</ko>
+			<ky>Тышкы идентификатору</ky>
+			<lt>Išorės ID</lt>
+			<lv>Ārējās ID</lv>
+			<nl>Externe ID</nl>
+			<no>Ekstern ID</no>
+			<pl>Zewnętrzny identyfikator</pl>
+			<pt>ID externo</pt>
+			<ro>Extern ID</ro>
+			<sk>Externé ID</sk>
+			<sl>Zunanje ID</sl>
+			<sr>Екстерни ид</sr>
+			<tg>Беруна id</tg>
+			<tr>Dış KİMLİK</tr>
+			<tt>Тышкы идентификатор кертә</tt>
+			<uk>Зовнішній ідентифікатор</uk>
+			<uz>Tashqi ID</uz>
+			<zh>外部ID</zh>
 		</Record>
 		<Record name="#TraceDataDLCColumnName">
 			<en>DLC</en>
+			<ru>КДР</ru>
+			<az>КДР</az>
+			<ba>КДР</ba>
+			<be>КДР</be>
+			<bg>КДР</bg>
+			<cs>DLC</cs>
+			<da>DLC</da>
+			<de>DLC</de>
+			<el>DLC</el>
+			<es>DLC</es>
+			<et>DLC</et>
+			<eu>DLC</eu>
+			<fa>DLC</fa>
+			<fi>DLC</fi>
+			<fr>DLC</fr>
+			<hu>DLC</hu>
+			<hy>ՉԺՀ</hy>
+			<is>MASTER</is>
+			<it>DLC</it>
+			<ja>DLC</ja>
+			<ka>DLC</ka>
+			<ko>DLC</ko>
+			<ky>КДР</ky>
+			<lt>DLC</lt>
+			<lv>DLC</lv>
+			<nl>DLC</nl>
+			<no>DLC</no>
+			<pl>КДР</pl>
+			<pt>DLC</pt>
+			<ro>DLC</ro>
+			<sk>DLC</sk>
+			<sl>DLC</sl>
+			<sr>КДР</sr>
+			<tg>КДР</tg>
+			<tr>YDP</tr>
+			<tt>КДР</tt>
+			<uk>КДР</uk>
+			<uz>DLC</uz>
+			<zh>DLC</zh>
 		</Record>
 		<Record name="#TraceDataPayloadColumnName">
 			<en>Payload</en>
+			<ru>Грузоподъемность</ru>
+			<az>Yükgötürmə qabiliyyəti</az>
+			<ba>Грузоподъемность</ba>
+			<be>Грузападымальнасць</be>
+			<bg>Полезен товар</bg>
+			<cs>Náklad</cs>
+			<da>Nyttelast</da>
+			<de>Nutzlast</de>
+			<el>Ωφέλιμο φορτίο</el>
+			<es>Carga</es>
+			<et>Kandevõime</et>
+			<eu>Karga</eu>
+			<fa>ظرفیت ترابری</fa>
+			<fi>Hyötykuorma</fi>
+			<fr>La charge utile</fr>
+			<hu>Hasznos</hu>
+			<hy>Բեռնատարողություն</hy>
+			<is>Farmur</is>
+			<it>Payload</it>
+			<ja>ペイロード</ja>
+			<ka>Payload</ka>
+			<ko>페이로드</ko>
+			<ky>Жүк көтөрүшү</ky>
+			<lt>Naudingoji apkrova</lt>
+			<lv>Kravnesība</lv>
+			<nl>Laadvermogen</nl>
+			<no>Nyttelast</no>
+			<pl>Ładowność</pl>
+			<pt>Carga</pt>
+			<ro>Sarcină utilă</ro>
+			<sk>Užitočné zaťaženie</sk>
+			<sl>Tovor</sl>
+			<sr>Капацитет</sr>
+			<tg>Грузоподъемность</tg>
+			<tr>Yük</tr>
+			<tt>Грузоподъемность</tt>
+			<uk>Вантажопідйомність</uk>
+			<uz>Payload</uz>
+			<zh>有效载荷</zh>
 		</Record>
 		<Record name="#TraceDataCommentColumnName">
 			<en>CAN header comment</en>
+			<ru>Может в заголовке комментария</ru>
+			<az>Ola bilər, mövzu şərhlər</az>
+			<ba>Исемен ала комментарий</ba>
+			<be>Можа ў загалоўку каментара</be>
+			<bg>Може в заглавието коментар</bg>
+			<cs>MŮŽETE záhlaví komentář</cs>
+			<da>KAN header kommentar</da>
+			<de>KANN header-Kommentar</de>
+			<el>ΜΠΟΡΕΊ να κεφαλίδα σχόλιο</el>
+			<es>PUEDE encabezado comentario</es>
+			<et>VÕIB päis kommentaar</et>
+			<eu>AHAL goiburua iruzkina</eu>
+			<fa>می توانید سربرگ نظر</fa>
+			<fi>VOI otsikon kommentti</fi>
+			<fr>PEUT-tête de commentaire</fr>
+			<hu>LEHET fejléc hozzászólás</hu>
+			<hy>Կարող տողի մեկնաբանություն</hy>
+			<is>GETUR haus athugasemd</is>
+			<it>PUÒ intestazione commento</it>
+			<ja>できるヘッダはコメント</ja>
+			<ka>შეიძლება header კომენტარი</ka>
+			<ko>헤더 수 있다 댓글</ko>
+			<ky>Мүмкүн аталышында комментария</ky>
+			<lt>GALI antraštė komentarą</lt>
+			<lv>VAR galvenes komentāru</lv>
+			<nl>KAN header commentaar</nl>
+			<no>KAN header kommentar</no>
+			<pl>Może w nagłówku komentarza</pl>
+			<pt>PODE cabeçalho comentário</pt>
+			<ro>POATE antet comentariu</ro>
+			<sk>MÔŽE hlavičky komentár</sk>
+			<sl>LAHKO glavi komentar</sl>
+			<sr>Може у наслову коментара</sr>
+			<tg>Метавонад дар сарлавҳаи comments</tg>
+			<tr>Yorum başlık OLABİLİR </tr>
+			<tt>Мөмкин заголовке комментарийлар</tt>
+			<uk>Може в заголовку коментаря</uk>
+			<uz>Izoh header MUMKIN </uz>
+			<zh>可头评论</zh>
 		</Record>
 		<Record name="#TraceDataStatusColumnName">
 			<en>Status</en>
+			<ru>Статус</ru>
+			<az>Statusu</az>
+			<ba>Статусы</ba>
+			<be>Статус</be>
+			<bg>Статус</bg>
+			<cs>Stav</cs>
+			<da>Status</da>
+			<de>Status</de>
+			<el>Κατάσταση</el>
+			<es>Estado</es>
+			<et>Staatus</et>
+			<eu>Egoera</eu>
+			<fa>وضعیت</fa>
+			<fi>Tila</fi>
+			<fr>Statut</fr>
+			<hu>Állapot</hu>
+			<hy>Կարգավիճակ</hy>
+			<is>Staða</is>
+			<it>Stato</it>
+			<ja>状況</ja>
+			<ka>სტატუსი</ka>
+			<ko>상태</ko>
+			<ky>Статусу</ky>
+			<lt>Statusas</lt>
+			<lv>Statuss</lv>
+			<nl>Status</nl>
+			<no>Status</no>
+			<pl>Status</pl>
+			<pt>Estado</pt>
+			<ro>Starea</ro>
+			<sk>Stav</sk>
+			<sl>Stanje</sl>
+			<sr>Статус</sr>
+			<tg>Мақоми</tg>
+			<tr>Durumu</tr>
+			<tt>Статусы</tt>
+			<uk>Статус</uk>
+			<uz>Maqomi</uz>
+			<zh>状态</zh>
 		</Record>
 		<Record name="#TraceDataTransmitingStatus">
 			<en>Transmiting</en>
+			<ru>Передачи</ru>
+			<az>Transfer</az>
+			<ba>Тапшырылды</ba>
+			<be>Перадачы</be>
+			<bg>Трансфер</bg>
+			<cs>Transmiting</cs>
+			<da>Transmiting</da>
+			<de>Übertragungsreichweite</de>
+			<el>Transmiting</el>
+			<es>Se retransmiten</es>
+			<et>Transmiting</et>
+			<eu>Transmiting</eu>
+			<fa>Transmiting</fa>
+			<fi>Transmiting</fi>
+			<fr>Transmiting</fr>
+			<hu>Transmiting</hu>
+			<hy>Հաղորդման</hy>
+			<is>Transmiting</is>
+			<it>Transmiting</it>
+			<ja>Transmiting</ja>
+			<ka>Transmiting</ka>
+			<ko>전송하면</ko>
+			<ky>Өткөрүп берүү</ky>
+			<lt>Transmiting</lt>
+			<lv>Transmiting</lv>
+			<nl>Transmiting</nl>
+			<no>Transmiting</no>
+			<pl>Transmisji</pl>
+			<pt>Transmissão</pt>
+			<ro>Transmiterea</ro>
+			<sk>Transmiting</sk>
+			<sl>Transmiting</sl>
+			<sr>Пренос</sr>
+			<tg>Интиқоли</tg>
+			<tr>Transmiting</tr>
+			<tt>Тапшыру</tt>
+			<uk>Передачі</uk>
+			<uz>Transmiting</uz>
+			<zh>传送</zh>
 		</Record>
 		<Record name="#TraceDataStopedStatus">
 			<en>Stoped</en>
+			<ru>Купировались</ru>
+			<az>Купировались</az>
+			<ba>Купироваться</ba>
+			<be>Купіраваць</be>
+			<bg>Купировались</bg>
+			<cs>Zastaven</cs>
+			<da>Stoppet</da>
+			<de>Gestopt</de>
+			<el>Διακόπηκε</el>
+			<es>Detuve</es>
+			<et>Stoped</et>
+			<eu>Ekidin</eu>
+			<fa>Stoped</fa>
+			<fi>Stoped</fi>
+			<fr>Arrêté</fr>
+			<hu>Megállították</hu>
+			<hy>Купировались</hy>
+			<is>Stoppuðum</is>
+			<it>Interrotto</it>
+			<ja>停止する問題</ja>
+			<ka>Stoped</ka>
+			<ko>다.</ko>
+			<ky>Купировались</ky>
+			<lt>Stoped</lt>
+			<lv>Stoped</lv>
+			<nl>Stoped</nl>
+			<no>Stoped</no>
+			<pl>Zatykać</pl>
+			<pt>Parei de</pt>
+			<ro>Oprit</ro>
+			<sk>Stoped</sk>
+			<sl>Stoped</sl>
+			<sr>Купировались</sr>
+			<tg>Купировались</tg>
+			<tr>Diğer</tr>
+			<tt>Купировались</tt>
+			<uk>Купировались</uk>
+			<uz>Stoped</uz>
+			<zh>。</zh>
 		</Record>
 		<Record name="#TraceDataPeriodColumnName">
 			<en>Period</en>
+			<ru>Период</ru>
+			<az>Dövr</az>
+			<ba>Осор</ba>
+			<be>Перыяд</be>
+			<bg>Период</bg>
+			<cs>Období</cs>
+			<da>Periode</da>
+			<de>Zeit</de>
+			<el>Περίοδο</el>
+			<es>Período de</es>
+			<et>Periood</et>
+			<eu>Epea</eu>
+			<fa>دوره</fa>
+			<fi>Ajan</fi>
+			<fr>Période</fr>
+			<hu>Időszak</hu>
+			<hy>Ժամանակահատվածում</hy>
+			<is>Tímabilið</is>
+			<it>Periodo</it>
+			<ja>期間</ja>
+			<ka>პერიოდი</ka>
+			<ko>기간</ko>
+			<ky>Мезгилде</ky>
+			<lt>Laikotarpis</lt>
+			<lv>Periods</lv>
+			<nl>Periode</nl>
+			<no>Perioden</no>
+			<pl>Okres</pl>
+			<pt>Período</pt>
+			<ro>Perioada</ro>
+			<sk>Obdobie</sk>
+			<sl>Obdobje</sl>
+			<sr>Период</sr>
+			<tg>Давраи</tg>
+			<tr>Dönem</tr>
+			<tt>Чорында</tt>
+			<uk>Період</uk>
+			<uz>Davr</uz>
+			<zh>周期</zh>
 		</Record>
 		<Record name="#TraceDataGridDeleteContextMenuCommand">
 			<en>Delete</en>
+			<ru>Удалить</ru>
+			<az>Sil</az>
+			<ba>Бөтөрөп</ba>
+			<be>Выдаліць</be>
+			<bg>Изтриване на</bg>
+			<cs>Odstranit</cs>
+			<da>Slet</da>
+			<de>Löschen</de>
+			<el>Διαγραφή</el>
+			<es>Eliminar</es>
+			<et>Kustuta</et>
+			<eu>Ezabatu</eu>
+			<fa>حذف</fa>
+			<fi>Poista</fi>
+			<fr>Supprimer</fr>
+			<hu>Törlés</hu>
+			<hy>Հեռացնել</hy>
+			<is>Eyða</is>
+			<it>Eliminare</it>
+			<ja>削除</ja>
+			<ka>წაშლა</ka>
+			<ko>삭제</ko>
+			<ky>Таштоо</ky>
+			<lt>Ištrinti</lt>
+			<lv>Dzēst</lv>
+			<nl>Verwijderen</nl>
+			<no>Slett</no>
+			<pl>Usunąć</pl>
+			<pt>Apagar</pt>
+			<ro>Șterge</ro>
+			<sk>Vymazať</sk>
+			<sl>Brisanje</sl>
+			<sr>Уклонити</sr>
+			<tg>Чӣ тавр ба хориҷ</tg>
+			<tr>Sil</tr>
+			<tt>Бетерә</tt>
+			<uk>Видалити</uk>
+			<uz>O'chirish</uz>
+			<zh>删除</zh>
 		</Record>
 		<Record name="#TraceDataGridCopyContextMenuCommand">
 			<en>Copy</en>
+			<ru>Копия</ru>
+			<az>Surəti</az>
+			<ba>Күсермә</ba>
+			<be>Копія</be>
+			<bg>Копие</bg>
+			<cs>Kopírování</cs>
+			<da>Kopi</da>
+			<de>Kopieren</de>
+			<el>Αντίγραφο</el>
+			<es>Copia</es>
+			<et>Koopia</et>
+			<eu>Kopia</eu>
+			<fa>کپی</fa>
+			<fi>Kopioi</fi>
+			<fr>Copie</fr>
+			<hu>Másolás</hu>
+			<hy>Պատճենը</hy>
+			<is>Afrit</is>
+			<it>Copia</it>
+			<ja>コピー</ja>
+			<ka>ასლი</ka>
+			<ko>복사</ko>
+			<ky>Көчүрмөсү</ky>
+			<lt>Kopija</lt>
+			<lv>Kopija</lv>
+			<nl>Kopiëren</nl>
+			<no>Kopi</no>
+			<pl>Kopia</pl>
+			<pt>Cópia</pt>
+			<ro>Copia</ro>
+			<sk>Kopírovanie</sk>
+			<sl>Kopiranje</sl>
+			<sr>Копија</sr>
+			<tg>Нусхаи</tg>
+			<tr>Kopya</tr>
+			<tt>Күчермәсе</tt>
+			<uk>Копія</uk>
+			<uz>Ko'chirib olish</uz>
+			<zh>复制</zh>
 		</Record>
-
-
-
 		<!--DataTypeProviders-->
 		<Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTraceDataTypeProvider_FileGroup">
 			<en>Trace database</en>
+			<ru>База данных трассировки </ru>
+			<az>Verilənlər bazası axtarış </az>
+			<ba>Трассировка база данных </ba>
+			<be>База дадзеных трасіроўкі </be>
+			<bg>База данни за проследяване </bg>
+			<cs>Stopové databáze</cs>
+			<da>Spor database</da>
+			<de>Trace-Datenbank</de>
+			<el>Ίχνος βάση δεδομένων</el>
+			<es>Base de datos de seguimiento</es>
+			<et>Jälgi andmebaas</et>
+			<eu>Traza datu-basea</eu>
+			<fa>ردیابی پایگاه داده</fa>
+			<fi>Jälki tietokantaan</fi>
+			<fr>Trace de la base de données</fr>
+			<hu>Nyom adatbázis</hu>
+			<hy>Տվյալների բազա հետք </hy>
+			<is>Rekja gagnasafn</is>
+			<it>Traccia database</it>
+			<ja>微量のデータベース</ja>
+			<ka>კვალი მონაცემთა ბაზა</ka>
+			<ko>데이터베이스에 추적</ko>
+			<ky>Маалыматтар базасы трассировки </ky>
+			<lt>Atsekti duomenų bazėje</lt>
+			<lv>Izsekot datu bāze</lv>
+			<nl>Trace database</nl>
+			<no>Spor database</no>
+			<pl>Baza danych śledzenia </pl>
+			<pt>Rastreamento de banco de dados</pt>
+			<ro>Date Trace</ro>
+			<sk>Stopové databázy</sk>
+			<sl>Sledi zbirka podatkov</sl>
+			<sr>База података траг </sr>
+			<tg>Махзани масиргузории масири он ворид намоед </tg>
+			<tr>İzleme veritabanı</tr>
+			<tt>Мәгълүматлар базасы трассировки </tt>
+			<uk>База даних трасування </uk>
+			<uz>Iz ma'lumotlar bazasi</uz>
+			<zh>跟踪数据库</zh>
 		</Record>
 		<Record name="#CANAnalyzer.Models.DataTypesProviders.SQLiteTransmitPeriodicDataTypeProvider_FileGroup">
 			<en>Transmit periodic database</en>
+			<ru>Передавать периодические базе</ru>
+			<az>Transfer dövrü bazasında</az>
+			<ba>Ваҡытлы базаға тапшырыла.</ba>
+			<be>Перадаваць перыядычныя базе</be>
+			<bg>Предава периодично на базата</bg>
+			<cs>Přenášet periodické databáze</cs>
+			<da>Sender periodiske database</da>
+			<de>Übertragen periodische Datenbank</de>
+			<el>Μετάδοση περιοδική βάση δεδομένων</el>
+			<es>Transmisión periódica de la base de datos</es>
+			<et>Edasta perioodilise andmebaas</et>
+			<eu>Transmititu aldizkako datu-basea</eu>
+			<fa>انتقال دوره ای پایگاه داده</fa>
+			<fi>Lähettää määräajoin tietokannan</fi>
+			<fr>Transmettre périodique de la base de données</fr>
+			<hu>Továbbítom időszakos adatbázis</hu>
+			<hy>Փոխանցել պարբերական հիմքի</hy>
+			<is>Senda reglubundið gagnasafn</is>
+			<it>La trasmissione periodica del database</it>
+			<ja>送信周期的なデータベース</ja>
+			<ka>გადაცემა პერიოდული მონაცემთა ბაზა</ka>
+			<ko>주기적인 데이터베이스로 전송</ko>
+			<ky>Берүүгө мезгил-мезгили менен базасында</ky>
+			<lt>Perduoti periodinis duomenų bazės</lt>
+			<lv>Pārsūtīt periodisku datu bāze</lv>
+			<nl>Verzenden van periodieke database</nl>
+			<no>Overføre periodisk database</no>
+			<pl>Wysyłać okresowe bazie danych</pl>
+			<pt>Transmissão periódica do banco de dados</pt>
+			<ro>Transmite periodic baza de date</ro>
+			<sk>Prenos pravidelné databázy</sk>
+			<sl>Prenos redne zbirke podatkov</sl>
+			<sr>Пренос периодичне бази података</sr>
+			<tg>Интиқол марҳилавӣ дар заминаи</tg>
+			<tr>Periyodik veritabanı aktarmak </tr>
+			<tt>Тапшырырга периодические базасында</tt>
+			<uk>Передавати періодичні базі</uk>
+			<uz>Uzatish davriy ma'lumotlar bazasi</uz>
+			<zh>定期数据库传送</zh>
 		</Record>
 		<Record name="#AllFiles_FileGroup">
 			<en>All files</en>
+			<ru>Все файлы</ru>
+			<az>Bütün faylları</az>
+			<ba>Бөтә файлдар</ba>
+			<be>Усе файлы</be>
+			<bg>Всички файлове</bg>
+			<cs>Všechny soubory</cs>
+			<da>Alle filer</da>
+			<de>Alle Dateien</de>
+			<el>Όλα τα αρχεία</el>
+			<es>Todos los archivos</es>
+			<et>Kõik failid</et>
+			<eu>Fitxategi guztiak</eu>
+			<fa>تمام فایل های</fa>
+			<fi>Kaikki tiedostot</fi>
+			<fr>Tous les fichiers</fr>
+			<hu>Összes fájl</hu>
+			<hy>Բոլոր ֆայլերը</hy>
+			<is>Allar skrár</is>
+			<it>Tutti i file</it>
+			<ja>すべてのファイル</ja>
+			<ka>ყველა ფაილი</ka>
+			<ko>모든 파일</ko>
+			<ky>Бардык файлдар</ky>
+			<lt>Visus failus</lt>
+			<lv>Visus failus</lv>
+			<nl>Alle bestanden</nl>
+			<no>Alle filer</no>
+			<pl>Wszystkie pliki</pl>
+			<pt>Todos os arquivos</pt>
+			<ro>Toate fișierele</ro>
+			<sk>Všetky súbory</sk>
+			<sl>Vse datoteke</sl>
+			<sr>Све датотеке</sr>
+			<tg>Ҳамаи файлҳо</tg>
+			<tr>Tüm dosyalar</tr>
+			<tt>Барлык файллар</tt>
+			<uk>Всі файли</uk>
+			<uz>Barcha fayllar</uz>
+			<zh>所有文件</zh>
 		</Record>
-
 		<!--ProxyDataTypes-->
 		<Record name="#CANAnalyzer.Models.ChannelsProxy.Creators.ConsoleChannelProxyCreator_ProxyFileGroup">
 			<en>Execute files</en>
+			<ru>Выполнять файлы</ru>
+			<az>Yerinə faylları</az>
+			<ba>Файл үтәй</ba>
+			<be>Выконваць файлы</be>
+			<bg>Изпълни файлове</bg>
+			<cs>Spouštět soubory</cs>
+			<da>Udføre filer</da>
+			<de>Ausführen von Dateien</de>
+			<el>Να εκτελέσει τα αρχεία</el>
+			<es>Ejecutar los archivos</es>
+			<et>Täita failid</et>
+			<eu>Exekutatu fitxategiak</eu>
+			<fa>اجرای فایل های</fa>
+			<fi>Suorita tiedostoja</fi>
+			<fr>Exécuter des fichiers</fr>
+			<hu>Végre fájlok</hu>
+			<hy>Կատարել, ֆայլեր</hy>
+			<is>Að framkvæma skrár</is>
+			<it>Esecuzione di file</it>
+			<ja>実行ファイル</ja>
+			<ka>შეასრულოს ფაილი</ka>
+			<ko>실행 파일</ko>
+			<ky>Аткарууга файлдар</ky>
+			<lt>Vykdyti failų</lt>
+			<lv>Izpildīt failus</lv>
+			<nl>Bestanden uitvoeren</nl>
+			<no>Kjøre filer</no>
+			<pl>Wykonywanie pliki</pl>
+			<pt>Executar arquivos</pt>
+			<ro>Executa fișierele</ro>
+			<sk>Vykonanie súbory</sk>
+			<sl>Izvede datoteke</sl>
+			<sr>Обавља датотеке</sr>
+			<tg>Иҷро файлҳои</tg>
+			<tr>Dosyaları yürütmek </tr>
+			<tt>Үтәргә файллар</tt>
+			<uk>Виконувати файли</uk>
+			<uz>Fayllar amalga oshirish </uz>
+			<zh>执行文件</zh>
 		</Record>
 		<Record name="#Proxy_FileGroup">
 			<en>Execute files</en>
+			<ru>Выполнять файлы</ru>
+			<az>Yerinə faylları</az>
+			<ba>Файл үтәй</ba>
+			<be>Выконваць файлы</be>
+			<bg>Изпълни файлове</bg>
+			<cs>Spouštět soubory</cs>
+			<da>Udføre filer</da>
+			<de>Ausführen von Dateien</de>
+			<el>Να εκτελέσει τα αρχεία</el>
+			<es>Ejecutar los archivos</es>
+			<et>Täita failid</et>
+			<eu>Exekutatu fitxategiak</eu>
+			<fa>اجرای فایل های</fa>
+			<fi>Suorita tiedostoja</fi>
+			<fr>Exécuter des fichiers</fr>
+			<hu>Végre fájlok</hu>
+			<hy>Կատարել, ֆայլեր</hy>
+			<is>Að framkvæma skrár</is>
+			<it>Esecuzione di file</it>
+			<ja>実行ファイル</ja>
+			<ka>შეასრულოს ფაილი</ka>
+			<ko>실행 파일</ko>
+			<ky>Аткарууга файлдар</ky>
+			<lt>Vykdyti failų</lt>
+			<lv>Izpildīt failus</lv>
+			<nl>Bestanden uitvoeren</nl>
+			<no>Kjøre filer</no>
+			<pl>Wykonywanie pliki</pl>
+			<pt>Executar arquivos</pt>
+			<ro>Executa fișierele</ro>
+			<sk>Vykonanie súbory</sk>
+			<sl>Izvede datoteke</sl>
+			<sr>Обавља датотеке</sr>
+			<tg>Иҷро файлҳои</tg>
+			<tr>Dosyaları yürütmek </tr>
+			<tt>Үтәргә файллар</tt>
+			<uk>Виконувати файли</uk>
+			<uz>Fayllar amalga oshirish </uz>
+			<zh>执行文件</zh>
 		</Record>
-
 		<!--AppSettingPage-->
 		<Record name="#AppSettingsPageTitle">
 			<en>Application settings</en>
+			<ru>Настройки приложения </ru>
+			<az>Ərizə qəbulu </az>
+			<ba>Өҫтәмә параметрҙар </ba>
+			<be>Налады прыкладання </be>
+			<bg>Настройките на приложението </bg>
+			<cs>Nastavení aplikace</cs>
+			<da>Program indstillinger</da>
+			<de>Anwendung Einstellungen</de>
+			<el>Ρυθμίσεις της εφαρμογής</el>
+			<es>La configuración de la aplicación</es>
+			<et>Rakenduste seaded</et>
+			<eu>Aplikazio ezarpenak</eu>
+			<fa>تنظیمات برنامه</fa>
+			<fi>Sovelluksen asetukset</fi>
+			<fr>Les paramètres de l'Application</fr>
+			<hu>Alkalmazás beállításai</hu>
+			<hy>Պարամետրերը դիմումը </hy>
+			<is>Umsókn stillingar</is>
+			<it>Le impostazioni dell'applicazione</it>
+			<ja>アプリケーションの設定</ja>
+			<ka>განაცხადის პარამეტრები</ka>
+			<ko>응용 프로그램 설정</ko>
+			<ky>Түзөтүүнүн-тиркеменин </ky>
+			<lt>Programos parametrai</lt>
+			<lv>Programmas uzstādījumi</lv>
+			<nl>Applicatie-instellingen</nl>
+			<no>Programmet innstillinger</no>
+			<pl>Ustawienia aplikacji </pl>
+			<pt>Configurações do aplicativo</pt>
+			<ro>Setările aplicației</ro>
+			<sk>Nastavenia aplikácie</sk>
+			<sl>Nastavitve aplikacij</sl>
+			<sr>Подешавања апликације </sr>
+			<tg>Танзимоти барнома </tg>
+			<tr>Uygulama ayarları</tr>
+			<tt>Җайга салу кушымта </tt>
+			<uk>Налаштування програми </uk>
+			<uz>Dasturni sozlash</uz>
+			<zh>应用程序的设置</zh>
 		</Record>
 		<Record name="#AppSettingPageSelectLanguage">
 			<en>Select language:</en>
+			<ru>Выберите язык:</ru>
+			<az>Dil seç:</az>
+			<ba>Һайлау теле:</ba>
+			<be>Абярыце мову:</be>
+			<bg>Изберете език:</bg>
+			<cs>Zvolte jazyk:</cs>
+			<da>Vælg sprog:</da>
+			<de>Wählen Sie die Sprache:</de>
+			<el>Επιλέξτε γλώσσα:</el>
+			<es>Seleccione el idioma:</es>
+			<et>Vali keel:</et>
+			<eu>Hizkuntza aukeratu:</eu>
+			<fa>زبان را انتخاب کنید:</fa>
+			<fi>Valitse kieli:</fi>
+			<fr>Sélectionner la langue:</fr>
+			<hu>Válassza ki a nyelvet:</hu>
+			<hy>Ընտրեք լեզուն:</hy>
+			<is>Veldu tungumál:</is>
+			<it>Seleziona la lingua:</it>
+			<ja>選択言語：</ja>
+			<ka>აირჩიეთ ენა:</ka>
+			<ko>언어 선택:</ko>
+			<ky>Тандагыла тили:</ky>
+			<lt>Pasirinkite kalbą:</lt>
+			<lv>Izvēlieties valoda:</lv>
+			<nl>Selecteer taal:</nl>
+			<no>Velg språk:</no>
+			<pl>Wybierz język:</pl>
+			<pt>Escolha o idioma:</pt>
+			<ro>Selectați limba:</ro>
+			<sk>Vyberte si jazyk:</sk>
+			<sl>Izberite jezik:</sl>
+			<sr>Изаберите језик:</sr>
+			<tg>Забони худро интихоб кунед:</tg>
+			<tr>Dili seçin:</tr>
+			<tt>Сайлагыз тел:</tt>
+			<uk>Виберіть мову:</uk>
+			<uz>Tanlang tili:</uz>
+			<zh>选择语言：</zh>
 		</Record>
 		<Record name="#AppSettingPageSelectTheme">
 			<en>Select theme:</en>
+			<ru>Выберите тему:</ru>
+			<az>Mövzu seçin:</az>
+			<ba>Тема һайлаған:</ba>
+			<be>Абярыце тэму:</be>
+			<bg>Изберете тема:</bg>
+			<cs>Vyberte téma:</cs>
+			<da>Vælg emne:</da>
+			<de>Thema auswählen:</de>
+			<el>Επιλέξτε το θέμα:</el>
+			<es>Selecciona el tema:</es>
+			<et>Valige teema:</et>
+			<eu>Hautatu gaia:</eu>
+			<fa>تم را انتخاب کنید:</fa>
+			<fi>Valitse teema:</fi>
+			<fr>Sélectionner le thème:</fr>
+			<hu>A téma kiválasztása:</hu>
+			<hy>Ընտրեք թեման:</hy>
+			<is>Veldu þema:</is>
+			<it>Seleziona tema:</it>
+			<ja>選択テーマ：</ja>
+			<ka>აირჩიეთ თემა:</ka>
+			<ko>테마 선택:</ko>
+			<ky>Тандагыла темасына:</ky>
+			<lt>Pasirinkite temą:</lt>
+			<lv>Izvēlieties tēmu:</lv>
+			<nl>Selecteer thema:</nl>
+			<no>Velg tema:</no>
+			<pl>Wybierz motyw:</pl>
+			<pt>Escolha do tema:</pt>
+			<ro>Selectați tema:</ro>
+			<sk>Vyberte si témy:</sk>
+			<sl>Izberite temo:</sl>
+			<sr>Изаберите тему:</sr>
+			<tg>Интихоб кунед мавзӯи:</tg>
+			<tr>Tema seç:</tr>
+			<tt>Сайлагыз темасы:</tt>
+			<uk>Виберіть тему:</uk>
+			<uz>Tanlang mavzu:</uz>
+			<zh>选择的主题：</zh>
 		</Record>
 		<Record name="#AppSettingPageSelectDevice">
 			<en>Select device:</en>
+			<ru>Выберите устройство:</ru>
+			<az>Cihazı seçin:</az>
+			<ba>Ҡоролошто һайлауына:</ba>
+			<be>Выберыце прылада:</be>
+			<bg>Изберете устройство:</bg>
+			<cs>Vyberte zařízení:</cs>
+			<da>Vælg enhed:</da>
+			<de>Gerät auswählen:</de>
+			<el>Επιλέξτε τη συσκευή:</el>
+			<es>Seleccione el dispositivo:</es>
+			<et>Valige seade:</et>
+			<eu>Aukeratu gailua:</eu>
+			<fa>دستگاه را انتخاب کنید:</fa>
+			<fi>Valitse laite:</fi>
+			<fr>Sélection de l'appareil:</fr>
+			<hu>Készülék kiválasztása:</hu>
+			<hy>Ընտրեք սարքը:</hy>
+			<is>Velja tæki:</is>
+			<it>Selezionare il dispositivo:</it>
+			<ja>機器選択:</ja>
+			<ka>აირჩიეთ მოწყობილობა:</ka>
+			<ko>장치를 선택:</ko>
+			<ky>Тандагыла түзүлүш:</ky>
+			<lt>Pasirinkite prietaisą:</lt>
+			<lv>Izvēlieties ierīci:</lv>
+			<nl>Selecteer apparaat:</nl>
+			<no>Velg enheten:</no>
+			<pl>Wybierz urządzenie:</pl>
+			<pt>Selecione o dispositivo:</pt>
+			<ro>Selectați dispozitivul:</ro>
+			<sk>Vyberte zariadenie:</sk>
+			<sl>Izberite napravo:</sl>
+			<sr>Изаберите свој уређај:</sr>
+			<tg>Дастгоҳ интихоб кунед:</tg>
+			<tr>Aygıtı seç:</tr>
+			<tt>Сайлагыз җайланма:</tt>
+			<uk>Виберіть пристрій:</uk>
+			<uz>Tanlang qurilma:</uz>
+			<zh>选择设备：</zh>
 		</Record>
 		<Record name="#AppSettingPageConnectDevice">
 			<en>Connect</en>
+			<ru>Подключение</ru>
+			<az>Əlaqə</az>
+			<ba>Тоташыу</ba>
+			<be>Падлучэнне</be>
+			<bg>Връзка</bg>
+			<cs>Připojení</cs>
+			<da>Forbindelse</da>
+			<de>Verbinden</de>
+			<el>Συνδέστε</el>
+			<es>Conecte</es>
+			<et>Ühendust</et>
+			<eu>Konektatu</eu>
+			<fa>اتصال</fa>
+			<fi>Liitä</fi>
+			<fr>Connecter</fr>
+			<hu>Csatlakozás</hu>
+			<hy>Միացման</hy>
+			<is>Tengja</is>
+			<it>Collegare</it>
+			<ja>接続</ja>
+			<ka>დაკავშირება</ka>
+			<ko>연결</ko>
+			<ky>Кошуу</ky>
+			<lt>Prisijungti</lt>
+			<lv>Savienojumu</lv>
+			<nl>Sluit</nl>
+			<no>Koble</no>
+			<pl>Połączenie</pl>
+			<pt>Ligar</pt>
+			<ro>Conectați</ro>
+			<sk>Pripojenie</sk>
+			<sl>Povezovanje</sl>
+			<sr>Интернет</sr>
+			<tg>Пайвастшавӣ</tg>
+			<tr>Bağlan</tr>
+			<tt>Тоташтыру</tt>
+			<uk>Підключення</uk>
+			<uz>Ulanish</uz>
+			<zh>连接</zh>
 		</Record>
 		<Record name="#AppSettingPageDisconnectDevice">
 			<en>Disconnect</en>
+			<ru>Отсоединить</ru>
+			<az>Ayırmaq</az>
+			<ba>Соседняя</ba>
+			<be>Адлучыць</be>
+			<bg>Демонтиране на</bg>
+			<cs>Odpojte</cs>
+			<da>Afbryd</da>
+			<de>Trennen</de>
+			<el>Αποσυνδέστε</el>
+			<es>Desconecte</es>
+			<et>Eraldage</et>
+			<eu>Deskonektatu</eu>
+			<fa>قطع</fa>
+			<fi>Irrota</fi>
+			<fr>Débranchez</fr>
+			<hu>Húzza ki</hu>
+			<hy>Անջատել</hy>
+			<is>Aftengja</is>
+			<it>Scollegare</it>
+			<ja>切断</ja>
+			<ka>შეუსაბამობა</ka>
+			<ko>분리</ko>
+			<ky>Отсоединить</ky>
+			<lt>Atjungti</lt>
+			<lv>Atvienojiet</lv>
+			<nl>Koppel</nl>
+			<no>Koble fra</no>
+			<pl>Odłączyć</pl>
+			<pt>Desligue</pt>
+			<ro>Deconectați</ro>
+			<sk>Odpojte</sk>
+			<sl>Odklopite</sl>
+			<sr>Искључите</sr>
+			<tg>Отсоединить</tg>
+			<tr>Çıkarın</tr>
+			<tt>Отсоединить</tt>
+			<uk>Від'єднати</uk>
+			<uz>Ajratib</uz>
+			<zh>断开</zh>
 		</Record>
 		<Record name="#AppSettingsPageSelectBitrateLabel">
 			<en>Bitrate:</en>
+			<ru>Битрейт:</ru>
+			<az>Bitrate:</az>
+			<ba>Битрейт:</ba>
+			<be>Бітрэйт:</be>
+			<bg>Битрейт:</bg>
+			<cs>Datový tok:</cs>
+			<da>Bitrate:</da>
+			<de>Bitrate:</de>
+			<el>Bitrate:</el>
+			<es>Tasa de bits:</es>
+			<et>Bitrate:</et>
+			<eu>Bitrate:</eu>
+			<fa>میزان ارسال بیت:</fa>
+			<fi>Bitrate:</fi>
+			<fr>Bitrate:</fr>
+			<hu>Bitráta:</hu>
+			<hy>Битрейт:</hy>
+			<is>Bita hraði:</is>
+			<it>Bitrate:</it>
+			<ja>ビットレート:</ja>
+			<ka>ბიტრეიტი:</ka>
+			<ko>비트 레이트:</ko>
+			<ky>Битрейт:</ky>
+			<lt>Bitrate:</lt>
+			<lv>Bitrate:</lv>
+			<nl>Bitrate:</nl>
+			<no>Bitrate:</no>
+			<pl>Bitrate:</pl>
+			<pt>Taxa de bits:</pt>
+			<ro>Bitrate:</ro>
+			<sk>Bitová rýchlosť:</sk>
+			<sl>Bitna hitrost:</sl>
+			<sr>Бит рате:</sr>
+			<tg>Битрейт:</tg>
+			<tr>Bithızı:</tr>
+			<tt>Битрейт:</tt>
+			<uk>Бітрейт:</uk>
+			<uz>Bitrate:</uz>
+			<zh>比特率：</zh>
 		</Record>
 		<Record name="#AppSettingsPageBitrateUnitsOfMeasure">
 			<en>kbps</en>
+			<ru>Кбит / с</ru>
+			<az>Kbit / s</az>
+			<ba>Кбит / с</ba>
+			<be>Кбіт / з</be>
+			<bg>Кбит / с</bg>
+			<cs>kbps</cs>
+			<da>kbps</da>
+			<de>kbit / s</de>
+			<el>kbps</el>
+			<es>kbps</es>
+			<et>kbit / s</et>
+			<eu>kbps</eu>
+			<fa>kbps</fa>
+			<fi>kbps</fi>
+			<fr>kbps</fr>
+			<hu>kbps</hu>
+			<hy>Կբիթ / վ</hy>
+			<is>kbps</is>
+			<it>kbps</it>
+			<ja>kbps</ja>
+			<ka>kbps</ka>
+			<ko>kbps</ko>
+			<ky>Кбит / с.</ky>
+			<lt>kbps</lt>
+			<lv>kb / s</lv>
+			<nl>kbps</nl>
+			<no>kbps</no>
+			<pl>Kb / s</pl>
+			<pt>kbps</pt>
+			<ro>kbps</ro>
+			<sk>kb / s</sk>
+			<sl>kb / s</sl>
+			<sr>Кбит / с</sr>
+			<tg>Kbps / с</tg>
+			<tr>kbps</tr>
+			<tt>Кбит / с</tt>
+			<uk>Кбіт / с</uk>
+			<uz>kbps</uz>
+			<zh>千位/秒</zh>
 		</Record>
 		<Record name="#AppSettingsPageListenOnlyLabel">
 			<en>Listen only</en>
+			<ru>Слушать только</ru>
+			<az>Qulaq yalnız</az>
+			<ba>Тик тыңлай</ba>
+			<be>Слухаць толькі</be>
+			<bg>Слушам само</bg>
+			<cs>Poslouchat jen</cs>
+			<da>Lyt kun</da>
+			<de>Hören Sie nur</de>
+			<el>Ακούστε μόνο</el>
+			<es>Escuchar sólo</es>
+			<et>Kuula vaid</et>
+			<eu>Entzun bakarrik</eu>
+			<fa>گوش دادن تنها</fa>
+			<fi>Kuuntele vain</fi>
+			<fr>Écouter seulement</fr>
+			<hu>Figyelj csak</hu>
+			<hy>Լսել միայն</hy>
+			<is>Hlustaðu aðeins</is>
+			<it>Ascoltare solo</it>
+			<ja>聴くだけ</ja>
+			<ka>მოუსმინეთ მხოლოდ</ka>
+			<ko>만 수신</ko>
+			<ky>Угуу гана</ky>
+			<lt>Klausyti tik</lt>
+			<lv>Klausīties tikai</lv>
+			<nl>Luisteren</nl>
+			<no>Bare lytte</no>
+			<pl>Słuchać tylko</pl>
+			<pt>Escuta só</pt>
+			<ro>Asculta numai</ro>
+			<sk>Počúvať len</sk>
+			<sl>Poslušaj samo</sl>
+			<sr>Слушајте само</sr>
+			<tg>Гӯш танҳо</tg>
+			<tr>Sadece dinle </tr>
+			<tt>Тыңларга гына</tt>
+			<uk>Слухати тільки</uk>
+			<uz>Faqat tinglash </uz>
+			<zh>只听</zh>
 		</Record>
 		<Record name="#AppSettingsPageOpenChannel">
 			<en>Open channel</en>
+			<ru>Открытый канал</ru>
+			<az>Açıq kanalı</az>
+			<ba>Асыҡ каналы</ba>
+			<be>Адкрыты канал</be>
+			<bg>Открит канал</bg>
+			<cs>Otevřít kanál</cs>
+			<da>Åben kanal</da>
+			<de>Im offenen Kanal</de>
+			<el>Ανοικτό κανάλι</el>
+			<es>Canal abierto</es>
+			<et>Avatud kanal</et>
+			<eu>Ireki channel</eu>
+			<fa>باز کردن کانال</fa>
+			<fi>Avoin kanava</fi>
+			<fr>Canal ouvert</fr>
+			<hu>Nyitott csatorna</hu>
+			<hy>Բաց ալիքը</hy>
+			<is>Opna rás</is>
+			<it>Canale aperto</it>
+			<ja>開水路</ja>
+			<ka>ღია არხი</ka>
+			<ko>채널 오픈</ko>
+			<ky>Ачык канал</ky>
+			<lt>Atviro kanalo</lt>
+			<lv>Atvērt kanālu</lv>
+			<nl>Open kanaal</nl>
+			<no>Åpen kanal</no>
+			<pl>Odkryty kanał</pl>
+			<pt>Canal aberto</pt>
+			<ro>Canal deschis</ro>
+			<sk>Otvorený kanál</sk>
+			<sl>Odprite kanal</sl>
+			<sr>Отворени канал</sr>
+			<tg>Кушода канал</tg>
+			<tr>Açık kanal</tr>
+			<tt>Ачык канал</tt>
+			<uk>Відкритий канал</uk>
+			<uz>Ochiq kanal</uz>
+			<zh>打开通道</zh>
 		</Record>
 		<Record name="#AppSettingsPageCloseChannel">
 			<en>Close channel</en>
+			<ru>Закрыть канал</ru>
+			<az>Yaxın kanalı</az>
+			<ba>Ябыҡ каналдар</ba>
+			<be>Зачыніць канал</be>
+			<bg>Затвори канала</bg>
+			<cs>V blízkosti kanálu</cs>
+			<da>Tæt kanal</da>
+			<de>In der Nähe Kanal</de>
+			<el>Κοντά κανάλι</el>
+			<es>Cerrar el canal</es>
+			<et>Lähedal channel</et>
+			<eu>Itxi channel</eu>
+			<fa>نزدیک کانال</fa>
+			<fi>Lähellä kanava</fi>
+			<fr>À proximité du canal</fr>
+			<hu>Közel csatorna</hu>
+			<hy>Փակել ալիքը</hy>
+			<is>Loka rás</is>
+			<it>Vicino canale</it>
+			<ja>閉チャンネル</ja>
+			<ka>Close არხი</ka>
+			<ko>닫 채널</ko>
+			<ky>Маданият каналы</ky>
+			<lt>Uždaryti kanalą</lt>
+			<lv>Aizvērt kanāls</lv>
+			<nl>Sluit kanaal</nl>
+			<no>I nærheten kanal</no>
+			<pl>Zamknąć kanał</pl>
+			<pt>Perto do canal</pt>
+			<ro>Aproape canal</ro>
+			<sk>V blízkosti kanála</sk>
+			<sl>Zaprite kanal</sl>
+			<sr>Затвори канал</sr>
+			<tg>Наздик канал</tg>
+			<tr>Yakın kanal</tr>
+			<tt>Ябарга канал</tt>
+			<uk>Закрити канал</uk>
+			<uz>Yaqin kanal</uz>
+			<zh>关闭通道</zh>
 		</Record>
 		<Record name="#AppSettingsPageDeleteProxyChannel">
 			<en>Delete proxy</en>
+			<ru>Удалить прокси</ru>
+			<az>Aradan qaldırılması üçün proxy</az>
+			<ba>Прокси бөтөрә</ba>
+			<be>Выдаліць проксі</be>
+			<bg>Премахване на прокси</bg>
+			<cs>Odstranit proxy</cs>
+			<da>Slet proxy</da>
+			<de>Löschen von proxy</de>
+			<el>Διαγραφή διακομιστή μεσολάβησης</el>
+			<es>Eliminar proxy</es>
+			<et>Kustutada proxy</et>
+			<eu>Ezabatu proxy</eu>
+			<fa>حذف پروکسی</fa>
+			<fi>Poista proxy</fi>
+			<fr>Supprimer le proxy</fr>
+			<hu>Törlés proxy</hu>
+			<hy>Հեռացնել վստահված անձ</hy>
+			<is>Eyða umboð</is>
+			<it>Eliminare proxy</it>
+			<ja>削除プロキシ</ja>
+			<ka>წაშლა proxy</ka>
+			<ko>삭제 프록시</ko>
+			<ky>Таштоо прокси</ky>
+			<lt>Ištrinti proxy</lt>
+			<lv>Dzēst proxy</lv>
+			<nl>Verwijderen proxy</nl>
+			<no>Slett proxy</no>
+			<pl>Usunąć proxy</pl>
+			<pt>Excluir proxy</pt>
+			<ro>Șterge proxy</ro>
+			<sk>Vymazať server proxy</sk>
+			<sl>Brisanje proxy</sl>
+			<sr>Уклонити проки</sr>
+			<tg>Чӣ тавр ба хориҷ прокси</tg>
+			<tr>Sil proxy</tr>
+			<tt>Бетерә прокси</tt>
+			<uk>Видалити проксі</uk>
+			<uz>O'chirish proksi</uz>
+			<zh>代理删除</zh>
 		</Record>
 		<Record name="#AppSettingsPageAddProxyChannel">
 			<en>Add proxy</en>
+			<ru>Добавить прокси</ru>
+			<az>Əlavə proxy</az>
+			<ba>Прокси өҫтәй</ba>
+			<be>Дадаць проксі</be>
+			<bg>Добавяне на прокси</bg>
+			<cs>Přidat proxy</cs>
+			<da>Tilføj proxy</da>
+			<de>Proxy hinzufügen</de>
+			<el>Προσθέστε το διακομιστή μεσολάβησης</el>
+			<es>Agregar proxy</es>
+			<et>Lisada proxy</et>
+			<eu>Gehitu proxy</eu>
+			<fa>اضافه کردن پروکسی</fa>
+			<fi>Lisää proxy</fi>
+			<fr>Ajouter proxy</fr>
+			<hu>Add proxy</hu>
+			<hy>Ավելացնել վստահված անձ</hy>
+			<is>Bæta umboð</is>
+			<it>Aggiungere proxy</it>
+			<ja>代理人に追加</ja>
+			<ka>დავამატოთ proxy</ka>
+			<ko>추가 프록시</ko>
+			<ky>Кошулсун прокси</ky>
+			<lt>Pridėti proxy</lt>
+			<lv>Pievienot starpniekservera</lv>
+			<nl>Toevoegen proxy</nl>
+			<no>Legg til proxy -</no>
+			<pl>Dodać serwer proxy</pl>
+			<pt>Adicionar proxy</pt>
+			<ro>Adaugă proxy</ro>
+			<sk>Pridať proxy</sk>
+			<sl>Dodaj proxy</sl>
+			<sr>Додајте проки</sr>
+			<tg>Илова прокси</tg>
+			<tr>Eklemek proxy</tr>
+			<tt>Өстәргә прокси</tt>
+			<uk>Додати проксі</uk>
+			<uz>Qo'shish proksi</uz>
+			<zh>添加的代理</zh>
 		</Record>
 		<Record name="#AppSettingsPageProxyFilePathLabel">
 			<en>Path:</en>
+			<ru>Путь:</ru>
+			<az>Yol:</az>
+			<ba>Юлында:</ba>
+			<be>Шлях:</be>
+			<bg>Начин:</bg>
+			<cs>Cesta:</cs>
+			<da>Vej:</da>
+			<de>Pfad:</de>
+			<el>Διαδρομή:</el>
+			<es>Ruta de acceso:</es>
+			<et>Teele:</et>
+			<eu>Bidea:</eu>
+			<fa>مسیر:</fa>
+			<fi>Polku:</fi>
+			<fr>Chemin d'accès:</fr>
+			<hu>Útvonal:</hu>
+			<hy>Ճանապարհը:</hy>
+			<is>Leið:</is>
+			<it>Percorso:</it>
+			<ja>パス:</ja>
+			<ka>გზა:</ka>
+			<ko>경로:</ko>
+			<ky>Жолу:</ky>
+			<lt>Kelias:</lt>
+			<lv>Ceļš:</lv>
+			<nl>Pad:</nl>
+			<no>Bane:</no>
+			<pl>Ścieżka:</pl>
+			<pt>Caminho:</pt>
+			<ro>Calea:</ro>
+			<sk>Cesty:</sk>
+			<sl>Pot:</sl>
+			<sr>Начин:</sr>
+			<tg>Роҳи:</tg>
+			<tr>Yol:</tr>
+			<tt>Юл:</tt>
+			<uk>Шлях:</uk>
+			<uz>Path:</uz>
+			<zh>路径：</zh>
 		</Record>
-
-
-
 		<!--CanHacker Device-->
 		<Record name="#CanHackerChannelNavMenu">
 			<en>CanHacker Channel</en>
+			<ru>Канал CanHacker </ru>
+			<az>Kanal CanHacker </az>
+			<ba>Канал CanHacker </ba>
+			<be>Канал CanHacker </be>
+			<bg>Канал CanHacker </bg>
+			<cs>CanHacker Kanál</cs>
+			<da>CanHacker Kanal</da>
+			<de>CanHacker-Kanal</de>
+			<el>CanHacker Κανάλι</el>
+			<es>CanHacker Canal</es>
+			<et>CanHacker Channel</et>
+			<eu>CanHacker Channel</eu>
+			<fa>CanHacker کانال</fa>
+			<fi>CanHacker-Kanava</fi>
+			<fr>CanHacker Canal</fr>
+			<hu>CanHacker Csatorna</hu>
+			<hy>Ալիքը CanHacker </hy>
+			<is>CanHacker Rás</is>
+			<it>CanHacker Canale</it>
+			<ja>CanHackerチャンネル</ja>
+			<ka>CanHacker არხი</ka>
+			<ko>CanHacker 채널</ko>
+			<ky>Канал CanHacker </ky>
+			<lt>CanHacker Kanalo</lt>
+			<lv>CanHacker Kanāls</lv>
+			<nl>CanHacker Kanaal</nl>
+			<no>CanHacker Kanal</no>
+			<pl>Kanał CanHacker </pl>
+			<pt>CanHacker Canal</pt>
+			<ro>CanHacker Canal</ro>
+			<sk>CanHacker Kanál</sk>
+			<sl>CanHacker Kanal</sl>
+			<sr>Канал CanHacker </sr>
+			<tg>Канал CanHacker </tg>
+			<tr>CanHacker Kanal</tr>
+			<tt>Канал CanHacker </tt>
+			<uk>Канал CanHacker </uk>
+			<uz>CanHacker Channel</uz>
+			<zh>CanHacker道</zh>
 		</Record>
 		<Record name="#AppSettingsPageAddProxyChannel">
 			<en>Add proxy</en>
+			<ru>Добавить прокси</ru>
+			<az>Əlavə proxy</az>
+			<ba>Прокси өҫтәй</ba>
+			<be>Дадаць проксі</be>
+			<bg>Добавяне на прокси</bg>
+			<cs>Přidat proxy</cs>
+			<da>Tilføj proxy</da>
+			<de>Proxy hinzufügen</de>
+			<el>Προσθέστε το διακομιστή μεσολάβησης</el>
+			<es>Agregar proxy</es>
+			<et>Lisada proxy</et>
+			<eu>Gehitu proxy</eu>
+			<fa>اضافه کردن پروکسی</fa>
+			<fi>Lisää proxy</fi>
+			<fr>Ajouter proxy</fr>
+			<hu>Add proxy</hu>
+			<hy>Ավելացնել վստահված անձ</hy>
+			<is>Bæta umboð</is>
+			<it>Aggiungere proxy</it>
+			<ja>代理人に追加</ja>
+			<ka>დავამატოთ proxy</ka>
+			<ko>추가 프록시</ko>
+			<ky>Кошулсун прокси</ky>
+			<lt>Pridėti proxy</lt>
+			<lv>Pievienot starpniekservera</lv>
+			<nl>Toevoegen proxy</nl>
+			<no>Legg til proxy -</no>
+			<pl>Dodać serwer proxy</pl>
+			<pt>Adicionar proxy</pt>
+			<ro>Adaugă proxy</ro>
+			<sk>Pridať proxy</sk>
+			<sl>Dodaj proxy</sl>
+			<sr>Додајте проки</sr>
+			<tg>Илова прокси</tg>
+			<tr>Eklemek proxy</tr>
+			<tt>Өстәргә прокси</tt>
+			<uk>Додати проксі</uk>
+			<uz>Qo'shish proksi</uz>
+			<zh>添加的代理</zh>
 		</Record>
-
-
 		<!--BomberPage-->
 		<Record name="#BomberPageCloseButtonToolTip">
 			<en>Close page</en>
+			<ru>Закрыть страницу</ru>
+			<az>Yaxın səhifə</az>
+			<ba>Бите ябыла</ba>
+			<be>Зачыніць старонку</be>
+			<bg>Затваряне на страница</bg>
+			<cs>Zavřete stránku</cs>
+			<da>Luk side</da>
+			<de>Seite schließen</de>
+			<el>Κλείστε την σελίδα</el>
+			<es>Cerrar la página</es>
+			<et>Lähedal lk</et>
+			<eu>Itxi orria</eu>
+			<fa>بستن صفحه</fa>
+			<fi>Sulje sivu</fi>
+			<fr>Fermer une page</fr>
+			<hu>Lap bezárása</hu>
+			<hy>Փակել էջը</hy>
+			<is>Loka síðunni</is>
+			<it>Chiudere la pagina</it>
+			<ja>あページ</ja>
+			<ka>Close გვერდი</ka>
+			<ko>가까이 페이지</ko>
+			<ky>Жаба бер</ky>
+			<lt>Uždaryti puslapis</lt>
+			<lv>Aizvērt lapu</lv>
+			<nl>Pagina sluiten</nl>
+			<no>I nærheten side</no>
+			<pl>Zamknąć stronę</pl>
+			<pt>Fechar página</pt>
+			<ro>Închide pagina</ro>
+			<sk>Stránky v blízkosti</sk>
+			<sl>Zaprite strani</sl>
+			<sr>Затвори страницу</sr>
+			<tg>Бастани саҳифа</tg>
+			<tr>Yakın sayfa</tr>
+			<tt>Ябарга сәхифәне</tt>
+			<uk>Закрити сторінку</uk>
+			<uz>Yaqin sahifasi</uz>
+			<zh>近页</zh>
 		</Record>
 		<Record name="#BomberPageCanIdFieldLabel">
 			<en>ID:</en>
+			<ru>Идентификатор:</ru>
+			<az>İd:</az>
+			<ba>Идентификаторы:</ba>
+			<be>Ідэнтыфікатар:</be>
+			<bg>Id:</bg>
+			<cs>ID:</cs>
+			<da>ID:</da>
+			<de>ID:</de>
+			<el>ID:</el>
+			<es>ID:</es>
+			<et>ID:</et>
+			<eu>ID:</eu>
+			<fa>ID:</fa>
+			<fi>ID:</fi>
+			<fr>ID:</fr>
+			<hu>AZONOSÍTÓ:</hu>
+			<hy>Id-ն:</hy>
+			<is>SKILRÍKI:</is>
+			<it>ID:</it>
+			<ja>ID：</ja>
+			<ka>ID:</ka>
+			<ko>ID:</ko>
+			<ky>Идентификатору:</ky>
+			<lt>ID:</lt>
+			<lv>ID:</lv>
+			<nl>ID:</nl>
+			<no>ID:</no>
+			<pl>Identyfikator:</pl>
+			<pt>IDENTIFICAÇÃO:</pt>
+			<ro>ID:</ro>
+			<sk>ID:</sk>
+			<sl>ID:</sl>
+			<sr>Идентификатор:</sr>
+			<tg>Id:</tg>
+			<tr>ID:</tr>
+			<tt>Идентификатор кертә:</tt>
+			<uk>Ідентифікатор:</uk>
+			<uz>ID:</uz>
+			<zh>标识：</zh>
 		</Record>
 		<Record name="#BomberPageIsExtIdFieldLabel">
 			<en>Extended ID</en>
+			<ru>Расширенный идентификатор</ru>
+			<az>Ətraflı ıd</az>
+			<ba>Киңәйтелгән идентификаторы</ba>
+			<be>Пашыраны ідэнтыфікатар</be>
+			<bg>Разширено идентификатор</bg>
+			<cs>Extended ID</cs>
+			<da>Udvidet ID</da>
+			<de>Extended-ID</de>
+			<el>Εκτεταμένη ID</el>
+			<es>Extendido ID</es>
+			<et>Laiendatud ID</et>
+			<eu>Luzatu ID</eu>
+			<fa>تمدید ID</fa>
+			<fi>Laajennettu ID</fi>
+			<fr>Étendue ID</fr>
+			<hu>Kiterjesztett ID</hu>
+			<hy>Ընդլայնված id</hy>
+			<is>Útbreiddur SKILRÍKI</is>
+			<it>Estesa ID</it>
+			<ja>長ID</ja>
+			<ka>გაფართოებული ID</ka>
+			<ko>Extended ID</ko>
+			<ky>Кеңейтилген идентификатору</ky>
+			<lt>Pratęstas ID</lt>
+			<lv>Pagarināts ID</lv>
+			<nl>Uitgebreide ID</nl>
+			<no>Utvidet ID</no>
+			<pl>Rozszerzony identyfikator</pl>
+			<pt>Extended ID</pt>
+			<ro>Extins ID</ro>
+			<sk>Rozšírené ID</sk>
+			<sl>Razširjene ID</sl>
+			<sr>Напредна ид</sr>
+			<tg>An муомила advanced id</tg>
+			<tr>Genişletilmiş KİMLİK</tr>
+			<tt>Киңәйтелгән идентификатор кертә</tt>
+			<uk>Розширений ідентифікатор</uk>
+			<uz>Kengaytirilgan ID</uz>
+			<zh>延长的ID</zh>
 		</Record>
 		<Record name="#BomberPageDLCFieldLabel">
 			<en>DLC</en>
+			<ru>КДР</ru>
+			<az>КДР</az>
+			<ba>КДР</ba>
+			<be>КДР</be>
+			<bg>КДР</bg>
+			<cs>DLC</cs>
+			<da>DLC</da>
+			<de>DLC</de>
+			<el>DLC</el>
+			<es>DLC</es>
+			<et>DLC</et>
+			<eu>DLC</eu>
+			<fa>DLC</fa>
+			<fi>DLC</fi>
+			<fr>DLC</fr>
+			<hu>DLC</hu>
+			<hy>ՉԺՀ</hy>
+			<is>MASTER</is>
+			<it>DLC</it>
+			<ja>DLC</ja>
+			<ka>DLC</ka>
+			<ko>DLC</ko>
+			<ky>КДР</ky>
+			<lt>DLC</lt>
+			<lv>DLC</lv>
+			<nl>DLC</nl>
+			<no>DLC</no>
+			<pl>КДР</pl>
+			<pt>DLC</pt>
+			<ro>DLC</ro>
+			<sk>DLC</sk>
+			<sl>DLC</sl>
+			<sr>КДР</sr>
+			<tg>КДР</tg>
+			<tr>YDP</tr>
+			<tt>КДР</tt>
+			<uk>КДР</uk>
+			<uz>DLC</uz>
+			<zh>DLC</zh>
 		</Record>
 		<Record name="#BomberPageIncrementFieldLabel">
 			<en>Increment</en>
+			<ru>Инкремент</ru>
+			<az>Инкремент</az>
+			<ba>Инкремент</ba>
+			<be>Інкрэмент</be>
+			<bg>Инкрементиране</bg>
+			<cs>Přírůstek</cs>
+			<da>Tilvækst</da>
+			<de>Inkrement</de>
+			<el>Αύξηση</el>
+			<es>Incremento de</es>
+			<et>Juurdekasv</et>
+			<eu>Gehikuntza</eu>
+			<fa>افزایش</fa>
+			<fi>Lisäys</fi>
+			<fr>Incrément</fr>
+			<hu>Növekedés</hu>
+			<hy>Инкремент</hy>
+			<is>Vöxtur</is>
+			<it>Incremento</it>
+			<ja>増分値</ja>
+			<ka>ნამატი</ka>
+			<ko>증가</ko>
+			<ky>Инкремент</ky>
+			<lt>Prieaugis</lt>
+			<lv>Papildinājums</lv>
+			<nl>Toename</nl>
+			<no>Økning</no>
+			<pl>Przyrost</pl>
+			<pt>Incremento</pt>
+			<ro>Creștere</ro>
+			<sk>Prírastok</sk>
+			<sl>Prirastek</sl>
+			<sr>Инкремент</sr>
+			<tg>Инкремент</tg>
+			<tr>Artım</tr>
+			<tt>Инкремент</tt>
+			<uk>Інкремент</uk>
+			<uz>Inkrement</uz>
+			<zh>增量</zh>
 		</Record>
 		<Record name="#BomberPageValueFieldLabel">
 			<en>Payload</en>
+			<ru>Грузоподъемность</ru>
+			<az>Yükgötürmə qabiliyyəti</az>
+			<ba>Грузоподъемность</ba>
+			<be>Грузападымальнасць</be>
+			<bg>Полезен товар</bg>
+			<cs>Náklad</cs>
+			<da>Nyttelast</da>
+			<de>Nutzlast</de>
+			<el>Ωφέλιμο φορτίο</el>
+			<es>Carga</es>
+			<et>Kandevõime</et>
+			<eu>Karga</eu>
+			<fa>ظرفیت ترابری</fa>
+			<fi>Hyötykuorma</fi>
+			<fr>La charge utile</fr>
+			<hu>Hasznos</hu>
+			<hy>Բեռնատարողություն</hy>
+			<is>Farmur</is>
+			<it>Payload</it>
+			<ja>ペイロード</ja>
+			<ka>Payload</ka>
+			<ko>페이로드</ko>
+			<ky>Жүк көтөрүшү</ky>
+			<lt>Naudingoji apkrova</lt>
+			<lv>Kravnesība</lv>
+			<nl>Laadvermogen</nl>
+			<no>Nyttelast</no>
+			<pl>Ładowność</pl>
+			<pt>Carga</pt>
+			<ro>Sarcină utilă</ro>
+			<sk>Užitočné zaťaženie</sk>
+			<sl>Tovor</sl>
+			<sr>Капацитет</sr>
+			<tg>Грузоподъемность</tg>
+			<tr>Yük</tr>
+			<tt>Грузоподъемность</tt>
+			<uk>Вантажопідйомність</uk>
+			<uz>Payload</uz>
+			<zh>有效载荷</zh>
 		</Record>
 		<Record name="#BomberPageMsgPerStepFieldLabel">
 			<en>Msg per step</en>
+			<ru>МСГ за шагом</ru>
+			<az>МСГ addım</az>
+			<ba>Аҙым өсөн МСГ</ba>
+			<be>МСГ за крокам</be>
+			<bg>МСГ по стъпка</bg>
+			<cs>Msg za krokem</cs>
+			<da>Msg per trin</da>
+			<de>Msg pro Schritt</de>
+			<el>Msg ανά βήμα</el>
+			<es>Mensaje por paso</es>
+			<et>Msg kohta samm</et>
+			<eu>Msg urrats bakoitzeko</eu>
+			<fa>Msg در هر مرحله</fa>
+			<fi>Msg per vaihe</fi>
+			<fr>Msg par étape</fr>
+			<hu>Msg lépésenként</hu>
+			<hy>МСГ քայլ առ քայլ</hy>
+			<is>Msg á skref</is>
+			<it>Msg per passo</it>
+			<ja>Msgり</ja>
+			<ka>Msg თითო ნაბიჯი</ka>
+			<ko>Msg 당 단계</ko>
+			<ky>МСГ үчүн кадам</ky>
+			<lt>Msg per etapą</lt>
+			<lv>Msg uz katru soli</lv>
+			<nl>Msg per stap</nl>
+			<no>Msg per trinn</no>
+			<pl>MSG po kroku</pl>
+			<pt>Msg por etapa</pt>
+			<ro>Msg pe pas</ro>
+			<sk>Msg za krokom</sk>
+			<sl>Msg na korak</sl>
+			<sr>МСХ-по-корак</sr>
+			<tg>МСГ ба қадам</tg>
+			<tr>Adım başı Msg </tr>
+			<tt>МСГ өчен адым</tt>
+			<uk>МСГ за кроком</uk>
+			<uz>Msg boshiga qadam</uz>
+			<zh>Msg每个步骤</zh>
 		</Record>
 		<Record name="#BomberPagePeriodFieldLabel">
 			<en>Period</en>
+			<ru>Период</ru>
+			<az>Dövr</az>
+			<ba>Осор</ba>
+			<be>Перыяд</be>
+			<bg>Период</bg>
+			<cs>Období</cs>
+			<da>Periode</da>
+			<de>Zeit</de>
+			<el>Περίοδο</el>
+			<es>Período de</es>
+			<et>Periood</et>
+			<eu>Epea</eu>
+			<fa>دوره</fa>
+			<fi>Ajan</fi>
+			<fr>Période</fr>
+			<hu>Időszak</hu>
+			<hy>Ժամանակահատվածում</hy>
+			<is>Tímabilið</is>
+			<it>Periodo</it>
+			<ja>期間</ja>
+			<ka>პერიოდი</ka>
+			<ko>기간</ko>
+			<ky>Мезгилде</ky>
+			<lt>Laikotarpis</lt>
+			<lv>Periods</lv>
+			<nl>Periode</nl>
+			<no>Perioden</no>
+			<pl>Okres</pl>
+			<pt>Período</pt>
+			<ro>Perioada</ro>
+			<sk>Obdobie</sk>
+			<sl>Obdobje</sl>
+			<sr>Период</sr>
+			<tg>Давраи</tg>
+			<tr>Dönem</tr>
+			<tt>Чорында</tt>
+			<uk>Період</uk>
+			<uz>Davr</uz>
+			<zh>周期</zh>
 		</Record>
 		<Record name="#BomberPageStepForwardButtonContent">
 			<en>Step +</en>
+			<ru>Шаг </ru>
+			<az>Addım </az>
+			<ba>Аҙым </ba>
+			<be>Крок </be>
+			<bg>Стъпка </bg>
+			<cs>Krok </cs>
+			<da>Trin </da>
+			<de>Schritt </de>
+			<el>Βήμα </el>
+			<es>Paso </es>
+			<et>Samm </et>
+			<eu>Urratsa </eu>
+			<fa>گام </fa>
+			<fi>Vaihe </fi>
+			<fr>Étape </fr>
+			<hu>Lépés </hu>
+			<hy>Քայլ է </hy>
+			<is>Skref </is>
+			<it>Passo </it>
+			<ja>ステップ </ja>
+			<ka>ნაბიჯი </ka>
+			<ko>단계 </ko>
+			<ky>Кадам-кадам менен </ky>
+			<lt>Žingsnis </lt>
+			<lv>Solis </lv>
+			<nl>Stap </nl>
+			<no>Trinn </no>
+			<pl>Krok </pl>
+			<pt>Passo </pt>
+			<ro>Pas </ro>
+			<sk>Krok </sk>
+			<sl>Korak </sl>
+			<sr>Корак </sr>
+			<tg>Қадами </tg>
+			<tr>Adım </tr>
+			<tt>Адым </tt>
+			<uk>Крок </uk>
+			<uz>Qadam </uz>
+			<zh>步骤 </zh>
 		</Record>
 		<Record name="#BomberPageStepBackButtonContent">
 			<en>Step -</en>
+			<ru>Шаг</ru>
+			<az>Addım</az>
+			<ba>Аҙым</ba>
+			<be>Крок</be>
+			<bg>Стъпка</bg>
+			<cs>Krok</cs>
+			<da>Trin -</da>
+			<de>Schritt -</de>
+			<el>Βήμα -</el>
+			<es>Paso</es>
+			<et>Samm -</et>
+			<eu>Step -</eu>
+			<fa>گام -</fa>
+			<fi>Vaihe -</fi>
+			<fr>Étape</fr>
+			<hu>Lépés -</hu>
+			<hy>Քայլ է</hy>
+			<is>Skref -</is>
+			<it>Passo</it>
+			<ja>ステップ</ja>
+			<ka>ნაბიჯი -</ka>
+			<ko>단계</ko>
+			<ky>Кадам-кадам менен</ky>
+			<lt>Žingsnis</lt>
+			<lv>Soli</lv>
+			<nl>Stap</nl>
+			<no>Trinn -</no>
+			<pl>Krok</pl>
+			<pt>Passo</pt>
+			<ro>Pas -</ro>
+			<sk>Krok -</sk>
+			<sl>Korak -</sl>
+			<sr>Корак</sr>
+			<tg>Қадами</tg>
+			<tr>Adım -</tr>
+			<tt>Адым</tt>
+			<uk>Крок</uk>
+			<uz>Qadam -</uz>
+			<zh>步</zh>
 		</Record>
 		<Record name="#BomberPageShotButtonContent">
 			<en>Shot</en>
+			<ru>Выстрел</ru>
+			<az>Shot</az>
+			<ba>Атыу</ba>
+			<be>Стрэл</be>
+			<bg>Изстрел</bg>
+			<cs>Výstřel</cs>
+			<da>Skud</da>
+			<de>Schuss</de>
+			<el>Πυροβόλησε</el>
+			<es>Tiro</es>
+			<et>Shot</et>
+			<eu>Jaurtiketa</eu>
+			<fa>شات</fa>
+			<fi>Laukaus</fi>
+			<fr>Coup</fr>
+			<hu>Lövés</hu>
+			<hy>Կրակոցի</hy>
+			<is>Skaut</is>
+			<it>Colpo</it>
+			<ja>ショット</ja>
+			<ka>გასროლა</ka>
+			<ko>탄</ko>
+			<ky>Выстрел</ky>
+			<lt>Kulka</lt>
+			<lv>Shot</lv>
+			<nl>Schot</nl>
+			<no>Skudd</no>
+			<pl>Strzał</pl>
+			<pt>Tiro</pt>
+			<ro>Împușcat</ro>
+			<sk>Výstrel</sk>
+			<sl>Strel</sl>
+			<sr>Схот</sr>
+			<tg>Фику</tg>
+			<tr>Atış</tr>
+			<tt>Выстрел</tt>
+			<uk>Постріл</uk>
+			<uz>Zarbasi</uz>
+			<zh>拍摄</zh>
 		</Record>
 		<Record name="#BomberPageStartStopButtonStartContent">
 			<en>Run</en>
+			<ru>Запустить</ru>
+			<az>Run</az>
+			<ba>Башлап ебәреүсе</ba>
+			<be>Запусціць</be>
+			<bg>Стартиране</bg>
+			<cs>Spustit</cs>
+			<da>Kører</da>
+			<de>Laufen</de>
+			<el>Εκτέλεση</el>
+			<es>Ejecutar</es>
+			<et>Run</et>
+			<eu>Exekutatu</eu>
+			<fa>اجرا</fa>
+			<fi>Ajaa</fi>
+			<fr>Exécuter</fr>
+			<hu>Futás</hu>
+			<hy>Սկսել</hy>
+			<is>Keyra</is>
+			<it>Eseguire</it>
+			<ja>走</ja>
+			<ka>Run</ka>
+			<ko>실행</ko>
+			<ky>Ишке киргизүү</ky>
+			<lt>Paleisti</lt>
+			<lv>Palaist</lv>
+			<nl>Uitvoeren</nl>
+			<no>Kjøre</no>
+			<pl>Uruchomić</pl>
+			<pt>Executar</pt>
+			<ro>Rula</ro>
+			<sk>Spustiť</sk>
+			<sl>Teči</sl>
+			<sr>Покрените</sr>
+			<tg>Идора</tg>
+			<tr>Çalıştırmak</tr>
+			<tt>Башлап җибәрү</tt>
+			<uk>Запустити</uk>
+			<uz>Ishlatish</uz>
+			<zh>运行</zh>
 		</Record>
 		<Record name="#BomberPageStartStopButtonStopContent">
 			<en>Stop</en>
+			<ru>Остановка</ru>
+			<az>Stop</az>
+			<ba>Туҡталыш</ba>
+			<be>Прыпынак</be>
+			<bg>Спирка</bg>
+			<cs>Zastavit</cs>
+			<da>Stop</da>
+			<de>Stoppen</de>
+			<el>Σταμάτα</el>
+			<es>Parada</es>
+			<et>Stop</et>
+			<eu>Gelditu</eu>
+			<fa>توقف</fa>
+			<fi>Lopeta</fi>
+			<fr>Arrêter</fr>
+			<hu>Stop</hu>
+			<hy>Կանգառ</hy>
+			<is>Stöðva</is>
+			<it>Stop</it>
+			<ja>停止</ja>
+			<ka>Stop</ka>
+			<ko>지</ko>
+			<ky>Токтоо</ky>
+			<lt>Stotelė</lt>
+			<lv>Stop</lv>
+			<nl>Stop</nl>
+			<no>Stopp</no>
+			<pl>Przystanek</pl>
+			<pt>Parar</pt>
+			<ro>Stop</ro>
+			<sk>Stop</sk>
+			<sl>Ustavi</sl>
+			<sr>Стоп</sr>
+			<tg>Истгоҳи</tg>
+			<tr>Dur</tr>
+			<tt>Тукталышы</tt>
+			<uk>Зупинка</uk>
+			<uz>To'xtatish</uz>
+			<zh>停止</zh>
 		</Record>
-
-
 		<!--MonitorPage-->
 		<Record name="#MonitorPageRecieveStartButtonToolTip">
 			<en>Start monitoring</en>
+			<ru>Начало мониторинга </ru>
+			<az>Əvvəli monitorinq </az>
+			<ba>Мониторингын башланы </ba>
+			<be>Пачатак маніторынгу </be>
+			<bg>Моделът за мониторинг </bg>
+			<cs>Spustit sledování</cs>
+			<da>Start overvågning</da>
+			<de>Starten Sie die überwachung</de>
+			<el>Έναρξη παρακολούθησης</el>
+			<es>Inicio de la supervisión de</es>
+			<et>Alusta järelevalve</et>
+			<eu>Jarraipen hasteko</eu>
+			<fa>شروع به نظارت بر</fa>
+			<fi>Aloita seuranta</fi>
+			<fr>Début de la surveillance</fr>
+			<hu>Indul ellenőrzés</hu>
+			<hy>Սկիզբը մոնիտորինգի </hy>
+			<is>Byrja að fylgjast</is>
+			<it>Avviare il monitoraggio</it>
+			<ja>観測を開始</ja>
+			<ka>დაიწყოს მონიტორინგი</ka>
+			<ko>시작하 모니터링</ko>
+			<ky>Башталышы " мониторинг </ky>
+			<lt>Pradėti stebėti</lt>
+			<lv>Sākt uzraudzību</lv>
+			<nl>Te beginnen met de monitoring</nl>
+			<no>Start overvåking</no>
+			<pl>Rozpoczęcie monitorowania </pl>
+			<pt>Iniciar o monitoramento de</pt>
+			<ro>Începe monitorizarea</ro>
+			<sk>Začať monitorovanie</sk>
+			<sl>Začetek spremljanja</sl>
+			<sr>Почетак праћења </sr>
+			<tg>Оғози мониторинг </tg>
+			<tr>Başlangıç izleme</tr>
+			<tt>Башы мониторинг </tt>
+			<uk>Початок моніторингу </uk>
+			<uz>Boshlanish monitoring</uz>
+			<zh>启动监视</zh>
 		</Record>
 		<Record name="#MonitorPagePauseButtonToolTip">
 			<en>Pause monitoring</en>
+			<ru>Мониторинг пауза </ru>
+			<az>Monitorinq fasilə </az>
+			<ba>Пауза Мониторинг </ba>
+			<be>Маніторынг паўза </be>
+			<bg>Мониторинг пауза </bg>
+			<cs>Pauza monitoring</cs>
+			<da>Overvågningen holder Pause</da>
+			<de>Pause-überwachung</de>
+			<el>Παύση παρακολούθησης</el>
+			<es>Pausa de monitoreo</es>
+			<et>Paus järelevalve</et>
+			<eu>Eten jarraipen</eu>
+			<fa>مکث نظارت</fa>
+			<fi>Tauko seuranta</fi>
+			<fr>Interrompre la surveillance</fr>
+			<hu>Szünet monitoring</hu>
+			<hy>Դիտարկումը դադար </hy>
+			<is>Hlé eftirlit</is>
+			<it>Pausa di monitoraggio</it>
+			<ja>一時停止の監視</ja>
+			<ka>პაუზის მონიტორინგის</ka>
+			<ko>일시 중지하 모니터링</ko>
+			<ky>Мониторинг пауза </ky>
+			<lt>Pristabdyti stebėjimą</lt>
+			<lv>Pauze uzraudzība</lv>
+			<nl>Pauze monitoring</nl>
+			<no>Pause-overvåking</no>
+			<pl>Monitorowanie pauza </pl>
+			<pt>Pausa de monitoramento</pt>
+			<ro>Pauză de monitorizare</ro>
+			<sk>Pauza monitorovanie</sk>
+			<sl>Premor spremljanje</sl>
+			<sr>Праћење пауза </sr>
+			<tg>Мониторинги пауза </tg>
+			<tr>Pause izleme</tr>
+			<tt>Мониторинг тәнәфес </tt>
+			<uk>Моніторинг пауза </uk>
+			<uz>Pause monitoring</uz>
+			<zh>暂停的监控</zh>
 		</Record>
 		<Record name="#MonitorPageClearButtonToolTip">
 			<en>Clear list</en>
+			<ru>Очистить список</ru>
+			<az>Təmizləmək siyahısı</az>
+			<ba>Таҙартыу исемлеге</ba>
+			<be>Ачысціць спіс</be>
+			<bg>Изчистване на списъка</bg>
+			<cs>Vymazat seznam</cs>
+			<da>Ryd liste</da>
+			<de>Liste löschen</de>
+			<el>Σβήσιμο λίστας</el>
+			<es>Borrar lista</es>
+			<et>Kustuta loetelu</et>
+			<eu>Argi zerrenda</eu>
+			<fa>پاک کردن لیست</fa>
+			<fi>Tyhjennä luettelo</fi>
+			<fr>Effacer la liste</fr>
+			<hu>Lista ürítése</hu>
+			<hy>Մաքրել ցուցակը</hy>
+			<is>Ljóst listanum</is>
+			<it>Cancella elenco</it>
+			<ja>明確なリスト</ja>
+			<ka>გასაგებია სია</ka>
+			<ko>명확한 목록</ko>
+			<ky>Очистить тизмеси</ky>
+			<lt>Aišku, sąrašas</lt>
+			<lv>Nodzēst sarakstu</lv>
+			<nl>Lijst wissen</nl>
+			<no>Tøm liste</no>
+			<pl>Wyczyść listę</pl>
+			<pt>Limpar lista</pt>
+			<ro>Listă clară</ro>
+			<sk>Vymazať zoznam</sk>
+			<sl>Počisti seznam</sl>
+			<sr>Очисти листу</sr>
+			<tg>Тоза кардани рӯйхати</tg>
+			<tr>Listeyi Temizle</tr>
+			<tt>Чистартырга исемлеге</tt>
+			<uk>Очистити список</uk>
+			<uz>Aniq ro'yxati</uz>
+			<zh>清除清单</zh>
 		</Record>
-
-
 		<!--RecievePage-->
 		<Record name="#RecievePageSaveAsButtonToolTip">
 			<en>Save as</en>
+			<ru>Сохранить как</ru>
+			<az>Kimi saxla</az>
+			<ba>Нисек һаҡланған</ba>
+			<be>Захаваць як</be>
+			<bg>Запиши като</bg>
+			<cs>Uložit jako</cs>
+			<da>Gem som</da>
+			<de>Speichern als</de>
+			<el>Αποθήκευση ως</el>
+			<es>Guardar como</es>
+			<et>Salvesta</et>
+			<eu>Gorde honela</eu>
+			<fa>ذخیره به عنوان</fa>
+			<fi>Tallenna nimellä</fi>
+			<fr>Enregistrer sous</fr>
+			<hu>Mentés másként</hu>
+			<hy>Պահպանել որպես</hy>
+			<is>Eins og að spara</is>
+			<it>Salva con nome</it>
+			<ja>として保存</ja>
+			<ka>შენახვა როგორც</ka>
+			<ko>으로 저장</ko>
+			<ky>Сактап катары</ky>
+			<lt>Įrašyti kaip</lt>
+			<lv>Saglabāt kā</lv>
+			<nl>Opslaan als</nl>
+			<no>Lagre som</no>
+			<pl>Zapisz jako</pl>
+			<pt>Salvar como</pt>
+			<ro>Salvare ca</ro>
+			<sk>Uložiť ako</sk>
+			<sl>Shrani kot</sl>
+			<sr>Сачувај као</sr>
+			<tg>Чӣ тавр ба наҷот</tg>
+			<tr>Kaydet </tr>
+			<tt>Ничек саклап калырга</tt>
+			<uk>Зберегти як</uk>
+			<uz>Saqlash kabi</uz>
+			<zh>保存</zh>
 		</Record>
 		<Record name="#RecievePageRecieveStartButtonToolTip">
 			<en>Start recieving</en>
+			<ru>Начать получать</ru>
+			<az>Əldə başlamaq</az>
+			<ba>Ала башланы.</ba>
+			<be>Пачаць атрымліваць</be>
+			<bg>Започнете да получавате</bg>
+			<cs>Start dostávalo</cs>
+			<da>Start modtager</da>
+			<de>Starten Empfang</de>
+			<el>Ξεκινήσει</el>
+			<es>Inicio recibir</es>
+			<et>Alusta saamisest</et>
+			<eu>Hasteko recieving</eu>
+			<fa>شروع دریافت</fa>
+			<fi>Aloittaa recieving</fi>
+			<fr>Commencer à recevoir</fr>
+			<hu>Start megkapta</hu>
+			<hy>Սկսել ստանալ</hy>
+			<is>Byrja að taka á móti</is>
+			<it>Avviare la ricezione di</it>
+			<ja>開始仔</ja>
+			<ka>დაწყება recieving</ka>
+			<ko>을 받기 시작</ko>
+			<ky>Баштоо алууга</ky>
+			<lt>Pradėti recieving</lt>
+			<lv>Sākt recieving</lv>
+			<nl>Start ontvangst</nl>
+			<no>Start spedisjon</no>
+			<pl>Zacząć otrzymywać</pl>
+			<pt>Iniciar trabalhos de conclusao de</pt>
+			<ro>Începe primirea de</ro>
+			<sk>Štart prijímanie</sk>
+			<sl>Start recieving</sl>
+			<sr>Почнете да примате</sr>
+			<tg>Оғоз ба даст</tg>
+			<tr>Start alıyor</tr>
+			<tt>Башларга алырга</tt>
+			<uk>Почати отримувати</uk>
+			<uz>Boshlanish recieving</uz>
+			<zh>开始接收</zh>
 		</Record>
 		<Record name="#RecievePagePauseButtonToolTip">
 			<en>Pause recieving</en>
+			<ru>Пауза получать</ru>
+			<az>Fasilə almaq</az>
+			<ba>Алмаша ала.</ba>
+			<be>Паўза атрымліваць</be>
+			<bg>Пауза получаване на</bg>
+			<cs>Pauza dostávalo</cs>
+			<da>Pause modtager</da>
+			<de>Pause-Empfang</de>
+			<el>Παύση recieving</el>
+			<es>Pausa recibir</es>
+			<et>Paus saamisest</et>
+			<eu>Eten recieving</eu>
+			<fa>مکث دریافت</fa>
+			<fi>Tauko recieving</fi>
+			<fr>Pause recieving</fr>
+			<hu>Szünet megkapta</hu>
+			<hy>Դադար ստանալ</hy>
+			<is>Hlé að taka á móti</is>
+			<it>Sospendere la ricezione di</it>
+			<ja>一時停止仔</ja>
+			<ka>პაუზის recieving</ka>
+			<ko>일시 정지를 받을</ko>
+			<ky>Пауза алууга</ky>
+			<lt>Pristabdyti recieving</lt>
+			<lv>Pauze recieving</lv>
+			<nl>Pauze-ontvangst</nl>
+			<no>Pause spedisjon</no>
+			<pl>Pauza otrzymywać</pl>
+			<pt>Pausa recieving</pt>
+			<ro>Pauză de primire</ro>
+			<sk>Pozastaviť prijímanie</sk>
+			<sl>Premor recieving</sl>
+			<sr>Пауза добити</sr>
+			<tg>Пауза ба даст</tg>
+			<tr>Pause alıyor</tr>
+			<tt>Тәнәфес алырга</tt>
+			<uk>Пауза отримувати</uk>
+			<uz>Pause recieving</uz>
+			<zh>暂停接收</zh>
 		</Record>
 		<Record name="#RecievePageClearButtonToolTip">
 			<en>Stop recieving</en>
+			<ru>Прекратить прием</ru>
+			<az>Dayandırmaq qəbulu</az>
+			<ba>Ҡабул итеү туҡтатыласаҡ</ba>
+			<be>Спыніць прыём</be>
+			<bg>Спрете приема на</bg>
+			<cs>Zastavit dostávalo</cs>
+			<da>Stop modtagelse</da>
+			<de>Stop-Eingang</de>
+			<el>Σταμάτα να recieving</el>
+			<es>Dejar de recibir</es>
+			<et>Stop saamisest</et>
+			<eu>Gelditu recieving</eu>
+			<fa>توقف دریافت</fa>
+			<fi>Lopeta recieving</fi>
+			<fr>Arrêter de recevoir</fr>
+			<hu>Ne fogjuk</hu>
+			<hy>Դադարեցնել ընդունելության</hy>
+			<is>Hættu að taka á móti</is>
+			<it>Interrompere la ricezione di</it>
+			<ja>停仔</ja>
+			<ka>Stop recieving</ka>
+			<ko>정 받기</ko>
+			<ky>Кабыл алууну токтотууга</ky>
+			<lt>Stop recieving</lt>
+			<lv>Stop recieving</lv>
+			<nl>Stop ontvangst</nl>
+			<no>Stopp spedisjon</no>
+			<pl>Przerwać przyjmowanie</pl>
+			<pt>Deixar de receber</pt>
+			<ro>Opri primirea de</ro>
+			<sk>Zastaviť prijímanie</sk>
+			<sl>Stop recieving</sl>
+			<sr>Престане да узима</sr>
+			<tg>Бас</tg>
+			<tr>Dur alıyor</tr>
+			<tt>Туктатырга кабул итү</tt>
+			<uk>Припинити прийом</uk>
+			<uz>To'xtatish recieving</uz>
+			<zh>停止接收</zh>
 		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-		<Record name="#">
-			<en></en>
-		</Record>
-
-
-
-
 		<Record name="#ErrorMsgBoxTitle">
 			<en>Error</en>
+			<ru>Ошибка</ru>
+			<az>Səhv</az>
+			<ba>Хата</ba>
+			<be>Памылка</be>
+			<bg>Грешка</bg>
+			<cs>Chyba</cs>
+			<da>Fejl</da>
+			<de>Fehler</de>
+			<el>Σφάλμα</el>
+			<es>Error</es>
+			<et>Viga</et>
+			<eu>Errorea</eu>
+			<fa>خطا</fa>
+			<fi>Virhe</fi>
+			<fr>Erreur</fr>
+			<hu>Hiba</hu>
+			<hy>Սխալ է</hy>
+			<is>Villa</is>
+			<it>Errore</it>
+			<ja>エラー</ja>
+			<ka>შეცდომა</ka>
+			<ko>류</ko>
+			<ky>Ката</ky>
+			<lt>Klaida</lt>
+			<lv>Kļūda</lv>
+			<nl>Fout</nl>
+			<no>Feil</no>
+			<pl>Błąd</pl>
+			<pt>Erro</pt>
+			<ro>Eroare</ro>
+			<sk>Chyba</sk>
+			<sl>Napaka</sl>
+			<sr>Грешка</sr>
+			<tg>Хато</tg>
+			<tr>Hata</tr>
+			<tt>Хата</tt>
+			<uk>Помилка</uk>
+			<uz>Xato</uz>
+			<zh>错误</zh>
+		</Record>
+		<Record name="#WarningMsgBoxTitle">
+			<en>Warning</en>
+			<ru>Предупреждение</ru>
+			<az>Xəbərdarlıq</az>
+			<ba>Иҫкәртеү</ba>
+			<be>Папярэджанне</be>
+			<bg>Предупреждение</bg>
+			<cs>Varování</cs>
+			<da>Advarsel</da>
+			<de>Warnung</de>
+			<el>Προειδοποίηση</el>
+			<es>Advertencia</es>
+			<et>Hoiatus</et>
+			<eu>Abisuen</eu>
+			<fa>هشدار</fa>
+			<fi>Varoitus</fi>
+			<fr>Avertissement</fr>
+			<hu>Figyelmeztetés</hu>
+			<hy>Նախազգուշացում</hy>
+			<is>Viðvörun</is>
+			<it>Avviso</it>
+			<ja>警告</ja>
+			<ka>გაფრთხილება</ka>
+			<ko>경고</ko>
+			<ky>Эскертүү</ky>
+			<lt>Įspėjimas</lt>
+			<lv>Brīdinājums</lv>
+			<nl>Waarschuwing</nl>
+			<no>Advarsel</no>
+			<pl>Ostrzeżenie</pl>
+			<pt>Aviso</pt>
+			<ro>Avertizare</ro>
+			<sk>Upozornenie</sk>
+			<sl>Opozorilo</sl>
+			<sr>Упозорење</sr>
+			<tg>Огоҳӣ</tg>
+			<tr>Uyarı</tr>
+			<tt>Кисәтү</tt>
+			<uk>Попередження</uk>
+			<uz>Ogohlantirish</uz>
+			<zh>警告</zh>
+		</Record>
+		<Record name="#QuestionMsgBoxTitle">
+			<en>Question</en>
+			<ru>Вопрос</ru>
+			<az>Sual</az>
+			<ba>Мәсьәлә</ba>
+			<be>Пытанне</be>
+			<bg>Въпрос</bg>
+			<cs>Otázka</cs>
+			<da>Spørgsmål</da>
+			<de>Frage</de>
+			<el>Ερώτηση</el>
+			<es>Pregunta</es>
+			<et>Küsimus</et>
+			<eu>Galdera</eu>
+			<fa>سوال</fa>
+			<fi>Kysymys</fi>
+			<fr>Question</fr>
+			<hu>Kérdés</hu>
+			<hy>Հարցը</hy>
+			<is>Spurningin</is>
+			<it>Domanda</it>
+			<ja>質問</ja>
+			<ka>შეკითხვა</ka>
+			<ko>질문</ko>
+			<ky>Маселе</ky>
+			<lt>Klausimas</lt>
+			<lv>Jautājums</lv>
+			<nl>Vraag</nl>
+			<no>Spørsmål</no>
+			<pl>Pytanie</pl>
+			<pt>Pergunta</pt>
+			<ro>Întrebare</ro>
+			<sk>Otázka</sk>
+			<sl>Vprašanje</sl>
+			<sr>Питање</sr>
+			<tg>Савол</tg>
+			<tr>Soru</tr>
+			<tt>Мәсьәлә</tt>
+			<uk>Питання</uk>
+			<uz>Savol</uz>
+			<zh>的问题</zh>
+		</Record>
+		<Record name="#ClosePageMsgBoxContent">
+			<en>Are you want to close the current page?</en>
+			<ru>Вы хотите закрыть текущую страницу?</ru>
+			<az>İstəyirəm yaxın cari səhifə?</az>
+			<ba>Әлеге ябылған битте һеҙ телисез?</ba>
+			<be>Вы хочаце, каб закрыць бягучую старонку?</be>
+			<bg>Искате да затворите текущата страница?</bg>
+			<cs>Jsou si chcete zavřít aktuální stránku?</cs>
+			<da>Er du vil lukke den aktuelle side?</da>
+			<de>Sie möchten die aktuelle Seite schließen?</de>
+			<el>Είναι θέλετε να κλείσετε την τρέχουσα σελίδα;</el>
+			<es>Se desea cerrar la página actual?</es>
+			<et>Kas sa tahad sulgeda praeguse lehe?</et>
+			<eu>Dira nahi duzun itxi uneko orria?</eu>
+			<fa>آیا شما می خواهید برای بستن صفحه کنونی?</fa>
+			<fi>Ovat haluat sulkea nykyisen sivun?</fi>
+			<fr>Êtes-vous envie de fermer la page en cours?</fr>
+			<hu>Vagy azt szeretné, hogy közel a jelenlegi oldal?</hu>
+			<hy>Դուք ուզում եք փակել ընթացիկ էջը?</hy>
+			<is>Ert þú vilt loka núverandi page?</is>
+			<it>Si vuole chiudere la pagina corrente?</it>
+			<ja>また近現在のページに表示すべき事は何か？</ja>
+			<ka>თქვენ, მინდა, რომ ახლოს მიმდინარე გვერდი?</ka>
+			<ko>당신은 당신을 닫으려면 현재 페이지?</ko>
+			<ky>Сиз кааласаңыз, коом учурдагы ссылкасын?</ky>
+			<lt>Jūs norite uždaryti esamą puslapį?</lt>
+			<lv>Vai jūs vēlaties, lai aizvērtu pašreizējo lapu?</lv>
+			<nl>U wilt de huidige pagina sluiten?</nl>
+			<no>Er du ønsker å lukke den gjeldende siden?</no>
+			<pl>Chcesz zamknij bieżącą stronę?</pl>
+			<pt>Você quer fechar a página atual?</pt>
+			<ro>Sunt doriți să închideți pagina curentă?</ro>
+			<sk>Sa chcete ukončiť aktuálnu stránku?</sk>
+			<sl>Se želite zapreti trenutno stran?</sl>
+			<sr>Желите да затворите тренутну страницу?</sr>
+			<tg>Шумо мехоҳед, ки наздик дар ҷории саҳифаи?</tg>
+			<tr>Geçerli sayfayı kapatmak istiyor musunuz?</tr>
+			<tt>Сез телисезме ябарга агымдагы сәхифәне?</tt>
+			<uk>Ви хочете закрити поточну сторінку?</uk>
+			<uz>Joriy sahifani yopish uchun kerakli olasizmi?</uz>
+			<zh>都是你想接近的当前一页？</zh>
 		</Record>
 		<Record name="#FileError">
 			<en>File in use by another program or inaccessible.</en>
+			<ru>Файл используется другой программой или недоступен.</ru>
+			<az>İstifadə faylı başqa bir proqram və ya unavailable.</az>
+			<ba>Программаны ҡулланығыҙ йәки башҡа Файл түгел.</ba>
+			<be>Файл выкарыстоўваецца іншай праграмай або недаступны.</be>
+			<bg>Файлът се използва от друга програма или не е на разположение.</bg>
+			<cs>Soubor je používán jiným programem nebo nepřístupné.</cs>
+			<da>En fil er i brug af et andet program eller utilgængelige.</da>
+			<de>Datei von einem anderen Programm verwendet oder kann nicht zugegriffen werden.</de>
+			<el>Το αρχείο είναι σε χρήση από άλλο πρόγραμμα ή απροσπέλαστα.</el>
+			<es>El archivo está en uso por otro programa o inaccesibles.</es>
+			<et>Faili kasutusel teise programmi või kättesaamatud.</et>
+			<eu>Fitxategia erabili, beste programa edo eskuraezinak.</eu>
+			<fa>فایل در حال استفاده توسط برنامه های دیگر و یا غیر قابل دسترس.</fa>
+			<fi>Tiedosto toisen ohjelman käytössä tai saavuttamattomissa.</fi>
+			<fr>Fichier en cours d'utilisation par un autre programme ou inaccessibles.</fr>
+			<hu>A fájl használatban van egy másik program vagy megközelíthetetlen.</hu>
+			<hy>Ֆայլը օգտագործվում է մեկ այլ ծրագրի, կամ անհասանելի է.</hy>
+			<is>Skrá í notkun með aðra áætlun eða óaðgengilegur.</is>
+			<it>File in uso da un altro programma o inaccessibili.</it>
+			<ja>ファイルの使用により他のプログラムには入れないままである。</ja>
+			<ka>ფაილი გამოვიყენოთ სხვა პროგრამა ან მიუწვდომელი.</ka>
+			<ko>파일에서 사용하여 다른 프로그램 또는 액세스 할 수 있습니다.</ko>
+			<ky>Файл колдонулат башка программа же берилет.</ky>
+			<lt>Failas naudoja kita programa arba nepasiekiamas.</lt>
+			<lv>Failu lieto kāda cita programma vai nepieejama.</lv>
+			<nl>Bestand in gebruik is door een ander programma of ontoegankelijk te maken.</nl>
+			<no>Filen er i bruk av et annet program eller utilgjengelig.</no>
+			<pl>Plik jest używany przez inny program lub nie jest dostępny.</pl>
+			<pt>O arquivo está em uso por outro programa ou inacessível.</pt>
+			<ro>Fișier utilizat de un alt program sau inaccesibile.</ro>
+			<sk>Súbor na použitie v inom programe alebo neprístupné.</sk>
+			<sl>Datoteko uporabljate drug program ali nedostopni.</sl>
+			<sr>Датотеку користи неки други програм или је недоступан.</sr>
+			<tg>Файл истифода бурда мешавад, ба дигар барнома е дастнорас.</tg>
+			<tr>Başka bir program ya da erişilemez tarafından kullanılan dosya.</tr>
+			<tt>Файл кулланыла башка программа белән яки недоступен.</tt>
+			<uk>Файл використовується іншою програмою або недоступний.</uk>
+			<uz>Boshqa bir dastur orqali foydalanish yoki borish qiyin ichida fayl.</uz>
+			<zh>文件在使用由另一个程序，或者无法访问。</zh>
+		</Record>
+		<Record name="#InvaliseParrentChannelError">
+			<en>Parent channel not selected.</en>
+			<ru>Родительский канал Не выбран.</ru>
+			<az>Valideyn kanal seçilmiş Deyil.</az>
+			<ba>Ата-әсәһе лә каналдарын һайлай.</ba>
+			<be>Бацькоўскі канал Не абраны.</be>
+			<bg>Родителски канал Не е избран.</bg>
+			<cs>Rodič kanál není vybrán.</cs>
+			<da>Overordnet kanal ikke er valgt.</da>
+			<de>Übergeordneten Kanal nicht ausgewählt ist.</de>
+			<el>Μητρική κανάλι δεν έχει επιλεγεί.</el>
+			<es>Los padres de canales no seleccionados.</es>
+			<et>Vanem kanal ei valitud.</et>
+			<eu>Guraso channel ez hautatu.</eu>
+			<fa>پدر و مادر کانال انتخاب نشده است.</fa>
+			<fi>Vanhempi kanava ei ole valittuna.</fi>
+			<fr>Parent canal n'est pas sélectionné.</fr>
+			<hu>Szülő csatorna nincs kiválasztva.</hu>
+			<hy>Ծնողական ալիքը Չի ընտրվել.</hy>
+			<is>Foreldri rás ekki valið.</is>
+			<it>Canale principale non sia selezionata.</it>
+			<ja>親会社のチャネルになっています。</ja>
+			<ka>მშობელი არხი არ არის არჩეული.</ka>
+			<ko>부모는 채널을 선택하지 않습니다.</ko>
+			<ky>Ата-энелер канал Эмес выбран.</ky>
+			<lt>Tėvų kanalo ir nebus pasirinkta.</lt>
+			<lv>Mātes kanāls nav izvēlēts.</lv>
+			<nl>Ouder kanaal niet is geselecteerd.</nl>
+			<no>Overordnet kanal ikke er valgt.</no>
+			<pl>Nadrzędny kanał Nie został wybrany.</pl>
+			<pt>Principal canal não selecionado.</pt>
+			<ro>Părinte canalului selectat.</ro>
+			<sk>Materská kanál nie je vybratá.</sk>
+			<sl>Nadrejeni kanal ne sme biti izbrana.</sl>
+			<sr>Родитељска канал Није изабран.</sr>
+			<tg>Волидайн канал На интихоб.</tg>
+			<tr>Üst kanal seçili değil.</tr>
+			<tt>Ата-аналар канал Түгел сайланды.</tt>
+			<uk>Батьківський канал Не вибрано.</uk>
+			<uz>Ota-ona kanali emas, balki tanlangan.</uz>
+			<zh>父渠道不是选择。</zh>
+		</Record>
+		<Record name="#DeviceHardFaultError">
+			<en>Check the device.</en>
+			<ru>Проверьте устройство.</ru>
+			<az>Yoxlayın cihaz.</az>
+			<ba>Төҙөлөшөн тикшерҙе.</ba>
+			<be>Праверце прылада.</be>
+			<bg>Проверете устройство.</bg>
+			<cs>Podívejte se na zařízení.</cs>
+			<da>Kontroller enheden.</da>
+			<de>Überprüfen Sie das Gerät.</de>
+			<el>Ελέγξτε τη συσκευή.</el>
+			<es>Compruebe el dispositivo.</es>
+			<et>Kontrollige seadet.</et>
+			<eu>Egiaztatu gailuak.</eu>
+			<fa>بررسی دستگاه.</fa>
+			<fi>Tarkista laite.</fi>
+			<fr>Vérifiez le périphérique.</fr>
+			<hu>Ellenőrizze, hogy a készülék.</hu>
+			<hy>Ստուգեք ձեր սարքը.</hy>
+			<is>Athugaðu tækið.</is>
+			<it>Controllare il dispositivo.</it>
+			<ja>チェックします。</ja>
+			<ka>გამშვები მოწყობილობა.</ka>
+			<ko>확인하는 장치입니다.</ko>
+			<ky>Проверьте түзүлүш.</ky>
+			<lt>Patikrinkite, ar prietaiso.</lt>
+			<lv>Pārbaudiet ierīci.</lv>
+			<nl>Controleer het apparaat.</nl>
+			<no>Kontroller enheten.</no>
+			<pl>Sprawdź urządzenie.</pl>
+			<pt>Verifique o dispositivo.</pt>
+			<ro>Verificați dispozitivul.</ro>
+			<sk>Skontrolujte zariadenie.</sk>
+			<sl>Preverite napravo.</sl>
+			<sr>Проверите уређај.</sr>
+			<tg>Санҷед, аз дастгоҳ.</tg>
+			<tr>Aygıtı kontrol edin.</tr>
+			<tt>Тикшерегез җайланма.</tt>
+			<uk>Перевірте пристрій.</uk>
+			<uz>Qurilmani tekshirish.</uz>
+			<zh>检查设备。</zh>
+		</Record>
+		<Record name="#InvalidSelectionError">
+			<en>Nothing is selected.</en>
+			<ru>Ничего не выбрано.</ru>
+			<az>Heç bir seçim yoxdur.</az>
+			<ba>Бер нимә лә һайланмаған.</ba>
+			<be>Нічога не абрана.</be>
+			<bg>Нищо не е избрано.</bg>
+			<cs>Není nic vybráno.</cs>
+			<da>Intet er valgt.</da>
+			<de>Nichts ausgewählt ist.</de>
+			<el>Τίποτα δεν είναι επιλεγμένο.</el>
+			<es>No hay nada seleccionado.</es>
+			<et>Midagi pole valitud.</et>
+			<eu>Ezer ez da hautatu.</eu>
+			<fa>چیزی انتخاب شده است.</fa>
+			<fi>Mitään ei ole valittuna.</fi>
+			<fr>Rien n'est sélectionné.</fr>
+			<hu>Semmi nem kerül kiválasztásra.</hu>
+			<hy>Ոչինչ չի ընտրված.</hy>
+			<is>Ekkert er valið.</is>
+			<it>Non è selezionato nulla.</it>
+			<ja>何も選択します。</ja>
+			<ka>არაფერი არ არის შერჩეული.</ka>
+			<ko>아무것도 선택합니다.</ko>
+			<ky>Эч нерсе выбрано.</ky>
+			<lt>Nieko nėra pasirinktas.</lt>
+			<lv>Nekas nav izvēlēts.</lv>
+			<nl>Niets is geselecteerd.</nl>
+			<no>Ingenting er valgt.</no>
+			<pl>Nic nie jest wybrane.</pl>
+			<pt>Nada está selecionado.</pt>
+			<ro>Nimic nu este selectat.</ro>
+			<sk>Nič nie je vybratá).</sk>
+			<sl>Nič ni izbrano.</sl>
+			<sr>Ништа није изабрано.</sr>
+			<tg>Ҳеҷ фаъол бошад, танҳо.</tg>
+			<tr>Hiçbir şey seçilir.</tr>
+			<tt>Берни сайлау.</tt>
+			<uk>Нічого не обрано.</uk>
+			<uz>Hech narsa tanlanadi.</uz>
+			<zh>没有什么选择。</zh>
+		</Record>
+		<Record name="#ConnectionFaultError">
+			<en>Failed to connect.</en>
+			<ru>Не удалось подключиться.</ru>
+			<az>Uğursuz qoşulmaq.</az>
+			<ba>Көрәшкә алмай.</ba>
+			<be>Не атрымалася падлучыцца.</be>
+			<bg>Не успя да се свърже.</bg>
+			<cs>Připojení se nezdařilo.</cs>
+			<da>Kunne ikke oprettes forbindelse.</da>
+			<de>Konnte keine Verbindung herstellen.</de>
+			<el>Απέτυχε η σύνδεση.</el>
+			<es>No se pudo conectar.</es>
+			<et>Ei õnnestunud ühendada.</et>
+			<eu>Huts egin konektatu.</eu>
+			<fa>موفق به اتصال.</fa>
+			<fi>Yhdistäminen epäonnistui.</fi>
+			<fr>Impossible de se connecter.</fr>
+			<hu>Nem sikerült kapcsolódni.</hu>
+			<hy>Չի հաջողվել միանալ.</hy>
+			<is>Mistókst að tengja.</is>
+			<it>Non è riuscito a connettersi.</it>
+			<ja>失敗します。</ja>
+			<ka>ვერ მოხერხდა დაკავშირება.</ka>
+			<ko>연결에 실패했습니다.</ko>
+			<ky>Эмес оңунан кошулуу.</ky>
+			<lt>Nepavyko prisijungti.</lt>
+			<lv>Neizdevās izveidot savienojumu.</lv>
+			<nl>Verbinden mislukt.</nl>
+			<no>Klarte ikke å koble til.</no>
+			<pl>Nie udało się połączyć.</pl>
+			<pt>Falha ao conectar.</pt>
+			<ro>Nu a reușit să vă conectați.</ro>
+			<sk>Nepodarilo pripojiť.</sk>
+			<sl>Ni uspelo povezati.</sl>
+			<sr>Није успео да се повеже.</sr>
+			<tg>Нашуд пайваст.</tg>
+			<tr>Bağlantı kurulamadı.</tr>
+			<tt>Булмады кушылырга.</tt>
+			<uk>Не вдалося підключитися.</uk>
+			<uz>Ulanish uchun muvaffaqiyatsiz.</uz>
+			<zh>无法连接。</zh>
+		</Record>
+		<Record name="#InvalidFileError">
+			<en>Incorrect file.</en>
+			<ru>Неправильный файл.</ru>
+			<az>Səhv fayl.</az>
+			<ba>Файл дөрөҫ.</ba>
+			<be>Няправільны файл.</be>
+			<bg>Грешен файл.</bg>
+			<cs>Chyby přiřazení nesprávné přípony souboru.</cs>
+			<da>Forkerte fil.</da>
+			<de>Falsche Datei.</de>
+			<el>Εσφαλμένο αρχείο.</el>
+			<es>Archivo incorrecto.</es>
+			<et>Vale fail.</et>
+			<eu>Okerra fitxategia.</eu>
+			<fa>نادرست فایل.</fa>
+			<fi>Virheellisen tiedoston.</fi>
+			<fr>De fichier Incorrect.</fr>
+			<hu>Hibás a fájl.</hu>
+			<hy>Սխալ ֆայլը.</hy>
+			<is>Röng skrá.</is>
+			<it>Di file non corretto.</it>
+			<ja>誤ったファイルです。</ja>
+			<ka>არასწორი ფაილი.</ka>
+			<ko>잘못된 파일입니다.</ko>
+			<ky>Туура эмес файл.</ky>
+			<lt>Neteisingas failo.</lt>
+			<lv>Nepareizo failu.</lv>
+			<nl>Verkeerde bestand.</nl>
+			<no>Feil fil.</no>
+			<pl>Niepoprawny plik.</pl>
+			<pt>Arquivo incorreto.</pt>
+			<ro>Incorectă de fișiere.</ro>
+			<sk>Nesprávny súbor.</sk>
+			<sl>Napačno datoteko.</sl>
+			<sr>Погрешан фајл.</sr>
+			<tg>Нодуруст файл.</tg>
+			<tr>Yanlış dosya.</tr>
+			<tt>Дөрес файл.</tt>
+			<uk>Неправильний файл.</uk>
+			<uz>Noto'g'ri fayl.</uz>
+			<zh>错误的文件。</zh>
 		</Record>
 	</Recordings>
 </Languages>

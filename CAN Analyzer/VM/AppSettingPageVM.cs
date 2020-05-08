@@ -401,14 +401,14 @@ namespace CANAnalyzer.VM
                 {
                     IsConnected = false;
                     Settings.Instance.Device = null;
-                    MessageBox.Show("Чо-то не то с устройством", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#DeviceHardFaultError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
                 if (SelectedDevice == null)
                 {
-                    MessageBox.Show("Ничего не выбрано", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvalidSelectionError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -422,7 +422,7 @@ namespace CANAnalyzer.VM
                 {
                     IsConnected = false;
                     Settings.Instance.Device = null;
-                    MessageBox.Show("Не получилось подключиться", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ConnectionFaultError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
@@ -467,7 +467,7 @@ namespace CANAnalyzer.VM
                 }
                 catch
                 {
-                    MessageBox.Show("не верный файл", (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvalidFileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }

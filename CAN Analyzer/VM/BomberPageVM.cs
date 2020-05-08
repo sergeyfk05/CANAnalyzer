@@ -17,6 +17,8 @@ using System.Timers;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using DynamicResource;
+using CANAnalyzer.Resources.DynamicResources;
 
 namespace CANAnalyzer.VM
 {
@@ -197,7 +199,7 @@ namespace CANAnalyzer.VM
         private void ClosePageCommand_Execute()
         {
 
-            if (MessageBox.Show("are you want close the page?", "???", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ClosePageMsgBoxContent"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#QuestionMsgBoxTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 RaiseClosedEvent();
             }
@@ -268,7 +270,7 @@ namespace CANAnalyzer.VM
             {
                 foreach (var error in results)
                 {
-                    MessageBox.Show(error.ErrorMessage, "warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(error.ErrorMessage, (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#WarningMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 if (Status == TransmitState.Transmiting)
@@ -442,7 +444,7 @@ namespace CANAnalyzer.VM
             {
                 foreach (var error in results)
                 {
-                    MessageBox.Show(error.ErrorMessage, "warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(error.ErrorMessage, (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#WarningMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 if (Status == TransmitState.Transmiting)
