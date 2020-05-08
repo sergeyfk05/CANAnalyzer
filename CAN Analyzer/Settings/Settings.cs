@@ -196,9 +196,6 @@ namespace CANAnalyzer
             if (isDisposed)
                 return;
 
-            if (Proxies == null)
-                return;
-
             foreach (var el in Proxies)
             {
                 try

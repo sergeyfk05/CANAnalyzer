@@ -126,7 +126,7 @@ namespace CANAnalyzer.VM
             get { return _minHeight; }
             private set
             {
-                if (_minHeight == value)
+                if (Math.Abs(value - _minHeight) < 0.2)
                     return;
 
                 _minHeight = value;
@@ -435,7 +435,7 @@ namespace CANAnalyzer.VM
                     foreach (var el in e.OldItems)
                     {
                         if (el is IChannelProxy proxy)
-                            proxy?.Dispose();
+                            proxy.Dispose();
                     }
             }
         }
