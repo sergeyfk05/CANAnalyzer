@@ -179,4 +179,124 @@
 
 
 
+
+
+    <SolidColorBrush x:Key="NormalBrushScrollBar" Color="#ccc"/>
+    <SolidColorBrush x:Key="HoverBrushScrollBar" Color="#eee"/>
+    <SolidColorBrush x:Key="DisabledBrushScrollBar" Color="#aaa"/>
+
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="GridScrollBar" Width="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="16"/>
+                            <RowDefinition/>
+                            <RowDefinition MaxHeight="16"/>
+                        </Grid.RowDefinitions>
+                        <RepeatButton x:Name="PageUpButton" Grid.Row="0" Command="ScrollBar.LineUpCommand" Style="{DynamicResource RepeatButtonArrowScrollBar}"/>
+                        <Track x:Name="PART_Track" Grid.Row="1" Orientation="Vertical" IsDirectionReversed="True">
+                            <Track.Thumb>
+                                <Thumb Style="{DynamicResource ThumbScrollBar}"/>
+                            </Track.Thumb>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton x:Name="DecreaseRepeatButton" Command="ScrollBar.PageUpCommand" Style="{DynamicResource RepeatButtonPageScrollBar}"/>
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton x:Name="IncreaseRepeatButton" Command="ScrollBar.PageDownCommand" Style="{DynamicResource RepeatButtonPageScrollBar}"/>
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+                        <RepeatButton x:Name="PageDownButton" Grid.Row="2" Command="ScrollBar.LineDownCommand" Style="{DynamicResource RepeatButtonArrowScrollBar}">
+                            <RepeatButton.LayoutTransform>
+                                <RotateTransform Angle="180"/>
+                            </RepeatButton.LayoutTransform>
+                        </RepeatButton>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter Property="LayoutTransform" TargetName="GridScrollBar">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical"/>
+                            <Setter Property="Command" Value="ScrollBar.LineRightCommand" TargetName="IncreaseRepeatButton"/>
+                            <Setter Property="Command" Value="ScrollBar.LineLeftCommand" TargetName="DecreaseRepeatButton"/>
+                            <Setter Property="Command" Value="ScrollBar.PageRightCommand" TargetName="PageDownButton"/>
+                            <Setter Property="Command" Value="ScrollBar.PageLeftCommand" TargetName="PageUpButton"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RepeatButtonArrowScrollBar" TargetType="{x:Type RepeatButton}" BasedOn="{x:Null}">
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border Background="Transparent"/>
+                        <Path x:Name="RepeatButtonArrow" Fill="{StaticResource NormalBrushScrollBar}" Data="M 4 12 L 12 12 L 8 4 Z"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                          Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RepeatButtonArrow" Property="Fill" Value="{StaticResource HoverBrushScrollBar}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="RepeatButtonArrow" Property="Fill" Value="#fff"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="RepeatButtonArrow" Property="Fill" Value="{StaticResource DisabledBrushScrollBar}"/>
+                            <Setter TargetName="RepeatButtonArrow" Property="Opacity" Value="0.72"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ThumbScrollBar" TargetType="{x:Type Thumb}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle x:Name="rect_thumb" RadiusX="4" RadiusY="4" Fill="{StaticResource NormalBrushScrollBar}" MaxWidth="8"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="rect_thumb" Property="Fill" Value="{StaticResource HoverBrushScrollBar}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="rect_thumb" Property="Fill" Value="{StaticResource DisabledBrushScrollBar}"/>
+                            <Setter TargetName="rect_thumb" Property="Opacity" Value="0.72"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RepeatButtonPageScrollBar" TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

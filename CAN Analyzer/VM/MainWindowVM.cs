@@ -121,11 +121,25 @@ namespace CANAnalyzer.VM
         }
         private string _titleKey;
 
+        public double MinHeight
+        {
+            get { return _minHeight; }
+            private set
+            {
+                if (_minHeight == value)
+                    return;
+
+                _minHeight = value;
+                RaisePropertyChanged();
+            }
+        }
+        private double _minHeight;
+
         public ObservableCollection<NavMenuItemData> TopItemSource
         {
             get
             {
-                return _topItemSource ?? (_topItemSource = new ObservableCollection<NavMenuItemData>());
+                return _topItemSource ?? (TopItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -133,6 +147,10 @@ namespace CANAnalyzer.VM
                     return;
 
                 _topItemSource = value;
+
+                if(_topItemSource !=null)
+                    _topItemSource.CollectionChanged += NavMenuDataChanged;
+
                 RaisePropertyChanged();
             }
         }
@@ -143,7 +161,7 @@ namespace CANAnalyzer.VM
         {
             get
             {
-                return _bottomItemSource ?? (_bottomItemSource = new ObservableCollection<NavMenuItemData>());
+                return _bottomItemSource ?? (BottomItemSource = new ObservableCollection<NavMenuItemData>());
             }
             set
             {
@@ -151,6 +169,10 @@ namespace CANAnalyzer.VM
                     return;
 
                 _bottomItemSource = value;
+
+                if (_bottomItemSource != null)
+                    _bottomItemSource.CollectionChanged += NavMenuDataChanged;
+
                 RaisePropertyChanged();
             }
         }
@@ -536,6 +558,45 @@ namespace CANAnalyzer.VM
         {
             foreach (var el in PagesData)
                 el.NavData.ResetIsSelectedFlag();
+        }
+        private void NavMenuDataChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            double res = 0;
+
+            foreach(var el in TopItemSource)
+            {
+                res += CalcMinHeight(el, 30);
+            }
+
+            foreach (var el in BottomItemSource)
+            {
+                res += CalcMinHeight(el, 30);
+            }
+
+            //min margin
+            res += 70;
+
+            //toggle button
+            res += 50;
+
+            MinHeight = res;
+        }
+        private static double CalcMinHeight(NavMenuItemData data, double itemHeight)
+        {
+            double result = 0;
+
+            result += itemHeight;
+
+            if (!data.IsDropdownItem)
+                return result;
+
+            foreach(var el in data.DropdownItems)
+            {
+                result += CalcMinHeight(el, itemHeight);
+            }
+
+            return result;
+
         }
 
 
