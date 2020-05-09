@@ -6,19 +6,17 @@ using CANAnalyzer.Models;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.ViewData;
+using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzerDevices.Devices.DeviceChannels;
+using DynamicResource;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Timers;
-using CANAnalyzerDevices.Devices.DeviceChannels;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using DynamicResource;
-using CANAnalyzer.Resources.DynamicResources;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows;
 
 namespace CANAnalyzer.VM
 {

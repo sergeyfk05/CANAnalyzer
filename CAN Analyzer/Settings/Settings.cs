@@ -2,21 +2,18 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.ComponentModel;
-using CANAnalyzerDevices.Devices;
-using System.Runtime.CompilerServices;
 using CANAnalyzer.Models.ChannelsProxy;
-using System.Text.Json.Serialization;
-using System.Collections.ObjectModel;
-using System.Threading;
 using CANAnalyzer.Models.Extensions;
+using CANAnalyzerDevices.Devices;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CANAnalyzer
 {

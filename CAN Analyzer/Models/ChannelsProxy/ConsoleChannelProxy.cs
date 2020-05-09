@@ -6,15 +6,10 @@ using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerDevices.Devices.DeviceChannels.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Diagnostics;
-using System.Net.Sockets;
-using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {

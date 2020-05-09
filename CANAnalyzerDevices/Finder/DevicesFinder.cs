@@ -2,17 +2,10 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO.Ports;
-using Microsoft.Win32;
-using System.Management;
-using System.Text.RegularExpressions;
-using CANAnalyzerDevices.Devices.DeviceCreaters;
 using CANAnalyzerDevices.Devices;
+using CANAnalyzerDevices.Devices.DeviceCreaters;
+using System.Collections.Generic;
+using System.Management;
 
 namespace CANAnalyzerDevices.Finder
 {

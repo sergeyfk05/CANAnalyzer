@@ -2,17 +2,8 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.Sqlite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using CANAnalyzer.Models.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace CANAnalyzer.Models.Databases
 {

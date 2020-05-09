@@ -4,7 +4,6 @@
 */
 using System;
 using System.Threading;
-using System.Windows.Threading;
 
 namespace CANAnalyzer.Models
 {

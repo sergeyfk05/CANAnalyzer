@@ -2,14 +2,11 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzerDevices.Devices.DeviceChannels.Events;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO.Ports;
 using System.ComponentModel.DataAnnotations;
-using CANAnalyzerDevices.Devices.DeviceChannels.Events;
+using System.IO.Ports;
 using System.Text.RegularExpressions;
 
 namespace CANAnalyzerDevices.Devices.DeviceChannels

@@ -2,26 +2,21 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzer.Models;
+using CANAnalyzer.Models.ChannelsProxy;
+using CANAnalyzer.Models.ChannelsProxy.Creators;
+using CANAnalyzer.Models.ViewData;
+using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzerDevices.Devices;
+using CANAnalyzerDevices.Finder;
+using DynamicResource;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CANAnalyzer.Resources.DynamicResources;
-using DynamicResource;
-using CANAnalyzer.Models;
-using CANAnalyzerDevices.Finder;
-using CANAnalyzerDevices.Devices;
-using System.Windows;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
-using CANAnalyzer.Models.ViewData;
-using CANAnalyzer.Models.ChannelsProxy;
-using System.Collections.ObjectModel;
-using Microsoft.Win32;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading;
-using CANAnalyzer.Models.ChannelsProxy.Creators;
+using System.Windows;
 
 namespace CANAnalyzer.VM
 {

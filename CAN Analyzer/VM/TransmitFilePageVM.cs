@@ -2,30 +2,25 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DynamicResource;
 using CANAnalyzer.Models;
-using System.Windows.Input;
-using System.Windows.Controls;
-using Microsoft.Win32;
-using CANAnalyzer.Models.DataTypesProviders;
-using System.Windows;
 using CANAnalyzer.Models.Databases;
-using Microsoft.EntityFrameworkCore;
-using CANAnalyzer.Resources.DynamicResources;
-using System.IO;
+using CANAnalyzer.Models.DataTypesProviders;
+using CANAnalyzer.Models.Delegates;
+using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.TraceFilters;
 using CANAnalyzer.Models.ViewData;
-using CANAnalyzerDevices.Devices.DeviceChannels;
-using CANAnalyzer.Models.States;
-using CANAnalyzer.Models.Delegates;
-using static CANAnalyzer.Models.TraceTransmiter;
-using System.Collections.ObjectModel;
+using CANAnalyzer.Resources.DynamicResources;
+using DynamicResource;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using static CANAnalyzer.Models.TraceTransmiter;
 
 namespace CANAnalyzer.VM
 {

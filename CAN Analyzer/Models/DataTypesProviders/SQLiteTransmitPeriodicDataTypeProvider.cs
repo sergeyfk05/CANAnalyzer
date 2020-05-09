@@ -3,15 +3,12 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzer.Models.Databases;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel;
 
 namespace CANAnalyzer.Models.DataTypesProviders
 {
