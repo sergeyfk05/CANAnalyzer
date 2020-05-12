@@ -32,12 +32,13 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition MinWidth="70" Width="100" MaxWidth="180"/>
             </Grid.ColumnDefinitions>
 
 
             <DockPanel Grid.Row="0" 
-                   Grid.ColumnSpan="2"  
+                   Grid.ColumnSpan="3"  
                    Height="36"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
@@ -161,9 +162,12 @@
 
             </DockPanel>
 
-            <DataGrid 
+
+
+
+            <DataGrid Margin="0 0 10 0"
             Grid.Column="0" 
-            Grid.Row="1" 
+            Grid.Row="1"
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
@@ -196,14 +200,17 @@
             </DataGrid>
 
 
-            <Grid Grid.Column="1"
+            <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <Grid Grid.Column="2"
                   Grid.Row="1"
-                  Margin="20 0 0 0">
+                  Margin="10 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0"/>
+                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                 <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">

@@ -29,28 +29,31 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition MinWidth="70" Width="100" MaxWidth="180"/>
             </Grid.ColumnDefinitions>
 
 
-            <DockPanel Grid.Row="0" 
-                   Grid.ColumnSpan="2"  
-                   Height="36"
+            <DockPanel Grid.Row="0"
+                   Grid.ColumnSpan="3"  
+                   Height="{resources:Theme ShortcutButtonBlocksHeight}"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
 
 
-                <Border Background="Aqua"
-                    DockPanel.Dock="Left"
-                    Height="36"
-                    CornerRadius="4"
+                <Border DockPanel.Dock="Left"
+                        Background="{resources:Theme ShortcutButtonBlocksBackground}"
+                    Height="{resources:Theme ShortcutButtonBlocksHeight}"
+                    CornerRadius="{resources:Theme ShortcutButtonBlocksCornerRadius}"
                     BorderThickness="0">
                     <Border.Effect>
-                        <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                        <DropShadowEffect Color="{resources:Theme ShortcutButtonBlocksDropShadowColor}" 
+                                      Opacity="{resources:Theme ShortcutButtonBlocksDropShadowOpacity}"
+                                      ShadowDepth="{resources:Theme ShortcutButtonBlocksDropShadowDepth}"/>
                     </Border.Effect>
 
                     <DockPanel DockPanel.Dock="Left"
-                           Height="30"
+                           Height="{resources:Theme ShortcutButtonBlocksHeight}"
                            VerticalAlignment="Center">
 
                         <Button x:Name="saveAsButton" 
@@ -119,8 +122,9 @@
                 <TextBlock Width="0" DockPanel.Dock="Right"/>
 
             </DockPanel>
-            
+
             <DataGrid 
+                Margin="0 0 10 0"
                 Grid.Column="0"
                 Grid.Row="1"
             VerticalAlignment="Stretch" 
@@ -142,14 +146,17 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Grid Grid.Column="1"
+            <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <Grid Grid.Column="2"
                   Grid.Row="1"
-                  Margin="20 0 0 0">
+                  Margin="10 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0"/>
+                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                 <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">

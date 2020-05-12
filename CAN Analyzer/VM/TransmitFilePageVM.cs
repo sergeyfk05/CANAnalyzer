@@ -411,9 +411,12 @@ namespace CANAnalyzer.VM
                 var newFilters = new List<CanIdTraceFilter>();
                 foreach(var el in currentTraceProvider.CanHeaders.ToList())
                 {
-                    var entity =new CanIdTraceFilter(el.CanId, el.IsExtId);
-                    entity.PropertyChanged += FilterIsActive_PropertyChanged;
-                    newFilters.Add(entity);
+                    if(newFilters.Count(x=> x.CanId == el.CanId && x.IsExtId == el.IsExtId) == 0)
+                    {
+                        CanIdTraceFilter entity = new CanIdTraceFilter(el.CanId, el.IsExtId);
+                        entity.PropertyChanged += FilterIsActive_PropertyChanged;
+                        newFilters.Add(entity);
+                    }
                 }
                 Filters = newFilters;
 

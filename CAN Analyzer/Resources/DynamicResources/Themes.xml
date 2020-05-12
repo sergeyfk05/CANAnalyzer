@@ -173,49 +173,149 @@
 		</Record>
 
 
+		<Record name="TextBoxForeground">
+			<dark>Black</dark>
+			<white></white>
+		</Record>
+		<Record name="TextBoxBackground">
+			<dark>White</dark>
+			<white></white>
+		</Record>
 
 
 		<!--TransmitPage-->
-		<!--IconButtons-->
-		<Record name="TransmitPageIconButtonBackgroundStartBrush">
+		<!--ShortcutButtons-->
+		<Record name="ShortcutButtonBackgroundStartBrush">
 			<dark>Black</dark>
 			<white>Black</white>
 		</Record>
-		<Record name="TransmitPageIconButtonBackgroundStopBrush">
+		<Record name="ShortcutButtonBackgroundStopBrush">
 			<dark>White</dark>
 			<white>White</white>
 		</Record>
-		<Record name="TransmitPageIconButtonMouseEnterBackgroundStartBrush">
+		<Record name="ShortcutButtonMouseEnterBackgroundStartBrush">
 			<dark>Red</dark>
 			<white>Red</white>
 		</Record>
-		<Record name="TransmitPageIconButtonMouseEnterBackgroundStopBrush">
+		<Record name="ShortcutButtonMouseEnterBackgroundStopBrush">
 			<dark>Blue</dark>
 			<white>Blue</white>
 		</Record>
-		<Record name="TransmitPageIconButtonDisabledBackgroundStartBrush">
+		<Record name="ShortcutButtonDisabledBackgroundStartBrush">
 			<dark>Purple</dark>
 			<white>Purple</white>
 		</Record>
-		<Record name="TransmitPageIconButtonDisabledBackgroundStopBrush">
+		<Record name="ShortcutButtonDisabledBackgroundStopBrush">
 			<dark>Red</dark>
 			<white>Red</white>
 		</Record>
-		<Record name="TransmitPageIconButtonBorderThickness">
+		<Record name="ShortcutButtonBorderThickness">
 			<dark>2</dark>
 			<white>2</white>
 		</Record>
-		<Record name="TransmitPageIconButtonCornerRaduis">
+		<Record name="ShortcutButtonCornerRaduis">
 			<dark>2</dark>
 			<white>2</white>
 		</Record>
-		<Record name="TransmitPageIconButtonBorderStartBrush">
+		<Record name="ShortcutButtonBorderStartBrush">
 			<dark>Blue</dark>
 			<white>Blue</white>
 		</Record>
-		<Record name="TransmitPageIconButtonBorderStopBrush">
+		<Record name="ShortcutButtonBorderStopBrush">
 			<dark>Red</dark>
 			<white>Red</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksBackground">
+			<dark>Aqua</dark>
+			<white>Aqua</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksDropShadowColor">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksDropShadowOpacity">
+			<dark>0.8</dark>
+			<white>0.8</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksDropShadowDepth">
+			<dark>2</dark>
+			<white>2</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksCornerRadius">
+			<dark>4</dark>
+			<white>4</white>
+		</Record>
+		<Record name="ShortcutButtonBlocksHeight">
+			<dark>36</dark>
+			<white>36</white>
+		</Record>
+		<Record name="ShortcutButtonHeight">
+			<dark>30</dark>
+			<white>30</white>
+		</Record>
+
+
+
+		<Record name="DataGridRowColor">
+			<dark>#FFECECEC</dark>
+			<white>#FFECECEC</white>
+		</Record>
+		<Record name="DataGridRowHoverColor">
+			<dark>#FFFBFBFB</dark>
+			<white>#FFFBFBFB</white>
+		</Record>
+		<Record name="DataGridRowSelectedColor">
+			<dark>#FFFBFBFB</dark>
+			<white>#FFFBFBFB</white>
+		</Record>
+		<Record name="DataGridRowHeaderColor">
+			<dark>#FF1885A1</dark>
+			<white>#FF1885A1</white>
+		</Record>
+		<Record name="DataGridRowHeaderSelectedColor">
+			<dark>#FF12B0DA</dark>
+			<white>#FF12B0DA</white>
+		</Record>
+		<Record name="DataGridColumnHeaderHoverColor">
+			<dark>#FF12B0DA</dark>
+			<white>#FF12B0DA</white>
+		</Record>
+		<Record name="DataGridSelectedForegroungColor">
+			<dark>#FF1885A1</dark>
+			<white>#FF1885A1</white>
+		</Record>
+		
+		<Record name="DataGridHeaderTextColor">
+			<dark>#FFFFFFFF</dark>
+			<white>#FFFFFFFF</white>
+		</Record>
+		<Record name="DataGridHeaderBackgroundColor">
+			<dark>#FF1885A1</dark>
+			<white>#FF1885A1</white>
+		</Record>
+		<Record name="DataGridDataGridBackgroundColor">
+			<dark>#FFECECEC</dark>
+			<white>#FFECECEC</white>
+		</Record>
+		<Record name="DataGridRowBorderColor">
+			<dark>#FFD8D8D8</dark>
+			<white>#FFD8D8D8</white>
+		</Record>
+		<Record name="DataGridRowSelectedTextColor">
+			<dark>#FF1885A1</dark>
+			<white>#FF1885A1</white>
+		</Record>
+		<Record name="DataGridIDColumnText">
+			<dark>#FF808080</dark>
+			<white>#FF808080</white>
+		</Record>
+		<Record name="DataGridCellBorderColor">
+			<dark>#FFD8D8D8</dark>
+			<white>#FFD8D8D8</white>
+		</Record>
+		<Record name="DataGridCellIsKeyboardFocusWithinBorderColor">
+			<dark>#FFD8D8D8</dark>
+			<white>#FFD8D8D8</white>
 		</Record>
 
 
@@ -251,36 +351,20 @@
 
 
 		<!--TransmitTo control-->
-		<Record name="TransmitToControlToggleButtonFontSize">
-			<dark>13</dark>
-			<white>13</white>
-		</Record>
-		<Record name="TransmitToControlToggleButtonFontFamily">
-			<dark>Arial</dark>
-			<white>Arial</white>
-		</Record>
-		<Record name="TransmitToControlToggleButtonFontWeight">
-			<dark>Bold</dark>
-			<white>Bold</white>
-		</Record>
-		<Record name="TransmitToControlToggleButtonFontColor">
-			<dark>Black</dark>
-			<white>Black</white>
-		</Record>
 		<Record name="TransmitToControlFontSize">
 			<dark>13</dark>
 			<white>13</white>
 		</Record>
 		<Record name="TransmitToControlFontFamily">
-			<dark>Arial</dark>
-			<white>Arial</white>
+			<dark>Calibri,Arial</dark>
+			<white>Calibri,Arial</white>
 		</Record>
 		<Record name="TransmitToControlFontWeight">
-			<dark>Bold</dark>
+			<dark>Normal</dark>
 			<white>Bold</white>
 		</Record>
 		<Record name="TransmitToControlFontColor">
-			<dark>Black</dark>
+			<dark>White</dark>
 			<white>Black</white>
 		</Record>
 		<Record name="TransmitToControlItemBackgroundBrushStart">

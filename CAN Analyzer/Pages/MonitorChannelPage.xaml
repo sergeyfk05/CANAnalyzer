@@ -20,19 +20,21 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Border Grid.Row="0" 
-                HorizontalAlignment="Left"
-                    Background="Aqua"
+                HorizontalAlignment="Left" 
+                Background="{resources:Theme ShortcutButtonBlocksBackground}"
                     DockPanel.Dock="Left"
-                    Height="36"
-                    CornerRadius="4"
+                    Height="{resources:Theme ShortcutButtonBlocksHeight}"
+                    CornerRadius="{resources:Theme ShortcutButtonBlocksCornerRadius}"
                     BorderThickness="0">
             <Border.Effect>
-                <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                <DropShadowEffect Color="{resources:Theme ShortcutButtonBlocksDropShadowColor}" 
+                                      Opacity="{resources:Theme ShortcutButtonBlocksDropShadowOpacity}"
+                                      ShadowDepth="{resources:Theme ShortcutButtonBlocksDropShadowDepth}"/>
             </Border.Effect>
 
-            <StackPanel Height="30"
+            <StackPanel Height="{resources:Theme ShortcutButtonHeight}"
                         Orientation="Horizontal"
                         VerticalAlignment="Center">
 

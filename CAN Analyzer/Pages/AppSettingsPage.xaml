@@ -177,7 +177,7 @@
                                             <TextBlock Text="{resources:Language #AppSettingsPageSelectBitrateLabel}"/>
                                             <Grid Height="{DynamicResource StandartControlHeight}" HorizontalAlignment="Stretch">
                                                 <controls:NumericTextBox MaxValue="1000" NullStrValue="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Value="{Binding Bitrate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalContentAlignment="Center"
-                                                                         FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
+                                                                         FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme TextBoxForeground}" Background="{resources:Theme TextBoxBackground}">
                                                     <!--<i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="PreviewTextInput" >
                                                             <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
@@ -185,7 +185,7 @@
                                                     </i:Interaction.Triggers>-->
                                                 </controls:NumericTextBox>
                                                 <TextBlock Margin="0 0 5 0" Text="{resources:Language #AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                                           FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
+                                                           FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme TextBoxForeground}" Background="{resources:Theme TextBoxBackground}"/>
                                             </Grid>
 
                                             <StackPanel.Style>
@@ -249,7 +249,8 @@
                                 <DataTemplate>
                                     <Expander Margin="0 0 0 10">
                                         <Expander.Header>
-                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
+                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"
+                                                     FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme TextBoxForeground}" Background="{resources:Theme TextBoxBackground}"/>
                                         </Expander.Header>
                                         <Grid Margin="25 0 0 0">
 
@@ -265,9 +266,10 @@
                                             </Grid.RowDefinitions>
 
                                             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Stretch">
-                                                <TextBlock Text="{resources:Language #AppSettingsPageProxyFilePathLabel}"/>
+                                                <TextBlock Text="{resources:Language #AppSettingsPageProxyFilePathLabel}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                                                 <Grid Height="{DynamicResource StandartControlHeight}" HorizontalAlignment="Stretch">
-                                                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path, Mode=OneWay}" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"/>
+                                                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path, Mode=OneWay}" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"
+                                                             FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme TextBoxForeground}" Background="{resources:Theme TextBoxBackground}"/>
                                                 </Grid>
                                             </StackPanel>
 
