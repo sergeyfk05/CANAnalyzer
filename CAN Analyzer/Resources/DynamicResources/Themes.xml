@@ -255,11 +255,11 @@
 		</Record>
 
 
-
+<!--DataGrid-->
 		<Record name="DataGridRowColor">
 			<dark>#FFECECEC</dark>
 			<white>#FFECECEC</white>
-		</Record>
+		</Record>		
 		<Record name="DataGridRowHoverColor">
 			<dark>#FFFBFBFB</dark>
 			<white>#FFFBFBFB</white>
