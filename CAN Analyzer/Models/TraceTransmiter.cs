@@ -147,6 +147,8 @@ namespace CANAnalyzer.Models
 
         public void SetCurrentItemIndex(int index)
         {
+
+
             if (Status == TraceTransmiterStatus.Working)
                 throw new Exception("TraceTransmiter should be stoped before source changing");
 
@@ -162,6 +164,12 @@ namespace CANAnalyzer.Models
                     CurrentIndex = 0;
                     return;
                 }
+            }
+            if (_enumerator.Current == null)
+            {
+                CurrentIndex = 0;
+                ElapsedMilliseconds = 0;
+                return;
             }
 
             CurrentIndex = index;
