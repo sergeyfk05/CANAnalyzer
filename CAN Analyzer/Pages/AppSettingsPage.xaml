@@ -33,7 +33,7 @@
     </i:Interaction.Triggers>
 
 
-    <Grid Margin="10">
+    <Grid Margin="10" Background="{resources:Theme MainColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="15"/>
@@ -46,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <Grid Height="30" Grid.Row="0" Grid.ColumnSpan="2">
-            <TextBlock Grid.Row="0" Text="{resources:Language #AppSettingsPageTitle}" FontFamily="Arial" FontSize="18" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Text="{resources:Language #AppSettingsPageTitle}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}" FontSize="18" VerticalAlignment="Center"/>
         </Grid>
 
 
@@ -58,7 +58,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectLanguage}" Padding="5">
+                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectLanguage}" Padding="5" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                     <ComboBox 
                         Style="{StaticResource CustomComboBoxStyle}"
                   VerticalAlignment="Center"
@@ -68,7 +68,7 @@
                         Height="{DynamicResource StandartControlHeight}"/>
                 </GroupBox>
 
-                <GroupBox Grid.Column="2" Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5">
+                <GroupBox Grid.Column="2" Header="{resources:Language #AppSettingPageSelectTheme}" Padding="5" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                     <ComboBox
                         Style="{StaticResource CustomComboBoxStyle}"
                   VerticalAlignment="Center"
@@ -86,7 +86,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectDevice}" Padding="5">
+                <GroupBox Grid.Column="0" Header="{resources:Language #AppSettingPageSelectDevice}" Padding="5" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -162,7 +162,7 @@
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Expander Header="{Binding Name}">
+                                <Expander Header="{Binding Name}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                                     <Grid Margin="25 0 0 0" HorizontalAlignment="Stretch">
 
                                         <Grid.ColumnDefinitions>
@@ -176,14 +176,16 @@
                                         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch">
                                             <TextBlock Text="{resources:Language #AppSettingsPageSelectBitrateLabel}"/>
                                             <Grid Height="{DynamicResource StandartControlHeight}" HorizontalAlignment="Stretch">
-                                                <controls:NumericTextBox MaxValue="1000" NullStrValue="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Value="{Binding Bitrate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalContentAlignment="Center">
+                                                <controls:NumericTextBox MaxValue="1000" NullStrValue="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Value="{Binding Bitrate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalContentAlignment="Center"
+                                                                         FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                                                     <!--<i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="PreviewTextInput" >
                                                             <ei:CallMethodAction TargetObject="{Binding}" MethodName="BitrateTextBoxInputIsAllowed"  />
                                                         </i:EventTrigger>
                                                     </i:Interaction.Triggers>-->
                                                 </controls:NumericTextBox>
-                                                <TextBlock Margin="0 0 5 0" Text="{resources:Language #AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="0 0 5 0" Text="{resources:Language #AppSettingsPageBitrateUnitsOfMeasure}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                           FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                                             </Grid>
 
                                             <StackPanel.Style>
@@ -197,7 +199,8 @@
                                             </StackPanel.Style>
                                         </StackPanel>
 
-                                        <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" VerticalAlignment="Bottom" VerticalContentAlignment="Center">
+                                        <CheckBox Grid.Column="1" Content="{resources:Language #AppSettingsPageListenOnlyLabel}" IsChecked="{Binding IsListenOnlyViewable}" Margin="10 0 0 0" Height="{DynamicResource StandartControlHeight}" VerticalAlignment="Bottom" VerticalContentAlignment="Center"
+                                                  FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                                             <CheckBox.Style>
                                                 <Style>
                                                     <Style.Triggers>
@@ -246,7 +249,7 @@
                                 <DataTemplate>
                                     <Expander Margin="0 0 0 10">
                                         <Expander.Header>
-                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center"/>
+                                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MinWidth="150" Height="{DynamicResource StandartControlHeight}" VerticalContentAlignment="Center" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                                         </Expander.Header>
                                         <Grid Margin="25 0 0 0">
 

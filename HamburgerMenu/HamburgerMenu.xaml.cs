@@ -271,6 +271,18 @@ namespace HamburgerMenu
 
 
 
+        public Brush NavMenuItemBackground
+        {
+            get { return (Brush)GetValue(NavMenuItemBackgroundProperty); }
+            set { SetValue(NavMenuItemBackgroundProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for NavMenuItemBackground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NavMenuItemBackgroundProperty =
+            DependencyProperty.Register("NavMenuItemBackground", typeof(Brush), typeof(HamburgerMenu), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0, 0, 0))));
+
+
+
 
         public Brush NavMenuMouseInItemBackground
         {

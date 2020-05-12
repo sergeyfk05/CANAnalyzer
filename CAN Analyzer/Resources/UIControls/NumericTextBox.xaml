@@ -22,7 +22,7 @@
                      Width="{TemplateBinding Width}" MinWidth="{TemplateBinding MinWidth}" MaxWidth="{TemplateBinding MaxWidth}" 
                      Height="{TemplateBinding Height}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxHeight}"
                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                     FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}"
+                     FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}"
                      Background="{TemplateBinding Background}"/>
         </ControlTemplate>
     </UserControl.Template>

@@ -16,7 +16,7 @@
     </Window.DataContext>
 
 
-    <Grid>
+    <Grid Background="{resources:Theme MainColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding ElementName=menu, Path=CollapsedWidth}"/>
             <ColumnDefinition/>
@@ -28,10 +28,20 @@
                             TopNavMenuItemSource="{Binding TopItemSource}" 
                             NavMenuDropdownIconSource="{Binding NavMenuDropdownIconSource}"
                             CollapsedWidth="45" 
-                            Background="Aqua"
                             Panel.ZIndex="500" 
                             HorizontalAlignment="Left" 
-                            Grid.ColumnSpan="2">
+                            Grid.ColumnSpan="2"
+                            Background="{resources:Theme NavMenuBackground}"
+                            NavMenuSelectedItemBackground="{resources:Theme NavMenuSelectedItemBackground}"
+                            NavMenuMouseInItemBackground="{resources:Theme NavMenuMouseInItemBackground}"
+                            NavMenuItemBackground="{resources:Theme NavMenuItemBackground}"
+                            ToggleButtonBackground="{resources:Theme NavMenuToggleButtonBackground}"
+                            ToggleButtonColor="{resources:Theme NavMenuToggleButtonColor}"
+                            NavMenuItemTextColor="{resources:Theme NavMenuItemTextColor}" 
+                            NavMenuSelectedItemTextColor="{resources:Theme NavMenuSelectedItemTextColor}"
+                            NavMenuMouseInItemTextColor="{resources:Theme NavMenuMouseInItemTextColor}"
+                            NavMenuItemTextFontFamily="{resources:Theme MainTextFontFamily}"
+                            NavMenuItemTextFontWeight="{resources:Theme MainTextFontWeight}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Clicked">
                     <i:InvokeCommandAction Command="{Binding NavMenuClicked}" CommandParameter="{Binding ElementName=menu, Path=LastClickedItem}"/>

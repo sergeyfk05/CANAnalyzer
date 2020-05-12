@@ -1,175 +1,331 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Themes>
-  <Cultures>
-    <Culture>dark</Culture>
-    <Culture>white</Culture>
-  </Cultures>
+	<Cultures>
+		<Culture>dark</Culture>
+		<Culture>white</Culture>
+	</Cultures>
 
-  <Recordings>
-    <Record name="NavMenuDropdownIcon">
-      <dark>Resources\Icons\1.png</dark>
-      <white>Resources\Icons\1.png</white>
-    </Record>
-    
-    <!--AppSettingsPage-->
-    <Record name="AppSettingsPageIcon">
-      <dark>Resources\Icons\1.png</dark>
-      <white>Resources\Icons\1.png</white>
-    </Record>
+	<Recordings>
+		<Record name="AppSettingsPageIcon">
+			<dark>Resources\Icons\1.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="NavMenuDropdownIcon">
+			<dark>Resources\Icons\1.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+
+		<Record name="MainColor">
+			<dark>#1E1E1E</dark>
+			<white></white>
+		</Record>
+		<Record name="MainTextColor">
+			<dark>#B9F1D6</dark>
+			<white></white>
+		</Record>
+		<Record name="MainTextFontFamily">
+			<dark>Arial</dark>
+			<white></white>
+		</Record>
+		<Record name="MainTextFontWeight">
+			<dark>Normal</dark>
+			<white></white>
+		</Record>
+		
+		
+		<Record name="NavMenuSelectedItemBackground">
+			<dark>#1E1E1E</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuMouseInItemBackground">
+			<dark>#252526</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuItemBackground">
+			<dark>#2D2D30</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuBackground">
+			<dark>#2D2D30</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuToggleButtonColor">
+			<dark>#0066CC</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuToggleButtonBackground">
+			<dark>#252526</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuItemTextColor">
+			<dark>#E5FFFF</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuSelectedItemTextColor">
+			<dark>#0066CC</dark>
+			<white></white>
+		</Record>
+		<Record name="NavMenuMouseInItemTextColor">
+			<dark>#0066CC</dark>
+			<white></white>
+		</Record>
+		
+		
+		<Record name="GroupBoxBorderBrush">
+			<dark>Red</dark>
+			<white></white>
+		</Record>
+		<Record name="GroupBoxBorderThickness">
+			<dark>1</dark>
+			<white></white>
+		</Record>
+		
+		
+		<Record name="ComboBoxBackgroundBrushPoint0">
+			<dark>#727272</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxBackgroundBrushPoint1">
+			<dark>#4c4c4c</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxPopUpBackgroundBrushPoint0">
+			<dark>#727272</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxPopUpBackgroundBrushPoint1">
+			<dark>#4c4c4c</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxBorderBrush">
+			<dark>#444</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxForeground">
+			<dark>#ddd</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxArrowBrush">
+			<dark>#ddd</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxDisabledBorderBrush">
+			<dark>#FF919191</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxDisabledBackgroundPoint0">
+			<dark>#f4f4f4</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxDisabledBackgroundPoint1">
+			<dark>#f4f4f4</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxDisabledBackgroundPoint2">
+			<dark>#c2c2c2</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxDisabledForeground">
+			<dark>#aaaaaa</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverBorderBrush">
+			<dark>#aaa</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverBackgroundPoint0">
+			<dark>#da5e69</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverBackgroundPoint1">
+			<dark>#d12e27</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverToggleBackgroundPoint0">
+			<dark>#676767</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverToggleBackgroundPoint1">
+			<dark>#474747</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverItemComboBoxPoint0">
+			<dark>#999</dark>
+			<white></white>
+		</Record>
+		<Record name="ComboBoxHoverItemComboBoxPoint1">
+			<dark>#666</dark>
+			<white></white>
+		</Record>
+		
+		
+		<Record name="ScrollBarNormalBrush">
+			<dark>#ccc</dark>
+			<white></white>
+		</Record>
+		<Record name="ScrollBarHoverBrush">
+			<dark>#eee</dark>
+			<white></white>
+		</Record>
+		<Record name="ScrollBarDisabledBrush">
+			<dark>#aaa</dark>
+			<white></white>
+		</Record>
 
 
 
-    <!--TransmitPage-->
-    <!--IconButtons-->
-    <Record name="TransmitPageIconButtonBackgroundStartBrush">
-      <dark>Black</dark>
-      <white>Black</white>
-    </Record>
-    <Record name="TransmitPageIconButtonBackgroundStopBrush">
-      <dark>White</dark>
-      <white>White</white>
-    </Record>
-    <Record name="TransmitPageIconButtonMouseEnterBackgroundStartBrush">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
-    <Record name="TransmitPageIconButtonMouseEnterBackgroundStopBrush">
-      <dark>Blue</dark>
-      <white>Blue</white>
-    </Record>
-    <Record name="TransmitPageIconButtonDisabledBackgroundStartBrush">
-      <dark>Purple</dark>
-      <white>Purple</white>
-    </Record>
-    <Record name="TransmitPageIconButtonDisabledBackgroundStopBrush">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
-    <Record name="TransmitPageIconButtonBorderThickness">
-      <dark>2</dark>
-      <white>2</white>
-    </Record>
-    <Record name="TransmitPageIconButtonCornerRaduis">
-      <dark>2</dark>
-      <white>2</white>
-    </Record>
-    <Record name="TransmitPageIconButtonBorderStartBrush">
-      <dark>Blue</dark>
-      <white>Blue</white>
-    </Record>
-    <Record name="TransmitPageIconButtonBorderStopBrush">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
+
+		<!--TransmitPage-->
+		<!--IconButtons-->
+		<Record name="TransmitPageIconButtonBackgroundStartBrush">
+			<dark>Black</dark>
+			<white>Black</white>
+		</Record>
+		<Record name="TransmitPageIconButtonBackgroundStopBrush">
+			<dark>White</dark>
+			<white>White</white>
+		</Record>
+		<Record name="TransmitPageIconButtonMouseEnterBackgroundStartBrush">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+		<Record name="TransmitPageIconButtonMouseEnterBackgroundStopBrush">
+			<dark>Blue</dark>
+			<white>Blue</white>
+		</Record>
+		<Record name="TransmitPageIconButtonDisabledBackgroundStartBrush">
+			<dark>Purple</dark>
+			<white>Purple</white>
+		</Record>
+		<Record name="TransmitPageIconButtonDisabledBackgroundStopBrush">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+		<Record name="TransmitPageIconButtonBorderThickness">
+			<dark>2</dark>
+			<white>2</white>
+		</Record>
+		<Record name="TransmitPageIconButtonCornerRaduis">
+			<dark>2</dark>
+			<white>2</white>
+		</Record>
+		<Record name="TransmitPageIconButtonBorderStartBrush">
+			<dark>Blue</dark>
+			<white>Blue</white>
+		</Record>
+		<Record name="TransmitPageIconButtonBorderStopBrush">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
 
 
 
-    <Record name="TransmitPageOpenButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPageSaveButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPageSaveAsButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPageClearButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPageStartButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPagePauseButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    <Record name="TransmitPageStopButtonIcon">
-      <dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
-      <white>/Can Analyzer;component/Resources/Icons/1.png</white>
-    </Record>
-    
-    
-    <!--TransmitTo control-->
-    <Record name="TransmitToControlToggleButtonFontSize">
-      <dark>13</dark>
-      <white>13</white>
-    </Record>
-    <Record name="TransmitToControlToggleButtonFontFamily">
-      <dark>Arial</dark>
-      <white>Arial</white>
-    </Record>
-    <Record name="TransmitToControlToggleButtonFontWeight">
-      <dark>Bold</dark>
-      <white>Bold</white>
-    </Record>
-    <Record name="TransmitToControlToggleButtonFontColor">
-      <dark>Black</dark>
-      <white>Black</white>
-    </Record>
-    <Record name="TransmitToControlFontSize">
-      <dark>13</dark>
-      <white>13</white>
-    </Record>
-    <Record name="TransmitToControlFontFamily">
-      <dark>Arial</dark>
-      <white>Arial</white>
-    </Record>
-    <Record name="TransmitToControlFontWeight">
-      <dark>Bold</dark>
-      <white>Bold</white>
-    </Record>
-    <Record name="TransmitToControlFontColor">
-      <dark>Black</dark>
-      <white>Black</white>
-    </Record>
-    <Record name="TransmitToControlItemBackgroundBrushStart">
-      <dark>Blue</dark>
-      <white>Blue</white>
-    </Record>
-    <Record name="TransmitToControlItemBackgroundBrushStop">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
-    <Record name="TransmitToControlBorderBrushStart">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
-    <Record name="TransmitToControlBorderBrushStop">
-      <dark>Blue</dark>
-      <white>Blue</white>
-    </Record>
-    
-    
-    <!--RecievedChannelPage-->
-    <Record name="RecievedChannelPageIcon">
-      <dark>Resources\Icons\1.png</dark>
-      <white>Resources\Icons\1.png</white>
-    </Record>
-    
-    <!--MonitorChannelPage-->
-    <Record name="MonitorChannelPageIcon">
-      <dark>Resources\Icons\1.png</dark>
-      <white>Resources\Icons\1.png</white>
-    </Record>
-    <Record name="MonitorChannelPagePaylodNotChangedTextForeground">
-      <dark>Black</dark>
-      <white>Black</white>
-    </Record>
-    <Record name="MonitorChannelPagePaylodChangedTextForeground">
-      <dark>Red</dark>
-      <white>Red</white>
-    </Record>
+		<Record name="TransmitPageOpenButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPageSaveButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPageSaveAsButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPageClearButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPageStartButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPagePauseButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="TransmitPageStopButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/1.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
 
-    <!--CanHacker Device-->
-    <Record name="CanHackerChannelIcon">
-      <dark>Resources\Icons\1.png</dark>
-      <white>Resources\Icons\1.png</white>
-    </Record>
 
-  </Recordings>
+		<!--TransmitTo control-->
+		<Record name="TransmitToControlToggleButtonFontSize">
+			<dark>13</dark>
+			<white>13</white>
+		</Record>
+		<Record name="TransmitToControlToggleButtonFontFamily">
+			<dark>Arial</dark>
+			<white>Arial</white>
+		</Record>
+		<Record name="TransmitToControlToggleButtonFontWeight">
+			<dark>Bold</dark>
+			<white>Bold</white>
+		</Record>
+		<Record name="TransmitToControlToggleButtonFontColor">
+			<dark>Black</dark>
+			<white>Black</white>
+		</Record>
+		<Record name="TransmitToControlFontSize">
+			<dark>13</dark>
+			<white>13</white>
+		</Record>
+		<Record name="TransmitToControlFontFamily">
+			<dark>Arial</dark>
+			<white>Arial</white>
+		</Record>
+		<Record name="TransmitToControlFontWeight">
+			<dark>Bold</dark>
+			<white>Bold</white>
+		</Record>
+		<Record name="TransmitToControlFontColor">
+			<dark>Black</dark>
+			<white>Black</white>
+		</Record>
+		<Record name="TransmitToControlItemBackgroundBrushStart">
+			<dark>Blue</dark>
+			<white>Blue</white>
+		</Record>
+		<Record name="TransmitToControlItemBackgroundBrushStop">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+		<Record name="TransmitToControlBorderBrushStart">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+		<Record name="TransmitToControlBorderBrushStop">
+			<dark>Blue</dark>
+			<white>Blue</white>
+		</Record>
+
+
+		<!--RecievedChannelPage-->
+		<Record name="RecievedChannelPageIcon">
+			<dark>Resources\Icons\1.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+
+		<!--MonitorChannelPage-->
+		<Record name="MonitorChannelPageIcon">
+			<dark>Resources\Icons\1.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="MonitorChannelPagePaylodNotChangedTextForeground">
+			<dark>Black</dark>
+			<white>Black</white>
+		</Record>
+		<Record name="MonitorChannelPagePaylodChangedTextForeground">
+			<dark>Red</dark>
+			<white>Red</white>
+		</Record>
+
+		<!--CanHacker Device-->
+		<Record name="CanHackerChannelIcon">
+			<dark>Resources\Icons\1.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+
+	</Recordings>
 </Themes>
