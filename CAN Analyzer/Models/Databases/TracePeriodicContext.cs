@@ -27,7 +27,10 @@ namespace CANAnalyzer.Models.Databases
         private string _path;
         public DbSet<TracePeriodicModel> TransmitModels { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={_path}");
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite($"Data Source={_path}");
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

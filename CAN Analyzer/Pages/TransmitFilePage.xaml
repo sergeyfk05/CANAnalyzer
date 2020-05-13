@@ -275,7 +275,7 @@
             <fa:ImageAwesome Icon="Cog" 
                              Spin="True" 
                              SpinDuration="2" 
-                             Foreground="Red" 
+                             Foreground="{resources:Theme LoadingCogColor}" 
                              Height="48" 
                              Width="48" 
                              VerticalAlignment="Center" 

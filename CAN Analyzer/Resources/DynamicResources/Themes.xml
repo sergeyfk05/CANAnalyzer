@@ -172,6 +172,11 @@
 			<white></white>
 		</Record>
 
+		<Record name="LoadingCogColor">
+			<dark>#FF1885A1</dark>
+			<white></white>
+		</Record>
+
 
 		<Record name="GroupBoxBorderBrush">
 			<dark>#E5FFFF</dark>

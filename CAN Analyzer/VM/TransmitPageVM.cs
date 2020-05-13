@@ -256,6 +256,7 @@ namespace CANAnalyzer.VM
                 if (openFileDialog.FileName == CurrentTraceProvider?.TargetFile)
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#FileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    IsEnabled = true;
                     return;
                 }
 

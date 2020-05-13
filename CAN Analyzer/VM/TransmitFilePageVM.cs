@@ -186,6 +186,7 @@ namespace CANAnalyzer.VM
                 if (openFileDialog.FileName == currentTraceProvider?.TargetFile)
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#FileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    FileIsOpened = prevStatus;
                     return;
                 }
 
@@ -210,8 +211,11 @@ namespace CANAnalyzer.VM
                             currentTraceProvider = el;
                             UpdateDataAndFiltersCommand.Execute();
                         }
-                        catch (Exception e)
-                        { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
+                        catch (Exception e)                        
+                        { 
+                            MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                            FileIsOpened = FileState.Closed;
+                        }
 
                         break;
                     }

@@ -53,7 +53,9 @@ namespace CANAnalyzer.Models.DataTypesProviders
 
         private void TargetFileChanged()
         {
+
             context = new TracePeriodicContext(TargetFile);
+            var b = context.TransmitModels.Count();
         }
 
         public void CloseConnection()
@@ -95,7 +97,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
             if (File.Exists(path))
                 File.Delete(path);
 
-            
+
             //SqliteConnection.create(path);
 
             using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
@@ -129,7 +131,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
                 File.Delete(path);
 
             //SQLiteConnection.CreateFile(path);
-            
+
             using (SqliteConnection dbConnection = new SqliteConnection($"Data Source={path}"))
             {
                 dbConnection.Open();
