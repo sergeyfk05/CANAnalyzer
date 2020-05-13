@@ -76,19 +76,18 @@
         </Border>
 
         
-        <DataGrid extensions:DataGridHelpers.UseCustomSort="True"
-                Grid.Row="1"
+        <DataGrid Grid.Row="1"
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserSortColumns="True" CanUserResizeRows="False"  CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="True" extensions:DataGridHelpers.CustomSorterType="{x:Type comparers:CanIdComparer}"
+                <DataGridTextColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="True" SortMemberPath="CanId"
                              Binding="{Binding CanId, StringFormat='X3',Mode=OneWay}"/>
                 <DataGridCheckBoxColumn Header="{resources:Language #TraceDataExtIdColumnName}" IsReadOnly="True"
                              Binding="{Binding IsExtId ,Mode=OneWay}"/>
                 <DataGridTextColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="True"
                              Binding="{Binding DLC ,Mode=OneWay}"/>
-                <DataGridTextColumn Header="{resources:Language #TraceDataPeriodColumnName}" IsReadOnly="True" CanUserSort="False"
-                                    Binding="{Binding Path=Period, Converter={StaticResource MillisecondsToHumanFriendlyStringConverter}}"/>
+                <DataGridTextColumn Header="{resources:Language #TraceDataPeriodColumnName}" IsReadOnly="True" CanUserSort="True"
+                                    Binding="{Binding Path=Period, Converter={StaticResource MillisecondsToHumanFriendlyStringConverter}}" SortMemberPath="Period"/>
 
                 <DataGridTemplateColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="True" CanUserSort="False">
                     <DataGridTemplateColumn.CellTemplate>

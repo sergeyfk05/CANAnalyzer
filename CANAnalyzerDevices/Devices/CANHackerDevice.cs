@@ -51,7 +51,7 @@ namespace CANAnalyzerDevices.Devices
         {
             get { return _channels; }
         }
-        private List<IChannel> _channels;
+        protected List<IChannel> _channels;
 
         public int ChannelCount => _channels.Count;
 

@@ -12,6 +12,7 @@
              xmlns:controls="clr-namespace:CANAnalyzer.Resources.UIControls"
              xmlns:viewData="clr-namespace:CANAnalyzer.Models.ViewData"
              xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
+             xmlns:comparers="clr-namespace:CANAnalyzer.Models.Extensions.Comparers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -170,6 +171,7 @@
 
 
             <DataGrid ItemsSource="{Binding Data}"
+                      extensions:DataGridHelpers.UseCustomSort="True"
             Grid.Row="1" 
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch"
@@ -184,8 +186,7 @@
                 </i:Interaction.Triggers>
 
                 <DataGrid.Columns>
-
-                    <DataGridTemplateColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataCanIdColumnName}" IsReadOnly="False" SortMemberPath="Model.CanId">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.CanId, StringFormat='X3',UpdateSourceTrigger=PropertyChanged}"/>
@@ -215,7 +216,7 @@
                     <DataGridCheckBoxColumn Header="{resources:Language #TraceDataExtIdColumnName}" IsReadOnly="False"
                              Binding="{Binding Model.IsExtId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-                    <DataGridTemplateColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataDLCColumnName}" IsReadOnly="False" SortMemberPath="Model.DLC">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.DLC, UpdateSourceTrigger=PropertyChanged}"/>
@@ -229,7 +230,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{resources:Language #TraceDataStatusColumnName}" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataStatusColumnName}" IsReadOnly="True" SortMemberPath="IsTrasmiting">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -250,7 +251,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPayloadColumnName}" IsReadOnly="False" extensions:DataGridHelpers.CustomSorterType="{x:Type comparers:CanPayloadCollectrionConverter}" SortMemberPath="Model.Payload">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Model.Payload, Converter={StaticResource BiteArrayToHexStringConverter}, UpdateSourceTrigger=PropertyChanged}"/>
@@ -264,7 +265,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPeriodColumnName}" IsReadOnly="False">
+                    <DataGridTemplateColumn Header="{resources:Language #TraceDataPeriodColumnName}" IsReadOnly="False" SortMemberPath="Model.Period">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Model.Period}"/>
@@ -277,9 +278,11 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
+                    
                     <DataGridTextColumn Header="Count" IsReadOnly="True"
-                             Binding="{Binding Count}"/>
-                    <DataGridTextColumn Header="Comment" IsReadOnly="False"
+                             Binding="{Binding Count}" SortMemberPath="Count"/>
+                    
+                    <DataGridTextColumn Header="Comment" IsReadOnly="False" CanUserSort="False"
                              Binding="{Binding Model.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
 
