@@ -61,7 +61,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClosePageCommand}">
                         <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
+                       Source="{resources:Theme CloseShortcutButtonIcon}"/>
 
                         <Button.ToolTip>
                             <ToolTip Content="{resources:Language #BomberPageCloseButtonToolTip}"/>

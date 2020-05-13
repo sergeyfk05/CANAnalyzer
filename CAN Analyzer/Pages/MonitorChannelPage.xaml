@@ -42,7 +42,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding MonitorStartCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme MonitorPageRecieveStartButtonIcon}"/>
+                       Source="{resources:Theme RecieveStartShortcutButtonIcon}"/>
 
                     <Button.ToolTip>
                         <ToolTip Content="{resources:Language #MonitorPageRecieveStartButtonToolTip}"/>
@@ -53,7 +53,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding PauseRecievingCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme MonitorPagePauseuttonIcon}"/>
+                       Source="{resources:Theme RecievePauseShortcutButtonIcon}"/>
 
                     <Button.ToolTip>
                         <ToolTip Content="{resources:Language #MonitorPagePauseButtonToolTip}"/>
@@ -64,7 +64,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClearMonitorCommand}">
                     <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme MonitorPageClearButtonIcon}"/>
+                       Source="{resources:Theme ClearShortcutButtonIcon}"/>
 
                     <Button.ToolTip>
                         <ToolTip Content="{resources:Language #MonitorPageClearButtonToolTip}"/>

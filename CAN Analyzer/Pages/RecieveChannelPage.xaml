@@ -61,7 +61,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveAsFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                                   Source="{resources:Theme RecievePageSaveAsButtonIcon}"/>
+                                   Source="{resources:Theme SaveAsFileShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #RecievePageSaveAsButtonToolTip}"/>
@@ -75,7 +75,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding RecieveStartCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePageRecieveStartButtonIcon}"/>
+                       Source="{resources:Theme RecieveStartShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #RecievePageRecieveStartButtonToolTip}"/>
@@ -87,7 +87,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding PauseRecievingCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePagePauseuttonIcon}"/>
+                       Source="{resources:Theme RecievePauseShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #RecievePagePauseButtonToolTip}"/>
@@ -99,7 +99,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClearTraceCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme RecievePageClearButtonIcon}"/>
+                       Source="{resources:Theme ClearShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #RecievePageClearButtonToolTip}"/>
@@ -157,7 +157,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
-                <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}">
+                <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}" Background="{resources:Theme ListViewBackground}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">
                             <GridView.Columns>

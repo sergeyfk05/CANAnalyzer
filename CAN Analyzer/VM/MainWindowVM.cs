@@ -41,7 +41,7 @@ namespace CANAnalyzer.VM
 
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addBomberPageMenu",
-                "AddBomberPageeIcon",
+                "AddBomberPageIcon",
                 PageKind.Settings,
                 (data) => { AddUserPage(new BomberPage(), new BomberPageVM(), "#NavMenuBomberPage", "BomberPageIcon"); });
             PagesData.Add(buf);
@@ -49,7 +49,7 @@ namespace CANAnalyzer.VM
 
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addTransmitFilePageMenu",
-                "AddTransmitFilePageeIcon",
+                "AddTransmitFilePageIcon",
                 PageKind.Settings,
                 (data) => { AddUserPage(new TransmitFilePage(), new TransmitFilePageVM(), "#NavMenuTransmitFilePage", "TransmitFilePageIcon"); });
             PagesData.Add(buf);
@@ -57,7 +57,7 @@ namespace CANAnalyzer.VM
 
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addTransmitPageMenu",
-                "AddTransmitPageeIcon",
+                "AddTransmitPageIcon",
                 PageKind.Settings,
                 (data) => { AddUserPage(new TransmitPage(), new TransmitPageVM(), "#NavMenuTransmitPage", "TransmitPageIcon"); });
             PagesData.Add(buf);

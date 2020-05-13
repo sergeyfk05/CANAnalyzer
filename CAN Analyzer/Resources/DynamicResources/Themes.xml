@@ -7,20 +7,122 @@
 
 	<Recordings>
 		<Record name="AppSettingsPageIcon">
-			<dark>Resources\Icons\1.png</dark>
+			<dark>Resources\Icons\cogs.dark.png</dark>
 			<white>Resources\Icons\1.png</white>
 		</Record>
 		<Record name="NavMenuDropdownIcon">
-			<dark>Resources\Icons\1.png</dark>
+			<dark>Resources\Icons\caret-down.dark.png</dark>
 			<white>Resources\Icons\1.png</white>
 		</Record>
+		<Record name="AddBomberPageIcon">
+			<dark>Resources\Icons\bomb.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="AddTransmitFilePageIcon">
+			<dark>Resources\Icons\folder-open.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="AddTransmitPageIcon">
+			<dark>Resources\Icons\recycle1.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="RecievedChannelPageIcon">
+			<dark>Resources\Icons\clipboard.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="MonitorChannelPageIcon">
+			<dark>Resources\Icons\desktop.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>Resources\Icons\car.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>Resources\Icons\car.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>Resources\Icons\car.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="BomberPageIcon">
+			<dark>Resources\Icons\bomb1.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="TransmitFilePageIcon">
+			<dark>Resources\Icons\folder.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="TransmitPageIcon">
+			<dark>Resources\Icons\recycle.dark.png</dark>
+			<white>Resources\Icons\1.png</white>
+		</Record>
+		<Record name="CloseShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/times-circle.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="OpenFileShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/folder-open.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="SaveFileShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/save.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="SaveAsFileShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/upload.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="StartShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/play.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="PauseShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/pause.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="StopShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/stop.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="ClearShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/eraser.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="ShotShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/bolt.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="RecieveStartShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/eye.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="RecievePauseShortcutButtonIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/eye-slash.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+		<Record name="CanHackerChannelIcon">
+			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
+			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+		</Record>
+
+
 
 		<Record name="MainColor">
 			<dark>#1E1E1E</dark>
 			<white></white>
 		</Record>
 		<Record name="MainTextColor">
-			<dark>#B9F1D6</dark>
+			<dark>#E5FFFF</dark>
 			<white></white>
 		</Record>
 		<Record name="MainTextFontFamily">
@@ -31,8 +133,8 @@
 			<dark>Normal</dark>
 			<white></white>
 		</Record>
-		
-		
+
+
 		<Record name="NavMenuSelectedItemBackground">
 			<dark>#1E1E1E</dark>
 			<white></white>
@@ -50,7 +152,7 @@
 			<white></white>
 		</Record>
 		<Record name="NavMenuToggleButtonColor">
-			<dark>#0066CC</dark>
+			<dark>#FF1885A1</dark>
 			<white></white>
 		</Record>
 		<Record name="NavMenuToggleButtonBackground">
@@ -62,39 +164,39 @@
 			<white></white>
 		</Record>
 		<Record name="NavMenuSelectedItemTextColor">
-			<dark>#0066CC</dark>
+			<dark>#FF1885A1</dark>
 			<white></white>
 		</Record>
 		<Record name="NavMenuMouseInItemTextColor">
-			<dark>#0066CC</dark>
+			<dark>#FF1885A1</dark>
 			<white></white>
 		</Record>
-		
-		
+
+
 		<Record name="GroupBoxBorderBrush">
-			<dark>Red</dark>
+			<dark>#E5FFFF</dark>
 			<white></white>
 		</Record>
 		<Record name="GroupBoxBorderThickness">
 			<dark>1</dark>
 			<white></white>
 		</Record>
-		
-		
+
+
 		<Record name="ComboBoxBackgroundBrushPoint0">
-			<dark>#727272</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxBackgroundBrushPoint1">
-			<dark>#4c4c4c</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxPopUpBackgroundBrushPoint0">
-			<dark>#727272</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxPopUpBackgroundBrushPoint1">
-			<dark>#4c4c4c</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxBorderBrush">
@@ -142,11 +244,11 @@
 			<white></white>
 		</Record>
 		<Record name="ComboBoxHoverToggleBackgroundPoint0">
-			<dark>#676767</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxHoverToggleBackgroundPoint1">
-			<dark>#474747</dark>
+			<dark>#3E3E40</dark>
 			<white></white>
 		</Record>
 		<Record name="ComboBoxHoverItemComboBoxPoint0">
@@ -157,8 +259,8 @@
 			<dark>#666</dark>
 			<white></white>
 		</Record>
-		
-		
+
+
 		<Record name="ScrollBarNormalBrush">
 			<dark>#ccc</dark>
 			<white></white>
@@ -186,51 +288,51 @@
 		<!--TransmitPage-->
 		<!--ShortcutButtons-->
 		<Record name="ShortcutButtonBackgroundStartBrush">
-			<dark>Black</dark>
+			<dark>#2D2D30</dark>
 			<white>Black</white>
 		</Record>
 		<Record name="ShortcutButtonBackgroundStopBrush">
-			<dark>White</dark>
+			<dark>#1E1E1E</dark>
 			<white>White</white>
 		</Record>
 		<Record name="ShortcutButtonMouseEnterBackgroundStartBrush">
-			<dark>Red</dark>
+			<dark>#3E3E40</dark>
 			<white>Red</white>
 		</Record>
 		<Record name="ShortcutButtonMouseEnterBackgroundStopBrush">
-			<dark>Blue</dark>
+			<dark>#3E3E40</dark>
 			<white>Blue</white>
 		</Record>
 		<Record name="ShortcutButtonDisabledBackgroundStartBrush">
-			<dark>Purple</dark>
+			<dark>Black</dark>
 			<white>Purple</white>
 		</Record>
 		<Record name="ShortcutButtonDisabledBackgroundStopBrush">
-			<dark>Red</dark>
+			<dark>Black</dark>
 			<white>Red</white>
 		</Record>
 		<Record name="ShortcutButtonBorderThickness">
-			<dark>2</dark>
-			<white>2</white>
+			<dark>1</dark>
+			<white>1</white>
 		</Record>
 		<Record name="ShortcutButtonCornerRaduis">
 			<dark>2</dark>
 			<white>2</white>
 		</Record>
 		<Record name="ShortcutButtonBorderStartBrush">
-			<dark>Blue</dark>
+			<dark>#3E3E40</dark>
 			<white>Blue</white>
 		</Record>
 		<Record name="ShortcutButtonBorderStopBrush">
-			<dark>Red</dark>
+			<dark>#3E3E40</dark>
 			<white>Red</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksBackground">
-			<dark>Aqua</dark>
-			<white>Aqua</white>
+			<dark>#2D2D30</dark>
+			<white>#2D2D30</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksDropShadowColor">
-			<dark>Red</dark>
+			<dark>#FF1885A1</dark>
 			<white>Red</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksDropShadowOpacity">
@@ -255,11 +357,11 @@
 		</Record>
 
 
-<!--DataGrid-->
+		<!--DataGrid-->
 		<Record name="DataGridRowColor">
 			<dark>#FFECECEC</dark>
 			<white>#FFECECEC</white>
-		</Record>		
+		</Record>
 		<Record name="DataGridRowHoverColor">
 			<dark>#FFFBFBFB</dark>
 			<white>#FFFBFBFB</white>
@@ -284,7 +386,7 @@
 			<dark>#FF1885A1</dark>
 			<white>#FF1885A1</white>
 		</Record>
-		
+
 		<Record name="DataGridHeaderTextColor">
 			<dark>#FFFFFFFF</dark>
 			<white>#FFFFFFFF</white>
@@ -315,6 +417,11 @@
 		</Record>
 		<Record name="DataGridCellIsKeyboardFocusWithinBorderColor">
 			<dark>#FFD8D8D8</dark>
+			<white>#FFD8D8D8</white>
+		</Record>
+
+		<Record name="ListViewBackground">
+			<dark>#ECECEC</dark>
 			<white>#FFD8D8D8</white>
 		</Record>
 

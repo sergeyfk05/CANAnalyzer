@@ -36,22 +36,25 @@
 
 
             <DockPanel Grid.Row="0" 
-                   Height="36"
+                   Height="{resources:Theme ShortcutButtonBlocksHeight}"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Stretch">
 
 
-                <Border Background="Aqua"
+                <Border
                     DockPanel.Dock="Left"
-                    Height="36"
-                    CornerRadius="4"
+                        Background="{resources:Theme ShortcutButtonBlocksBackground}"
+                    Height="{resources:Theme ShortcutButtonBlocksHeight}"
+                    CornerRadius="{resources:Theme ShortcutButtonBlocksCornerRadius}"
                     BorderThickness="0">
                     <Border.Effect>
-                        <DropShadowEffect Color="Red" Opacity="0.8" ShadowDepth="2"/>
+                        <DropShadowEffect Color="{resources:Theme ShortcutButtonBlocksDropShadowColor}" 
+                                      Opacity="{resources:Theme ShortcutButtonBlocksDropShadowOpacity}"
+                                      ShadowDepth="{resources:Theme ShortcutButtonBlocksDropShadowDepth}"/>
                     </Border.Effect>
 
                     <DockPanel DockPanel.Dock="Left"
-                           Height="30"
+                           Height="{resources:Theme ShortcutButtonBlocksHeight}"
                            VerticalAlignment="Center">
 
                         <Button x:Name="openButton"
@@ -60,7 +63,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding OpenFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageOpenButtonIcon}"/>
+                       Source="{resources:Theme OpenFileShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageOpenButtonToolTip}"/>
@@ -72,7 +75,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageSaveButtonIcon}"/>
+                       Source="{resources:Theme SaveFileShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageSaveButtonToolTip}"/>
@@ -84,7 +87,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding SaveAsFileCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                                   Source="{resources:Theme TransmitPageSaveAsButtonIcon}"/>
+                                   Source="{resources:Theme SaveAsFileShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageSaveAsButtonToolTip}"/>
@@ -95,7 +98,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClearDataCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                                   Source="{resources:Theme TransmitPageClearButtonIcon}"/>
+                                   Source="{resources:Theme ClearShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageClearButtonToolTip}"/>
@@ -110,7 +113,7 @@
                                 IsEnabled="{Binding FileIsOpened}"
                                 Command="{Binding StartTransmitingCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageStartButtonIcon}"/>
+                       Source="{resources:Theme StartShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageStartButtonToolTip}"/>
@@ -122,7 +125,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding StopTransmitingCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageStopButtonIcon}"/>
+                       Source="{resources:Theme StopShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageStopButtonToolTip}"/>
@@ -133,7 +136,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ShotCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageShotButtonIcon}"/>
+                       Source="{resources:Theme ShotShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageShotButtonToolTip}"/>
@@ -147,7 +150,7 @@
                                 Style="{DynamicResource ShortcutButtonStyle}"
                                 Command="{Binding ClosePageCommand}">
                             <Image Style="{DynamicResource ShortcutButtonImageStyle}" 
-                       Source="{resources:Theme TransmitPageCloseButtonIcon}"/>
+                       Source="{resources:Theme CloseShortcutButtonIcon}"/>
 
                             <Button.ToolTip>
                                 <ToolTip Content="{resources:Language #TransmitPageCloseButtonToolTip}"/>

@@ -8,6 +8,27 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\DynamicResources\Languages.xml" />
+    <None Remove="Resources\Icons\bolt.dark.png" />
+    <None Remove="Resources\Icons\bomb.dark.png" />
+    <None Remove="Resources\Icons\bomb1.dark.png" />
+    <None Remove="Resources\Icons\car.dark.png" />
+    <None Remove="Resources\Icons\caret-down.dark.png" />
+    <None Remove="Resources\Icons\clipboard.dark.png" />
+    <None Remove="Resources\Icons\cogs.dark.png" />
+    <None Remove="Resources\Icons\desktop.dark.png" />
+    <None Remove="Resources\Icons\eraser.dark.png" />
+    <None Remove="Resources\Icons\eye-slash.dark.png" />
+    <None Remove="Resources\Icons\eye.dark.png" />
+    <None Remove="Resources\Icons\folder-open.dark.png" />
+    <None Remove="Resources\Icons\folder.dark.png" />
+    <None Remove="Resources\Icons\pause.dark.png" />
+    <None Remove="Resources\Icons\play.dark.png" />
+    <None Remove="Resources\Icons\recycle.dark.png" />
+    <None Remove="Resources\Icons\recycle1.dark.png" />
+    <None Remove="Resources\Icons\save.dark.png" />
+    <None Remove="Resources\Icons\stop.dark.png" />
+    <None Remove="Resources\Icons\times-circle.dark.png" />
+    <None Remove="Resources\Icons\upload.dark.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Interactivity">
@@ -28,9 +49,72 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="Resources\Icons\bolt.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\bomb.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\bomb1.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\car.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\caret-down.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\clipboard.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\cogs.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\desktop.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\eraser.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\eye-slash.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\eye.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\folder-open.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\folder.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\pause.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\play.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\recycle.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\recycle1.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\save.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\stop.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\times-circle.dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\upload.dark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
