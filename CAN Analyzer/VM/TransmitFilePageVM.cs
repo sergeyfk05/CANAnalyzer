@@ -178,15 +178,17 @@ namespace CANAnalyzer.VM
             openFileDialog.Filter = GenerateFilterForDialog(traceProviders);
             openFileDialog.CheckFileExists = true;
             openFileDialog.Multiselect = false;
-
+            
+            
+            IsEnabled = false;
 
             if (openFileDialog.ShowDialog() == true)
             {
-
                 if (openFileDialog.FileName == currentTraceProvider?.TargetFile)
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#FileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     FileIsOpened = prevStatus;
+                    IsEnabled = true;
                     return;
                 }
 
@@ -201,7 +203,7 @@ namespace CANAnalyzer.VM
                 {
                     if (el.CanWorkWithIt(openFileDialog.FileName))
                     {
-                        IsEnabled = false;
+                        
                         findedProvider = true;
 
                         try
@@ -225,10 +227,13 @@ namespace CANAnalyzer.VM
                 if (!findedProvider)
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvalidFileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsEnabled = true;
                 }
+
             }
             else
             {
+                IsEnabled = true;
                 FileIsOpened = prevStatus;
             }
         }
