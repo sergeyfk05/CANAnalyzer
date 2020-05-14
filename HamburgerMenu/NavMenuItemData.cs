@@ -34,7 +34,7 @@ namespace HamburgerMenu
                     return;
 
                 _imageSource = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private Uri _imageSource;
@@ -48,7 +48,7 @@ namespace HamburgerMenu
                     return;
 
                 _text = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _text;
@@ -62,22 +62,16 @@ namespace HamburgerMenu
                     return;
 
                 _isSelected = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private bool _isSelected;
 
-
-        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add { _propertyChanged.Add(value); }
-            remove { _propertyChanged.Remove(value); }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
-            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
     }
