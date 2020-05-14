@@ -133,10 +133,15 @@ namespace CANAnalyzer.Models
             }
         }
         private int _currentIndex;
-        public event EventHandler CurrentIndexChanged;
+        FastSmartWeakEvent<EventHandler> _currentIndexChanged = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler CurrentIndexChanged
+        {
+            add { _currentIndexChanged.Add(value); }
+            remove { _currentIndexChanged.Remove(value); }
+        }
         private void RaiseCurrentIndexChanged()
         {
-            CurrentIndexChanged?.Invoke(this, new EventArgs());
+            _currentIndexChanged.Raise(this, new EventArgs());
         }
 
         private IEnumerator<TraceModel> _enumerator;
@@ -200,10 +205,15 @@ namespace CANAnalyzer.Models
 
         private System.Timers.Timer _timer;
 
-        public event EventHandler StatusChanged;
+        FastSmartWeakEvent<EventHandler> _statusChanged = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler StatusChanged
+        {
+            add { _statusChanged.Add(value); }
+            remove { _statusChanged.Remove(value); }
+        }
         private void RaiseStatusChanged()
         {
-            StatusChanged?.Invoke(this, new EventArgs());
+            _statusChanged.Raise(this, new EventArgs());
         }
 
         public void Dispose()

@@ -492,8 +492,6 @@ namespace CANAnalyzer.VM
             if(_items != null)
                 _items.CollectionChanged -= Items_CollectionChanged;
 
-            if(Channel != null)
-                Channel.ReceivedData -= Channel_ReceivedData;
 
             if (currentTraceProvider != null)
             {

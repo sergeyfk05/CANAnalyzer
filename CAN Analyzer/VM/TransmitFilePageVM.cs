@@ -648,28 +648,18 @@ namespace CANAnalyzer.VM
             }
         }
 
+
+
+        #endregion
+
         public void Dispose()
         {
-
-            if (Settings.Instance.Device != null)
-                Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
-
-
             TransmitToItems = null;
             currentTraceProvider?.Dispose();
-
-            if(_transmiter != null)
-            {
-                _transmiter.StatusChanged -= _transmiter_StatusChanged;
-                _transmiter.CurrentIndexChanged -= _transmiter_CurrentIndexChanged;
-                _transmiter.Dispose();
-            }
         }
         ~TransmitFilePageVM()
         {
             this.Dispose();
         }
-
-        #endregion
     }
 }

@@ -475,9 +475,6 @@ namespace CANAnalyzer.VM
         {
             TransmitToSelectedChannels = null;
 
-            if(Settings.Instance.Device != null)
-                Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
-
             if(_timer != null)
             {
                 _timer.Elapsed -= _timer_Elapsed;
