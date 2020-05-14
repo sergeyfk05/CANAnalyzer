@@ -32,7 +32,7 @@ namespace CANAnalyzer.VM
             PropertyChanged += RecieveState_PropertyChanged;
 
             //create ViewData for  transmitable channels
-            if(Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
+            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
             {
                 foreach (var el in Settings.Instance.Device.Channels)
                 {
@@ -72,9 +72,9 @@ namespace CANAnalyzer.VM
 
         private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
+            if ((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
             {
-                if(viewData.IsTransmit)
+                if (viewData.IsTransmit)
                 {
                     if (TransmitToSelectedChannels == null)
                         TransmitToSelectedChannels = viewData.Transmit;
@@ -94,7 +94,7 @@ namespace CANAnalyzer.VM
 
         private void RecieveState_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if((sender is RecieveChannelPageVM vm) && (e.PropertyName == "RecieveState"))
+            if ((sender is RecieveChannelPageVM vm) && (e.PropertyName == "RecieveState"))
             {
                 vm.SaveAsFileCommand.RaiseCanExecuteChanged();
                 vm.RecieveStartCommand.RaiseCanExecuteChanged();
@@ -200,7 +200,7 @@ namespace CANAnalyzer.VM
             }
 
             //если появился новый CAN ID
-            if(filtersCount == 0)
+            if (filtersCount == 0)
             {
                 CanIdTraceFilter filter = new CanIdTraceFilter(e.Data.CanId, e.Data.IsExtId);
                 filter.PropertyChanged += FilterIsActive_PropertyChanged;
@@ -331,7 +331,7 @@ namespace CANAnalyzer.VM
                 if (value == _items)
                     return;
 
-                if(_items != null)
+                if (_items != null)
                     _items.CollectionChanged -= Items_CollectionChanged;
 
                 _items = value;
@@ -486,22 +486,25 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-            if (TransmitToItems != null)
-                foreach (var el in TransmitToItems)
-                {
-                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-                }
+            foreach (var el in TransmitToItems)
+            {
+                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+            }
 
-            if (Filters != null)
-                foreach (var el in Filters)
-                {
-                    el.PropertyChanged -= FilterIsActive_PropertyChanged;
-                }
+
+            foreach (var el in Filters)
+            {
+                el.PropertyChanged -= FilterIsActive_PropertyChanged;
+            }
 
             TransmitToSelectedChannels = null;
-            _items.CollectionChanged -= Items_CollectionChanged;
+            
+            if(_items != null)
+                _items.CollectionChanged -= Items_CollectionChanged;
 
-            Channel.ReceivedData -= Channel_ReceivedData;
+            if(Channel != null)
+                Channel.ReceivedData -= Channel_ReceivedData;
+
             PropertyChanged -= RecieveState_PropertyChanged;
             PropertyChanged -= Channel_PropertyChanged;
             if (currentTraceProvider != null)

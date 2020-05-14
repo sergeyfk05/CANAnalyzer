@@ -29,7 +29,7 @@ namespace HamburgerMenu
 
         private void Manager_Click(object sender, MouseButtonEventArgs e)
         {
-            if(IsDropdownable && CanUserDropdowning)
+            if (IsDropdownable && CanUserDropdowning)
                 IsDropdowned = !IsDropdowned;
         }
 
@@ -53,7 +53,7 @@ namespace HamburgerMenu
             dockPanel.MouseLeftButtonDown += manager.OnMouseLeftButtonDown;
             dockPanel.MouseLeftButtonUp += manager.OnMouseLeftButtonUp;
             manager.Click += Manager_Click;
-            manager.Click += (object ss, MouseButtonEventArgs ee) => { RaiseClickedEvent(ItemData); };
+            manager.Click += RaiseClickedEventFromDockPanel;
 
             OnDropdownItemsSourceChanged(this, new DependencyPropertyChangedEventArgs());
             OnOffsetsChanged(this, new DependencyPropertyChangedEventArgs());
@@ -80,15 +80,16 @@ namespace HamburgerMenu
 
         ~NewNavMenuItem()
         {
-            if(dockPanel!=null)
-            {
-                dockPanel.MouseLeftButtonDown -= manager.OnMouseLeftButtonDown;
-                dockPanel.MouseLeftButtonUp -= manager.OnMouseLeftButtonUp;
-            }
             if (manager != null)
             {
+                if (dockPanel != null)
+                {
+                    dockPanel.MouseLeftButtonDown -= manager.OnMouseLeftButtonDown;
+                    dockPanel.MouseLeftButtonUp -= manager.OnMouseLeftButtonUp;
+                }
+
                 manager.Click -= Manager_Click;
-                manager.Click -= (object ss, MouseButtonEventArgs ee) => { RaiseClickedEvent(ItemData); };
+                manager.Click -= RaiseClickedEventFromDockPanel;
             }
         }
 
@@ -199,7 +200,7 @@ namespace HamburgerMenu
         {
             //используются анимации, тк свойства не работают после использованной анимации
 
-            if(dockPanel!=null)
+            if (dockPanel != null)
             {
                 BrushAnimation backgroundAnimation = new BrushAnimation
                 {
@@ -211,7 +212,7 @@ namespace HamburgerMenu
             }
 
 
-            if(textBlock != null)
+            if (textBlock != null)
             {
                 BrushAnimation textAnimation = new BrushAnimation
                 {
@@ -595,6 +596,10 @@ namespace HamburgerMenu
         private void RaiseClickedEvent(NavMenuItemData item)
         {
             RaiseEvent(new ClickedEventArgs(ClickedEvent, item));
+        }
+        private void RaiseClickedEventFromDockPanel(object ss, MouseButtonEventArgs ee)
+        {
+            RaiseClickedEvent(ItemData);
         }
 
 

@@ -473,20 +473,27 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-            if (TransmitToItems != null)
-                foreach (var el in TransmitToItems)
-                {
-                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-                }
+
+            foreach (var el in TransmitToItems)
+            {
+                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+            }
 
             TransmitToSelectedChannels = null;
-            Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
+
+            if(Settings.Instance.Device != null)
+                Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
+
             PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
             PropertyChanged -= DLC_PropertyChanged;
             PropertyChanged -= Status_PropertyChanged;
             Settings.Instance.PropertyChanged -= Device_PropertyChanged;
-            _timer.Elapsed -= _timer_Elapsed;
-            _timer?.Dispose();
+
+            if(_timer != null)
+            {
+                _timer.Elapsed -= _timer_Elapsed;
+                _timer.Dispose();
+            }
         }
         ~BomberPageVM()
         {

@@ -227,12 +227,21 @@ namespace CANAnalyzer.Models.ViewData
 
         public void Dispose()
         {
-            _timer.Elapsed -= _timer_Elapsed;
+            
             PropertyChanged -= Model_PropertyChanged;
-            Model.PropertyChanged -= DLC_PropertyChanged;
-            Model.PropertyChanged -= IsExtId_PropertyChanged;
-            Model.PropertyChanged -= Period_PropertyChanged;
-            _timer?.Dispose();
+            if(Model != null)
+            {
+                Model.PropertyChanged -= DLC_PropertyChanged;
+                Model.PropertyChanged -= IsExtId_PropertyChanged;
+                Model.PropertyChanged -= Period_PropertyChanged;
+            }
+
+
+            if(_timer != null)
+            {
+                _timer.Elapsed -= _timer_Elapsed;
+                _timer.Dispose();
+            }
         }
         ~TracePeriodicViewData()
         {

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -18,7 +22,7 @@ namespace CANAnalyzer.Models.Extensions.Comparers
             if (x != null && y == null)
                 return 1;
 
-            if (x.Length > y.Length)
+            if (x.Length > y.Length) //-V3125
                 return 1;
 
             if (x.Length < y.Length)

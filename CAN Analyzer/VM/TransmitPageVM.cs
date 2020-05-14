@@ -564,7 +564,7 @@ namespace CANAnalyzer.VM
         }
         private void StopTransmitingAll()
         {
-            foreach(var el in Data)
+            foreach (var el in Data)
             {
                 el.StopTransmiting();
             }
@@ -572,11 +572,11 @@ namespace CANAnalyzer.VM
 
         ~TransmitPageVM()
         {
-            if (TransmitToItems != null)
-                foreach (var el in TransmitToItems)
-                {
-                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-                }
+
+            foreach (var el in TransmitToItems)
+            {
+                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+            }
 
             PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
             PropertyChanged -= CurrentTraceProvider_PropertyChanged;

@@ -559,6 +559,8 @@ namespace CANAnalyzer.VM
 
 
                 vm.Closed -= delPageEventHandler;
+                if (vm is IDisposable d)
+                    d.Dispose();
             }
         }
 

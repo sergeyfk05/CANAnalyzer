@@ -149,7 +149,9 @@ namespace CANAnalyzer.Models.ViewData
 
         ~DeviceChannelViewData()
         {
-            this.Channel.IsOpenChanged -= OnChannel_IsOpenChanged;
+            if(Channel!=null)
+                Channel.IsOpenChanged -= OnChannel_IsOpenChanged;
+
             Manager<LanguageCultureInfo>.StaticInstance.CultureChanged -= Language_CultureChanged;
         }
     }

@@ -208,8 +208,11 @@ namespace CANAnalyzer.Models
 
         public void Dispose()
         {
-            _timer.Elapsed -= Timer_Elapsed;
-            _timer?.Dispose();
+            if(_timer != null)
+            {
+                _timer.Elapsed -= Timer_Elapsed;
+                _timer.Dispose();
+            }
         }
 
         ~TraceTransmiter()

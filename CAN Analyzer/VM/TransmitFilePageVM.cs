@@ -69,7 +69,7 @@ namespace CANAnalyzer.VM
                 if (value == _showedData)
                     return;
 
-                if(_showedData != null)
+                if (_showedData != null)
                     _showedData.CollectionChanged -= ShowedData_CollectionChanged;
 
                 _showedData = value;
@@ -211,8 +211,8 @@ namespace CANAnalyzer.VM
                             currentTraceProvider = el;
                             UpdateDataAndFiltersCommand.Execute();
                         }
-                        catch (Exception e)                        
-                        { 
+                        catch (Exception e)
+                        {
                             MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                             FileIsOpened = FileState.Closed;
                         }
@@ -232,7 +232,7 @@ namespace CANAnalyzer.VM
                 FileIsOpened = prevStatus;
             }
         }
-        
+
         private RelayCommandAsync _saveFileCommand;
         public RelayCommandAsync SaveFileCommand
         {
@@ -255,7 +255,7 @@ namespace CANAnalyzer.VM
             { MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error); }
             IsEnabled = true;
         }
-        
+
         private RelayCommandAsync _saveAsFileCommand;
         public RelayCommandAsync SaveAsFileCommand
         {
@@ -413,9 +413,9 @@ namespace CANAnalyzer.VM
             try
             {
                 var newFilters = new List<CanIdTraceFilter>();
-                foreach(var el in currentTraceProvider.CanHeaders.ToList())
+                foreach (var el in currentTraceProvider.CanHeaders.ToList())
                 {
-                    if(newFilters.Count(x=> x.CanId == el.CanId && x.IsExtId == el.IsExtId) == 0)
+                    if (newFilters.Count(x => x.CanId == el.CanId && x.IsExtId == el.IsExtId) == 0)
                     {
                         CanIdTraceFilter entity = new CanIdTraceFilter(el.CanId, el.IsExtId);
                         entity.PropertyChanged += FilterIsActive_PropertyChanged;
@@ -427,7 +427,7 @@ namespace CANAnalyzer.VM
                 UpdateDataCommand.Execute();
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -606,7 +606,7 @@ namespace CANAnalyzer.VM
                 return;
 
             //create ViewData for  transmitable channels
-            _context.Send((s) => 
+            _context.Send((s) =>
             {
                 TransmitToItems.Clear();
             }, null);
@@ -627,7 +627,7 @@ namespace CANAnalyzer.VM
         }
         private void Device_IsConnectedChanged(object sender, EventArgs e)
         {
-            if(Settings.Instance.Device == sender)
+            if (Settings.Instance.Device == sender)
             {
                 Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
             }
@@ -645,31 +645,37 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-            if (TransmitToItems != null)
-                foreach (var el in TransmitToItems)
-                {
-                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-                }
 
-            if (Filters != null)
-                foreach (var el in Filters)
-                {
-                    el.PropertyChanged -= FilterIsActive_PropertyChanged;
-                }
+            foreach (var el in TransmitToItems)
+            {
+                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+            }
 
+            foreach (var el in Filters)
+            {
+                el.PropertyChanged -= FilterIsActive_PropertyChanged;
+            }
 
-            Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
+            if (Settings.Instance.Device != null)
+                Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
+
             PropertyChanged -= OnSaveFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged -= OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged -= OnOpenFileCommandCanExecuteChanged_PropertyChanged;
             PropertyChanged -= ShowedData_PropertyChanged;
             PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
             Settings.Instance.PropertyChanged -= Device_PropertyChanged;
-            _transmiter.StatusChanged -= _transmiter_StatusChanged;
-            _transmiter.CurrentIndexChanged -= _transmiter_CurrentIndexChanged;
+
+
             TransmitToItems = null;
             currentTraceProvider?.Dispose();
-            _transmiter?.Dispose();
+
+            if(_transmiter != null)
+            {
+                _transmiter.StatusChanged -= _transmiter_StatusChanged;
+                _transmiter.CurrentIndexChanged -= _transmiter_CurrentIndexChanged;
+                _transmiter.Dispose();
+            }
         }
         ~TransmitFilePageVM()
         {

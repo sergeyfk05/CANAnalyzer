@@ -155,7 +155,9 @@ namespace CANAnalyzer.Models.ViewData
         ~ProxyChannelViewData()
         {
             PropertyChanged -= ProxyChannelViewData_PropertyChanged;
-            ChannelProxy.NameChanged -= ChProxy_NameChanged;
+
+            if(ChannelProxy != null)
+                ChannelProxy.NameChanged -= ChProxy_NameChanged;
         }
     }
 }
