@@ -26,7 +26,6 @@ namespace CANAnalyzer.VM
         {
             if(Channel != null)
                 Channel.ReceivedData -= Channel_ReceivedData;
-            PropertyChanged -= MonitorChannelPageVM_PropertyChanged;
         }
 
         private void MonitorChannelPageVM_PropertyChanged(object sender, PropertyChangedEventArgs e)

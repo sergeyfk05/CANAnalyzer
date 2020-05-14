@@ -145,17 +145,21 @@ namespace CANAnalyzer.Models.ViewData
         {
             return ChannelProxy.ToString();
         }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged([CallerMemberName]string prop = "")
+
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
+        }
+
+        protected void RaisePropertyChanged([CallerMemberName]string prop = "")
+        {
+            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
 
         ~ProxyChannelViewData()
         {
-            PropertyChanged -= ProxyChannelViewData_PropertyChanged;
-
             if(ChannelProxy != null)
                 ChannelProxy.NameChanged -= ChProxy_NameChanged;
         }

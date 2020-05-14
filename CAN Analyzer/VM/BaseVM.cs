@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzer.Models;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -11,23 +12,16 @@ namespace CANAnalyzer.VM
 {
     public abstract class BaseVM : INotifyPropertyChanged
     {
-        public event EventHandler<PropertyChangedEventArgs> WeakPropertyChangedEventArgs
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
         {
-            add
-            {
-                WeakEventManager<BaseVM, PropertyChangedEventArgs>.AddHandler(this, "PropertyChanged", value);
-            }
-            remove
-            {
-                WeakEventManager<BaseVM, PropertyChangedEventArgs>.RemoveHandler(this, "PropertyChanged", value);
-            }
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

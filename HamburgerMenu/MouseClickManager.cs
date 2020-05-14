@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using HamburgerMenu.Events;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -63,10 +64,15 @@ namespace HamburgerMenu
             }
         }
 
-        public event MouseButtonEventHandler Click;
+        FastSmartWeakEvent<MouseButtonEventHandler> _click = new FastSmartWeakEvent<MouseButtonEventHandler>();
+        public event MouseButtonEventHandler Click
+        {
+            add { _click.Add(value); }
+            remove { _click.Remove(value); }
+        }
         private void RaiseClick(MouseButtonEventArgs e, object sender = null)
         {
-            Click?.Invoke(sender, e);
+            _click.Raise(this, e);
         }
 
         private Stopwatch watch;

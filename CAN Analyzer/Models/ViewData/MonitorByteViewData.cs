@@ -47,10 +47,16 @@ namespace CANAnalyzer.Models.ViewData
         }
         private byte _data = 0;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
+        }
+
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

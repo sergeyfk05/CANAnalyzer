@@ -62,10 +62,15 @@ namespace CANAnalyzerDevices.Devices
             return $"CanHacker v2.0 : {port.PortName}";
         }
 
-        public event EventHandler IsConnectedChanged;
+        FastSmartWeakEvent<EventHandler> _isConnectedChanged = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler IsConnectedChanged
+        {
+            add { _isConnectedChanged.Add(value); }
+            remove { _isConnectedChanged.Remove(value); }
+        }
         private void OnIsConnectedChanged()
         {
-            IsConnectedChanged?.Invoke(this, null);
+            _isConnectedChanged.Raise(this, EventArgs.Empty);
         }
 
         private SerialPort port;

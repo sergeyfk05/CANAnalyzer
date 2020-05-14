@@ -272,10 +272,15 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         /// <summary>
         /// Indicates that data has been received through a port represented by the CANAnalyzerDevices.Devices.DeviceChannels.IChannel object.
         /// </summary>
-        public event ChannelDataReceivedEventHandler ReceivedData;
+        FastSmartWeakEvent<ChannelDataReceivedEventHandler> _receivedData = new FastSmartWeakEvent<ChannelDataReceivedEventHandler>();
+        public event ChannelDataReceivedEventHandler ReceivedData
+        {
+            add { _receivedData.Add(value); }
+            remove { _receivedData.Remove(value); }
+        }
         private void OnReceivedData(ReceivedData data)
         {
-            ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
+            _receivedData.Raise(this, new ChannelDataReceivedEventArgs(data));
         }
 
         /// <summary>
@@ -310,10 +315,15 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         /// </summary>
         public IDevice Owner { get; private set; }
 
-        public event EventHandler IsOpenChanged;
+        FastSmartWeakEvent<EventHandler> _isOpenChanged = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler IsOpenChanged
+        {
+            add { _isOpenChanged.Add(value); }
+            remove { _isOpenChanged.Remove(value); }
+        }
         private void OnIsOpenChanged()
         {
-            IsOpenChanged?.Invoke(this, null);
+            _isOpenChanged.Raise(this, EventArgs.Empty);
         }
 
 

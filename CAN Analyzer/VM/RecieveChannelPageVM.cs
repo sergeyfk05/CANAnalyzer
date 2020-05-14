@@ -486,16 +486,6 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-            foreach (var el in TransmitToItems)
-            {
-                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-            }
-
-
-            foreach (var el in Filters)
-            {
-                el.PropertyChanged -= FilterIsActive_PropertyChanged;
-            }
 
             TransmitToSelectedChannels = null;
             
@@ -505,8 +495,6 @@ namespace CANAnalyzer.VM
             if(Channel != null)
                 Channel.ReceivedData -= Channel_ReceivedData;
 
-            PropertyChanged -= RecieveState_PropertyChanged;
-            PropertyChanged -= Channel_PropertyChanged;
             if (currentTraceProvider != null)
             {
                 currentTraceProvider.CloseConnection();

@@ -15,11 +15,15 @@ namespace DynamicResource
 
         public abstract Manager InstanceStock { get; }
 
-        public event EventHandler CultureChanged = (sender, e) => { };
-
+        FastSmartWeakEvent<EventHandler> _cultureChanged = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler CultureChanged
+        {
+            add { _cultureChanged.Add(value); }
+            remove { _cultureChanged.Remove(value); }
+        }
         protected void OnCultureChanged()
         {
-            CultureChanged(this, EventArgs.Empty);
+            _cultureChanged.Raise(this, EventArgs.Empty);
         }
 
     }

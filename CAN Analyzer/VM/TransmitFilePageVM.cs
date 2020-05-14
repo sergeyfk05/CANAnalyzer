@@ -651,25 +651,8 @@ namespace CANAnalyzer.VM
         public void Dispose()
         {
 
-            foreach (var el in TransmitToItems)
-            {
-                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-            }
-
-            foreach (var el in Filters)
-            {
-                el.PropertyChanged -= FilterIsActive_PropertyChanged;
-            }
-
             if (Settings.Instance.Device != null)
                 Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
-
-            PropertyChanged -= OnSaveFileCommandCanExecuteChanged_PropertyChanged;
-            PropertyChanged -= OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
-            PropertyChanged -= OnOpenFileCommandCanExecuteChanged_PropertyChanged;
-            PropertyChanged -= ShowedData_PropertyChanged;
-            PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
-            Settings.Instance.PropertyChanged -= Device_PropertyChanged;
 
 
             TransmitToItems = null;

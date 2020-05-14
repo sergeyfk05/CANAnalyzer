@@ -473,21 +473,10 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-
-            foreach (var el in TransmitToItems)
-            {
-                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-            }
-
             TransmitToSelectedChannels = null;
 
             if(Settings.Instance.Device != null)
                 Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
-
-            PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
-            PropertyChanged -= DLC_PropertyChanged;
-            PropertyChanged -= Status_PropertyChanged;
-            Settings.Instance.PropertyChanged -= Device_PropertyChanged;
 
             if(_timer != null)
             {

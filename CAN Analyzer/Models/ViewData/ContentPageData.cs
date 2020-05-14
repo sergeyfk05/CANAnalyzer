@@ -19,7 +19,7 @@ namespace CANAnalyzer.Models.ViewData
         Settings,
         UserPages
     }
-    public class ContentPageData : IDisposable
+    public class ContentPageData
     {
         private ContentPageData()
         {
@@ -91,18 +91,6 @@ namespace CANAnalyzer.Models.ViewData
         public UserControl Page { get; private set; }
 
         public Action<ContentPageData> ClickAction { get; private set; }
-
-
-        public void Dispose()
-        {
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged -= OnLanguageCultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged -= OnThemeCultureChanged;
-        }
-        ~ContentPageData()
-        {
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged -= OnLanguageCultureChanged;
-            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged -= OnThemeCultureChanged;
-        }
     }
 
     public static class ContentPageDataExtensions

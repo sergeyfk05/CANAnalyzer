@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzer.Models;
 using CANAnalyzer.Models.ChannelsProxy;
 using CANAnalyzer.Models.Extensions;
 using CANAnalyzerDevices.Devices;
@@ -138,12 +139,17 @@ namespace CANAnalyzer
         private ObservableCollection<IChannelProxy> _proxies;
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
+        }
         private void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _context.Post((s) => 
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+                _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
             }, null);
         }
 

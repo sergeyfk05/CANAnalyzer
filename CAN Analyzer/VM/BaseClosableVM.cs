@@ -4,27 +4,24 @@
 */
 using System;
 using System.Windows;
+using CANAnalyzer.Models;
 
 namespace CANAnalyzer.VM
 {
     public abstract class BaseClosableVM : BaseVM
     {
-        public event EventHandler<EventArgs> Closed { 
-            add 
-            {
-                WeakEventManager<BaseClosableVM, EventArgs>.AddHandler(this, "WeakedClosedEvent", value);
-            } 
-            remove 
-            {
-                WeakEventManager<BaseClosableVM, EventArgs>.RemoveHandler(this, "WeakedClosedEvent", value);
-            } 
+        FastSmartWeakEvent<EventHandler> _closed = new FastSmartWeakEvent<EventHandler>();
+        public event EventHandler Closed
+        {
+            add { _closed.Add(value); }
+            remove { _closed.Remove(value); }
         }
-        public event EventHandler WeakedClosedEvent;
+
 
 
         protected void RaiseClosedEvent()
         {
-            WeakedClosedEvent?.Invoke(this, null);
+            _closed.Raise(this, EventArgs.Empty);
         }
     }
 }

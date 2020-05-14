@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using HamburgerMenu.Events;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -67,10 +68,16 @@ namespace HamburgerMenu
         private bool _isSelected;
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
+        }
+
+        protected void RaisePropertyChanged([CallerMemberName]string prop = "")
+        {
+            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
 
     }

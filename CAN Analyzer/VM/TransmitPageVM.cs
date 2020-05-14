@@ -570,17 +570,5 @@ namespace CANAnalyzer.VM
             }
         }
 
-        ~TransmitPageVM()
-        {
-
-            foreach (var el in TransmitToItems)
-            {
-                el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
-            }
-
-            PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
-            PropertyChanged -= CurrentTraceProvider_PropertyChanged;
-            Settings.Instance.PropertyChanged -= Device_PropertyChanged;
-        }
     }
 }

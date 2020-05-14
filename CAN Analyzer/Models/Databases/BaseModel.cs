@@ -9,10 +9,16 @@ namespace CANAnalyzer.Models.Databases
 {
     public abstract class BaseModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
+        public event PropertyChangedEventHandler PropertyChanged
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            add { _propertyChanged.Add(value); }
+            remove { _propertyChanged.Remove(value); }
+        }
+
+        protected void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

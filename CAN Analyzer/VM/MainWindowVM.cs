@@ -478,9 +478,6 @@ namespace CANAnalyzer.VM
             }, null);
 
             PagesData.RemoveAll(x => x.Kind == PageKind.Channel);
-
-            foreach (var el in deletePageData)
-                el?.Dispose();
         }
 
         /// <summary>
@@ -497,9 +494,6 @@ namespace CANAnalyzer.VM
             }, null);
 
             PagesData.RemoveAll(x => x.Kind == PageKind.Proxy);
-
-            foreach (var el in deletePageData)
-                el?.Dispose();
         }
 
         /// <summary>
@@ -554,7 +548,6 @@ namespace CANAnalyzer.VM
                 if (a != null)
                 {
                     DelPageFromMenu(a);
-                    a.Dispose();
                 }
 
 
