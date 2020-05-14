@@ -331,6 +331,9 @@ namespace CANAnalyzer.VM
                 if (value == _items)
                     return;
 
+                if(_items != null)
+                    _items.CollectionChanged -= Items_CollectionChanged;
+
                 _items = value;
                 _items.CollectionChanged += Items_CollectionChanged;
                 RaisePropertyChanged();
@@ -483,6 +486,24 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
+            if (TransmitToItems != null)
+                foreach (var el in TransmitToItems)
+                {
+                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+                }
+
+            if (Filters != null)
+                foreach (var el in Filters)
+                {
+                    el.PropertyChanged -= FilterIsActive_PropertyChanged;
+                }
+
+            TransmitToSelectedChannels = null;
+            _items.CollectionChanged -= Items_CollectionChanged;
+
+            Channel.ReceivedData -= Channel_ReceivedData;
+            PropertyChanged -= RecieveState_PropertyChanged;
+            PropertyChanged -= Channel_PropertyChanged;
             if (currentTraceProvider != null)
             {
                 currentTraceProvider.CloseConnection();

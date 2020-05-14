@@ -645,6 +645,30 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
+            if (TransmitToItems != null)
+                foreach (var el in TransmitToItems)
+                {
+                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+                }
+
+            if (Filters != null)
+                foreach (var el in Filters)
+                {
+                    el.PropertyChanged -= FilterIsActive_PropertyChanged;
+                }
+
+
+            Settings.Instance.Device.IsConnectedChanged -= Device_IsConnectedChanged;
+            PropertyChanged -= OnSaveFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged -= OnSaveAsFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged -= OnOpenFileCommandCanExecuteChanged_PropertyChanged;
+            PropertyChanged -= ShowedData_PropertyChanged;
+            PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
+            Settings.Instance.PropertyChanged -= Device_PropertyChanged;
+            _transmiter.StatusChanged -= _transmiter_StatusChanged;
+            _transmiter.CurrentIndexChanged -= _transmiter_CurrentIndexChanged;
+            TransmitToItems = null;
+            currentTraceProvider?.Dispose();
             _transmiter?.Dispose();
         }
         ~TransmitFilePageVM()

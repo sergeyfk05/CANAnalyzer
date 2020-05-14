@@ -22,6 +22,11 @@ namespace CANAnalyzer.VM
             PropertyChanged += MonitorChannelPageVM_PropertyChanged;
             Status = RecieveState.Blocked;
         }
+        ~MonitorChannelPageVM()
+        {
+            Channel.ReceivedData -= Channel_ReceivedData;
+            PropertyChanged -= MonitorChannelPageVM_PropertyChanged;
+        }
 
         private void MonitorChannelPageVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

@@ -40,6 +40,9 @@ namespace CANAnalyzer.VM
                 if (_data == value)
                     return;
 
+                if (_data != null)
+                    _data.CollectionChanged -= Data_CollectionChanged;
+
                 _data = value;
 
                 if (_data != null)
@@ -565,6 +568,19 @@ namespace CANAnalyzer.VM
             {
                 el.StopTransmiting();
             }
+        }
+
+        ~TransmitPageVM()
+        {
+            if (TransmitToItems != null)
+                foreach (var el in TransmitToItems)
+                {
+                    el.PropertyChanged -= TransmitToViewDataIsTransmit_PropertyChanged;
+                }
+
+            PropertyChanged -= TransmitToSelectedChannels_PropertyChanged;
+            PropertyChanged -= CurrentTraceProvider_PropertyChanged;
+            Settings.Instance.PropertyChanged -= Device_PropertyChanged;
         }
     }
 }

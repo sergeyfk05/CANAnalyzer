@@ -486,5 +486,18 @@ namespace CANAnalyzer.VM
 
             return result;
         }
+
+        ~AppSettingPageVM()
+        {
+            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged -= OnLanguageCultureChanged;
+            Manager<ThemeCultureInfo>.StaticInstance.CultureChanged -= OnThemeCultureChanged;
+            PropertyChanged -= OnLanguageSelectorChanged;
+            PropertyChanged -= OnThemeSelectorChanged;
+
+            Settings.Instance.PropertyChanged -= OnDevicePropertyChanged;
+            Settings.Instance.Proxies.CollectionChanged -= OnProxiesAddCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged -= OnProxiesRemoveCollectionChanged;
+            Settings.Instance.Proxies.CollectionChanged -= OnProxiesResetCollectionChanged;
+        }
     }
 }

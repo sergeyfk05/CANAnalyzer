@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace CANAnalyzer
 {
-    public class Settings : INotifyPropertyChanged, IDisposable
+    public class Settings : INotifyPropertyChanged
     {
         public Settings()
         {
@@ -188,22 +188,5 @@ namespace CANAnalyzer
             _ = Task.Run(() => { File.WriteAllText(path, JsonSerializer.Serialize<Settings>(_settings)); });
         }
 
-        public void Dispose()
-        {
-            if (isDisposed)
-                return;
-
-            foreach (var el in Proxies)
-            {
-                try
-                {
-                    el?.Dispose();
-                }
-                catch { continue; }
-            }
-
-            isDisposed = true;
-        }
-        private bool isDisposed = false;
     }
 }

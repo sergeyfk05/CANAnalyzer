@@ -34,8 +34,6 @@ namespace CANAnalyzer
 
             Settings.SaveToJsonAsync(Settings.Instance.SettingsPath);
 
-
-            Settings.Instance.Dispose();
         }
     }
 }

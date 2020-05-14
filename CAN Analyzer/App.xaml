@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:CANAnalyzer"
              StartupUri="Pages/MainWindow.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CustomComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/DataGridStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

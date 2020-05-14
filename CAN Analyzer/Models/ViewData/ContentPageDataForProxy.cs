@@ -34,6 +34,11 @@ namespace CANAnalyzer.Models.ViewData
         private void _proxy_NameChanged(object sender, EventArgs e)
         {
             this.LocalizedKey = _proxy.Name;
+        } 
+        ~ContentPageDataForProxy()
+        {
+            if(_proxy != null)
+                _proxy.NameChanged -= _proxy_NameChanged;
         }
     }
 }

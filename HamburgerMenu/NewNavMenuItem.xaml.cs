@@ -49,7 +49,7 @@ namespace HamburgerMenu
                 dropdownMenu = ic;
 
 
-            MouseClickManager manager = new MouseClickManager(200);
+            manager = new MouseClickManager(200);
             dockPanel.MouseLeftButtonDown += manager.OnMouseLeftButtonDown;
             dockPanel.MouseLeftButtonUp += manager.OnMouseLeftButtonUp;
             manager.Click += Manager_Click;
@@ -72,11 +72,25 @@ namespace HamburgerMenu
             IsMyLoaded = true;
         }
 
+        MouseClickManager manager;
         public DockPanel dockPanel;
         public TextBlock textBlock;
         public Image dropdownIcon;
         public ItemsControl dropdownMenu;
 
+        ~NewNavMenuItem()
+        {
+            if(dockPanel!=null)
+            {
+                dockPanel.MouseLeftButtonDown -= manager.OnMouseLeftButtonDown;
+                dockPanel.MouseLeftButtonUp -= manager.OnMouseLeftButtonUp;
+            }
+            if (manager != null)
+            {
+                manager.Click -= Manager_Click;
+                manager.Click -= (object ss, MouseButtonEventArgs ee) => { RaiseClickedEvent(ItemData); };
+            }
+        }
 
         public void GenerateBackgroundAnimations()
         {

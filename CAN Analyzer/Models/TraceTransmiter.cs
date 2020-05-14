@@ -208,6 +208,7 @@ namespace CANAnalyzer.Models
 
         public void Dispose()
         {
+            _timer.Elapsed -= Timer_Elapsed;
             _timer?.Dispose();
         }
 

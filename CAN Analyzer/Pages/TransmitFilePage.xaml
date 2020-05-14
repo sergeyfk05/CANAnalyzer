@@ -12,14 +12,6 @@
              xmlns:local="clr-namespace:CANAnalyzer.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/TransmitToComboBoxStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
 
     <Grid>
 

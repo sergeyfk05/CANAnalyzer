@@ -151,5 +151,11 @@ namespace CANAnalyzer.Models.ViewData
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
+
+        ~ProxyChannelViewData()
+        {
+            PropertyChanged -= ProxyChannelViewData_PropertyChanged;
+            ChannelProxy.NameChanged -= ChProxy_NameChanged;
+        }
     }
 }

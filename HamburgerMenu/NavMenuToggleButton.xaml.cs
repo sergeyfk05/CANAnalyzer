@@ -14,13 +14,21 @@ namespace HamburgerMenu
     /// </summary>
     public partial class NavMenuToggleButton : UserControl
     {
+        MouseClickManager manager;
         public NavMenuToggleButton()
         {
             InitializeComponent();
-            MouseClickManager manager = new MouseClickManager(200);
+            manager = new MouseClickManager(200);
             this.MouseLeftButtonDown += manager.OnMouseLeftButtonDown;
             this.MouseLeftButtonUp += manager.OnMouseLeftButtonUp;
-            manager.Click += (object sender, MouseButtonEventArgs e) => { OnClicked(); };
+            manager.Click += OnClicked;
+        }
+
+        ~NavMenuToggleButton()
+        {
+            this.MouseLeftButtonDown -= manager.OnMouseLeftButtonDown;
+            this.MouseLeftButtonUp -= manager.OnMouseLeftButtonUp;
+            manager.Click -= OnClicked;
         }
 
         #region properties
@@ -109,6 +117,10 @@ namespace HamburgerMenu
         public void OnClicked()
         {
             RaiseEvent(new RoutedEventArgs(NavMenuToggleButton.ClickedEvent));
+        }
+        public void OnClicked(object sender, MouseButtonEventArgs e)
+        {
+            OnClicked();
         }
 
         #endregion

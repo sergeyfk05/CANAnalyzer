@@ -18,7 +18,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Resources/CommonStyles/CommonStyles.xaml"/>
+                
 
                 <ResourceDictionary>
                     <system:Double x:Key="StandartControlHeight">26</system:Double>

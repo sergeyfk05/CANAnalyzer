@@ -84,7 +84,7 @@ namespace CANAnalyzer.VM
             if (e.PropertyName != "TitleKey")
                 return;
 
-            if(string.IsNullOrEmpty(TitleKey))
+            if (string.IsNullOrEmpty(TitleKey))
                 Title = (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#appTitle");
             else
                 Title = $"{Manager<LanguageCultureInfo>.StaticInstance.GetResource("#appTitle")} - {Manager<LanguageCultureInfo>.StaticInstance.GetResource(TitleKey)}";
@@ -104,7 +104,7 @@ namespace CANAnalyzer.VM
             }
         }
         private string _title;
-        
+
         public string TitleKey
         {
             get { return _titleKey; }
@@ -146,7 +146,7 @@ namespace CANAnalyzer.VM
 
                 _topItemSource = value;
 
-                if(_topItemSource !=null)
+                if (_topItemSource != null)
                     _topItemSource.CollectionChanged += NavMenuDataChanged;
 
                 RaisePropertyChanged();
@@ -470,13 +470,17 @@ namespace CANAnalyzer.VM
         private void ClearChannels()
         {
             //clear channels
-            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Channel).Select(x => x.NavData);
+            var deletePageData = PagesData.Where(x => x.Kind == PageKind.Channel);
+            var deleteObjects = deletePageData.Select(x => x.NavData);
             _context.Send((s) =>
             {
                 TopItemSource.RemoveAll(x => deleteObjects.Contains(x));
             }, null);
 
             PagesData.RemoveAll(x => x.Kind == PageKind.Channel);
+
+            foreach (var el in deletePageData)
+                el?.Dispose();
         }
 
         /// <summary>
@@ -485,13 +489,17 @@ namespace CANAnalyzer.VM
         private void ClearProxies()
         {
             //clear proxies
-            var deleteObjects = PagesData.Where(x => x.Kind == PageKind.Proxy).Select(x => x.NavData);
+            var deletePageData = PagesData.Where(x => x.Kind == PageKind.Proxy);
+            var deleteObjects = deletePageData.Select(x => x.NavData);
             _context.Send((s) =>
             {
                 TopItemSource.RemoveAll(x => deleteObjects.Contains(x));
             }, null);
 
             PagesData.RemoveAll(x => x.Kind == PageKind.Proxy);
+
+            foreach (var el in deletePageData)
+                el?.Dispose();
         }
 
         /// <summary>
@@ -527,7 +535,8 @@ namespace CANAnalyzer.VM
                 page,
                 ChangePage);
 
-            vm.Closed += (object sender, EventArgs e) => { DelPageFromMenu(pageData); };
+            //vm.Closed += (object sender, EventArgs e) => { DelPageFromMenu(pageData); };
+            vm.Closed += delPageEventHandler;
 
             PagesData.Add(pageData);
             TopItemSource.Add(pageData.NavData);
@@ -536,6 +545,21 @@ namespace CANAnalyzer.VM
             MainContent = page;
             pageData.NavData.IsSelected = true;
             TitleKey = pageData.LocalizedKey;
+        }
+        private void delPageEventHandler(object sender, EventArgs e)
+        {
+            if (sender is BaseClosableVM vm)
+            {
+                var a = PagesData.FirstOrDefault(x => x.Page != null && x.Page.DataContext == sender);
+                if (a != null)
+                {
+                    DelPageFromMenu(a);
+                    a.Dispose();
+                }
+
+
+                vm.Closed -= delPageEventHandler;
+            }
         }
 
         /// <summary>
@@ -550,6 +574,7 @@ namespace CANAnalyzer.VM
             PagesData.Remove(page);
             TopItemSource.Remove(page.NavData);
             BottomItemSource.Remove(page.NavData);
+            GC.Collect();
             TitleKey = "";
         }
         private void ResetSelectedItems()
@@ -561,7 +586,7 @@ namespace CANAnalyzer.VM
         {
             double res = 0;
 
-            foreach(var el in TopItemSource)
+            foreach (var el in TopItemSource)
             {
                 res += CalcMinHeight(el, 30);
             }
@@ -588,7 +613,7 @@ namespace CANAnalyzer.VM
             if (!data.IsDropdownItem)
                 return result;
 
-            foreach(var el in data.DropdownItems)
+            foreach (var el in data.DropdownItems)
             {
                 result += CalcMinHeight(el, itemHeight);
             }
@@ -600,6 +625,5 @@ namespace CANAnalyzer.VM
 
         private List<ContentPageData> PagesData = new List<ContentPageData>();
         private SynchronizationContext _context = SynchronizationContext.Current;
-
     }
 }
