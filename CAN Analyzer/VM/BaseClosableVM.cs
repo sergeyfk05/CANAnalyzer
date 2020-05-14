@@ -3,15 +3,28 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using System;
+using System.Windows;
 
 namespace CANAnalyzer.VM
 {
     public abstract class BaseClosableVM : BaseVM
     {
-        public event EventHandler Closed;
+        public event EventHandler<EventArgs> Closed { 
+            add 
+            {
+                WeakEventManager<BaseClosableVM, EventArgs>.AddHandler(this, "WeakedClosedEvent", value);
+            } 
+            remove 
+            {
+                WeakEventManager<BaseClosableVM, EventArgs>.RemoveHandler(this, "WeakedClosedEvent", value);
+            } 
+        }
+        public event EventHandler WeakedClosedEvent;
+
+
         protected void RaiseClosedEvent()
         {
-            Closed?.Invoke(this, null);
+            WeakedClosedEvent?.Invoke(this, null);
         }
     }
 }
