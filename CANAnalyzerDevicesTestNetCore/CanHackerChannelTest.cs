@@ -6,7 +6,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 
-namespace CanAnalyzerDevicesTests
+namespace CanAnalyzerDevicesTestsNetCore
 {
     [TestClass]
     public class CanHackerChannelTest
