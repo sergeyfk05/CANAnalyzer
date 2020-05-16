@@ -199,6 +199,8 @@ namespace CANAnalyzer.VM
 
             if (MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ClosePageMsgBoxContent"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#QuestionMsgBoxTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
+                Status = TransmitState.Paused;
+                _timer.Stop();
                 RaiseClosedEvent();
             }
 
@@ -219,7 +221,8 @@ namespace CANAnalyzer.VM
         {
             for (int i = 0; i < Payload.Count; i++)
             {
-                Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] += Increment[i]; }));
+                if(Application.Current != null)
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] += Increment[i]; }));
             }
         }
 
@@ -238,7 +241,8 @@ namespace CANAnalyzer.VM
         {
             for (int i = 0; i < Payload.Count; i++)
             {
-                Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] -= Increment[i]; }));
+                if (Application.Current != null)
+                    Application.Current.Dispatcher.Invoke((Action)(() => { Payload[i] -= Increment[i]; }));
             }
         }
 
@@ -277,8 +281,8 @@ namespace CANAnalyzer.VM
                 return;
             }
 
+            Task.Run(() => { TransmitToSelectedChannels?.Invoke(data); });
 
-            TransmitToSelectedChannels?.BeginInvoke(data, null, null);
         }
 
         private RelayCommandAsync _runCommand;
