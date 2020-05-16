@@ -200,6 +200,14 @@ namespace CANAnalyzer.Resources.UIControls
                 if (tb.SelectionLength > 0)
                     tb.SelectionLength = 0;
 
+                if(Data.Count <= 0)
+                {
+                    if(tb.CaretIndex != 2)
+                        tb.CaretIndex = 2;
+
+                    return;
+                }
+
                 //check the caret position for the smallest logically possible
                 if (tb.CaretIndex < 2)
                     tb.CaretIndex = 2;

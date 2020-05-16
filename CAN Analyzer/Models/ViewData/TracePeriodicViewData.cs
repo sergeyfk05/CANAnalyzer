@@ -107,9 +107,6 @@ namespace CANAnalyzer.Models.ViewData
             if (e.PropertyName != "DLC")
                 return;
 
-            if (Model.DLC == 0)
-                return;
-
             if (!(sender is TracePeriodicModel model && model == this.Model))
                 return;
 

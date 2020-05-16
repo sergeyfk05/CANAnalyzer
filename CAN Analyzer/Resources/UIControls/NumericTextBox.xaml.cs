@@ -29,7 +29,7 @@ namespace CANAnalyzer.Resources.UIControls
             set { SetValue(NullStrValueProperty, value); }
         }
         public static readonly DependencyProperty NullStrValueProperty =
-            DependencyProperty.Register("NullStrValue", typeof(uint), typeof(NumericTextBox), new PropertyMetadata((uint)0));
+            DependencyProperty.Register("NullStrValue", typeof(uint), typeof(NumericTextBox), new PropertyMetadata((uint)8));
 
 
 

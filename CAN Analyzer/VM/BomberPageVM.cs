@@ -377,9 +377,6 @@ namespace CANAnalyzer.VM
             if (e.PropertyName != "DLC")
                 return;
 
-            if (DLC == 0)
-                return;
-
             if (Payload.Count >= (int)DLC)
             {
                 while (Payload.Count > (int)DLC)

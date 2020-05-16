@@ -148,18 +148,18 @@
 
             <StackPanel Orientation="Vertical" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Bottom">
                 <TextBlock Text="{resources:Language #BomberPageDLCFieldLabel}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
-                <controls:HexTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                <controls:NumericTextBox MaxValue="8" NullStrValue="8" Height="{StaticResource StandartControlHeight}" Value="{Binding DLC, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                      FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme TextBoxForeground}" Background="{resources:Theme TextBoxBackground}">
-                    <controls:HexTextBox.Style>
-                        <Style TargetType="controls:HexTextBox">
+                    <controls:NumericTextBox.Style>
+                        <Style TargetType="controls:NumericTextBox">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Status}" Value="{x:Static states:TransmitState.Transmiting}">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </controls:HexTextBox.Style>
-                </controls:HexTextBox>
+                    </controls:NumericTextBox.Style>
+                </controls:NumericTextBox>
             </StackPanel>
             
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom">
