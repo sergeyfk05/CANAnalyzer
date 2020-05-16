@@ -340,6 +340,7 @@ namespace CANAnalyzer.VM
 
             if (MessageBox.Show("are you want close the page?", "???", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                _transmiter.Stop();
                 RaiseClosedEvent();
                 currentTraceProvider?.CloseConnection();
             }

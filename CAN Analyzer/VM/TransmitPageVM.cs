@@ -127,6 +127,10 @@ namespace CANAnalyzer.VM
 
             if (MessageBox.Show("are you want close the page?", "???", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                foreach(var el in Data)
+                {
+                    el.StopTransmiting();
+                }
                 RaiseClosedEvent();
             }
 
