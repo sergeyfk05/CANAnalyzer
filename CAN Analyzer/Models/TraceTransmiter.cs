@@ -10,8 +10,18 @@ using System.Collections.Generic;
 
 namespace CANAnalyzer.Models
 {
+
+
+
     public class TraceTransmiter : IDisposable
     {
+        public enum TraceTransmiterStatus
+        {
+            Undefined,
+            Working,
+            Paused,
+            Reseted
+        };
         public TraceTransmiter(int timerAccuracy = 10)
         {
             _timeAccuracy = timerAccuracy;
@@ -74,13 +84,6 @@ namespace CANAnalyzer.Models
 
         public int ElapsedMilliseconds { get; private set; } = 0;
 
-        public enum TraceTransmiterStatus
-        {
-            Undefined,
-            Working,
-            Paused,
-            Reseted
-        };
         public TraceTransmiterStatus Status
         {
             get { return _status; }
@@ -95,6 +98,14 @@ namespace CANAnalyzer.Models
         }
         private TraceTransmiterStatus _status;
 
+        public void UpdateEnumerator()
+        {
+            if(Source != null)
+            {
+                _enumerator = Source.GetEnumerator();
+                SetCurrentItemIndex(0);
+            }
+        }
         public IEnumerable<TraceModel> Source
         {
             get { return _source; }

@@ -64,7 +64,7 @@
     </ControlTemplate>
 
     <!--Style and template for the DataGrid.-->
-    <Style TargetType="{x:Type DataGrid}">
+    <Style TargetType="{x:Type DataGrid}" x:Key="DataGrid">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="BorderBrush" Value="Transparent"/>

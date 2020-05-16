@@ -355,7 +355,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_startTraceCommand == null)
-                    _startTraceCommand = new RelayCommandAsync(this.StartTraceCommand_Execute, () => { return (_transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Paused) || (_transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Reseted) || (_transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Undefined); });
+                    _startTraceCommand = new RelayCommandAsync(this.StartTraceCommand_Execute, () => { return (_transmiter.Status == TraceTransmiterStatus.Paused) || (_transmiter.Status == TraceTransmiterStatus.Reseted) || (_transmiter.Status == TraceTransmiterStatus.Undefined); });
 
                 return _startTraceCommand;
             }
@@ -372,7 +372,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_pauseTraceCommand == null)
-                    _pauseTraceCommand = new RelayCommandAsync(this.PauseTraceCommand_Execute, () => { return _transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Working; });
+                    _pauseTraceCommand = new RelayCommandAsync(this.PauseTraceCommand_Execute, () => { return _transmiter.Status == TraceTransmiterStatus.Working; });
 
                 return _pauseTraceCommand;
             }
@@ -388,7 +388,7 @@ namespace CANAnalyzer.VM
             get
             {
                 if (_stopTraceCommand == null)
-                    _stopTraceCommand = new RelayCommandAsync(this.StopTraceCommand_Execute, () => { return (_transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Working) || (_transmiter.Status == TraceTransmiter.TraceTransmiterStatus.Paused); });
+                    _stopTraceCommand = new RelayCommandAsync(this.StopTraceCommand_Execute, () => { return (_transmiter.Status == TraceTransmiterStatus.Working) || (_transmiter.Status == TraceTransmiterStatus.Paused); });
 
                 return _stopTraceCommand;
             }
@@ -503,6 +503,7 @@ namespace CANAnalyzer.VM
                     try { currentTraceProvider.Remove(model); } catch { }
                 }
             }
+            _transmiter.UpdateEnumerator();
 
             IsEnabled = true;
 

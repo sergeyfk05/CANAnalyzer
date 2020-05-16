@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:resources="clr-namespace:CANAnalyzer.Resources.DynamicResources"
              xmlns:models="clr-namespace:CANAnalyzer.Models"
+             xmlns:statuses="clr-namespace:CANAnalyzer.Models.States"
              xmlns:vm="clr-namespace:CANAnalyzer.VM"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:extensions="clr-namespace:CANAnalyzer.Models.Extensions"
@@ -166,7 +167,7 @@
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 
                 SelectedIndex="{Binding SelectedItemIndex}" AutoGenerateColumns="False" CanUserResizeRows="False" 
-                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="True" CanUserSortColumns="False">
+                LoadingRow="DataGrid_LoadingRow" CanUserAddRows="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{resources:Language #TraceDataTimeColumnName}" IsReadOnly="True"
                              Binding="{Binding Time, StringFormat='0.000'}"/>
@@ -182,6 +183,20 @@
                              Binding="{Binding CanHeader.Comment, Mode=TwoWay}"/>
                 </DataGrid.Columns>
 
+                <DataGrid.Style>
+                    <Style TargetType="DataGrid" BasedOn="{StaticResource DataGrid}"> 
+                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
+                                <Setter Property="CanUserDeleteRows" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
+                                <Setter Property="CanUserDeleteRows" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Style>
+                
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
