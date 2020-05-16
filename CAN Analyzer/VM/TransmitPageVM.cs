@@ -403,6 +403,10 @@ namespace CANAnalyzer.VM
         }
         private void ClearDataCommand_Execute()
         {
+            foreach (var el in Data)
+            {
+                el.StopTransmiting();
+            }
             Data.Clear();
         }
 
@@ -555,7 +559,11 @@ namespace CANAnalyzer.VM
                     foreach (var el in e.OldItems)
                     {
                         if (el is TracePeriodicViewData viewData)
+                        {
+                            viewData.StopTransmiting();
                             CurrentTraceProvider?.Remove(viewData.Model);
+                        }
+
                     }
                 }
 
