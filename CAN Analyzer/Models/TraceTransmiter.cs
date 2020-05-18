@@ -204,7 +204,12 @@ namespace CANAnalyzer.Models
         {
             _timer.Stop();
             Status = TraceTransmiterStatus.Reseted;
-            SetCurrentItemIndex(0);
+            try
+            {
+                SetCurrentItemIndex(0);
+            }
+            catch { }
+
         }
         public void Pause()
         {
