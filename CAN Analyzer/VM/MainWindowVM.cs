@@ -554,6 +554,9 @@ namespace CANAnalyzer.VM
                 vm.Closed -= delPageEventHandler;
                 if (vm is IDisposable d)
                     d.Dispose();
+
+                var settingsData = PagesData.FirstOrDefault(x => x.Page is AppSettingsPage);
+                settingsData?.ClickAction?.Invoke(settingsData);
             }
         }
 

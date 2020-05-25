@@ -136,6 +136,18 @@
                         </Button>
 
                     </Grid>
+
+                    <GroupBox.Style>
+                        <Style TargetType="GroupBox" BasedOn="{StaticResource GroupBoxStyle}">
+                            <Setter Property="Grid.ColumnSpan" Value="1"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsConnected}" Value="False">
+                                    <Setter Property="Grid.ColumnSpan" Value="3"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </GroupBox.Style>
+                    
                 </GroupBox>
 
 

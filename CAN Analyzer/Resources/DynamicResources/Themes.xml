@@ -8,285 +8,265 @@
 	<Recordings>
 		<Record name="AppSettingsPageIcon">
 			<dark>Resources\Icons\cogs.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\cogs.white.png</white>
 		</Record>
 		<Record name="NavMenuDropdownIcon">
 			<dark>Resources\Icons\caret-down.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\caret-down.white.png</white>
 		</Record>
 		<Record name="AddBomberPageIcon">
 			<dark>Resources\Icons\bomb.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\bomb.white.png</white>
 		</Record>
 		<Record name="AddTransmitFilePageIcon">
 			<dark>Resources\Icons\folder-open.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\folder-open.white.png</white>
 		</Record>
 		<Record name="AddTransmitPageIcon">
 			<dark>Resources\Icons\recycle1.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\recycle1.white.png</white>
 		</Record>
 		<Record name="RecievedChannelPageIcon">
 			<dark>Resources\Icons\clipboard.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\clipboard.white.png</white>
 		</Record>
 		<Record name="MonitorChannelPageIcon">
 			<dark>Resources\Icons\desktop.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\desktop.white.png</white>
 		</Record>
 		<Record name="CanHackerChannelIcon">
 			<dark>Resources\Icons\car.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
-		</Record>
-		<Record name="CanHackerChannelIcon">
-			<dark>Resources\Icons\car.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
-		</Record>
-		<Record name="CanHackerChannelIcon">
-			<dark>Resources\Icons\car.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\car.white.png</white>
 		</Record>
 		<Record name="BomberPageIcon">
 			<dark>Resources\Icons\bomb1.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\bomb1.white.png</white>
 		</Record>
 		<Record name="TransmitFilePageIcon">
 			<dark>Resources\Icons\folder.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\folder.white.png</white>
 		</Record>
 		<Record name="TransmitPageIcon">
 			<dark>Resources\Icons\recycle.dark.png</dark>
-			<white>Resources\Icons\1.png</white>
+			<white>Resources\Icons\recycle.white.png</white>
 		</Record>
 		<Record name="CloseShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/times-circle.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/times-circle.white.png</white>
 		</Record>
 		<Record name="OpenFileShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/folder-open.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/folder-open.white.png</white>
 		</Record>
 		<Record name="SaveFileShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/save.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/save.white.png</white>
 		</Record>
 		<Record name="SaveAsFileShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/upload.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/upload.white.png</white>
 		</Record>
 		<Record name="StartShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/play.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/play.white.png</white>
 		</Record>
 		<Record name="PauseShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/pause.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/pause.white.png</white>
 		</Record>
 		<Record name="StopShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/stop.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/stop.white.png</white>
 		</Record>
 		<Record name="ClearShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/eraser.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/eraser.white.png</white>
 		</Record>
 		<Record name="ShotShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/bolt.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/bolt.white.png</white>
 		</Record>
 		<Record name="RecieveStartShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/eye.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/eye.white.png</white>
 		</Record>
 		<Record name="RecievePauseShortcutButtonIcon">
 			<dark>/Can Analyzer;component/Resources/Icons/eye-slash.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
-		</Record>
-		<Record name="CanHackerChannelIcon">
-			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
-		</Record>
-		<Record name="CanHackerChannelIcon">
-			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
-		</Record>
-		<Record name="CanHackerChannelIcon">
-			<dark>/Can Analyzer;component/Resources/Icons/car.dark.png</dark>
-			<white>/Can Analyzer;component/Resources/Icons/1.png</white>
+			<white>/Can Analyzer;component/Resources/Icons/eye-slash.white.png</white>
 		</Record>
 
 
 
 		<Record name="MainColor">
 			<dark>#1E1E1E</dark>
-			<white></white>
+			<white>#FBFBFB</white>
 		</Record>
 		<Record name="MainTextColor">
 			<dark>#E5FFFF</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="MainTextFontFamily">
 			<dark>Arial</dark>
-			<white></white>
+			<white>Arial</white>
 		</Record>
 		<Record name="MainTextFontWeight">
 			<dark>Normal</dark>
-			<white></white>
+			<white>Normal</white>
 		</Record>
 
 
 		<Record name="NavMenuSelectedItemBackground">
 			<dark>#1E1E1E</dark>
-			<white></white>
+			<white>#3399FF</white>
 		</Record>
 		<Record name="NavMenuMouseInItemBackground">
 			<dark>#252526</dark>
-			<white></white>
+			<white>#3399FF</white>
 		</Record>
 		<Record name="NavMenuItemBackground">
 			<dark>#2D2D30</dark>
-			<white></white>
+			<white>#C6C6C6</white>
 		</Record>
 		<Record name="NavMenuBackground">
 			<dark>#2D2D30</dark>
-			<white></white>
+			<white>#C6C6C6</white>
 		</Record>
 		<Record name="NavMenuToggleButtonColor">
 			<dark>#FF1885A1</dark>
-			<white></white>
+			<white>#3399FF</white>
 		</Record>
 		<Record name="NavMenuToggleButtonBackground">
 			<dark>#252526</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="NavMenuItemTextColor">
 			<dark>#E5FFFF</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="NavMenuSelectedItemTextColor">
 			<dark>#FF1885A1</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="NavMenuMouseInItemTextColor">
 			<dark>#FF1885A1</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 
 		<Record name="LoadingCogColor">
 			<dark>#FF1885A1</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 
 
 		<Record name="GroupBoxBorderBrush">
 			<dark>#E5FFFF</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="GroupBoxBorderThickness">
 			<dark>1</dark>
-			<white></white>
+			<white>1</white>
 		</Record>
 
 
 		<Record name="ComboBoxBackgroundBrushPoint0">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxBackgroundBrushPoint1">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxPopUpBackgroundBrushPoint0">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxPopUpBackgroundBrushPoint1">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxBorderBrush">
 			<dark>#444</dark>
-			<white></white>
+			<white>#444</white>
 		</Record>
 		<Record name="ComboBoxForeground">
 			<dark>#ddd</dark>
-			<white></white>
+			<white>#ddd</white>
 		</Record>
 		<Record name="ComboBoxArrowBrush">
 			<dark>#ddd</dark>
-			<white></white>
+			<white>#ddd</white>
 		</Record>
 		<Record name="ComboBoxDisabledBorderBrush">
 			<dark>#FF919191</dark>
-			<white></white>
+			<white>#FF919191</white>
 		</Record>
 		<Record name="ComboBoxDisabledBackgroundPoint0">
 			<dark>#f4f4f4</dark>
-			<white></white>
+			<white>#f4f4f4</white>
 		</Record>
 		<Record name="ComboBoxDisabledBackgroundPoint1">
 			<dark>#f4f4f4</dark>
-			<white></white>
+			<white>#f4f4f4</white>
 		</Record>
 		<Record name="ComboBoxDisabledBackgroundPoint2">
 			<dark>#c2c2c2</dark>
-			<white></white>
+			<white>#c2c2c2</white>
 		</Record>
 		<Record name="ComboBoxDisabledForeground">
 			<dark>#aaaaaa</dark>
-			<white></white>
+			<white>#aaaaaa</white>
 		</Record>
 		<Record name="ComboBoxHoverBorderBrush">
 			<dark>#aaa</dark>
-			<white></white>
+			<white>#aaa</white>
 		</Record>
 		<Record name="ComboBoxHoverBackgroundPoint0">
 			<dark>#da5e69</dark>
-			<white></white>
+			<white>#da5e69</white>
 		</Record>
 		<Record name="ComboBoxHoverBackgroundPoint1">
 			<dark>#d12e27</dark>
-			<white></white>
+			<white>#d12e27</white>
 		</Record>
 		<Record name="ComboBoxHoverToggleBackgroundPoint0">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxHoverToggleBackgroundPoint1">
 			<dark>#3E3E40</dark>
-			<white></white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ComboBoxHoverItemComboBoxPoint0">
 			<dark>#999</dark>
-			<white></white>
+			<white>#999</white>
 		</Record>
 		<Record name="ComboBoxHoverItemComboBoxPoint1">
 			<dark>#666</dark>
-			<white></white>
+			<white>#666</white>
 		</Record>
 
 
 		<Record name="ScrollBarNormalBrush">
 			<dark>#ccc</dark>
-			<white></white>
+			<white>#ccc</white>
 		</Record>
 		<Record name="ScrollBarHoverBrush">
 			<dark>#eee</dark>
-			<white></white>
+			<white>#eee</white>
 		</Record>
 		<Record name="ScrollBarDisabledBrush">
 			<dark>#aaa</dark>
-			<white></white>
+			<white>#aaa</white>
 		</Record>
 
 
 		<Record name="TextBoxForeground">
 			<dark>Black</dark>
-			<white></white>
+			<white>#212121</white>
 		</Record>
 		<Record name="TextBoxBackground">
 			<dark>White</dark>
-			<white></white>
+			<white>#FBFBFB</white>
 		</Record>
 
 
@@ -294,27 +274,27 @@
 		<!--ShortcutButtons-->
 		<Record name="ShortcutButtonBackgroundStartBrush">
 			<dark>#2D2D30</dark>
-			<white>Black</white>
+			<white>#C6C6C6</white>
 		</Record>
 		<Record name="ShortcutButtonBackgroundStopBrush">
 			<dark>#1E1E1E</dark>
-			<white>White</white>
+			<white>#C6C6C6</white>
 		</Record>
 		<Record name="ShortcutButtonMouseEnterBackgroundStartBrush">
 			<dark>#3E3E40</dark>
-			<white>Red</white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ShortcutButtonMouseEnterBackgroundStopBrush">
 			<dark>#3E3E40</dark>
-			<white>Blue</white>
+			<white>#3E3E40</white>
 		</Record>
 		<Record name="ShortcutButtonDisabledBackgroundStartBrush">
 			<dark>Black</dark>
-			<white>Purple</white>
+			<white>#353535</white>
 		</Record>
 		<Record name="ShortcutButtonDisabledBackgroundStopBrush">
 			<dark>Black</dark>
-			<white>Red</white>
+			<white>#353535</white>
 		</Record>
 		<Record name="ShortcutButtonBorderThickness">
 			<dark>1</dark>
@@ -326,19 +306,19 @@
 		</Record>
 		<Record name="ShortcutButtonBorderStartBrush">
 			<dark>#3E3E40</dark>
-			<white>Blue</white>
+			<white>#212121</white>
 		</Record>
 		<Record name="ShortcutButtonBorderStopBrush">
 			<dark>#3E3E40</dark>
-			<white>Red</white>
+			<white>#212121</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksBackground">
 			<dark>#2D2D30</dark>
-			<white>#2D2D30</white>
+			<white>#C6C6C6</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksDropShadowColor">
 			<dark>#FF1885A1</dark>
-			<white>Red</white>
+			<white>#212121</white>
 		</Record>
 		<Record name="ShortcutButtonBlocksDropShadowOpacity">
 			<dark>0.8</dark>
@@ -462,66 +442,6 @@
 		</Record>
 
 
-		<!--TransmitTo control-->
-		<Record name="TransmitToControlFontSize">
-			<dark>13</dark>
-			<white>13</white>
-		</Record>
-		<Record name="TransmitToControlFontFamily">
-			<dark>Calibri,Arial</dark>
-			<white>Calibri,Arial</white>
-		</Record>
-		<Record name="TransmitToControlFontWeight">
-			<dark>Normal</dark>
-			<white>Bold</white>
-		</Record>
-		<Record name="TransmitToControlFontColor">
-			<dark>White</dark>
-			<white>Black</white>
-		</Record>
-		<Record name="TransmitToControlItemBackgroundBrushStart">
-			<dark>Blue</dark>
-			<white>Blue</white>
-		</Record>
-		<Record name="TransmitToControlItemBackgroundBrushStop">
-			<dark>Red</dark>
-			<white>Red</white>
-		</Record>
-		<Record name="TransmitToControlBorderBrushStart">
-			<dark>Red</dark>
-			<white>Red</white>
-		</Record>
-		<Record name="TransmitToControlBorderBrushStop">
-			<dark>Blue</dark>
-			<white>Blue</white>
-		</Record>
-
-
-		<!--RecievedChannelPage-->
-		<Record name="RecievedChannelPageIcon">
-			<dark>Resources\Icons\1.png</dark>
-			<white>Resources\Icons\1.png</white>
-		</Record>
-
-		<!--MonitorChannelPage-->
-		<Record name="MonitorChannelPageIcon">
-			<dark>Resources\Icons\1.png</dark>
-			<white>Resources\Icons\1.png</white>
-		</Record>
-		<Record name="MonitorChannelPagePaylodNotChangedTextForeground">
-			<dark>Black</dark>
-			<white>Black</white>
-		</Record>
-		<Record name="MonitorChannelPagePaylodChangedTextForeground">
-			<dark>Red</dark>
-			<white>Red</white>
-		</Record>
-
-		<!--CanHacker Device-->
-		<Record name="CanHackerChannelIcon">
-			<dark>Resources\Icons\1.png</dark>
-			<white>Resources\Icons\1.png</white>
-		</Record>
 
 	</Recordings>
 </Themes>

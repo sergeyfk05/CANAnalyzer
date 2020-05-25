@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace CANAnalyzer
 {
-    public class Settings : INotifyPropertyChanged
+    public class Settings : INotifyPropertyChanged, IDisposable
     {
         public Settings()
         {
@@ -194,5 +194,17 @@ namespace CANAnalyzer
             _ = Task.Run(() => { File.WriteAllText(path, JsonSerializer.Serialize<Settings>(_settings)); });
         }
 
+        public void Dispose()
+        {
+            foreach (var el in Proxies)
+            {
+                if (el is IChannelProxy proxy)
+                    proxy.Dispose();
+            }
+        }
+        ~Settings()
+        {
+            Dispose();
+        }
     }
 }
