@@ -37,7 +37,7 @@ namespace CANAnalyzer.VM
                 ChangePage);
             PagesData.Add(buf);
             BottomItemSource.Add(buf.NavData);
-
+            ChangePage(buf);
 
             buf = new ContentPageData(new NavMenuItemData() { IsDropdownItem = false, IsSelected = false },
                 "#addBomberPageMenu",
