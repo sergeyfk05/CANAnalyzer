@@ -11,9 +11,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
 
-    <Grid>
+    <Grid  Background="{resources:Theme MainColor}">
 
-        <Grid Margin="10"
+        <Grid Margin="10" 
               IsEnabled="{Binding IsEnabled}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>

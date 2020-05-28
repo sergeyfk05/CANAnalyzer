@@ -13,7 +13,6 @@ namespace CANAnalyzer.Resources.DynamicResources
 
     internal class XMLLanguageChangerProvider : BaseProvider<LanguageCultureInfo>
     {
-
         private XMLLanguageChangerProvider(string file)
         {
             _languages = XDocument.Load(file).Element("Languages").Element("Recordings");
