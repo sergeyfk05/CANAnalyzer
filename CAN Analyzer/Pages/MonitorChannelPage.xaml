@@ -71,8 +71,8 @@
 
         </Border>
 
-        
-        <DataGrid Grid.Row="1"
+
+        <DataGrid Grid.Row="1" Style="{StaticResource DataGrid}"
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionUnit="FullRow" CanUserSortColumns="True" CanUserResizeRows="False"  CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>

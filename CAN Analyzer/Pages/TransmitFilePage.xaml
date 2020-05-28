@@ -162,7 +162,7 @@
 
 
             <DataGrid Margin="0 0 10 0"
-            Grid.Column="0" 
+            Grid.Column="0"
             Grid.Row="1"
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" ItemsSource="{Binding ShowedData}" 

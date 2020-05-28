@@ -164,7 +164,7 @@
             </DockPanel>
 
 
-            <DataGrid ItemsSource="{Binding Data}"
+            <DataGrid ItemsSource="{Binding Data}" Style="{StaticResource DataGrid}"
                       extensions:DataGridHelpers.UseCustomSort="True"
             Grid.Row="1" 
             VerticalAlignment="Stretch" 

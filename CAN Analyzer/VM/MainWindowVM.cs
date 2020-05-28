@@ -390,7 +390,7 @@ namespace CANAnalyzer.VM
 
 
                         ContentPageDataForProxy channelViewData = new ContentPageDataForProxy(new NavMenuItemData() { IsDropdownItem = true, IsSelected = false },
-                            proxy.ToString() + "Icon",
+                            "NavMenuProxyIcon",
                             proxy,
                             PageKind.Proxy);
                         channelViewData.NavData.AddDropdownItem(recievePageData.NavData);

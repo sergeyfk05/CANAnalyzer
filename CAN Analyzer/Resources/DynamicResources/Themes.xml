@@ -34,6 +34,14 @@
 			<dark>Resources\Icons\desktop.dark.png</dark>
 			<white>Resources\Icons\desktop.white.png</white>
 		</Record>
+		<Record name="RecievedProxyPageIcon">
+			<dark>Resources\Icons\clipboard.dark.png</dark>
+			<white>Resources\Icons\clipboard.white.png</white>
+		</Record>
+		<Record name="MonitorProxyPageIcon">
+			<dark>Resources\Icons\desktop.dark.png</dark>
+			<white>Resources\Icons\desktop.white.png</white>
+		</Record>
 		<Record name="CanHackerChannelIcon">
 			<dark>Resources\Icons\car.dark.png</dark>
 			<white>Resources\Icons\car.white.png</white>
@@ -94,7 +102,10 @@
 			<dark>/Can Analyzer;component/Resources/Icons/eye-slash.dark.png</dark>
 			<white>/Can Analyzer;component/Resources/Icons/eye-slash.white.png</white>
 		</Record>
-
+		<Record name="NavMenuProxyIcon">
+			<dark>Resources\Icons\car.dark.png</dark>
+			<white>Resources\Icons\car.white.png</white>
+		</Record>
 
 
 		<Record name="MainColor">
@@ -112,6 +123,14 @@
 		<Record name="MainTextFontWeight">
 			<dark>Normal</dark>
 			<white>Normal</white>
+		</Record>
+		<Record name="MonitorChannelPagePaylodNotChangedTextForeground">
+			<dark>#FF000000</dark>
+			<white>#FF000000</white>
+		</Record>
+		<Record name="MonitorChannelPagePaylodChangedTextForeground">
+			<dark>Red</dark>
+			<white>Red</white>
 		</Record>
 
 
