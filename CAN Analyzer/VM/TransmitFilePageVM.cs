@@ -24,7 +24,7 @@ using static CANAnalyzer.Models.TraceTransmiter;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitFilePageVM : BaseClosableVM, IDisposable
+    public class TransmitFilePageVM : BaseClosableVM, IDisposable //-V3073
     {
         public TransmitFilePageVM()
         {

@@ -243,6 +243,22 @@
 		<Record name="ComboBoxHoverItemComboBoxPoint1">
 			<dark>#666</dark>
 			<white>#666</white>
+		</Record>3
+		<Record name="TransmitToControlFontSize">
+			<dark>12</dark>
+			<white>12</white>
+		</Record>
+		<Record name="TransmitToControlFontFamily">
+			<dark>Calibri,Arial</dark>
+			<white>Calibri,Arial</white>
+		</Record>
+		<Record name="TransmitToControlFontWeight">
+			<dark>Normal</dark>
+			<white>Normal</white>
+		</Record>
+		<Record name="TransmitToControlFontColor">
+			<dark>#FFDDDDDD</dark>
+			<white>#FFDDDDDD</white>
 		</Record>
 
 
