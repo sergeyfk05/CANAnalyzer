@@ -12,7 +12,7 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
         {
             var l = new List<IDeviceCreator>();
             l.Add(new CanHackerCreator());
-            l.Add(new FakeCanHackerCreator());
+            //l.Add(new FakeCanHackerCreator());
             return l;
         }
 
