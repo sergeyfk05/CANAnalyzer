@@ -8,24 +8,22 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using CANAnalyzerDevices.Devices;
 using System.ComponentModel.DataAnnotations;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {
     public class DirtRallyProxy : IChannel, IChannelProxy, IDisposable
     {
-        UdpClient receivingUdpClient;
-        IPEndPoint RemoteIpEndPoint = null;
-        Thread t;
+        private UdpClient udpClient;
+        Thread worker;
+
         public DirtRallyProxy(string path)
         {
             Path = path;
             Name = this.ToString();
 
-            receivingUdpClient = new UdpClient(Convert.ToInt32(File.ReadAllText(path)));
-            RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, Convert.ToInt32(File.ReadAllText(path)));
-            t = new Thread(() => ReceiveCallback(receivingUdpClient));
+            udpClient = new UdpClient(Convert.ToInt32(File.ReadAllText(path)));
+            worker = new Thread(() => ReceiveCallback(udpClient));
         }
 
 
@@ -47,108 +45,89 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
         private string _name = "";
 
-        private void RaiseNameChangedEvent()
-        {
-            NameChanged?.Invoke(this, new EventArgs());
-        }
 
         public int Bitrate => 500;
 
         public bool IsListenOnly => false;
 
-        public bool IsOpen => t.IsAlive;
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            private set
+            {
+                if (_isOpen == value)
+                    return;
+
+                _isOpen = value;
+                RaiseIsOpenChangedEvent();
+            }
+
+        }
+        private bool _isOpen = false;
 
         public IDevice Owner => null;
 
-        public event EventHandler NameChanged;
-        public event ChannelDataReceivedEventHandler ReceivedData;
-        private void RaiseReceivedData(ReceivedData data)
-        {
-            if (!Validator.TryValidateObject(data, new ValidationContext(data), null, true))
-                return;
 
-            ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
-        }
-        public event EventHandler IsOpenChanged;
+
+        
 
         public void Close()
         {
-            t.Abort();
+            worker.Abort();
+            IsOpen = false;
         }
 
         public void Dispose()
         {
-            t.Abort();
+            worker.Abort();
+            udpClient.Close();
         }
 
         public void Open(int bitrate = 500, bool isListenOnly = true)
         {
-            t.Start();
+            worker.Start();
+            IsOpen = true;
         }
 
-        public void ReceiveCallback(UdpClient u)
+        private void ReceiveCallback(UdpClient client)
         {
             IPEndPoint e = null;
             while (true)
             {
-                byte[] receiveBytes = u.Receive(ref e);
-
-                byte[] b = { receiveBytes[28], receiveBytes[29], receiveBytes[30], receiveBytes[31] };
+                byte[] receivedBytes = client.Receive(ref e);
 
                 //Преобразуем и отображаем данные
-                int speed = (int)(System.BitConverter.ToSingle(b, 0) * 3.6);
-                int panel = 0;
-                if (speed < 5)
-                    panel = 0;
-                else
-                {
-                    panel = 0x190 + 0x62 * (speed - 5);
-                }
+                int speed = (int)(System.BitConverter.ToSingle(receivedBytes, 28) * 3.6);
+                int panel = speed < 5 ? 0 : 0x190 + 0x62 * (speed - 5);
 
-
-                ReceivedData data = new ReceivedData()
+                byte[] convertedData = BitConverter.GetBytes(panel);
+                ReceivedData ABSData = new ReceivedData()
                 {
                     CanId = 0x354,
                     DLC = 8,
                     Time = 0,
                     IsExtId = false,
-                    Payload = new byte[8]
+                    Payload = new byte[] { convertedData[1], convertedData[0], 0, 0, 0, 0, 0, 0 }
                 };
-                byte[] intBytes = BitConverter.GetBytes(panel);
-                data.Payload[1] = intBytes[0];
-                data.Payload[0] = intBytes[1];
+                RaiseReceivedData(ABSData);
 
 
-                RaiseReceivedData(data);
+                int rpm = (int)(System.BitConverter.ToSingle(receivedBytes, 148) *10);
+                int maxrpm = (int)(System.BitConverter.ToSingle(receivedBytes, 252) * 10);
 
+                int panelRPM = 0x10FF + (int)(((double)rpm / maxrpm) * (0xE0FF - 0x10FF));
+                panelRPM = panelRPM > 0xE0FF ? 0xE0FF : panelRPM;
+                convertedData = BitConverter.GetBytes(panelRPM);
 
-                byte[] b2 = { receiveBytes[148], receiveBytes[149], receiveBytes[150], receiveBytes[151] };
-                int rpm = (int)(System.BitConverter.ToSingle(b2, 0) *10);
-                byte[] b3 = { receiveBytes[252], receiveBytes[253], receiveBytes[254], receiveBytes[255] };
-                int maxrpm = (int)(System.BitConverter.ToSingle(b3, 0) * 10);
-
-                ReceivedData data1 = new ReceivedData()
+                ReceivedData EngineData = new ReceivedData()
                 {
                     CanId = 0x181,
                     DLC = 8,
                     Time = 0,
                     IsExtId = false,
-                    Payload = new byte[8]
+                    Payload = new byte[] { convertedData[1], convertedData[0], 0, 0, 0, 0, 0, 0 }
                 };
-                int panelRPM = 0x10FF;
-                if (rpm > 6000)
-                    panelRPM = 0xE0FF;
-                else
-                    panelRPM = 0x10FF + (int)(((double)rpm/maxrpm)* (0xE0FF - 0x10FF));
-
-
-
-
-                intBytes = BitConverter.GetBytes(panelRPM);
-                data1.Payload[1] = intBytes[0];
-                data1.Payload[0] = intBytes[1];
-
-                RaiseReceivedData(data1);
+                RaiseReceivedData(EngineData);
             }
 
 
@@ -165,6 +144,26 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         }
 
+        public event EventHandler IsOpenChanged;
+        private void RaiseIsOpenChangedEvent()
+        {
+            IsOpenChanged?.Invoke(this, new EventArgs());
+        }
+
+        public event EventHandler NameChanged;
+        private void RaiseNameChangedEvent()
+        {
+            NameChanged?.Invoke(this, new EventArgs());
+        }
+
+        public event ChannelDataReceivedEventHandler ReceivedData;
+        private void RaiseReceivedData(ReceivedData data)
+        {
+            if (!Validator.TryValidateObject(data, new ValidationContext(data), null, true))
+                return;
+
+            ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
+        }
         public override string ToString()
         {
             return $"DirtRally";
