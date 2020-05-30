@@ -12,12 +12,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {
-    public class DirtRallyProxy : IChannel, IChannelProxy, IDisposable
+    public class DirtRallyV2ToRenaultDashboardProxy : IChannel, IChannelProxy, IDisposable
     {
-        private UdpClient udpClient;
-        Thread worker;
 
-        public DirtRallyProxy(string path)
+        public DirtRallyV2ToRenaultDashboardProxy(string path)
         {
             Path = path;
             Name = this.ToString();
@@ -65,11 +63,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
         private bool _isOpen = false;
 
-        public IDevice Owner => null;
-
-
-
-        
+        public IDevice Owner => null;        
 
         public void Close()
         {
@@ -96,11 +90,13 @@ namespace CANAnalyzer.Models.ChannelsProxy
             {
                 byte[] receivedBytes = client.Receive(ref e);
 
-                //Преобразуем и отображаем данные
+                //get speed
                 int speed = (int)(System.BitConverter.ToSingle(receivedBytes, 28) * 3.6);
-                int panel = speed < 5 ? 0 : 0x190 + 0x62 * (speed - 5);
+                //convert speed to renault's dashbord
+                int dashbordSpeed = speed < 5 ? 0 : 0x190 + 0x62 * (speed - 5);
 
-                byte[] convertedData = BitConverter.GetBytes(panel);
+                //create data for physical dashbord
+                byte[] convertedData = BitConverter.GetBytes(dashbordSpeed);
                 ReceivedData ABSData = new ReceivedData()
                 {
                     CanId = 0x354,
@@ -111,14 +107,17 @@ namespace CANAnalyzer.Models.ChannelsProxy
                 };
                 RaiseReceivedData(ABSData);
 
-
+                
+                //get engine rmp and maximum rpm
                 int rpm = (int)(System.BitConverter.ToSingle(receivedBytes, 148) *10);
                 int maxrpm = (int)(System.BitConverter.ToSingle(receivedBytes, 252) * 10);
 
-                int panelRPM = 0x10FF + (int)(((double)rpm / maxrpm) * (0xE0FF - 0x10FF));
-                panelRPM = panelRPM > 0xE0FF ? 0xE0FF : panelRPM;
-                convertedData = BitConverter.GetBytes(panelRPM);
+                //convert rpm to renault's dashbord
+                int dashbordRPM = 0x10FF + (int)(((double)rpm / maxrpm) * (0xE0FF - 0x10FF));
+                dashbordRPM = dashbordRPM > 0xE0FF ? 0xE0FF : dashbordRPM;
+                convertedData = BitConverter.GetBytes(dashbordRPM);
 
+                //create data for physical panel
                 ReceivedData EngineData = new ReceivedData()
                 {
                     CanId = 0x181,
@@ -129,9 +128,6 @@ namespace CANAnalyzer.Models.ChannelsProxy
                 };
                 RaiseReceivedData(EngineData);
             }
-
-
-
         }
 
         public void SetChannel(IChannel newCH)
@@ -164,9 +160,15 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
             ReceivedData?.Invoke(this, new ChannelDataReceivedEventArgs(data));
         }
+
+
+        private UdpClient udpClient;
+        private Thread worker;
+
+
         public override string ToString()
         {
-            return $"DirtRally";
+            return $"DirtRallyV2ToRenaultDashboardProxy";
         }
     }
 }
