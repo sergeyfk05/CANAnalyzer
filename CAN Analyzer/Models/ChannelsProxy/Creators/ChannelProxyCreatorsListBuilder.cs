@@ -12,6 +12,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
         {
             var proxiesCreators = new List<IChannelProxyCreator>();
             proxiesCreators.Add(new ConsoleChannelProxyCreator());
+            proxiesCreators.Add(new DirtRallyProxyCreator());
 
             return proxiesCreators;
         }

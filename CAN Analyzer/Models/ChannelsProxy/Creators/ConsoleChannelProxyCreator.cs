@@ -4,6 +4,8 @@
 */
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace CANAnalyzer.Models.ChannelsProxy.Creators
 {
@@ -23,6 +25,10 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
 
         public bool IsCanWorkWith(string path)
         {
+            if (!(File.Exists(path) && (path.Split('.').Last() == "exe")))
+                return false;
+
+
             try
             {
                 string message, response;
@@ -66,7 +72,8 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
             }
             catch (Exception e)
             {
-                throw new ArgumentException("Invalide file\r\n" + e.ToString());
+                return false;
+                //throw new ArgumentException("Invalide file\r\n" + e.ToString());
             }
 
 

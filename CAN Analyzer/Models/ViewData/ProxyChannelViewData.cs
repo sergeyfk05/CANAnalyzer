@@ -106,15 +106,18 @@ namespace CANAnalyzer.Models.ViewData
             }
             else
             {
-                if(OwnerChannel == null)
+                try
+                {
+                    ChannelProxy.SetChannel(OwnerChannel != null ? OwnerChannel.Channel : null);
+                    ChannelProxy.Open();
+                    IsOpen = true;
+                }
+                catch
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvaliseParrentChannelError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                ChannelProxy.SetChannel(OwnerChannel.Channel);
-                ChannelProxy.Open();
-                IsOpen = true;
             }
         }
 

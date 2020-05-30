@@ -212,6 +212,9 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         public void Open(int bitrate = 500, bool isListenOnly = true)
         {
+            if (Channel == null)
+                throw new ArgumentNullException("Channel");
+
             IsOpen = true;
             IsListenOnly = isListenOnly;
         }
