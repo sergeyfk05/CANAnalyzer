@@ -86,63 +86,73 @@ namespace CANAnalyzer.Models.ChannelsProxy
         private void ReceiveCallback(UdpClient client)
         {
             IPEndPoint e = null;
+            float lastSpeedInMS = 0;
+            DateTime lastSpeedTime = DateTime.MinValue;
+            double distanceSM = 0, lastDistanceSM = 0;
+            byte distanceByte = 0;
             while (true)
             {
                 byte[] receivedBytes = client.Receive(ref e);
-                r(receivedBytes);
-                //int i = 0;
 
-                //i++;
+                //get speed
+                float speedInMS = System.BitConverter.ToSingle(receivedBytes, 28);
+                float speed = speedInMS * 3.6f;
+                //convert speed to renault's dashbord
+                int dashbordSpeed = (int)speed < 5 ? 0 : 0x190 + 0x62 * ((int)speed - 5);
 
-                //if(i>10)
-                //{
-                //    Action a = () => { r(receivedBytes); };
-                //    a.Invoke();
-                //    i = 0;
-                //}
+                if (lastSpeedInMS > 0.5 && lastSpeedTime != null)
+                {
+                    TimeSpan deltaTime = DateTime.Now - lastSpeedTime;
+                    if (deltaTime.TotalMilliseconds < 500)
+                    {
+                        distanceSM += lastSpeedInMS * 100 * (deltaTime.TotalMilliseconds / 1000.0);
+                        byte increment = (byte)((distanceSM - lastDistanceSM) / 9.4921875);
+                        lastDistanceSM += increment * 9.4921875;
+                        distanceByte += increment;
+                    }
+                }
+                lastSpeedTime = DateTime.Now;
+                lastSpeedInMS = speedInMS;
+
+
+                //create data for physical dashbord
+                byte[] convertedData = BitConverter.GetBytes(dashbordSpeed);
+                ReceivedData ABSData = new ReceivedData()
+                {
+                    CanId = 0x354,
+                    DLC = 8,
+                    Time = DateTime.Now.Second + DateTime.Now.Millisecond / 1000,
+                    IsExtId = false,
+                    Payload = new byte[] { convertedData[1], convertedData[0], 0, distanceByte, 0, 0, 0, 0 }
+                };
+                RaiseReceivedData(ABSData);
+
+
+
+
+
+
+                //get engine rmp and maximum rpm
+                int rpm = (int)(System.BitConverter.ToSingle(receivedBytes, 148) * 10);
+                int maxrpm = (int)(System.BitConverter.ToSingle(receivedBytes, 252) * 10);
+
+                //convert rpm to renault's dashbord
+                int dashbordRPM = 0x10FF + (int)(((double)rpm / maxrpm) * (0xE0FF - 0x10FF));
+                dashbordRPM = dashbordRPM > 0xE0FF ? 0xE0FF : dashbordRPM;
+                convertedData = BitConverter.GetBytes(dashbordRPM);
+
+                //create data for physical panel
+                ReceivedData EngineData = new ReceivedData()
+                {
+                    CanId = 0x181,
+                    DLC = 8,
+                    Time = 0,
+                    IsExtId = false,
+                    Payload = new byte[] { convertedData[1], convertedData[0], 0, 0, 0, 0, 0, 0 }
+                };
+                RaiseReceivedData(EngineData);
 
             }
-        }
-
-        private void r(byte[] receivedBytes)
-        {
-            //get speed
-            int speed = (int)(System.BitConverter.ToSingle(receivedBytes, 28) * 3.6);
-            //convert speed to renault's dashbord
-            int dashbordSpeed = speed < 5 ? 0 : 0x190 + 0x62 * (speed - 5);
-
-            //create data for physical dashbord
-            byte[] convertedData = BitConverter.GetBytes(dashbordSpeed);
-            ReceivedData ABSData = new ReceivedData()
-            {
-                CanId = 0x354,
-                DLC = 8,
-                Time = DateTime.Now.Second + DateTime.Now.Millisecond / 1000,
-                IsExtId = false,
-                Payload = new byte[] { convertedData[1], convertedData[0], 0, 0, 0, 0, 0, 0 }
-            };
-            RaiseReceivedData(ABSData);
-
-
-            //get engine rmp and maximum rpm
-            int rpm = (int)(System.BitConverter.ToSingle(receivedBytes, 148) * 10);
-            int maxrpm = (int)(System.BitConverter.ToSingle(receivedBytes, 252) * 10);
-
-            //convert rpm to renault's dashbord
-            int dashbordRPM = 0x10FF + (int)(((double)rpm / maxrpm) * (0xE0FF - 0x10FF));
-            dashbordRPM = dashbordRPM > 0xE0FF ? 0xE0FF : dashbordRPM;
-            convertedData = BitConverter.GetBytes(dashbordRPM);
-
-            //create data for physical panel
-            ReceivedData EngineData = new ReceivedData()
-            {
-                CanId = 0x181,
-                DLC = 8,
-                Time = 0,
-                IsExtId = false,
-                Payload = new byte[] { convertedData[1], convertedData[0], 0, 0, 0, 0, 0, 0 }
-            };
-            RaiseReceivedData(EngineData);
         }
 
         public void SetChannel(IChannel newCH)
