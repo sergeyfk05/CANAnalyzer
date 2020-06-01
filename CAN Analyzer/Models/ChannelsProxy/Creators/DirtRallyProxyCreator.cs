@@ -12,12 +12,12 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
 
         public IChannelProxy CreateInstance(string path)
         {
-            return IsCanWorkWith(path) ? new DirtRallyProxy(path) : throw new ArgumentException("this device cannot work with this hardware device.");
+            return IsCanWorkWith(path) ? new DirtRallyV2ToRenaultDashboardProxy(path) : throw new ArgumentException("this device cannot work with this hardware device.");
         }
 
         public IChannelProxy CreateInstanceDefault(string path)
         {
-            return IsCanWorkWith(path) ? new DirtRallyProxy(path) : null;
+            return IsCanWorkWith(path) ? new DirtRallyV2ToRenaultDashboardProxy(path) : null;
         }
 
         public bool IsCanWorkWith(string path)
