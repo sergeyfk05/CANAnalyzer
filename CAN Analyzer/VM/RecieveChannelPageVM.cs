@@ -197,6 +197,10 @@ namespace CANAnalyzer.VM
                     DLC = e.Data.DLC
                 });
                 currentTraceProvider.Add(canHeaders[0]);
+                lock (currentTraceProvider)
+                {
+                    currentTraceProvider.SaveChanges();
+                }
             }
 
             //если появился новый CAN ID
@@ -214,10 +218,7 @@ namespace CANAnalyzer.VM
             model.CanHeader = canHeaders[0];
 
             currentTraceProvider.Add(model);
-            lock (currentTraceProvider)
-            {
-                currentTraceProvider.SaveChanges();
-            }
+
 
             _context.Post((s) =>
             {
@@ -228,6 +229,11 @@ namespace CANAnalyzer.VM
 
         private void FilterIsActive_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            lock(currentTraceProvider)
+            {
+                currentTraceProvider.SaveChanges();
+            }
+
             var data = currentTraceProvider.Traces;
             foreach (var el in Filters)
             {
