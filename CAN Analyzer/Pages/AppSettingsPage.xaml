@@ -174,7 +174,7 @@
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Expander Header="{Binding Name}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
+                                <Expander Header="{resources:Language KeyBinding={Binding Name}}" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}">
                                     <Grid Margin="25 0 0 0" HorizontalAlignment="Stretch">
 
                                         <Grid.ColumnDefinitions>

@@ -34,13 +34,8 @@ namespace CANAnalyzer.Models.ViewData
                 IsListenOnlyViewable = true;
             }
 
-            Manager<LanguageCultureInfo>.StaticInstance.CultureChanged += Language_CultureChanged;
         }
 
-        private void Language_CultureChanged(object sender, EventArgs e)
-        {
-            RaisePropertyChanged("Name");
-        }
 
         private void OnChannel_IsOpenChanged(object sender, EventArgs e)
         {
@@ -133,7 +128,7 @@ namespace CANAnalyzer.Models.ViewData
             }
         }
 
-        public string Name => (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource($"#{this.ToString()}NavMenu");
+        public string Name => $"#{this.ToString()}NavMenu";
 
 
         public override string ToString()
