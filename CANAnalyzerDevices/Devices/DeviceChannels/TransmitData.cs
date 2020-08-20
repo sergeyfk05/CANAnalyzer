@@ -21,7 +21,7 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         {
             List<ValidationResult> errors = new List<ValidationResult>();
 
-            if(DLC <= 0 || DLC > 8)
+            if(DLC < 0 || DLC > 8)
                 errors.Add(new ValidationResult("Invalid DLC. It should be between 1 and 8."));
 
             if (Payload.Length < DLC)

@@ -15,6 +15,7 @@ namespace CANAnalyzerDevices.Devices
         public CANHackerDevice(string portName, bool IsConnectNow = false)
         {
             port = new SerialPort(portName, 115200, Parity.None, 8, StopBits.One);
+            port.ReadTimeout = 100;
 
             _channels = new List<IChannel>();
             _channels.Add(new CanHackerChannel(this, port));
