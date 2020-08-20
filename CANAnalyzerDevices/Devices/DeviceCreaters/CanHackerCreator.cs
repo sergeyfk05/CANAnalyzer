@@ -38,7 +38,7 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
                     port.StopBits = System.IO.Ports.StopBits.One;
 
                     port.Open();
-                    port.ReadTimeout = 100;
+                    port.ReadTimeout = 500;
                     char[] buf = new char[15];
 
                     port.Write(new char[]{ 'v' }, 0, 1);

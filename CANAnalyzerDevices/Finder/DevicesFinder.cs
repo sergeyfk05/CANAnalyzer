@@ -5,6 +5,7 @@
 using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceCreaters;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Management;
 
 namespace CANAnalyzerDevices.Finder
@@ -23,7 +24,15 @@ namespace CANAnalyzerDevices.Finder
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_SerialPort");
             foreach (ManagementObject win32Device in searcher.Get())
             {
-                HardwareDeviceInfo info = new HardwareDeviceInfo(win32Device["DeviceID"].ToString(), win32Device["PNPDeviceID"].ToString());
+                HardwareDeviceInfo info;
+                try
+                {
+                    info = new HardwareDeviceInfo(win32Device["DeviceID"].ToString(), win32Device["PNPDeviceID"].ToString());
+                }
+                catch
+                {
+                    continue;
+                }
 
                 foreach(var creator in creators)
                 {
