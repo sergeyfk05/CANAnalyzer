@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CANAnalyzerDevices": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

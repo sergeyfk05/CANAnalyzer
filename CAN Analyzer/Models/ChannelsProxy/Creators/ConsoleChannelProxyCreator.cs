@@ -70,7 +70,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
 
                 return message.TrimEnd('\0') == response;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
                 //throw new ArgumentException("Invalide file\r\n" + e.ToString());
