@@ -4,6 +4,7 @@
 */
 
 using CANAnalyzerDevices.Devices.DeviceChannels;
+using CANAnalyzerDevices.Devices.DeviceChannels.Events;
 using CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,17 @@ namespace CANAnalyzerDevices.Devices
             _isConnectedChanged.Raise(this, EventArgs.Empty);
         }
 
+        FastSmartWeakEvent<SerialPortDataRecievedEventHandler> _dataRecieved = new FastSmartWeakEvent<SerialPortDataRecievedEventHandler>();
+        public event SerialPortDataRecievedEventHandler DataRecieved
+        {
+            add { _dataRecieved.Add(value); }
+            remove { _dataRecieved.Remove(value); }
+        }
+        private void OnDataRecievedChanged(object sender, SerialPortDataRecievedEventArgs e)
+        {
+            _dataRecieved.Raise(sender, e);
+        }
+
         public void Connect()
         {
             if (IsConnected)
@@ -82,6 +94,7 @@ namespace CANAnalyzerDevices.Devices
 
             lock (port)
             {
+                port.DataReceived += Port_DataReceived;
                 port.Open();
             }
 
@@ -89,12 +102,22 @@ namespace CANAnalyzerDevices.Devices
             OnIsConnectedChanged();
         }
 
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            byte[] buf = new byte[port.BytesToRead];
+            port.Read(buf, 0, buf.Length);
+            OnDataRecievedChanged(sender, new SerialPortDataRecievedEventArgs(e, buf));
+        }
+
         public void Disconnect()
         {
             lock (port)
                 port.Close();
 
+            port.DataReceived -= Port_DataReceived;
+
             OnIsConnectedChanged();
+
         }
 
         public override string ToString()

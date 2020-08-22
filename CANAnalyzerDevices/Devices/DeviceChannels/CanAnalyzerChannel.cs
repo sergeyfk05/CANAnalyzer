@@ -11,13 +11,14 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
     public class CanAnalyzerChannel : IChannel
     {
 
-        public CanAnalyzerChannel(IDevice owner, SerialPort port, byte index)
+        public CanAnalyzerChannel(CANAnalyzerDevice owner, SerialPort port, byte index)
         {
             this.Index = index;
             this.Owner = owner;
             owner.IsConnectedChanged += OnOwner_IsConnectedChanged;
             _port = port;
-            _port.DataReceived += OnPort_DataReceived;
+            //_port.DataReceived += OnPort_DataReceived;
+            owner.DataRecieved += OnPort_DataReceived;
         }
 
         private void OnOwner_IsConnectedChanged(object sender, EventArgs e)
@@ -26,16 +27,14 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 IsOpen = false;
         }
 
-        private void OnPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void OnPort_DataReceived(object sender, SerialPortDataRecievedEventArgs e)
         {
             if (sender is SerialPort port)
             {
                 ReceivedData data;
                 lock (_port)
                 {
-                    byte[] buf = new byte[port.BytesToRead];
-                    port.Read(buf, 0, buf.Length);
-                    data = ParseData(buf);
+                    data = ParseData(e.Payload);
                 }
 
                 if (data != null)

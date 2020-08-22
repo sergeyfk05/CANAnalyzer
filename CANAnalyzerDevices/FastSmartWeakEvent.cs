@@ -29,6 +29,7 @@ using CANAnalyzerDevices.Devices.DeviceChannels.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Ports;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -275,7 +276,13 @@ namespace CANAnalyzerDevices
 			if (d != null)
 				d(sender, e);
 		}
-		
+		public static void Raise(this FastSmartWeakEvent<SerialPortDataRecievedEventHandler> ev, object sender, SerialPortDataRecievedEventArgs e)
+		{
+			var d = ev.GetRaiseDelegate();
+			if (d != null)
+				d(sender, e);
+		}
+
 		public static void Raise<T>(this FastSmartWeakEvent<EventHandler<T>> ev, object sender, T e) where T : EventArgs
 		{
 			var d = ev.GetRaiseDelegate();
