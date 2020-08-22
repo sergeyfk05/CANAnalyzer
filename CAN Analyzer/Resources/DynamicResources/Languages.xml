@@ -4502,6 +4502,18 @@
 			<uz>CanHacker Channel</uz>
 			<zh>CanHacker道</zh>
 		</Record>
+
+    <!--CanAnalyzer Device-->
+    <Record name="#CanAnalyzerChannel0NavMenu">
+      <en>1'st channel</en>
+      <ru>1'st channel</ru>
+    </Record>
+    <Record name="#CanAnalyzerChannel1NavMenu">
+      <en>2'nd channel</en>
+      <ru>1'st channel</ru>
+    </Record>
+    
+    
 		<Record name="#AppSettingsPageAddProxyChannel">
 			<en>Add proxy</en>
 			<ru>Добавить прокси</ru>

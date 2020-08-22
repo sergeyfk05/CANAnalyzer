@@ -238,6 +238,15 @@
 		<Record name="#CanHackerChannelNavMenu">
 			<en>CanHacker Channel</en>
 		</Record>
+
+    <!--CanAnalyzer Device-->
+    <Record name="#CanAnalyzerChannel0NavMenu">
+      <en>1'st channel</en>
+    </Record>
+    <Record name="#CanAnalyzerChannel1NavMenu">
+      <en>2'nd channel</en>
+    </Record>
+    
 		<Record name="#AppSettingsPageAddProxyChannel">
 			<en>Add proxy</en>
 		</Record>

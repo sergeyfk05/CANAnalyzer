@@ -46,6 +46,38 @@
 			<dark>Resources\Icons\car.dark.png</dark>
 			<white>Resources\Icons\car.white.png</white>
 		</Record>
+    <Record name="CanAnalyzerChannel0Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel1Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel2Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel3Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel4Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel5Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel6Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
+    <Record name="CanAnalyzerChannel7Icon">
+      <dark>Resources\Icons\car.dark.png</dark>
+      <white>Resources\Icons\car.white.png</white>
+    </Record>
 		<Record name="BomberPageIcon">
 			<dark>Resources\Icons\bomb1.dark.png</dark>
 			<white>Resources\Icons\bomb1.white.png</white>
