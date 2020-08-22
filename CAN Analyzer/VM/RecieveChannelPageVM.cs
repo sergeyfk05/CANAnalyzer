@@ -402,6 +402,7 @@ namespace CANAnalyzer.VM
 
                         try
                         {
+                            currentTraceProvider.SaveChanges();
                             await el.SaveAsAsync(saveFileDialog.FileName, currentTraceProvider.Traces, currentTraceProvider.CanHeaders);
                         }
                         catch (Exception e)
