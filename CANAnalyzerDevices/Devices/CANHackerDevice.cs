@@ -17,7 +17,7 @@ namespace CANAnalyzerDevices.Devices
             port = new SerialPort(portName, 115200, Parity.None, 8, StopBits.One);
 
             _channels = new List<IChannel>();
-            _channels.Add(new CanHackerChannel(this, port));
+            //_channels.Add(new CanHackerChannel(this, port));
 
             if (IsConnectNow)
                 Connect();
@@ -47,10 +47,7 @@ namespace CANAnalyzerDevices.Devices
         }
 
 
-        public IEnumerable<IChannel> Channels
-        {
-            get { return _channels; }
-        }
+        public IEnumerable<IChannel> Channels => _channels;
         protected List<IChannel> _channels;
 
         public int ChannelCount => _channels.Count;

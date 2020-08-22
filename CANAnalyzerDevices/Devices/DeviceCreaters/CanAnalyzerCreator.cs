@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace CANAnalyzerDevices.Devices.DeviceCreaters
 {
@@ -24,7 +25,7 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
             }
 
 
-            return new CANHackerDevice(info.PortName);
+            return new CANAnalyzerDevice(info.PortName);
         }
 
         IDevice IDeviceCreator.CreateInstanceDefault(HardwareDeviceInfo info)
@@ -34,7 +35,7 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
                 return null;
             }
 
-            return new CANHackerDevice(info.PortName);
+            return new CANAnalyzerDevice(info.PortName);
         }
 
 
@@ -46,9 +47,9 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
             if (String.IsNullOrEmpty(SerialPort.GetPortNames().FirstOrDefault(x => x == info.PortName)))
                 return false;
 
-            try
+            using (SerialPort port = new SerialPort())
             {
-                using (SerialPort port = new SerialPort())
+                try
                 {
                     port.PortName = info.PortName;
                     port.BaudRate = 115200;
@@ -61,31 +62,37 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
                     byte[] buf = new byte[15];
 
                     port.Write(new byte[] { 1 }, 0, 1);
-                    int size = port.Read(buf, 0, 15);
+
+                    //timeout read
+                    int size = port.SafeRead(50, ref buf);
 
                     //check size and command id
                     if ((size != 5) || (buf[0] != 1))
+                    {
+                        port.Close();
                         return false;
+                    }
 
 
                     DeviceInfo deviceInfo = (DeviceInfo)buf;
 
                     //check UID
                     if ((deviceInfo.UID[0] != 1) || (deviceInfo.UID[1] != 2) || (deviceInfo.UID[2] != 3))
+                    {
+                        port.Close();
                         return false;
-
-
-
+                    }
 
                     port.Close();
-
                     return true;
                 }
+                catch
+                {
+                    port.Close();
+                    return false;
+                }
             }
-            catch(Exception e)
-            {
-                return false;
-            }
+
         }
 
     }

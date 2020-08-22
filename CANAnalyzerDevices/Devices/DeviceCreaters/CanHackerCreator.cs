@@ -6,6 +6,7 @@ using CANAnalyzerDevices.Finder;
 using System;
 using System.IO.Ports;
 using System.Linq;
+using System.Threading;
 
 namespace CANAnalyzerDevices.Devices.DeviceCreaters
 {
@@ -27,51 +28,67 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
             if (String.IsNullOrEmpty(SerialPort.GetPortNames().FirstOrDefault(x => x == info.PortName)))
                 return false;
 
-            try
+            using (SerialPort port = new SerialPort())
             {
-                using (SerialPort port = new SerialPort())
+                try
                 {
+
                     port.PortName = info.PortName;
                     port.BaudRate = 115200;
                     port.DataBits = 8;
+                    port.DtrEnable = false;
+                    port.RtsEnable = false;
                     port.Parity = System.IO.Ports.Parity.None;
                     port.StopBits = System.IO.Ports.StopBits.One;
+                    port.ReadTimeout = 50;
+                    port.WriteTimeout = 50;
 
                     port.Open();
-                    port.ReadTimeout = 500;
                     char[] buf = new char[15];
 
-                    port.Write(new char[]{ 'v' }, 0, 1);
-                    int size = port.Read(buf, 0, 15);
+                    port.Write(new char[] { 'v' }, 0, 1);
+                    int size = port.SafeRead(50, ref buf);
 
                     if (size != 7)
+                    {
+                        port.Close();
                         return false;
-                
+                    }
+
                     if (new string(buf, 0, 7) != "vSTM32\r")
+                    {
+                        port.Close();
                         return false;
+                    }
 
 
 
                     port.Write(new char[] { 'V' }, 0, 1);
 
-                    size = port.Read(buf, 0, 15);
+                    size = port.SafeRead(50, ref buf);
 
                     if (size != 6)
+                    {
+                        port.Close();
                         return false;
+                    }
 
                     if (new string(buf, 0, 6) != "V0100\r")
+                    {
+                        port.Close();
                         return false;
-
+                    }
 
                     port.Close();
-
                     return true;
                 }
+                catch
+                {
+                    port.Close();
+                    return false;
+                }
             }
-            catch
-            {
-                return false;
-            }
+
         }
 
         /// <summary>
@@ -86,7 +103,7 @@ namespace CANAnalyzerDevices.Devices.DeviceCreaters
             {
                 throw new ArgumentException("this device cannot work with this hardware device.");
             }
-                
+
 
             return new CANHackerDevice(info.PortName);
         }

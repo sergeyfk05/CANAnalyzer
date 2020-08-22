@@ -8,16 +8,17 @@ using System.ComponentModel.Design;
 namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
 {
     internal class DeviceInfo
-	{ 
-		public byte CommandId;
+	{
+		[Range(1, 1)]
+		protected byte CommandId { get; set; } = 1;
 
 		[MinLength(3), MaxLength(3)]
-		public byte[] UID;
+		internal byte[] UID { get; set; }
 
 		[Range(0, 7)]
-		public byte channels;
+		internal byte channels { get; set; }
 
-		public bool isSupportCanB;
+		internal bool isSupportCanB { get; set; }
 
 		public static explicit operator byte[](DeviceInfo data)
 		{
