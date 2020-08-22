@@ -279,6 +279,20 @@ namespace CANAnalyzer.VM
         }
         private BindingList<TransmitToViewData> _transmitToItems;
 
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                if (value == _isEnabled)
+                    return;
+
+                _isEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool _isEnabled = true;
         public RecieveState RecieveState
         {
             get { return _recieveState; }
@@ -378,8 +392,11 @@ namespace CANAnalyzer.VM
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = GenerateFilterForDialog(traceProviders);
 
+            IsEnabled = false;
+
             if (saveFileDialog.ShowDialog() == true)
             {
+                
                 try
                 {
                     if (File.Exists(saveFileDialog.FileName))
@@ -417,6 +434,8 @@ namespace CANAnalyzer.VM
                 {
                     MessageBox.Show((string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#InvalidFileError"), (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource("#ErrorMsgBoxTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                IsEnabled = true;
             }
 
         }
