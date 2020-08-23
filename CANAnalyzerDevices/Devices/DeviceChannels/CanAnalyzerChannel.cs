@@ -184,9 +184,6 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 throw new Exception("open device connection first");
             }
 
-            if (!IsOpen)
-                return;
-
             SetChannelInfo data = new SetChannelInfo();
             data.ChannelId = Index;
             data.Status = CanState.Closed;

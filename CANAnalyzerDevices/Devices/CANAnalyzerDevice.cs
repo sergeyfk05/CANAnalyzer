@@ -96,8 +96,10 @@ namespace CANAnalyzerDevices.Devices
             {
                 port.DataReceived += Port_DataReceived;
                 port.Open();
-            }
 
+                foreach (var el in Channels)
+                    el.Close();
+            }
 
             OnIsConnectedChanged();
         }
