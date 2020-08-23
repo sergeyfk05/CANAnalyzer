@@ -79,7 +79,7 @@ namespace CANAnalyzer.Models.DataTypesProviders
         /// <summary>
         /// Traces dataset
         /// </summary>
-        public IQueryable<TraceModel> Traces => context?.Traces;
+        public IQueryable<TraceModel> Traces => context?.Traces.OrderBy(x => x.Time);
 
         /// <summary>
         /// CanHeaders dataset
