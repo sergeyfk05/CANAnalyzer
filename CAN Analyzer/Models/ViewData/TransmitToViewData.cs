@@ -10,6 +10,24 @@ namespace CANAnalyzer.Models.ViewData
 {
     public class TransmitToViewData : INotifyPropertyChanged
     {
+        public TransmitToViewData(bool isRealChannel = false)
+        {
+            IsRealChannel = isRealChannel;
+        }
+
+        public bool IsRealChannel
+        {
+            get { return _isRealChannel; }
+            private set
+            {
+                if (value == _isRealChannel)
+                    return;
+
+                _isRealChannel = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool _isRealChannel = false;
         public bool IsTransmit
         {
             get { return _isTransmit; }

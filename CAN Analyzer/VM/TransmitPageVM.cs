@@ -20,16 +20,13 @@ using System.Windows;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitPageVM : BaseClosableVM
+    public class TransmitPageVM : TransmitableAndClosableBaseVM
     {
 
-        public TransmitPageVM()
+        public TransmitPageVM():base()
         {
             PropertyChanged += TransmitToSelectedChannels_PropertyChanged;
             PropertyChanged += CurrentTraceProvider_PropertyChanged;
-            Settings.Instance.PropertyChanged += Device_PropertyChanged;
-
-            Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
         }
 
         public ObservableCollection<TracePeriodicViewData> Data
@@ -53,33 +50,6 @@ namespace CANAnalyzer.VM
         }
         private ObservableCollection<TracePeriodicViewData> _data = new ObservableCollection<TracePeriodicViewData>();
 
-        public ObservableCollection<TransmitToViewData> TransmitToItems
-        {
-            get { return _transmitToItems ?? (_transmitToItems = new ObservableCollection<TransmitToViewData>()); }
-            set
-            {
-                if (_transmitToItems == value)
-                    return;
-
-                _transmitToItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ObservableCollection<TransmitToViewData> _transmitToItems;
-
-        public TransmitToDelegate TransmitToSelectedChannels
-        {
-            get { return _transmitToSelectedChannels; }
-            private set
-            {
-                if (value == _transmitToSelectedChannels)
-                    return;
-
-                _transmitToSelectedChannels = value;
-                RaisePropertyChanged();
-            }
-        }
-        private TransmitToDelegate _transmitToSelectedChannels;
 
         public List<TracePeriodicViewData> SelectedItems
         {
@@ -508,39 +478,7 @@ namespace CANAnalyzer.VM
                     el.TransmitToSelectedChannels = TransmitToSelectedChannels;
             }
         }
-        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "Device")
-                return;
-
-            //create ViewData for  transmitable channels
-            StopTransmitingAll();
-            _context.Send((s) =>
-            {
-                TransmitToItems.Clear();
-            }, null);
-            TransmitToSelectedChannels = null;
-            if (Settings.Instance.Device != null && Settings.Instance.Device.IsConnected && Settings.Instance.Device.Channels != null)
-            {
-                Settings.Instance.Device.IsConnectedChanged += Device_IsConnectedChanged;
-                foreach (var el in Settings.Instance.Device.Channels)
-                {
-                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    _context.Send((s) =>
-                    {
-                        TransmitToItems.Add(viewData);
-                    }, null);
-                }
-            }
-        }
-        private void Device_IsConnectedChanged(object sender, EventArgs e)
-        {
-            if (Settings.Instance.Device == sender)
-            {
-                Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
-            }
-        }
+       
         private void Data_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (sender is ObservableCollection<TracePeriodicViewData> collection && collection == Data)

@@ -115,6 +115,9 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         public void Transmit(TransmitData data)
         {
+            if (!IsOpen)
+                return;
+
             bool isVerified = false;
             string udpString = ConvertCANPackageToInfluxdbUDPPackage(data, out isVerified);
 

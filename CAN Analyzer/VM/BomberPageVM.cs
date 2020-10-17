@@ -20,7 +20,7 @@ using System.Windows;
 
 namespace CANAnalyzer.VM
 {
-    public class BomberPageVM : BaseClosableVM, IDisposable
+    public class BomberPageVM : TransmitableAndClosableBaseVM, IDisposable
     {
 
         public BomberPageVM()
@@ -29,41 +29,13 @@ namespace CANAnalyzer.VM
             PropertyChanged += DLC_PropertyChanged;
             PropertyChanged += Status_PropertyChanged;
 
-            Settings.Instance.PropertyChanged += Device_PropertyChanged;
-            Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
 
             _timer.Stop();
             _timer.AutoReset = true;
             _timer.Elapsed += _timer_Elapsed;
         }
 
-        public ObservableCollection<TransmitToViewData> TransmitToItems
-        {
-            get { return _transmitToItems ?? (_transmitToItems = new ObservableCollection<TransmitToViewData>()); }
-            set
-            {
-                if (_transmitToItems == value)
-                    return;
-
-                _transmitToItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ObservableCollection<TransmitToViewData> _transmitToItems;
-
-        public TransmitToDelegate TransmitToSelectedChannels
-        {
-            get { return _transmitToSelectedChannels; }
-            private set
-            {
-                if (value == _transmitToSelectedChannels)
-                    return;
-
-                _transmitToSelectedChannels = value;
-                RaisePropertyChanged();
-            }
-        }
-        private TransmitToDelegate _transmitToSelectedChannels;
+       
 
 
 
@@ -323,31 +295,7 @@ namespace CANAnalyzer.VM
         {
             //_transmiter.TransmitTo = TransmitToSelectedChannels;
         }
-        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "Device")
-                return;
-
-            //create ViewData for  transmitable channels
-            _context.Send((s) =>
-            {
-                TransmitToItems.Clear();
-            }, null);
-            TransmitToSelectedChannels = null;
-            if (Settings.Instance.Device != null && Settings.Instance.Device.IsConnected && Settings.Instance.Device.Channels != null)
-            {
-                Settings.Instance.Device.IsConnectedChanged += Device_IsConnectedChanged;
-                foreach (var el in Settings.Instance.Device.Channels)
-                {
-                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    _context.Send((s) =>
-                    {
-                        TransmitToItems.Add(viewData);
-                    }, null);
-                }
-            }
-        }
+        
         private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
@@ -367,13 +315,6 @@ namespace CANAnalyzer.VM
                     }
                     catch { }
                 }
-            }
-        }
-        private void Device_IsConnectedChanged(object sender, EventArgs e)
-        {
-            if (Settings.Instance.Device == sender)
-            {
-                Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
             }
         }
         private void DLC_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

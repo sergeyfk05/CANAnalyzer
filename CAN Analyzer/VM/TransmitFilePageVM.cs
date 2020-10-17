@@ -6,10 +6,12 @@ using CANAnalyzer.Models;
 using CANAnalyzer.Models.Databases;
 using CANAnalyzer.Models.DataTypesProviders;
 using CANAnalyzer.Models.Delegates;
+using CANAnalyzer.Models.Extensions;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.TraceFilters;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzerDevices.Devices.DeviceChannels;
 using DynamicResource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
@@ -24,9 +26,9 @@ using static CANAnalyzer.Models.TraceTransmiter;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitFilePageVM : BaseClosableVM, IDisposable //-V3073
+    public class TransmitFilePageVM : TransmitableAndClosableBaseVM, IDisposable //-V3073
     {
-        public TransmitFilePageVM()
+        public TransmitFilePageVM():base()
         {
 
             PropertyChanged += OnSaveFileCommandCanExecuteChanged_PropertyChanged;
@@ -35,31 +37,15 @@ namespace CANAnalyzer.VM
             PropertyChanged += ShowedData_PropertyChanged;
             PropertyChanged += TransmitToSelectedChannels_PropertyChanged;
 
-            Settings.Instance.PropertyChanged += Device_PropertyChanged;
-
             _transmiter = new TraceTransmiter();
             _transmiter.StatusChanged += _transmiter_StatusChanged;
             _transmiter.CurrentIndexChanged += _transmiter_CurrentIndexChanged;
 
-            Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
+
         }
 
 
         #region properties
-
-        public ObservableCollection<TransmitToViewData> TransmitToItems
-        {
-            get { return _transmitToItems ?? (_transmitToItems = new ObservableCollection<TransmitToViewData>()); }
-            set
-            {
-                if (_transmitToItems == value)
-                    return;
-
-                _transmitToItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ObservableCollection<TransmitToViewData> _transmitToItems;
 
         public ObservableCollection<TraceModel> ShowedData
         {
@@ -136,20 +122,6 @@ namespace CANAnalyzer.VM
             }
         }
         private int _selectedItemIndex;
-
-        public TransmitToDelegate TransmitToSelectedChannels
-        {
-            get { return _transmitToSelectedChannels; }
-            private set
-            {
-                if (value == _transmitToSelectedChannels)
-                    return;
-
-                _transmitToSelectedChannels = value;
-                RaisePropertyChanged();
-            }
-        }
-        private TransmitToDelegate _transmitToSelectedChannels;
 
         public TraceTransmiterStatus Status => _transmiter.Status;
 
@@ -534,16 +506,20 @@ namespace CANAnalyzer.VM
 
         #region private varibles
 
+        protected TraceTransmiter _transmiter;
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;
-        private TraceTransmiter _transmiter;
-        private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
+
 
         #endregion
 
 
         #region eventHandlers
 
+        private void TransmitToSelectedChannels_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            _transmiter.TransmitTo = TransmitToSelectedChannels;
+        }
         private void _transmiter_CurrentIndexChanged(object sender, EventArgs e)
         {
             SelectedItemIndex = _transmiter.CurrentIndex;
@@ -552,31 +528,7 @@ namespace CANAnalyzer.VM
         {
             _transmiter.Source = ShowedData;
         }
-        private void TransmitToViewDataIsTransmit_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if ((e.PropertyName == "IsTransmit") && (sender is TransmitToViewData viewData) && (TransmitToItems.Contains(viewData)))
-            {
-                if (viewData.IsTransmit)
-                {
-                    if (TransmitToSelectedChannels == null)
-                        TransmitToSelectedChannels = viewData.Transmit;
-                    else
-                        TransmitToSelectedChannels += viewData.Transmit;
-                }
-                else
-                {
-                    try
-                    {
-                        TransmitToSelectedChannels -= viewData.Transmit;
-                    }
-                    catch { }
-                }
-            }
-        }
-        private void TransmitToSelectedChannels_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            _transmiter.TransmitTo = TransmitToSelectedChannels;
-        }
+        
         private void OnOpenFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if ((e.PropertyName == "FileIsOpened") && (sender is TransmitFilePageVM vm))
@@ -607,38 +559,6 @@ namespace CANAnalyzer.VM
             PauseTraceCommand.RaiseCanExecuteChanged();
             StopTraceCommand.RaiseCanExecuteChanged();
         }
-        private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "Device")
-                return;
-
-            //create ViewData for  transmitable channels
-            _context.Send((s) =>
-            {
-                TransmitToItems.Clear();
-            }, null);
-            TransmitToSelectedChannels = null;
-            if (Settings.Instance.Device != null && Settings.Instance.Device.IsConnected && Settings.Instance.Device.Channels != null)
-            {
-                Settings.Instance.Device.IsConnectedChanged += Device_IsConnectedChanged;
-                foreach (var el in Settings.Instance.Device.Channels)
-                {
-                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    _context.Send((s) =>
-                    {
-                        TransmitToItems.Add(viewData);
-                    }, null);
-                }
-            }
-        }
-        private void Device_IsConnectedChanged(object sender, EventArgs e)
-        {
-            if (Settings.Instance.Device == sender)
-            {
-                Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
-            }
-        }
         private void ShowedData_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (!((sender is ObservableCollection<TraceModel> data) && (ShowedData == data)))
@@ -656,7 +576,6 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
-            TransmitToItems = null;
             currentTraceProvider?.Dispose();
         }
         ~TransmitFilePageVM()

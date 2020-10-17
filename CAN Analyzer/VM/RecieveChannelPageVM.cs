@@ -25,27 +25,13 @@ using System.Windows;
 
 namespace CANAnalyzer.VM
 {
-    public class RecieveChannelPageVM : BaseVM, IDisposable
+    public class RecieveChannelPageVM : TransmitableAndClosableBaseVM, IDisposable
     {
         public RecieveChannelPageVM(IChannel ch)
         {
             PropertyChanged += RecieveState_PropertyChanged;
 
-            //create ViewData for  transmitable channels
-            if (Settings.Instance.Device != null && Settings.Instance.Device.Channels != null)
-            {
-                foreach (var el in Settings.Instance.Device.Channels)
-                {
-                    //if (el == ch)
-                    //    continue;
-
-                    var viewData = new TransmitToViewData() { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                    viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                    TransmitToItems.Add(viewData);
-                }
-            }
-
-
+            
 
             //create main trace data type provider
             currentTraceProvider = new SQLiteTraceDataTypeProvider();
@@ -258,26 +244,14 @@ namespace CANAnalyzer.VM
             //}
         }
 
-        private TransmitToDelegate TransmitToSelectedChannels;
+       
 
 
 
         private List<ITraceDataTypeProvider> traceProviders = TraceDataTypeProvidersListBuilder.GenerateTraceDataTypeProviders();
         private ITraceDataTypeProvider currentTraceProvider;
 
-        public BindingList<TransmitToViewData> TransmitToItems
-        {
-            get { return _transmitToItems ?? (_transmitToItems = new BindingList<TransmitToViewData>()); }
-            set
-            {
-                if (_transmitToItems == value)
-                    return;
 
-                _transmitToItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private BindingList<TransmitToViewData> _transmitToItems;
 
 
         public bool IsEnabled
