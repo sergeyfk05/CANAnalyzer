@@ -34,7 +34,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
                     var _config = (InfuxDBConfig)formatter.Deserialize(fs);
                 }
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }

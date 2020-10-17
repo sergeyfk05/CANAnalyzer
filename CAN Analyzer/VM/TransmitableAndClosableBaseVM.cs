@@ -21,6 +21,7 @@ namespace CANAnalyzer.VM
             Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
 
             Settings.Instance.ProxiesCollectionChanged += Settins_ProxiesCollectionChanged;
+            AddTransmitToItems(Settings.Instance.Proxies, false);
         }
 
         private void Settins_ProxiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

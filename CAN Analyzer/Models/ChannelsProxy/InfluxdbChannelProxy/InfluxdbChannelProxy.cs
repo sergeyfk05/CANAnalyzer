@@ -8,10 +8,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Media.Animation;
 using System.Xml.Serialization;
+using CANAnalyzer.Models.Extensions;
+using System.Threading.Tasks;
+using System.Data;
+using InfluxDB.Client;
+using InfluxDB.Client.Api.Domain;
+using System.Linq.Expressions;
 
 namespace CANAnalyzer.Models.ChannelsProxy
 {
@@ -22,7 +30,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         {
             Name = this.ToString();
 
-            if (!File.Exists(path))
+            if (!System.IO.File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
 
             if (!TryParseConfigurationXmlDocument(path))
@@ -32,10 +40,12 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
             Path = path;
 
+            _watch.Start();
 
-            _udpClient = new UdpClient(_config.Server.Hostname, _config.Server.Port);
+            InfluxDBClient client = InfluxDBClientFactory.Create($"http://{_config.Server.Hostname}:{_config.Server.Port}", _config.Server.Token.ToCharArray());
+            _writeApi = client.GetWriteApi();
         }
-       
+
 
         public string Path
         {
@@ -118,11 +128,11 @@ namespace CANAnalyzer.Models.ChannelsProxy
             if (!IsOpen)
                 return;
 
-            bool isVerified = false;
-            string udpString = ConvertCANPackageToInfluxdbUDPPackage(data, out isVerified);
-
-            if (!isVerified)
+            if (!DoesItPassFilter(data))
                 return;
+
+            List<string> udpStrings = ConvertCANPackageToInfluxdbUDPPackage(data);
+
 
             RaiseReceivedData(new ReceivedData()
             {
@@ -134,28 +144,65 @@ namespace CANAnalyzer.Models.ChannelsProxy
             });
 
 
-            SendUDPtoInfluxDB(udpString);
+            foreach (var el in udpStrings)
+            {
+                SendToInfluxDB(el);
+            }
 
         }
 
-        private string ConvertCANPackageToInfluxdbUDPPackage(TransmitData data, out bool isVerified)
+
+        private bool DoesItPassFilter(TransmitData data)
         {
-            throw new NotImplementedException();
-            isVerified = false;
-            return "";
+            InfuxDBFilter a = _config.Filters.FirstOrDefault(x =>
+                (x.Header.IsExtId == data.IsExtId) &&
+                (x.Header.DLC == data.DLC) &&
+                (x.Header.Id == data.CanId) &&
+                (data.Payload.BinaryAnd(x.Header.MaskBytes).IsEquals(x.Header.ValueBytes)));
+            return a == null ? false : true;
         }
 
-        private bool SendUDPtoInfluxDB(string data)
+
+
+        private List<string> ConvertCANPackageToInfluxdbUDPPackage(TransmitData data)
         {
-            byte[] sendBytes = Encoding.ASCII.GetBytes(data);
-            try
+            List<string> result = new List<string>();
+
+            foreach (var filter in _config.Filters.Where(x =>
+                 (x.Header.IsExtId == data.IsExtId) &&
+                 (x.Header.DLC == data.DLC) &&
+                 (x.Header.Id == data.CanId) &&
+                 (x.Header.ValueBytes.BinaryAnd(x.Header.MaskBytes).IsEquals(x.Header.ValueBytes))))
             {
-                _udpClient.Send(sendBytes, sendBytes.Length);
+
+
+
+                foreach (var insert in filter.Inserts)
+                {
+                    string exp = insert.Field.Value;
+                    for (int i = 0; i < data.Payload.Length; i++)
+                    {
+                        exp = exp.Replace($"data{i}", data.Payload[i].ToString());
+                    }
+
+
+
+                    try
+                    {
+                        result.Add($"{insert.Measurement},{insert.Tag.Name}={insert.Tag.Value} {insert.Field.Name}={new DataTable().Compute(exp, null).ToString().Replace(",", ".")}");
+                    }
+                    catch { }
+
+                }
             }
-            catch
-            {
-                return false;
-            }
+
+
+            return result;
+        }
+
+        private bool SendToInfluxDB(string data)
+        {
+            _writeApi.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
             return true;
         }
 
@@ -177,8 +224,8 @@ namespace CANAnalyzer.Models.ChannelsProxy
         }
 
 
-        private Stopwatch _watch;
-        private UdpClient _udpClient;
+        private Stopwatch _watch = new Stopwatch();
+        private WriteApi _writeApi;
         private InfuxDBConfig _config;
         private static XmlSerializer formatter = new XmlSerializer(typeof(InfuxDBConfig));
 
