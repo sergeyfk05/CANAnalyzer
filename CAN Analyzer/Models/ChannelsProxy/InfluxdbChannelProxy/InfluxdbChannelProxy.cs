@@ -1,22 +1,27 @@
 ﻿using CANAnalyzer.Models.ChannelsProxy;
+using CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML;
 using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerDevices.Devices.DeviceChannels.Events;
-using InfluxdbChannelProxy.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows.Media.Animation;
+using System.Xml.Serialization;
 
-namespace InfluxdbChannelProxy
+namespace CANAnalyzer.Models.ChannelsProxy
 {
     public class InfluxdbChannelProxy : IChannelProxy
     {
 
         public InfluxdbChannelProxy(string path)
         {
+            Name = this.ToString();
+
             if (!File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
 
@@ -28,7 +33,7 @@ namespace InfluxdbChannelProxy
             Path = path;
 
 
-            _udpClient = new UdpClient(_serverInfo.hostname, _serverInfo.port);
+            _udpClient = new UdpClient(_config.Server.Hostname, _config.Server.Port);
         }
        
 
@@ -153,13 +158,26 @@ namespace InfluxdbChannelProxy
 
         private bool TryParseConfigurationXmlDocument(string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    _config = (InfuxDBConfig)formatter.Deserialize(fs);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
 
         private Stopwatch _watch;
         private UdpClient _udpClient;
-        private ServerInfo _serverInfo;
+        private InfuxDBConfig _config;
+        private static XmlSerializer formatter = new XmlSerializer(typeof(InfuxDBConfig));
 
         public event ChannelDataReceivedEventHandler ReceivedData;
         private void RaiseReceivedData(ReceivedData data)

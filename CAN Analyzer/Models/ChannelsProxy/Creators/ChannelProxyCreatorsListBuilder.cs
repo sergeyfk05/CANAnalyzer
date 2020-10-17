@@ -13,6 +13,7 @@ namespace CANAnalyzer.Models.ChannelsProxy.Creators
             var proxiesCreators = new List<IChannelProxyCreator>();
             proxiesCreators.Add(new ConsoleChannelProxyCreator());
             proxiesCreators.Add(new DirtRallyProxyCreator());
+            proxiesCreators.Add(new InfluxdbChannelProxyCreator());
 
             return proxiesCreators;
         }
