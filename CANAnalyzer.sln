@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicResource", "DynamicR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamburgerMenu", "HamburgerMenu\HamburgerMenu.csproj", "{EB2B307D-68EB-4E4A-8999-90DB4DB48342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerDevicesTestNetCore", "CANAnalyzerDevicesTestNetCore\CANAnalyzerDevicesTestNetCore.csproj", "{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDevicesTestNetCore", "CANAnalyzerDevicesTestNetCore\CANAnalyzerDevicesTestNetCore.csproj", "{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluxdbChannelProxy", "InfluxdbChannelProxy\InfluxdbChannelProxy.csproj", "{B2A8AA8E-035C-464A-83F5-2D627C725BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A8AA8E-035C-464A-83F5-2D627C725BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A8AA8E-035C-464A-83F5-2D627C725BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A8AA8E-035C-464A-83F5-2D627C725BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A8AA8E-035C-464A-83F5-2D627C725BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
