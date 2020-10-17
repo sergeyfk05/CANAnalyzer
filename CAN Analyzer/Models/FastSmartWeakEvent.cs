@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -289,5 +290,11 @@ namespace CANAnalyzer.Models
 				d(sender, e);
 		}
 
+		public static void Raise(this FastSmartWeakEvent<NotifyCollectionChangedEventHandler> ev, object sender, NotifyCollectionChangedEventArgs e)
+		{
+			var d = ev.GetRaiseDelegate();
+			if (d != null)
+				d(sender, e);
+		}
 	}
 }

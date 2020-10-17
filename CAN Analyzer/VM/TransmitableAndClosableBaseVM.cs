@@ -6,6 +6,7 @@ using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace CANAnalyzer.VM
@@ -18,8 +19,37 @@ namespace CANAnalyzer.VM
             Settings.Instance.PropertyChanged += Device_PropertyChanged;
 
             Device_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Device"));
+
+            Settings.Instance.ProxiesCollectionChanged += Settins_ProxiesCollectionChanged;
         }
 
+        private void Settins_ProxiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                foreach(var el in e.NewItems)
+                {
+                    if (el is IChannel ch)
+                        AddTransmitToItems(ch, false);
+                }
+            }
+            else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                foreach(var el in e.OldItems)
+                {
+                    if (el == null)
+                        continue;
+
+                     TransmitToItems.RemoveAll(x => x.Channel == (IChannel)el);
+                    
+                }
+            }
+            else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+            {
+                TransmitToItems.Clear();
+            }
+            else { throw new NotImplementedException(); }
+        }
 
         public ObservableCollection<TransmitToViewData> TransmitToItems
         {
@@ -91,13 +121,17 @@ namespace CANAnalyzer.VM
         {
             foreach (var el in data)
             {
-                var viewData = new TransmitToViewData(isRealChannels) { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
-                viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
-                _context.Send((s) =>
-                {
-                    TransmitToItems.Add(viewData);
-                }, null);
+                AddTransmitToItems(el, isRealChannels);
             }
+        }
+        private void AddTransmitToItems(IChannel el, bool isRealChannels)
+        {
+            var viewData = new TransmitToViewData(isRealChannels) { IsTransmit = false, DescriptionKey = $"#{el.ToString()}NavMenu", Channel = el };
+            viewData.PropertyChanged += TransmitToViewDataIsTransmit_PropertyChanged;
+            _context.Send((s) =>
+            {
+                TransmitToItems.Add(viewData);
+            }, null);
         }
         private void Device_IsConnectedChanged(object sender, EventArgs e)
         {

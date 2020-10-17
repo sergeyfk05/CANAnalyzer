@@ -8,6 +8,7 @@ using CANAnalyzer.Models.Extensions;
 using CANAnalyzerDevices.Devices;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -24,6 +25,12 @@ namespace CANAnalyzer
         {
             PropertyChanged += OnDevice_PropertyChanged;
             _context = SynchronizationContext.Current;
+            Proxies.CollectionChanged += Proxies_CollectionChanged;
+        }
+
+        private void Proxies_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RaiseProxiesCollectionChanged(sender, e);
         }
 
         SynchronizationContext _context;
@@ -134,10 +141,23 @@ namespace CANAnalyzer
         [JsonIgnore]
         public ObservableCollection<IChannelProxy> Proxies
         {
-            get { return _proxies ?? (_proxies = new ObservableCollection<IChannelProxy>()); }
+            get { return _proxies ?? (_proxies = new ObservableCollection<IChannelProxy>());}
         }
         private ObservableCollection<IChannelProxy> _proxies;
 
+        FastSmartWeakEvent<NotifyCollectionChangedEventHandler> _proxiesCollectionChanged = new FastSmartWeakEvent<NotifyCollectionChangedEventHandler>();
+        public event NotifyCollectionChangedEventHandler ProxiesCollectionChanged
+        {
+            add { _proxiesCollectionChanged.Add(value); }
+            remove { _proxiesCollectionChanged.Remove(value); }
+        }
+        private void RaiseProxiesCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            _context.Post((s) =>
+            {
+                _proxiesCollectionChanged.Raise(sender, args);
+            }, null);
+        }
 
         FastSmartWeakEvent<PropertyChangedEventHandler> _propertyChanged = new FastSmartWeakEvent<PropertyChangedEventHandler>();
         public event PropertyChangedEventHandler PropertyChanged
