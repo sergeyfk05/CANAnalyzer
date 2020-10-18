@@ -20,7 +20,7 @@ using System.Windows;
 
 namespace CANAnalyzer.VM
 {
-    public class TransmitPageVM : TransmitableAndClosableBaseVM
+    public class TransmitPageVM : TransmitableAndClosableBaseVM, IDisposable
     {
 
         public TransmitPageVM():base()
@@ -518,6 +518,12 @@ namespace CANAnalyzer.VM
             {
                 el.StopTransmiting();
             }
+        }
+
+        public new void Dispose()
+        {
+            StopTransmitingAll();
+            base.Dispose();
         }
 
     }

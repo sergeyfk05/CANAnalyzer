@@ -279,7 +279,7 @@ namespace CANAnalyzer.VM
                 return;
 
 
-            ClearChannelsAndProxies();
+            ClearChannels();
 
 
             if (Settings.Instance.Device == null)
@@ -292,7 +292,7 @@ namespace CANAnalyzer.VM
                     if (Settings.Instance.Device.IsConnected)
                         OnDevicePropertyChanged(null, null);
                     else
-                        ClearChannelsAndProxies();
+                        ClearChannels();
             };
 
             if (!Settings.Instance.Device.IsConnected)

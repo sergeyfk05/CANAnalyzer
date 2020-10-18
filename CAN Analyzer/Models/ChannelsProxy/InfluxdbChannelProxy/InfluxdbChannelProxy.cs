@@ -41,9 +41,6 @@ namespace CANAnalyzer.Models.ChannelsProxy
             Path = path;
 
             _watch.Start();
-
-            InfluxDBClient client = InfluxDBClientFactory.Create($"http://{_config.Server.Hostname}:{_config.Server.Port}", _config.Server.Token.ToCharArray());
-            _writeApi = client.GetWriteApi();
         }
 
 
@@ -112,11 +109,16 @@ namespace CANAnalyzer.Models.ChannelsProxy
         public void Close()
         {
             IsOpen = false;
+            _writeApi?.Dispose();
+            _writeApi = null;
         }
 
         public void Open(int bitrate = 500, bool isListenOnly = true)
         {
             IsOpen = true;
+
+            _client = InfluxDBClientFactory.Create($"http://{_config.Server.Hostname}:{_config.Server.Port}", _config.Server.Token.ToCharArray());
+            _writeApi = _client.GetWriteApi();
         }
 
         public void SetChannel(IChannel newCH)
@@ -202,7 +204,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
 
         private bool SendToInfluxDB(string data)
         {
-            _writeApi.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
+            _writeApi?.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
             return true;
         }
 
@@ -227,6 +229,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         private Stopwatch _watch = new Stopwatch();
         private WriteApi _writeApi;
         private InfuxDBConfig _config;
+        InfluxDBClient _client;
         private static XmlSerializer formatter = new XmlSerializer(typeof(InfuxDBConfig));
 
         public event ChannelDataReceivedEventHandler ReceivedData;
@@ -254,6 +257,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         {
             if (!disposedValue)
             {
+                Close();
                 if (disposing)
                 {
                     // TODO: dispose managed state (managed objects)
@@ -275,6 +279,7 @@ namespace CANAnalyzer.Models.ChannelsProxy
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }

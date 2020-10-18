@@ -576,6 +576,8 @@ namespace CANAnalyzer.VM
 
         public void Dispose()
         {
+            _transmiter.Stop();
+            _transmiter.Dispose();
             currentTraceProvider?.Dispose();
         }
         ~TransmitFilePageVM()

@@ -43,13 +43,13 @@ namespace CANAnalyzer
             if(Device != null)
                 Device.IsConnectedChanged += Device_IsConnectedChanged;
 
-            _proxies.RemoveAll((x) => true);
+           // _proxies.RemoveAll((x) => true);
         }
 
         private void Device_IsConnectedChanged(object sender, EventArgs e)
         {
-            if(sender is IDevice dev && dev == Device && !Device.IsConnected)
-                Proxies.RemoveAll((x) => true);
+            //if(sender is IDevice dev && dev == Device && !Device.IsConnected)
+            //    Proxies.RemoveAll((x) => true);
         }
 
         public string LanguagesXmlPath
