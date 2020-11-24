@@ -5,7 +5,7 @@
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
 
-namespace CANAnalyzer.Models.ChannelsProxy
+namespace CANAnalyzerChannelProxyInterfaces
 {
     public interface IChannelProxy : IChannel, IDisposable
     {

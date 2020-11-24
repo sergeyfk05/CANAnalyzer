@@ -2,12 +2,13 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzerChannelProxyInterfaces;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace CANAnalyzer.Models.ChannelsProxy.Creators
+namespace ConsoleChannelProxy
 {
     public class ConsoleChannelProxyCreator : IChannelProxyCreator
     {
