@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DirtRallyV2ToRenaultDashboardProxy
 {
-    class DirtRallyV2ToRenaultDashboadrProxyCreator : IChannelProxyCreator
+    public class DirtRallyV2ToRenaultDashboadrProxyCreator : IChannelProxyCreator
     {
         public string SupportedFiles => "*.txt";
 

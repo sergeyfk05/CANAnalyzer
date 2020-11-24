@@ -3,10 +3,9 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzer.Models;
-using CANAnalyzer.Models.ChannelsProxy;
-using CANAnalyzer.Models.ChannelsProxy.Creators;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzerChannelProxyInterfaces;
 using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Finder;
 using DynamicResource;

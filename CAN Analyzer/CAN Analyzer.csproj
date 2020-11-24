@@ -203,9 +203,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CANAnalyzerChannelProxies\CANAnalyzerChannelProxyIntefaces.csproj" />
     <ProjectReference Include="..\CANAnalyzerDevices\CANAnalyzerDevices.csproj" />
+    <ProjectReference Include="..\ConsoleChannelProxy\ConsoleChannelProxy.csproj" />
+    <ProjectReference Include="..\DirtRallyV2ToRenaultDashboardProxy\DirtRallyV2ToRenaultDashboardProxy.csproj" />
     <ProjectReference Include="..\DynamicResource\DynamicResource.csproj" />
     <ProjectReference Include="..\HamburgerMenu\HamburgerMenu.csproj" />
+    <ProjectReference Include="..\InfluxDBChannelProxy\InfluxDBChannelProxy.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
