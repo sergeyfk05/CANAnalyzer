@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CANAnalyzerChannelProxyInterfaces;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 
-namespace CANAnalyzer.Models.ChannelsProxy.Creators
+namespace DirtRallyV2ToRenaultDashboardProxy
 {
-    class DirtRallyProxyCreator : IChannelProxyCreator
+    class DirtRallyV2ToRenaultDashboadrProxyCreator : IChannelProxyCreator
     {
         public string SupportedFiles => "*.txt";
 

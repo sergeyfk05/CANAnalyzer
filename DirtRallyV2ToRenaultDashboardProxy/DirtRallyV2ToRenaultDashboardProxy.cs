@@ -1,16 +1,15 @@
-﻿using CANAnalyzerDevices.Devices;
+﻿using CANAnalyzerChannelProxyInterfaces;
+using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerDevices.Devices.DeviceChannels.Events;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.ComponentModel.DataAnnotations;
 
-namespace CANAnalyzer.Models.ChannelsProxy
+namespace DirtRallyV2ToRenaultDashboardProxy
 {
     public class DirtRallyV2ToRenaultDashboardProxy : IChannel, IChannelProxy, IDisposable
     {
