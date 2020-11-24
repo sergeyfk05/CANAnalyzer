@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 
-namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
+namespace CANAnalyzerDevice.Protocol
 {
     internal class DeviceInfo
 	{

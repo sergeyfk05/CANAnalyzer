@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Text;
-using CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer;
 using System.ComponentModel.DataAnnotations;
+using CANAnalyzerDevices.Devices.DeviceChannels;
+using CANAnalyzerDevice.Protocol;
+using CANAnalyzerDevices.Devices;
+using CANAnalyzerDevices;
 
-namespace CANAnalyzerDevices.Devices.DeviceChannels
+namespace CANAnalyzerDevice
 {
     public class CanAnalyzerChannel : IChannel
     {

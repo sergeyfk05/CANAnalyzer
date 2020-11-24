@@ -2,13 +2,14 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using CANAnalyzerDevices.Devices.DeviceChannels;
+using CANAnalyzerDevices;
+using CANAnalyzerDevices.Devices;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using IChannel = CANAnalyzerDevices.Devices.DeviceChannels.IChannel;
 
-namespace CANAnalyzerDevices.Devices
+namespace CANHackerDevice
 {
     public class CANHackerDevice : IDevice
     {

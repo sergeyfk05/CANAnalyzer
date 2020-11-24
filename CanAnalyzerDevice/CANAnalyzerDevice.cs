@@ -3,14 +3,16 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 
+using CANAnalyzerDevice.Protocol;
+using CANAnalyzerDevices;
+using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerDevices.Devices.DeviceChannels.Events;
-using CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 
-namespace CANAnalyzerDevices.Devices
+namespace CANAnalyzerDevice
 {
     public class CANAnalyzerDevice : IDevice
     {

@@ -205,6 +205,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CANAnalyzerChannelProxies\CANAnalyzerChannelProxyIntefaces.csproj" />
     <ProjectReference Include="..\CANAnalyzerDevices\CANAnalyzerDevices.csproj" />
+    <ProjectReference Include="..\CanAnalyzerDevice\CanAnalyzerDevice.csproj" />
+    <ProjectReference Include="..\CanHackerDevice\CanHackerDevice.csproj" />
     <ProjectReference Include="..\ConsoleChannelProxy\ConsoleChannelProxy.csproj" />
     <ProjectReference Include="..\DirtRallyV2ToRenaultDashboardProxy\DirtRallyV2ToRenaultDashboardProxy.csproj" />
     <ProjectReference Include="..\DynamicResource\DynamicResource.csproj" />

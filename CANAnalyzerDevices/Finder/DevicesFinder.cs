@@ -3,9 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzerDevices.Devices;
-using CANAnalyzerDevices.Devices.DeviceCreaters;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Management;
 
 namespace CANAnalyzerDevices.Finder
@@ -16,10 +14,9 @@ namespace CANAnalyzerDevices.Finder
         /// Method for find available devices.
         /// </summary>
         /// <returns>Returns list of available to work devices.</returns>
-        public static IEnumerable<IDevice> FindAvailableDevices()
+        public static IEnumerable<IDevice> FindAvailableDevices(List<IDeviceCreator> creators)
         {
             List<IDevice> availableDevices = new List<IDevice>();
-            List<IDeviceCreator> creators = DeviceCreatorsBuilder.BuildDeviceCreatorsList();
 
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_SerialPort");
             foreach (ManagementObject win32Device in searcher.Get())

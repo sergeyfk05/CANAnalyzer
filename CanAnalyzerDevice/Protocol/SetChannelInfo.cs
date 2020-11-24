@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Text;
 
-namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
+namespace CANAnalyzerDevice.Protocol
 {
     internal class SetChannelInfo
     {

@@ -321,7 +321,7 @@ namespace CANAnalyzer.VM
         }
         private void UpdateDeviceInfoCommand_Execute()
         {
-            var newDevices = new List<IDevice>(DevicesFinder.FindAvailableDevices());
+            var newDevices = new List<IDevice>(DevicesFinder.FindAvailableDevices(DeviceCreatorsListBuilder.BuildDeviceCreatorsList()));
 
             if ((Settings.Instance.Device != null) && (Settings.Instance.Device.IsConnected))
             {

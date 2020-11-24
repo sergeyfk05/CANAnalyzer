@@ -8,13 +8,15 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using CANAnalyzerDevices.Devices;
+using CANAnalyzerDevices;
+using CANAnalyzerDevice.Protocol;
 
-namespace CANAnalyzerDevices.Devices.DeviceCreaters
+namespace CANAnalyzerDevice
 {
-    internal class CanAnalyzerCreator : IDeviceCreator
+    public class CanAnalyzerCreator : IDeviceCreator
     {
 
         IDevice IDeviceCreator.CreateInstance(HardwareDeviceInfo info)

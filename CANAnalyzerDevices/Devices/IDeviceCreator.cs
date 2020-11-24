@@ -4,12 +4,12 @@
 */
 using CANAnalyzerDevices.Finder;
 
-namespace CANAnalyzerDevices.Devices.DeviceCreaters
+namespace CANAnalyzerDevices.Devices
 {
     /// <summary>
     /// Interface for creation Devices. Before creation checks compatibility.
     /// </summary>
-    internal interface IDeviceCreator
+    public interface IDeviceCreator
     {
         /// <summary>
         /// Check on compatability device.

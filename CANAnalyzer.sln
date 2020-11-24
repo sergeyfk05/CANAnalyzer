@@ -11,15 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicResource", "DynamicR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamburgerMenu", "HamburgerMenu\HamburgerMenu.csproj", "{EB2B307D-68EB-4E4A-8999-90DB4DB48342}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDevicesTestNetCore", "CANAnalyzerDevicesTestNetCore\CANAnalyzerDevicesTestNetCore.csproj", "{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerChannelProxyIntefaces", "CANAnalyzerChannelProxies\CANAnalyzerChannelProxyIntefaces.csproj", "{CE3402E8-383A-49DA-A252-1C7714C739CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerChannelProxyIntefaces", "CANAnalyzerChannelProxies\CANAnalyzerChannelProxyIntefaces.csproj", "{CE3402E8-383A-49DA-A252-1C7714C739CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleChannelProxy", "ConsoleChannelProxy\ConsoleChannelProxy.csproj", "{E75317BF-D861-47E0-B2B6-2A66145DF441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleChannelProxy", "ConsoleChannelProxy\ConsoleChannelProxy.csproj", "{E75317BF-D861-47E0-B2B6-2A66145DF441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtRallyV2ToRenaultDashboardProxy", "DirtRallyV2ToRenaultDashboardProxy\DirtRallyV2ToRenaultDashboardProxy.csproj", "{75C0774D-B93A-42F4-A49C-4BCB72F0E3F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirtRallyV2ToRenaultDashboardProxy", "DirtRallyV2ToRenaultDashboardProxy\DirtRallyV2ToRenaultDashboardProxy.csproj", "{75C0774D-B93A-42F4-A49C-4BCB72F0E3F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfluxDBChannelProxy", "InfluxDBChannelProxy\InfluxDBChannelProxy.csproj", "{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluxDBChannelProxy", "InfluxDBChannelProxy\InfluxDBChannelProxy.csproj", "{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanHackerDevice", "CanHackerDevice\CanHackerDevice.csproj", "{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanAnalyzerDevice", "CanAnalyzerDevice\CanAnalyzerDevice.csproj", "{D540D12F-DD96-43D0-876E-382DAF97DA7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +45,6 @@ Global
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB2B307D-68EB-4E4A-8999-90DB4DB48342}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +61,14 @@ Global
 		{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

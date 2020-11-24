@@ -7,16 +7,16 @@ using System.Text.RegularExpressions;
 
 namespace CANAnalyzerDevices.Finder
 {
-    internal class HardwareDeviceInfo
+    public class HardwareDeviceInfo
     {
-        internal HardwareDeviceInfo(string portName, int vid, int pid)
+        public HardwareDeviceInfo(string portName, int vid, int pid)
         {
             this.PortName = portName;
             this.VID = vid;
             this.PID = pid;
         }
 
-        internal HardwareDeviceInfo(string portName, string PNPDeviceID)
+        public HardwareDeviceInfo(string portName, string PNPDeviceID)
         {
             //"USB\\VID_0483&PID_5740\\3180327F3138"
             var match = Regex.Match(PNPDeviceID, @"USB\\VID_(\d{4})+&PID_(\d{4})+\\\w");
@@ -29,9 +29,9 @@ namespace CANAnalyzerDevices.Finder
             this.PID = Convert.ToInt32(match.Groups[2].Value);
         }
 
-        internal string PortName { get; private set; }
+        public string PortName { get; private set; }
 
-        internal int PID { get; private set; }
-        internal int VID { get; private set; }
+        public int PID { get; private set; }
+        public int VID { get; private set; }
     }
 }

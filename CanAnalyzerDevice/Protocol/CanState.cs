@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
+namespace CANAnalyzerDevice.Protocol
 {
     internal enum CanState
     {

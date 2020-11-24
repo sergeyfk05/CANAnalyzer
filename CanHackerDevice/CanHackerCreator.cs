@@ -2,18 +2,19 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using CANAnalyzerDevices;
+using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Finder;
 using System;
 using System.IO.Ports;
 using System.Linq;
-using System.Threading;
 
-namespace CANAnalyzerDevices.Devices.DeviceCreaters
+namespace CANHackerDevice
 {
     /// <summary>
     /// Class for creation CanHackerDevice. Before creation checks compatibility.
     /// </summary>
-    internal class CanHackerCreator : IDeviceCreator
+    public class CanHackerCreator : IDeviceCreator
     {
         /// <summary>
         /// Check on compatability device.
