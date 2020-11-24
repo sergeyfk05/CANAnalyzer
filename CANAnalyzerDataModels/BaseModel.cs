@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CANAnalyzer.Models.Databases
+namespace CANAnalyzerDataModels
 {
     public abstract class BaseModel : INotifyPropertyChanged
     {

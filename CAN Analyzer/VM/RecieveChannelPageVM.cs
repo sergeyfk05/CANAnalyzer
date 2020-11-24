@@ -3,14 +3,16 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzer.Models;
-using CANAnalyzer.Models.Databases;
-using CANAnalyzer.Models.DataTypesProviders;
+using CANAnalyzer.Models.DataTypesProvidersBuilders;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.TraceFilters;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Resources.DynamicResources;
+using CANAnalyzerDataModels;
+using CANAnalyzerDataProvidersInterfaces;
 using CANAnalyzerDevices.Devices.DeviceChannels;
+using CANAnalyzerSQLiteDataProvider;
 using DynamicResource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;

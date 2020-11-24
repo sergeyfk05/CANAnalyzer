@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CANAnalyzer.Models.Databases
+namespace CANAnalyzerDataModels
 {
     public class TracePeriodicModel : BaseModel
     {

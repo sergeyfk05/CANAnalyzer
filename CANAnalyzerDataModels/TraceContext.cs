@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 
-namespace CANAnalyzer.Models.Databases
+namespace CANAnalyzerDataModels
 {
     /// <summary>
     /// Constructs a new context instance using the existing connection to connect to

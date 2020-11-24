@@ -2,7 +2,8 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using CANAnalyzer.Models.Databases;
+using CANAnalyzerDataModels;
+using CANAnalyzerDataProvidersInterfaces;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CANAnalyzer.Models.DataTypesProviders
+namespace CANAnalyzerSQLiteDataProvider
 {
     public class SQLiteTraceDataTypeProvider : ITraceDataTypeProvider, IDisposable
     {

@@ -19,9 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirtRallyV2ToRenaultDashboa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfluxDBChannelProxy", "InfluxDBChannelProxy\InfluxDBChannelProxy.csproj", "{BE0CC9F0-731B-455F-B32B-5BE4C5382BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanHackerDevice", "CanHackerDevice\CanHackerDevice.csproj", "{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanHackerDevice", "CanHackerDevice\CanHackerDevice.csproj", "{C61B4697-483E-4DFD-B9CB-ADB4C60988C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanAnalyzerDevice", "CanAnalyzerDevice\CanAnalyzerDevice.csproj", "{D540D12F-DD96-43D0-876E-382DAF97DA7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanAnalyzerDevice", "CanAnalyzerDevice\CanAnalyzerDevice.csproj", "{D540D12F-DD96-43D0-876E-382DAF97DA7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDataModels", "CANAnalyzerDataModels\CANAnalyzerDataModels.csproj", "{9A264217-D10D-42C6-8780-E7515D3633CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerDataProvidersInterfaces", "CANAnalyzerDataTypesProviderInterfaces\CANAnalyzerDataProvidersInterfaces.csproj", "{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerSQLiteDataProvider", "CANAnalyzerSQLiteDataProvider\CANAnalyzerSQLiteDataProvider.csproj", "{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D540D12F-DD96-43D0-876E-382DAF97DA7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A264217-D10D-42C6-8780-E7515D3633CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A264217-D10D-42C6-8780-E7515D3633CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A264217-D10D-42C6-8780-E7515D3633CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A264217-D10D-42C6-8780-E7515D3633CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

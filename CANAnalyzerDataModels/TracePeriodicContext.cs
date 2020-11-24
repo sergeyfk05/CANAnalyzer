@@ -2,7 +2,6 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using CANAnalyzer.Models.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -10,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 
-namespace CANAnalyzer.Models.Databases
+namespace CANAnalyzerDataModels
 {
     /// <summary>
     /// Constructs a new context instance using the existing connection to connect to
     ///     a database. The connection will not be disposed when the context is disposed
     ///     if contextOwnsConnection is false.
     /// </summary>
-    class TracePeriodicContext : DbContext
+    public class TracePeriodicContext : DbContext
     {
         /// <summary>
         ///    Constructs a new context instance using the existing connection to connect to
