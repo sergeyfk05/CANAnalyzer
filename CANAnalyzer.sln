@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamburgerMenu", "HamburgerM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDevicesTestNetCore", "CANAnalyzerDevicesTestNetCore\CANAnalyzerDevicesTestNetCore.csproj", "{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerChannelProxies", "CANAnalyzerChannelProxies\CANAnalyzerChannelProxies.csproj", "{CE3402E8-383A-49DA-A252-1C7714C739CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFCEFF9-000D-4D52-9C50-4FC595F2B642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3402E8-383A-49DA-A252-1C7714C739CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
