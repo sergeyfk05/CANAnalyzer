@@ -25,20 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanAnalyzerDevice", "CanAna
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDataModels", "CANAnalyzerDataModels\CANAnalyzerDataModels.csproj", "{9A264217-D10D-42C6-8780-E7515D3633CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerDataProvidersInterfaces", "CANAnalyzerDataTypesProviderInterfaces\CANAnalyzerDataProvidersInterfaces.csproj", "{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerDataProvidersInterfaces", "CANAnalyzerDataTypesProviderInterfaces\CANAnalyzerDataProvidersInterfaces.csproj", "{7F49AC8D-9CB4-49BA-89D2-0428459C51A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerSQLiteDataProvider", "CANAnalyzerSQLiteDataProvider\CANAnalyzerSQLiteDataProvider.csproj", "{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANAnalyzerSQLiteDataProvider", "CANAnalyzerSQLiteDataProvider\CANAnalyzerSQLiteDataProvider.csproj", "{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayCommands", "RelayCommands\RelayCommands.csproj", "{8F55201C-8976-4AB2-8F03-780B51C7D327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelayCommands", "RelayCommands\RelayCommands.csproj", "{8F55201C-8976-4AB2-8F03-780B51C7D327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANTraceFilterInterfaces", "CANTraceFilterInterfaces\CANTraceFilterInterfaces.csproj", "{21395400-E0EC-49CB-80BC-7304674E29E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANTraceFilterInterfaces", "CANTraceFilterInterfaces\CANTraceFilterInterfaces.csproj", "{21395400-E0EC-49CB-80BC-7304674E29E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANIdTraceFilter", "CANIdTraceFilter\CANIdTraceFilter.csproj", "{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CANIdTraceFilter", "CANIdTraceFilter\CANIdTraceFilter.csproj", "{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7EAEFDA-82E6-4887-A3DE-D7B616B96892}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayCommands.Test", "RelayCommand.Test\RelayCommands.Test.csproj", "{69E4A8AD-CE7A-49DA-ABEC-6457C6FA8CE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +107,10 @@ Global
 		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E4A8AD-CE7A-49DA-ABEC-6457C6FA8CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E4A8AD-CE7A-49DA-ABEC-6457C6FA8CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E4A8AD-CE7A-49DA-ABEC-6457C6FA8CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E4A8AD-CE7A-49DA-ABEC-6457C6FA8CE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
