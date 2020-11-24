@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
-namespace CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML
+namespace InfluxDBChannelProxy.XML.InfluxDB
 {
     [Serializable]
     [XmlRoot("Field")]

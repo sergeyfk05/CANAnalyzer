@@ -1,9 +1,9 @@
-﻿using System;
+﻿using InfluxDBChannelProxy.XML.Server;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML
+namespace InfluxDBChannelProxy.XML
 {
     [Serializable]
     [XmlRoot("Config")]

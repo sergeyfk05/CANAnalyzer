@@ -1,14 +1,13 @@
-﻿using CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML;
+﻿using CANAnalyzerChannelProxyInterfaces;
+using InfluxDBChannelProxy.XML;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace CANAnalyzer.Models.ChannelsProxy.Creators
+namespace InfluxDBChannelProxy
 {
-    public class InfluxdbChannelProxyCreator : IChannelProxyCreator
+    public class InfluxDBChannelProxyCreator : IChannelProxyCreator
     {
         public string SupportedFiles => "*.xml";
 

@@ -7,7 +7,7 @@
 
 
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter" />
-    <converters:StringToByteConverter x:Key="StringToByteConverter"/>
+    <converters:StringToByteArrayConverter x:Key="StringToByteConverter"/>
 
     <!--Control colors.-->
     <SolidColorBrush x:Key="RowColor" Color="{resources:Theme DataGridRowColor}"/>

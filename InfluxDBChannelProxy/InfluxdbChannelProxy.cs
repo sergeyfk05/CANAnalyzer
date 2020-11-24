@@ -1,27 +1,21 @@
-﻿using CANAnalyzer.Models.ChannelsProxy;
-using CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML;
+﻿using CANAnalyzerChannelProxyInterfaces;
 using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerDevices.Devices.DeviceChannels.Events;
+using InfluxDB.Client;
+using InfluxDB.Client.Api.Domain;
+using InfluxDBChannelProxy.Extensions;
+using InfluxDBChannelProxy.XML;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Text;
-using System.Windows.Media.Animation;
 using System.Xml.Serialization;
-using CANAnalyzer.Models.Extensions;
-using System.Threading.Tasks;
-using System.Data;
-using InfluxDB.Client;
-using InfluxDB.Client.Api.Domain;
-using System.Linq.Expressions;
 
-namespace CANAnalyzer.Models.ChannelsProxy
+namespace InfluxDBChannelProxy
 {
     public class InfluxdbChannelProxy : IChannelProxy
     {
@@ -269,12 +263,11 @@ namespace CANAnalyzer.Models.ChannelsProxy
             }
         }
 
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~InfluxdbChannelProxy()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
+        ~InfluxdbChannelProxy()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: false);
+        }
 
         public void Dispose()
         {

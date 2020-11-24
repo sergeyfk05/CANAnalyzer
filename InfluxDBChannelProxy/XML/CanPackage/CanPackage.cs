@@ -1,12 +1,7 @@
-﻿using CANAnalyzer.Models.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
+﻿using InfluxDBChannelProxy.Extensions;
 using System.Xml.Serialization;
 
-namespace CANAnalyzer.Models.ChannelsProxy.InfluxDB.XML
+namespace InfluxDBChannelProxy.XML.CanPackage
 {
     public class CanHeader
     {
