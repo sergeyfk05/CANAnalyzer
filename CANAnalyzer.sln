@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerDataProvidersInt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerSQLiteDataProvider", "CANAnalyzerSQLiteDataProvider\CANAnalyzerSQLiteDataProvider.csproj", "{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayCommands", "RelayCommands\RelayCommands.csproj", "{8F55201C-8976-4AB2-8F03-780B51C7D327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F822AFD1-5127-4520-BEEF-E8DA3D07BC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

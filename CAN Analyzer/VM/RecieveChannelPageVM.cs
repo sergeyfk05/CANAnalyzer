@@ -2,7 +2,6 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using CANAnalyzer.Models;
 using CANAnalyzer.Models.DataTypesProvidersBuilders;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.States;
@@ -16,6 +15,7 @@ using CANAnalyzerSQLiteDataProvider;
 using DynamicResource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
+using RelayCommands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

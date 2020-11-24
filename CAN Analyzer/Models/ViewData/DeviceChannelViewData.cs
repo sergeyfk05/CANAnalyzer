@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using RelayCommands;
 
 namespace CANAnalyzer.Models.ViewData
 {

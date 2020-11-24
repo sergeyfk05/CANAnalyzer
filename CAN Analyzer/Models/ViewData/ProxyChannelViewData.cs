@@ -5,6 +5,7 @@
 using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzerChannelProxyInterfaces;
 using DynamicResource;
+using RelayCommands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

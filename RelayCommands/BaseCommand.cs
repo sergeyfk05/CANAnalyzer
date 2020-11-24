@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace CANAnalyzer.Models
+namespace RelayCommands
 {
     public abstract class BaseCommand
     {

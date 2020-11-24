@@ -14,6 +14,7 @@ using CANAnalyzerDataProvidersInterfaces;
 using DynamicResource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
+using RelayCommands;
 using System;
 using System.Collections;
 using System.Collections.Generic;

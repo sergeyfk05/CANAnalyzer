@@ -2,7 +2,6 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
-using CANAnalyzer.Models;
 using CANAnalyzer.Models.Extensions;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Pages;
@@ -10,6 +9,7 @@ using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzerChannelProxyInterfaces;
 using DynamicResource;
 using HamburgerMenu;
+using RelayCommands;
 using System;
 using System.Collections;
 using System.Collections.Generic;

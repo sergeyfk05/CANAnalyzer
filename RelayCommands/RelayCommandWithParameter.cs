@@ -4,12 +4,11 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CANAnalyzer.Models
+namespace RelayCommands
 {
-    public class RelayCommandWithParameterAsync<T> : BaseCommand, ICommand
+    public class RelayCommandWithParameter<T> : BaseCommand, ICommand
     {
         private readonly Action<T> execute;
 
@@ -17,7 +16,7 @@ namespace CANAnalyzer.Models
         /// Создает новую команду, которая всегда может выполняться.
         /// </summary>
         /// <param name="execute">Логика выполнения.</param>
-        public RelayCommandWithParameterAsync(Action<T> execute)
+        public RelayCommandWithParameter(Action<T> execute)
             : this(execute, null)
         {
         }
@@ -27,7 +26,7 @@ namespace CANAnalyzer.Models
         /// </summary>
         /// <param name="execute">Логика выполнения.</param>
         /// <param name="canExecute">Логика состояния выполнения.</param>
-        public RelayCommandWithParameterAsync(Action<T> execute, Func<bool> canExecute)
+        public RelayCommandWithParameter(Action<T> execute, Func<bool> canExecute)
             :base(canExecute)
         {
             if (execute == null)
@@ -37,9 +36,9 @@ namespace CANAnalyzer.Models
 
         public override bool Equals(object obj)
         {
-            return obj is RelayCommandWithParameterAsync<T> async &&
+            return obj is RelayCommandWithParameter<T> parameter &&
                    base.Equals(obj) &&
-                   EqualityComparer<Action<T>>.Default.Equals(execute, async.execute);
+                   EqualityComparer<Action<T>>.Default.Equals(execute, parameter.execute);
         }
 
         /// <summary>
@@ -50,9 +49,8 @@ namespace CANAnalyzer.Models
         /// </param>
         public void Execute(object parameter)
         {
-            if ((parameter != null) && (CanExecute(parameter)) && (execute != null))
-                Task.Run(() => execute.Invoke((T)parameter));
-            //execute?.BeginInvoke((T)parameter, null, null);
+            if ((parameter != null) && (CanExecute(parameter)))
+                execute?.Invoke((T)parameter);
         }
 
         public override int GetHashCode()

@@ -10,6 +10,7 @@ using CANAnalyzerDevices.Devices;
 using CANAnalyzerDevices.Finder;
 using DynamicResource;
 using Microsoft.Win32;
+using RelayCommands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

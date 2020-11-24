@@ -4,20 +4,20 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CANAnalyzer.Models
+namespace RelayCommands
 {
-    public class RelayCommand : BaseCommand, ICommand
+    public class RelayCommandWithParameterAsync<T> : BaseCommand, ICommand
     {
-        private readonly Action execute;
-
+        private readonly Action<T> execute;
 
         /// <summary>
         /// Создает новую команду, которая всегда может выполняться.
         /// </summary>
         /// <param name="execute">Логика выполнения.</param>
-        public RelayCommand(Action execute)
+        public RelayCommandWithParameterAsync(Action<T> execute)
             : this(execute, null)
         {
         }
@@ -27,7 +27,7 @@ namespace CANAnalyzer.Models
         /// </summary>
         /// <param name="execute">Логика выполнения.</param>
         /// <param name="canExecute">Логика состояния выполнения.</param>
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        public RelayCommandWithParameterAsync(Action<T> execute, Func<bool> canExecute)
             :base(canExecute)
         {
             if (execute == null)
@@ -37,21 +37,22 @@ namespace CANAnalyzer.Models
 
         public override bool Equals(object obj)
         {
-            return obj is RelayCommand command &&
+            return obj is RelayCommandWithParameterAsync<T> async &&
                    base.Equals(obj) &&
-                   EqualityComparer<Action>.Default.Equals(execute, command.execute);
+                   EqualityComparer<Action<T>>.Default.Equals(execute, async.execute);
         }
 
         /// <summary>
-        /// Выполняет <see cref="RelayCommand"/> текущей цели команды.
+        /// Выполняет <see cref="RelayCommandWithParameterAsync{T}"/> текущей цели команды.
         /// </summary>
         /// <param name="parameter">
         /// Данные, используемые командой. Если команда не требует передачи данных, этот объект можно установить равным NULL.
         /// </param>
-        public void Execute(object parameter = null)
+        public void Execute(object parameter)
         {
-            if (CanExecute())
-                execute?.Invoke();
+            if ((parameter != null) && (CanExecute(parameter)) && (execute != null))
+                Task.Run(() => execute.Invoke((T)parameter));
+            //execute?.BeginInvoke((T)parameter, null, null);
         }
 
         public override int GetHashCode()
