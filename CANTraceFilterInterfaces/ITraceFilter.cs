@@ -6,7 +6,7 @@ using CANAnalyzerDataModels;
 using System.ComponentModel;
 using System.Linq;
 
-namespace CANAnalyzer.Models.TraceFilters
+namespace CANTraceFilterInterfaces
 {
     public interface ITraceFilter : INotifyPropertyChanged
     {

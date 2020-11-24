@@ -5,13 +5,14 @@
 using CANAnalyzer.Models.DataTypesProvidersBuilders;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.States;
-using CANAnalyzer.Models.TraceFilters;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzerDataModels;
 using CANAnalyzerDataProvidersInterfaces;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using CANAnalyzerSQLiteDataProvider;
+using CANIdTraceFilter;
+using CANTraceFilterInterfaces;
 using DynamicResource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;

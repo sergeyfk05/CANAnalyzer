@@ -210,6 +210,8 @@
     <ProjectReference Include="..\CanAnalyzerDevice\CanAnalyzerDevice.csproj" />
     <ProjectReference Include="..\CANAnalyzerSQLiteDataProvider\CANAnalyzerSQLiteDataProvider.csproj" />
     <ProjectReference Include="..\CanHackerDevice\CanHackerDevice.csproj" />
+    <ProjectReference Include="..\CANIdTraceFilter\CANIdTraceFilter.csproj" />
+    <ProjectReference Include="..\CANTraceFilterInterfaces\CANTraceFilterInterfaces.csproj" />
     <ProjectReference Include="..\ConsoleChannelProxy\ConsoleChannelProxy.csproj" />
     <ProjectReference Include="..\DirtRallyV2ToRenaultDashboardProxy\DirtRallyV2ToRenaultDashboardProxy.csproj" />
     <ProjectReference Include="..\DynamicResource\DynamicResource.csproj" />

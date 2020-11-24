@@ -160,7 +160,9 @@ namespace HamburgerMenu
         }
 
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         public double Width
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
         {
             get { return (double)GetValue(WidthProperty); }
             set { SetValue(WidthProperty, value); }

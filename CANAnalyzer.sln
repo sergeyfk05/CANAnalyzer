@@ -31,6 +31,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANAnalyzerSQLiteDataProvid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayCommands", "RelayCommands\RelayCommands.csproj", "{8F55201C-8976-4AB2-8F03-780B51C7D327}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANTraceFilterInterfaces", "CANTraceFilterInterfaces\CANTraceFilterInterfaces.csproj", "{21395400-E0EC-49CB-80BC-7304674E29E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CANIdTraceFilter", "CANIdTraceFilter\CANIdTraceFilter.csproj", "{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7EAEFDA-82E6-4887-A3DE-D7B616B96892}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +102,14 @@ Global
 		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F55201C-8976-4AB2-8F03-780B51C7D327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21395400-E0EC-49CB-80BC-7304674E29E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21395400-E0EC-49CB-80BC-7304674E29E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21395400-E0EC-49CB-80BC-7304674E29E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21395400-E0EC-49CB-80BC-7304674E29E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD489F80-DF5A-455A-A8AA-8724FEF0C5A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
