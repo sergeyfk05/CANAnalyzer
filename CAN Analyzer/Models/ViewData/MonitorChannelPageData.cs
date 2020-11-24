@@ -3,6 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -93,7 +94,7 @@ namespace CANAnalyzer.Models.ViewData
         private int _period;
         private double _lastSet;
 
-        public ReadOnlyMonitorByteViewData[] Data
+        public IReadOnlyMonitorByteViewData[] Data
         {
             get { return _data; }
         }
@@ -123,6 +124,21 @@ namespace CANAnalyzer.Models.ViewData
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is MonitorChannelPageData data &&
+                   IsExtId == data.IsExtId &&
+                   CanId == data.CanId &&
+                   DLC == data.DLC &&
+                   Period == data.Period &&
+                   EqualityComparer<IReadOnlyMonitorByteViewData[]>.Default.Equals(Data, data.Data);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IsExtId, CanId, DLC, Period, Data);
         }
     }
 }

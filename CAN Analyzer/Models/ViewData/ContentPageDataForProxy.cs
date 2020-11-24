@@ -5,6 +5,7 @@
 using CANAnalyzerChannelProxyInterfaces;
 using HamburgerMenu;
 using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace CANAnalyzer.Models.ViewData
@@ -34,7 +35,25 @@ namespace CANAnalyzer.Models.ViewData
         private void _proxy_NameChanged(object sender, EventArgs e)
         {
             this.LocalizedKey = _proxy.Name;
-        } 
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ContentPageDataForProxy proxy &&
+                   base.Equals(obj) &&
+                   EqualityComparer<NavMenuItemData>.Default.Equals(NavData, proxy.NavData) &&
+                   Kind == proxy.Kind &&
+                   LocalizedKey == proxy.LocalizedKey &&
+                   ImageKey == proxy.ImageKey &&
+                   EqualityComparer<UserControl>.Default.Equals(Page, proxy.Page) &&
+                   EqualityComparer<IChannelProxy>.Default.Equals(Proxy, proxy.Proxy);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), NavData, Kind, LocalizedKey, ImageKey, Page, Proxy);
+        }
+
         ~ContentPageDataForProxy()
         {
             if(_proxy != null)

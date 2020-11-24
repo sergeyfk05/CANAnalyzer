@@ -64,5 +64,18 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
 			return result;
 		}
 
-	}
+        public override bool Equals(object obj)
+        {
+            return obj is DeviceInfo info &&
+                   CommandId == info.CommandId &&
+                   EqualityComparer<byte[]>.Default.Equals(UID, info.UID) &&
+                   channels == info.channels &&
+                   isSupportCanB == info.isSupportCanB;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CommandId, UID, channels, isSupportCanB);
+        }
+    }
 }

@@ -2,6 +2,7 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -72,6 +73,11 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 return true;
             }
             else { return false; }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CanId, IsExtId, DLC, Payload);
         }
     }
 }

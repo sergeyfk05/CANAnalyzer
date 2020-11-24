@@ -6,6 +6,7 @@ using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzerChannelProxyInterfaces;
 using DynamicResource;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -159,6 +160,24 @@ namespace CANAnalyzer.Models.ViewData
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ProxyChannelViewData data &&
+                   EqualityComparer<IChannelProxy>.Default.Equals(ChannelProxy, data.ChannelProxy) &&
+                   IsOpen == data.IsOpen &&
+                   Path == data.Path &&
+                   Name == data.Name &&
+                   EqualityComparer<DeviceChannelViewData>.Default.Equals(OwnerChannel, data.OwnerChannel) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(ProxyOpenCommand, data.ProxyOpenCommand) &&
+                   EqualityComparer<RelayCommand>.Default.Equals(_removeProxyCommand, data._removeProxyCommand) &&
+                   EqualityComparer<RelayCommand>.Default.Equals(RemoveProxyCommand, data.RemoveProxyCommand);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ChannelProxy, IsOpen, Path, Name, OwnerChannel, ProxyOpenCommand, _removeProxyCommand, RemoveProxyCommand);
         }
 
         ~ProxyChannelViewData()

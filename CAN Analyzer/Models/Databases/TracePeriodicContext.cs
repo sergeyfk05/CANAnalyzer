@@ -4,6 +4,11 @@
 */
 using CANAnalyzer.Models.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Collections.Generic;
 
 namespace CANAnalyzer.Models.Databases
 {
@@ -40,6 +45,23 @@ namespace CANAnalyzer.Models.Databases
                 .HasConversion(
                     v => v.ToByteArray(),
                     v => v.ToObservableCollection());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TracePeriodicContext context &&
+                   base.Equals(obj) &&
+                   EqualityComparer<DatabaseFacade>.Default.Equals(Database, context.Database) &&
+                   EqualityComparer<ChangeTracker>.Default.Equals(ChangeTracker, context.ChangeTracker) &&
+                   EqualityComparer<IModel>.Default.Equals(Model, context.Model) &&
+                   EqualityComparer<DbContextId>.Default.Equals(ContextId, context.ContextId) &&
+                   _path == context._path &&
+                   EqualityComparer<DbSet<TracePeriodicModel>>.Default.Equals(TransmitModels, context.TransmitModels);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Database, ChangeTracker, Model, ContextId, _path, TransmitModels);
         }
     }
 }

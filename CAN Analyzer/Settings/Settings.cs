@@ -7,6 +7,7 @@ using CANAnalyzer.Models.Extensions;
 using CANAnalyzerChannelProxyInterfaces;
 using CANAnalyzerDevices.Devices;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -222,6 +223,24 @@ namespace CANAnalyzer
                     proxy.Dispose();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Settings settings &&
+                   EqualityComparer<SynchronizationContext>.Default.Equals(_context, settings._context) &&
+                   LanguagesXmlPath == settings.LanguagesXmlPath &&
+                   ThemesXmlPath == settings.ThemesXmlPath &&
+                   SettingsPath == settings.SettingsPath &&
+                   ThemeCulture == settings.ThemeCulture &&
+                   LanguageCulture == settings.LanguageCulture &&
+                   EqualityComparer<IDevice>.Default.Equals(Device, settings.Device);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_context, LanguagesXmlPath, ThemesXmlPath, SettingsPath, ThemeCulture, LanguageCulture, Device);
+        }
+
         ~Settings()
         {
             Dispose();

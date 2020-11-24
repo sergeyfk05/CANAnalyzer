@@ -2,17 +2,14 @@
 * This is a personal academic project. Dear PVS-Studio, please check it.
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace CANAnalyzer.Models.ViewData
 {
-    public interface ReadOnlyMonitorByteViewData: INotifyPropertyChanged
-    {
-        bool IsChanged { get; }
-        byte Data { get; }
-    }
-    public class MonitorByteViewData : INotifyPropertyChanged, ReadOnlyMonitorByteViewData
+
+    public class MonitorByteViewData : INotifyPropertyChanged, IReadOnlyMonitorByteViewData
     {
 
         public bool IsChanged
@@ -57,6 +54,18 @@ namespace CANAnalyzer.Models.ViewData
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is MonitorByteViewData data &&
+                   IsChanged == data.IsChanged &&
+                   Data == data.Data;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IsChanged, Data);
         }
     }
 }

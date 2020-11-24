@@ -33,7 +33,7 @@ namespace InfluxDBChannelProxy
                     var _config = (InfuxDBConfig)formatter.Deserialize(fs);
                 }
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }

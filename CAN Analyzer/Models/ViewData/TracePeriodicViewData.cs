@@ -7,6 +7,7 @@ using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.Extensions;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
@@ -239,6 +240,21 @@ namespace CANAnalyzer.Models.ViewData
                 _timer.Dispose();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TracePeriodicViewData data &&
+                   EqualityComparer<TracePeriodicModel>.Default.Equals(Model, data.Model) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, data.TransmitToSelectedChannels) &&
+                   IsTrasmiting == data.IsTrasmiting &&
+                   Count == data.Count;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Model, TransmitToSelectedChannels, IsTrasmiting, Count);
+        }
+
         ~TracePeriodicViewData()
         {
             this.Dispose();

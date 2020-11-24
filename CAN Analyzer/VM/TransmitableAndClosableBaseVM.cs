@@ -142,11 +142,23 @@ namespace CANAnalyzer.VM
             }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             TransmitToItems = null;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is TransmitableAndClosableBaseVM vM &&
+                   base.Equals(obj) &&
+                   EqualityComparer<ObservableCollection<TransmitToViewData>>.Default.Equals(TransmitToItems, vM.TransmitToItems) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, vM.TransmitToSelectedChannels);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TransmitToItems, TransmitToSelectedChannels);
+        }
 
         private System.Threading.SynchronizationContext _context = System.Threading.SynchronizationContext.Current;
     }

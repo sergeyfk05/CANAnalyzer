@@ -3,6 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -35,6 +36,13 @@ namespace CANAnalyzer.Models
             this.execute = execute;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is RelayCommandAsync async &&
+                   base.Equals(obj) &&
+                   EqualityComparer<Action>.Default.Equals(execute, async.execute);
+        }
+
         /// <summary>
         /// Выполняет <see cref="RelayCommandAsync"/> текущей цели команды.
         /// </summary>
@@ -47,5 +55,9 @@ namespace CANAnalyzer.Models
                 Task.Run(() => execute.Invoke());
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), execute);
+        }
     }
 }

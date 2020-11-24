@@ -54,10 +54,8 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                     break;
                 case 6:
                     return ReceiveCanADataParse(buf);
-                    break;
                 case 7:
                     return ReceiveCanBDataParse(buf);
-                    break;
             }
 
             return null;
@@ -368,6 +366,20 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
         private void OnIsOpenChanged()
         {
             _isOpenChanged.Raise(this, EventArgs.Empty);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CanAnalyzerChannel channel &&
+                   Index == channel.Index &&
+                   Bitrate == channel.Bitrate &&
+                   IsListenOnly == channel.IsListenOnly &&
+                   IsOpen == channel.IsOpen;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Index, Bitrate, IsListenOnly, IsOpen);
         }
     }
 }

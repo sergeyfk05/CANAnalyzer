@@ -4,6 +4,7 @@
 */
 using CANAnalyzer.Models.Databases;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -131,6 +132,18 @@ namespace CANAnalyzer.Models.TraceFilters
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is CanIdTraceFilter filter &&
+                   CanId == filter.CanId &&
+                   IsExtId == filter.IsExtId &&
+                   IsActive == filter.IsActive &&
+                   DisplayName == filter.DisplayName;
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CanId, IsExtId, IsActive, DisplayName);
+        }
     }
 }

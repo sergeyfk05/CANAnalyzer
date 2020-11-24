@@ -484,8 +484,9 @@ namespace CANAnalyzer.VM
         }
 
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
 
             TransmitToSelectedChannels = null;
             
@@ -501,6 +502,43 @@ namespace CANAnalyzer.VM
                     File.Delete(currentTraceProvider.TargetFile);
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is RecieveChannelPageVM vM &&
+                   base.Equals(obj) &&
+                   EqualityComparer<ObservableCollection<TransmitToViewData>>.Default.Equals(TransmitToItems, vM.TransmitToItems) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, vM.TransmitToSelectedChannels) &&
+                   IsEnabled == vM.IsEnabled &&
+                   RecieveState == vM.RecieveState &&
+                   EqualityComparer<BindingList<ITraceFilter>>.Default.Equals(Filters, vM.Filters) &&
+                   EqualityComparer<ObservableCollection<TraceModel>>.Default.Equals(ShowedItems, vM.ShowedItems) &&
+                   EqualityComparer<ObservableCollection<TraceModel>>.Default.Equals(Items, vM.Items) &&
+                   EqualityComparer<IChannel>.Default.Equals(Channel, vM.Channel) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(SaveAsFileCommand, vM.SaveAsFileCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(RecieveStartCommand, vM.RecieveStartCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(PauseRecievingCommand, vM.PauseRecievingCommand) &&
+                   EqualityComparer<RelayCommand>.Default.Equals(ClearTraceCommand, vM.ClearTraceCommand);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(TransmitToItems);
+            hash.Add(TransmitToSelectedChannels);
+            hash.Add(IsEnabled);
+            hash.Add(RecieveState);
+            hash.Add(Filters);
+            hash.Add(ShowedItems);
+            hash.Add(Items);
+            hash.Add(Channel);
+            hash.Add(SaveAsFileCommand);
+            hash.Add(RecieveStartCommand);
+            hash.Add(PauseRecievingCommand);
+            hash.Add(ClearTraceCommand);
+            return hash.ToHashCode();
+        }
+
         ~RecieveChannelPageVM()
         {
             this.Dispose();

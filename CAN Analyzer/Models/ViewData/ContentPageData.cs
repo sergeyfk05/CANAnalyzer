@@ -6,19 +6,12 @@ using CANAnalyzer.Resources.DynamicResources;
 using DynamicResource;
 using HamburgerMenu;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace CANAnalyzer.Models.ViewData
 {
-    public enum PageKind
-    {
-        Undefined,
-        Channel,
-        Proxy,
-        Settings,
-        UserPages
-    }
+
     public class ContentPageData
     {
         private ContentPageData()
@@ -37,7 +30,20 @@ namespace CANAnalyzer.Models.ViewData
             this.UpdateLocalization();
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is ContentPageData data &&
+                   EqualityComparer<NavMenuItemData>.Default.Equals(NavData, data.NavData) &&
+                   Kind == data.Kind &&
+                   LocalizedKey == data.LocalizedKey &&
+                   ImageKey == data.ImageKey &&
+                   EqualityComparer<UserControl>.Default.Equals(Page, data.Page);
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(NavData, Kind, LocalizedKey, ImageKey, Page);
+        }
 
         public ContentPageData(NavMenuItemData nd, string locKey, string imageKey, PageKind kind = PageKind.Undefined, Action<ContentPageData> clickAction = null) : this()
         {
@@ -93,19 +99,4 @@ namespace CANAnalyzer.Models.ViewData
         public Action<ContentPageData> ClickAction { get; private set; }
     }
 
-    public static class ContentPageDataExtensions
-    {
-        public static void UpdateLocalization(this ContentPageData data)
-        {
-            if (data.NavData != null)
-                data.NavData.Text = (string)Manager<LanguageCultureInfo>.StaticInstance.GetResource(data.LocalizedKey);
-        }
-        public static void UpdateTheme(this ContentPageData data)
-        {
-            if (data.NavData != null)
-                data.NavData.ImageSource = new Uri(
-                new Uri(Assembly.GetExecutingAssembly().Location),
-                (string)Manager<ThemeCultureInfo>.StaticInstance.GetResource(data.ImageKey));
-        }
-    }
 }

@@ -486,6 +486,43 @@ namespace CANAnalyzer.VM
             return result;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is AppSettingPageVM vM &&
+                   EqualityComparer<IEnumerable<LanguageCultureInfo>>.Default.Equals(Languages, vM.Languages) &&
+                   EqualityComparer<LanguageCultureInfo>.Default.Equals(CurrentLanguage, vM.CurrentLanguage) &&
+                   EqualityComparer<ThemeCultureInfo>.Default.Equals(CurrentTheme, vM.CurrentTheme) &&
+                   EqualityComparer<IEnumerable<IDevice>>.Default.Equals(Devices, vM.Devices) &&
+                   EqualityComparer<IEnumerable<IDevice>>.Default.Equals(_devices, vM._devices) &&
+                   EqualityComparer<IDevice>.Default.Equals(SelectedDevice, vM.SelectedDevice) &&
+                   IsConnected == vM.IsConnected &&
+                   EqualityComparer<IEnumerable<DeviceChannelViewData>>.Default.Equals(ChannelsData, vM.ChannelsData) &&
+                   EqualityComparer<BindingList<ProxyChannelViewData>>.Default.Equals(ProxiesData, vM.ProxiesData) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(LoadedCommand, vM.LoadedCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(UpdateDevicesInfoCommand, vM.UpdateDevicesInfoCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(DeviceConnectCommand, vM.DeviceConnectCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(AddProxyCommand, vM.AddProxyCommand);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Languages);
+            hash.Add(CurrentLanguage);
+            hash.Add(CurrentTheme);
+            hash.Add(Devices);
+            hash.Add(_devices);
+            hash.Add(SelectedDevice);
+            hash.Add(IsConnected);
+            hash.Add(ChannelsData);
+            hash.Add(ProxiesData);
+            hash.Add(LoadedCommand);
+            hash.Add(UpdateDevicesInfoCommand);
+            hash.Add(DeviceConnectCommand);
+            hash.Add(AddProxyCommand);
+            return hash.ToHashCode();
+        }
+
         ~AppSettingPageVM()
         {
             Settings.Instance.Proxies.CollectionChanged -= OnProxiesAddCollectionChanged;

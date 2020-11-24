@@ -6,6 +6,8 @@ using CANAnalyzer.Models;
 using CANAnalyzer.Models.States;
 using CANAnalyzer.Models.ViewData;
 using CANAnalyzerDevices.Devices.DeviceChannels;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -143,6 +145,19 @@ namespace CANAnalyzer.VM
         private void ClearMonitorCommand_Execute()
         {
             Items.Clear();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is MonitorChannelPageVM vM &&
+                   Status == vM.Status &&
+                   EqualityComparer<IChannel>.Default.Equals(Channel, vM.Channel) &&
+                   EqualityComparer<ObservableCollection<MonitorChannelPageData>>.Default.Equals(Items, vM.Items);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Status, Channel, Items);
         }
     }
 }

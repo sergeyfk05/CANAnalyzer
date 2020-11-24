@@ -44,5 +44,17 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
 
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is RequestChannelInfo info &&
+                   CommandId == info.CommandId &&
+                   ChannelId == info.ChannelId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CommandId, ChannelId);
+        }
     }
 }

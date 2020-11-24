@@ -526,5 +526,49 @@ namespace CANAnalyzer.VM
             base.Dispose();
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is TransmitPageVM vM &&
+                   base.Equals(obj) &&
+                   EqualityComparer<ObservableCollection<TransmitToViewData>>.Default.Equals(TransmitToItems, vM.TransmitToItems) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, vM.TransmitToSelectedChannels) &&
+                   EqualityComparer<ObservableCollection<TracePeriodicViewData>>.Default.Equals(Data, vM.Data) &&
+                   EqualityComparer<List<TracePeriodicViewData>>.Default.Equals(SelectedItems, vM.SelectedItems) &&
+                   IsEnabled == vM.IsEnabled &&
+                   EqualityComparer<RelayCommand>.Default.Equals(ClosePageCommand, vM.ClosePageCommand) &&
+                   EqualityComparer<RelayCommandWithParameterAsync<IList>>.Default.Equals(SelectedItemsChangedCommand, vM.SelectedItemsChangedCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StartTransmitingCommand, vM.StartTransmitingCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(ShotCommand, vM.ShotCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StopTransmitingCommand, vM.StopTransmitingCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(OpenFileCommand, vM.OpenFileCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(SaveFileCommand, vM.SaveFileCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(SaveAsFileCommand, vM.SaveAsFileCommand) &&
+                   EqualityComparer<RelayCommand>.Default.Equals(ClearDataCommand, vM.ClearDataCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(UpdateDataCommand, vM.UpdateDataCommand) &&
+                   EqualityComparer<ITransmitPeriodicDataTypeProvider>.Default.Equals(CurrentTraceProvider, vM.CurrentTraceProvider);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(base.GetHashCode());
+            hash.Add(TransmitToItems);
+            hash.Add(TransmitToSelectedChannels);
+            hash.Add(Data);
+            hash.Add(SelectedItems);
+            hash.Add(IsEnabled);
+            hash.Add(ClosePageCommand);
+            hash.Add(SelectedItemsChangedCommand);
+            hash.Add(StartTransmitingCommand);
+            hash.Add(ShotCommand);
+            hash.Add(StopTransmitingCommand);
+            hash.Add(OpenFileCommand);
+            hash.Add(SaveFileCommand);
+            hash.Add(SaveAsFileCommand);
+            hash.Add(ClearDataCommand);
+            hash.Add(UpdateDataCommand);
+            hash.Add(CurrentTraceProvider);
+            return hash.ToHashCode();
+        }
     }
 }

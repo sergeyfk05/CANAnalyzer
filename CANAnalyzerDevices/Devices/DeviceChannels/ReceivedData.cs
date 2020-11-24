@@ -35,5 +35,10 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
                 return false;
             }
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CanId, IsExtId, DLC, Payload, Time);
+        }
     }
 }

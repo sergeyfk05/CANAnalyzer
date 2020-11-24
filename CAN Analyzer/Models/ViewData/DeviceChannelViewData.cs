@@ -6,6 +6,7 @@ using CANAnalyzer.Resources.DynamicResources;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using DynamicResource;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -146,6 +147,22 @@ namespace CANAnalyzer.Models.ViewData
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DeviceChannelViewData data &&
+                   Bitrate == data.Bitrate &&
+                   IsListenOnlyViewable == data.IsListenOnlyViewable &&
+                   IsOpen == data.IsOpen &&
+                   EqualityComparer<IChannel>.Default.Equals(Channel, data.Channel) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(ChannelConnectCommand, data.ChannelConnectCommand) &&
+                   Name == data.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Bitrate, IsListenOnlyViewable, IsOpen, Channel, ChannelConnectCommand, Name);
         }
 
         ~DeviceChannelViewData()

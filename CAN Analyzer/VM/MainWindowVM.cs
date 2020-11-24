@@ -620,6 +620,36 @@ namespace CANAnalyzer.VM
 
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is MainWindowVM vM &&
+                   Title == vM.Title &&
+                   TitleKey == vM.TitleKey &&
+                   MinHeight == vM.MinHeight &&
+                   EqualityComparer<ObservableCollection<NavMenuItemData>>.Default.Equals(TopItemSource, vM.TopItemSource) &&
+                   EqualityComparer<ObservableCollection<NavMenuItemData>>.Default.Equals(BottomItemSource, vM.BottomItemSource) &&
+                   EqualityComparer<ImageSource>.Default.Equals(NavMenuDropdownIconSource, vM.NavMenuDropdownIconSource) &&
+                   MenuIsCollapsed == vM.MenuIsCollapsed &&
+                   EqualityComparer<UserControl>.Default.Equals(MainContent, vM.MainContent) &&
+                   EqualityComparer<ICommand>.Default.Equals(NavMenuClicked, vM.NavMenuClicked) &&
+                   EqualityComparer<ICommand>.Default.Equals(ClickContent, vM.ClickContent);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Title);
+            hash.Add(TitleKey);
+            hash.Add(MinHeight);
+            hash.Add(TopItemSource);
+            hash.Add(BottomItemSource);
+            hash.Add(NavMenuDropdownIconSource);
+            hash.Add(MenuIsCollapsed);
+            hash.Add(MainContent);
+            hash.Add(NavMenuClicked);
+            hash.Add(ClickContent);
+            return hash.ToHashCode();
+        }
 
         private List<ContentPageData> PagesData = new List<ContentPageData>();
         private SynchronizationContext _context = SynchronizationContext.Current;

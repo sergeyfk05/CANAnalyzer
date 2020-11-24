@@ -245,6 +245,22 @@ namespace CANAnalyzer.Models.DataTypesProviders
             //await context.Database.ExecuteSqlInterpolatedAsync($"DELETE FROM Traces");
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is SQLiteTraceDataTypeProvider provider &&
+                   TargetFile == provider.TargetFile &&
+                   _targetFile == provider._targetFile &&
+                   EqualityComparer<IQueryable<TraceModel>>.Default.Equals(Traces, provider.Traces) &&
+                   EqualityComparer<IQueryable<CanHeaderModel>>.Default.Equals(CanHeaders, provider.CanHeaders) &&
+                   SupportedFiles == provider.SupportedFiles &&
+                   EqualityComparer<TraceContext>.Default.Equals(context, provider.context);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TargetFile, _targetFile, Traces, CanHeaders, SupportedFiles, context);
+        }
+
         ~SQLiteTraceDataTypeProvider()
         {
             this.Dispose();

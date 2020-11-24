@@ -3,6 +3,7 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -117,6 +118,22 @@ namespace CANAnalyzer.Models.Databases
                 _payload = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TraceModel model &&
+                   base.Equals(obj) &&
+                   Id == model.Id &&
+                   Time == model.Time &&
+                   CanHeaderId == model.CanHeaderId &&
+                   EqualityComparer<CanHeaderModel>.Default.Equals(CanHeader, model.CanHeader) &&
+                   EqualityComparer<byte[]>.Default.Equals(Payload, model.Payload);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Id, Time, CanHeaderId, CanHeader, Payload);
         }
     }
 }

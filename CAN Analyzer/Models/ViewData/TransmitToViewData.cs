@@ -3,6 +3,8 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzerDevices.Devices.DeviceChannels;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -85,6 +87,20 @@ namespace CANAnalyzer.Models.ViewData
         protected void RaisePropertyChanged([CallerMemberName]string prop = "")
         {
             _propertyChanged.Raise(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TransmitToViewData data &&
+                   IsRealChannel == data.IsRealChannel &&
+                   IsTransmit == data.IsTransmit &&
+                   DescriptionKey == data.DescriptionKey &&
+                   EqualityComparer<IChannel>.Default.Equals(Channel, data.Channel);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IsRealChannel, IsTransmit, DescriptionKey, Channel);
         }
     }
 }

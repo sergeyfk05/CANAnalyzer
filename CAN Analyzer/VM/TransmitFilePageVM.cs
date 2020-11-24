@@ -574,12 +574,63 @@ namespace CANAnalyzer.VM
 
         #endregion
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             _transmiter.Stop();
             _transmiter.Dispose();
             currentTraceProvider?.Dispose();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TransmitFilePageVM vM &&
+                   base.Equals(obj) &&
+                   EqualityComparer<ObservableCollection<TransmitToViewData>>.Default.Equals(TransmitToItems, vM.TransmitToItems) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, vM.TransmitToSelectedChannels) &&
+                   EqualityComparer<ObservableCollection<TraceModel>>.Default.Equals(ShowedData, vM.ShowedData) &&
+                   EqualityComparer<List<CanIdTraceFilter>>.Default.Equals(Filters, vM.Filters) &&
+                   IsEnabled == vM.IsEnabled &&
+                   FileIsOpened == vM.FileIsOpened &&
+                   SelectedItemIndex == vM.SelectedItemIndex &&
+                   Status == vM.Status &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(OpenFileCommand, vM.OpenFileCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(SaveFileCommand, vM.SaveFileCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(SaveAsFileCommand, vM.SaveAsFileCommand) &&
+                   EqualityComparer<RelayCommand>.Default.Equals(ClosePageCommand, vM.ClosePageCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StartTraceCommand, vM.StartTraceCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(PauseTraceCommand, vM.PauseTraceCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StopTraceCommand, vM.StopTraceCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(UpdateDataAndFiltersCommand, vM.UpdateDataAndFiltersCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(UpdateDataCommand, vM.UpdateDataCommand) &&
+                   EqualityComparer<RelayCommandWithParameterAsync<IList>>.Default.Equals(RemoveDataCommand, vM.RemoveDataCommand);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(base.GetHashCode());
+            hash.Add(TransmitToItems);
+            hash.Add(TransmitToSelectedChannels);
+            hash.Add(ShowedData);
+            hash.Add(Filters);
+            hash.Add(IsEnabled);
+            hash.Add(FileIsOpened);
+            hash.Add(SelectedItemIndex);
+            hash.Add(Status);
+            hash.Add(OpenFileCommand);
+            hash.Add(SaveFileCommand);
+            hash.Add(SaveAsFileCommand);
+            hash.Add(ClosePageCommand);
+            hash.Add(StartTraceCommand);
+            hash.Add(PauseTraceCommand);
+            hash.Add(StopTraceCommand);
+            hash.Add(UpdateDataAndFiltersCommand);
+            hash.Add(UpdateDataCommand);
+            hash.Add(RemoveDataCommand);
+            return hash.ToHashCode();
+        }
+
         ~TransmitFilePageVM()
         {
             this.Dispose();

@@ -241,6 +241,21 @@ namespace CANAnalyzer.Models
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is TraceTransmiter transmiter &&
+                   ElapsedMilliseconds == transmiter.ElapsedMilliseconds &&
+                   Status == transmiter.Status &&
+                   EqualityComparer<IEnumerable<TraceModel>>.Default.Equals(Source, transmiter.Source) &&
+                   CurrentIndex == transmiter.CurrentIndex &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitTo, transmiter.TransmitTo);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ElapsedMilliseconds, Status, Source, CurrentIndex, TransmitTo);
+        }
+
         ~TraceTransmiter()
         {
             this.Dispose();

@@ -332,6 +332,19 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels
             return "CanHackerChannel";
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is CanHackerChannel channel &&
+                   Bitrate == channel.Bitrate &&
+                   IsListenOnly == channel.IsListenOnly &&
+                   IsOpen == channel.IsOpen;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Bitrate, IsListenOnly, IsOpen);
+        }
+
         SerialPort _port;
     }
 }

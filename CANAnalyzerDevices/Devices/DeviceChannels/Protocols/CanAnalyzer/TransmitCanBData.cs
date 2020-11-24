@@ -35,6 +35,21 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
             return errors;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is TransmitCanBData data &&
+                   CommandId == data.CommandId &&
+                   ChannelId == data.ChannelId &&
+                   DLC == data.DLC &&
+                   CanId == data.CanId &&
+                   EqualityComparer<byte[]>.Default.Equals(this.data, data.data);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CommandId, ChannelId, DLC, CanId, data);
+        }
+
         public static explicit operator byte[](TransmitCanBData data)
         {
             if (!Validator.TryValidateObject(data, new ValidationContext(data), null, true))

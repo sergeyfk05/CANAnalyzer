@@ -178,5 +178,10 @@ namespace CANAnalyzer.Models.Databases
 
             return false;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, IsExtId, CanId, DLC, Payload, Period, Comment);
+        }
     }
 }

@@ -413,8 +413,9 @@ namespace CANAnalyzer.VM
             return result;
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             TransmitToSelectedChannels = null;
 
             if(_timer != null)
@@ -423,6 +424,49 @@ namespace CANAnalyzer.VM
                 _timer.Dispose();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is BomberPageVM vM &&
+                   base.Equals(obj) &&
+                   EqualityComparer<ObservableCollection<TransmitToViewData>>.Default.Equals(TransmitToItems, vM.TransmitToItems) &&
+                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, vM.TransmitToSelectedChannels) &&
+                   IsExtId == vM.IsExtId &&
+                   DLC == vM.DLC &&
+                   CanId == vM.CanId &&
+                   EqualityComparer<ObservableCollection<byte>>.Default.Equals(Payload, vM.Payload) &&
+                   EqualityComparer<ObservableCollection<byte>>.Default.Equals(Increment, vM.Increment) &&
+                   MsgPerStep == vM.MsgPerStep &&
+                   Period == vM.Period &&
+                   Status == vM.Status &&
+                   EqualityComparer<RelayCommand>.Default.Equals(ClosePageCommand, vM.ClosePageCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StepForwardCommand, vM.StepForwardCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(StepBackCommand, vM.StepBackCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(ShotCommand, vM.ShotCommand) &&
+                   EqualityComparer<RelayCommandAsync>.Default.Equals(RunCommand, vM.RunCommand);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(TransmitToItems);
+            hash.Add(TransmitToSelectedChannels);
+            hash.Add(IsExtId);
+            hash.Add(DLC);
+            hash.Add(CanId);
+            hash.Add(Payload);
+            hash.Add(Increment);
+            hash.Add(MsgPerStep);
+            hash.Add(Period);
+            hash.Add(Status);
+            hash.Add(ClosePageCommand);
+            hash.Add(StepForwardCommand);
+            hash.Add(StepBackCommand);
+            hash.Add(ShotCommand);
+            hash.Add(RunCommand);
+            return hash.ToHashCode();
+        }
+
         ~BomberPageVM()
         {
             this.Dispose();

@@ -199,6 +199,20 @@ namespace CANAnalyzer.Models.DataTypesProviders
             context?.TransmitModels.RemoveRange(context.TransmitModels);
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is SQLiteTransmitPeriodicDataTypeProvider provider &&
+                   TargetFile == provider.TargetFile &&
+                   EqualityComparer<IQueryable<TracePeriodicModel>>.Default.Equals(TransmitModels, provider.TransmitModels) &&
+                   SupportedFiles == provider.SupportedFiles &&
+                   EqualityComparer<TracePeriodicContext>.Default.Equals(context, provider.context);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TargetFile, TransmitModels, SupportedFiles, context);
+        }
+
         ~SQLiteTransmitPeriodicDataTypeProvider()
         {
             this.Dispose();

@@ -54,5 +54,19 @@ namespace CANAnalyzerDevices.Devices.DeviceChannels.Protocols.CanAnalyzer
 
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is UpdateChannelInfo info &&
+                   CommandId == info.CommandId &&
+                   ChannelId == info.ChannelId &&
+                   Status == info.Status &&
+                   BitrateType == info.BitrateType;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CommandId, ChannelId, Status, BitrateType);
+        }
     }
 }
