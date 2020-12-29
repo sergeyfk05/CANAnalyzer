@@ -10,7 +10,7 @@ namespace CANAnalyzer.Models
         internal static List<IDeviceCreator> BuildDeviceCreatorsList()
         {
             var l = new List<IDeviceCreator>();
-            l.Add(new CanHackerCreator());
+            //l.Add(new CanHackerCreator());
             l.Add(new CanAnalyzerCreator());
             //l.Add(new FakeCanHackerCreator());
             return l;

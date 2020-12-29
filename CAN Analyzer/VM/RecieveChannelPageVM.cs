@@ -200,6 +200,7 @@ namespace CANAnalyzer.VM
                 _context.Post((s) =>
                 {
                     Filters.Add(filter);
+                    Filters = new BindingList<ITraceFilter>(Filters.OrderBy(x => x.ToString()).ToList());
                 }, null);
             }
 

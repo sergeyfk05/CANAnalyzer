@@ -7,8 +7,6 @@ using Xunit;
 
 namespace RelayCommands.Test
 {
-
-
     public class BaseCommandTests
     {
         [Theory]

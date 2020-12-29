@@ -400,7 +400,7 @@ namespace CANAnalyzer.VM
                         newFilters.Add(entity);
                     }
                 }
-                Filters = newFilters;
+                Filters = newFilters.OrderBy(x => x.CanId).ToList();
 
                 UpdateDataCommand.Execute();
 
