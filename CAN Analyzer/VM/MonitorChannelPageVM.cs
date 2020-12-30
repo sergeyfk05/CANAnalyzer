@@ -40,16 +40,21 @@ namespace CANAnalyzer.VM
         {
             if((Status == RecieveState.Recieving) && (sender is IChannel ch) && (ch == Channel))
             {
-                MonitorChannelPageData data = Items.FirstOrDefault(x => (x.CanId == e.Data.CanId) && (x.IsExtId == e.Data.IsExtId) && (x.DLC == e.Data.DLC));
-                if (data == null)
+                MonitorChannelPageData data;
+                lock (Items)
                 {
-                    data = new MonitorChannelPageData(e.Data.CanId, e.Data.IsExtId, e.Data.DLC);
-
-                    _context.Post((s) =>
+                    data = Items.FirstOrDefault(x => (x.CanId == e.Data.CanId) && (x.IsExtId == e.Data.IsExtId) && (x.DLC == e.Data.DLC));
+                    if (data == null)
                     {
-                        Items.Add(data);
-                    }, null);
+                        data = new MonitorChannelPageData(e.Data.CanId, e.Data.IsExtId, e.Data.DLC);
+
+                        _context.Send((s) =>
+                        {
+                            Items.Add(data);
+                        }, null);
+                    }
                 }
+
                 data.SetPayload(e.Data.Payload, e.Data.Time);
             }
         }

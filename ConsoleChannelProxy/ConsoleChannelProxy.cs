@@ -130,6 +130,23 @@ namespace ConsoleChannelProxy
 
             _process.StandardInput.WriteLine(response);
         }
+        private void SendDataToProxy(TransmitData data)
+        {
+
+            string payload = "";
+            for (int i = 0; i < data.DLC; i++)
+            {
+                payload += data.Payload[i].ToString("X2");
+            }
+
+            string response = $"{(data.IsExtId ? "1" : "0")};" +
+                $"{data.CanId.ToString("X8")};" +
+                $"{data.DLC.ToString("X1")};" +
+                $"{payload};" +
+                $"{((int)(0)).ToString("X4")};";
+
+            _process.StandardInput.WriteLine(response);
+        }
 
         private Process _process;
         public IChannel Channel { get; private set; }
@@ -213,16 +230,60 @@ namespace ConsoleChannelProxy
 
         public void Open(int bitrate = 500, bool isListenOnly = true)
         {
-            if (Channel == null)
-                throw new ArgumentNullException("Channel");
-
             IsOpen = true;
             IsListenOnly = isListenOnly;
         }
 
         public void Transmit(TransmitData data)
         {
-            //throw new NotImplementedException();
+            SendDataToProxy(data);
+
+            string response = _process.StandardOutput.ReadLine();
+            var match = Regex.Match(response,
+                @"([0-1]{1});" +
+                @"([0-9a-fA-F]{8});" +
+                @"([0-9a-fA-F]{1});" +
+                @"([0-9a-fA-F])+;" +
+                @"([0-9a-fA-F]{4});");
+
+            if (!match.Success)
+                return;
+
+            ReceivedData result = new ReceivedData();
+            try
+            {
+                result.DLC = Convert.ToInt32(match.Groups[3].Value, 16);
+            }
+            catch { return; }
+
+
+            match = Regex.Match(response,
+                @"([0-1]{1});" +
+                @"([0-9a-fA-F]{8});" +
+                @"([0-9a-fA-F]{1});" +
+                @"([0-9a-fA-F]{" + (result.DLC * 2) + "});" +
+                @"([0-9a-fA-F]{4});");
+
+
+            if (!match.Success)
+                return;
+
+            try
+            {
+                result.IsExtId = Convert.ToInt32(match.Groups[1].Value, 16) == 0 ? false : true;
+                result.CanId = Convert.ToInt32(match.Groups[2].Value, 16);
+                result.Time = Convert.ToInt32(match.Groups[5].Value, 16) / 1000.0;
+                result.Payload = new byte[result.DLC];
+
+                for (int i = 0; i < result.DLC; i++)
+                {
+                    result.Payload[i] = Convert.ToByte(match.Groups[4].Value.Substring(i * 2, 2), 16);
+                }
+            }
+            catch { return; }
+
+
+            RaiseReceivedData(result);
         }
 
 

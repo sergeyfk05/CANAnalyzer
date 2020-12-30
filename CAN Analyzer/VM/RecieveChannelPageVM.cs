@@ -174,36 +174,36 @@ namespace CANAnalyzer.VM
             {
                 canHeaders = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId) && (x.DLC == e.Data.DLC)).Take(1).ToList();
                 filtersCount = currentTraceProvider.CanHeaders.Where(x => (x.IsExtId == e.Data.IsExtId) && (x.CanId == e.Data.CanId)).Count();
-            }
 
-            //если такого CanHeader'a нет, то создаем, добавляем в БД
-            if (canHeaders.Count == 0)
-            {
-                canHeaders.Add(new CanHeaderModel()
+
+                //если такого CanHeader'a нет, то создаем, добавляем в БД
+                if (canHeaders.Count == 0)
                 {
-                    IsExtId = e.Data.IsExtId,
-                    CanId = e.Data.CanId,
-                    DLC = e.Data.DLC
-                });
-                currentTraceProvider.Add(canHeaders[0]);
-                lock (currentTraceProvider)
+                    canHeaders.Add(new CanHeaderModel()
+                    {
+                        IsExtId = e.Data.IsExtId,
+                        CanId = e.Data.CanId,
+                        DLC = e.Data.DLC
+                    });
+                    currentTraceProvider.Add(canHeaders[0]);
+                    lock (currentTraceProvider)
+                    {
+                        currentTraceProvider.SaveChanges();
+                    }
+                }
+
+                //если появился новый CAN ID
+                if (filtersCount == 0)
                 {
-                    currentTraceProvider.SaveChanges();
+                    CanIdTraceFilter filter = new CanIdTraceFilter(e.Data.CanId, e.Data.IsExtId);
+                    filter.PropertyChanged += FilterIsActive_PropertyChanged;
+                    _context.Post((s) =>
+                    {
+                        Filters.Add(filter);
+                        Filters = new BindingList<ITraceFilter>(Filters.OrderBy(x => x.ToString()).ToList());
+                    }, null);
                 }
             }
-
-            //если появился новый CAN ID
-            if (filtersCount == 0)
-            {
-                CanIdTraceFilter filter = new CanIdTraceFilter(e.Data.CanId, e.Data.IsExtId);
-                filter.PropertyChanged += FilterIsActive_PropertyChanged;
-                _context.Post((s) =>
-                {
-                    Filters.Add(filter);
-                    Filters = new BindingList<ITraceFilter>(Filters.OrderBy(x => x.ToString()).ToList());
-                }, null);
-            }
-
 
             model.CanHeader = canHeaders[0];
 
