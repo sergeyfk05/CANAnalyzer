@@ -23,7 +23,7 @@ namespace InfluxDBChannelProxy
 
         public InfluxdbChannelProxy(string path)
         {
-            Name = this.ToString();
+            Name = "InfluxDB proxy";
 
             if (!System.IO.File.Exists(path))
                 throw new ArgumentException("Invalid file path.");
@@ -287,7 +287,7 @@ namespace InfluxDBChannelProxy
 
         public override string ToString()
         {
-            return $"InfluxDB proxy";
+            return $"{Name}";
         }
     }
 }
