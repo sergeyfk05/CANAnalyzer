@@ -7,6 +7,8 @@ using CANAnalyzerDataModels;
 using CANAnalyzerDevices.Devices.DeviceChannels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CANAnalyzer.Models
 {
@@ -27,6 +29,7 @@ namespace CANAnalyzer.Models
             _timeAccuracy = timerAccuracy;
             Status = TraceTransmiterStatus.Reseted;
 
+            _stopWatch = new Stopwatch();
 
             _timer = new System.Timers.Timer();
             _timer.Interval = _timeAccuracy;
@@ -41,19 +44,24 @@ namespace CANAnalyzer.Models
         {
             if (Status == TraceTransmiterStatus.Working)
             {
-                ElapsedMilliseconds += _timeAccuracy;
-
+                Task.Factory.StartNew(() => 
+                {
+                });
                 bool isEnd = false;
 
-                do
+                if (_enumerator.Current == null)
                 {
-                    if (_enumerator.Current == null)
+                    isEnd = !_enumerator.MoveNext();
+                }
+
+                while (true)
+                {
+                    if (isEnd)
                     {
-                        isEnd =  !_enumerator.MoveNext();
-                        continue;
+                        Stop();
                     }
 
-                    if (ElapsedMilliseconds >= (int)(_enumerator.Current.Time * 1000))
+                    if (_stopWatch.ElapsedMilliseconds + _stopWatchOffset >= (int)(_enumerator.Current.Time * 1000))
                     {
                         TransmitTo?.Invoke(new TransmitData()
                         {
@@ -69,20 +77,13 @@ namespace CANAnalyzer.Models
                     {
                         break;
                     }
-
-
-                } while (!isEnd);
-
-                if(isEnd)
-                {
-                    Stop();
                 }
 
             }
         }
 
-
-        public int ElapsedMilliseconds { get; private set; } = 0;
+        private int _stopWatchOffset;
+        private Stopwatch _stopWatch;
 
         public TraceTransmiterStatus Status
         {
@@ -184,12 +185,12 @@ namespace CANAnalyzer.Models
             if (_enumerator.Current == null)
             {
                 CurrentIndex = 0;
-                ElapsedMilliseconds = 0;
+                _stopWatchOffset = 0;
                 return;
             }
 
             CurrentIndex = index;
-            ElapsedMilliseconds = (int)(_enumerator.Current.Time * 1000);
+            _stopWatchOffset = (int)(_enumerator.Current.Time * 1000);
         }
 
         public void Start()
@@ -198,10 +199,13 @@ namespace CANAnalyzer.Models
                 throw new ArgumentException("Need to set the Source propery first");
 
             _timer.Start();
+            _stopWatch.Start();
             Status = TraceTransmiterStatus.Working;
         }
         public void Stop()
         {
+            _stopWatch.Stop();
+            _stopWatch.Reset();
             _timer.Stop();
             Status = TraceTransmiterStatus.Reseted;
             try
@@ -213,6 +217,7 @@ namespace CANAnalyzer.Models
         }
         public void Pause()
         {
+            _stopWatch.Stop();
             _timer.Stop();
             Status = TraceTransmiterStatus.Paused;
         }
@@ -244,7 +249,6 @@ namespace CANAnalyzer.Models
         public override bool Equals(object obj)
         {
             return obj is TraceTransmiter transmiter &&
-                   ElapsedMilliseconds == transmiter.ElapsedMilliseconds &&
                    Status == transmiter.Status &&
                    EqualityComparer<IEnumerable<TraceModel>>.Default.Equals(Source, transmiter.Source) &&
                    CurrentIndex == transmiter.CurrentIndex &&
@@ -253,7 +257,7 @@ namespace CANAnalyzer.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(ElapsedMilliseconds, Status, Source, CurrentIndex, TransmitTo);
+            return HashCode.Combine(Status, Source, CurrentIndex, TransmitTo);
         }
 
         ~TraceTransmiter()

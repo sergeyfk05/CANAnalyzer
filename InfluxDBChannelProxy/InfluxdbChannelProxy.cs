@@ -13,6 +13,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace InfluxDBChannelProxy
@@ -123,27 +124,29 @@ namespace InfluxDBChannelProxy
         {
             if (!IsOpen)
                 return;
-
-            if (!DoesItPassFilter(data))
-                return;
-
-            List<string> udpStrings = ConvertCANPackageToInfluxdbUDPPackage(data);
-
-
-            RaiseReceivedData(new ReceivedData()
+            Task.Factory.StartNew(() =>
             {
-                Time = _watch.ElapsedMilliseconds / 1000.0,
-                CanId = data.CanId,
-                DLC = data.DLC,
-                IsExtId = data.IsExtId,
-                Payload = data.Payload
+                if (!DoesItPassFilter(data))
+                    return;
+
+                List<string> udpStrings = ConvertCANPackageToInfluxdbUDPPackage(data);
+
+
+                RaiseReceivedData(new ReceivedData()
+                {
+                    Time = _watch.ElapsedMilliseconds / 1000.0,
+                    CanId = data.CanId,
+                    DLC = data.DLC,
+                    IsExtId = data.IsExtId,
+                    Payload = data.Payload
+                });
+
+
+                foreach (var el in udpStrings)
+                {
+                    SendToInfluxDB(el);
+                }
             });
-
-
-            foreach (var el in udpStrings)
-            {
-                SendToInfluxDB(el);
-            }
 
         }
 
@@ -198,7 +201,10 @@ namespace InfluxDBChannelProxy
 
         private bool SendToInfluxDB(string data)
         {
-            _writeApi?.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
+            //lock (_writeApi)
+            //{
+                _writeApi?.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
+            //}
             return true;
         }
 
