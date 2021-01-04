@@ -171,7 +171,7 @@ namespace InfluxDBChannelProxy
                  (x.Header.IsExtId == data.IsExtId) &&
                  (x.Header.DLC == data.DLC) &&
                  (x.Header.Id == data.CanId) &&
-                 (x.Header.ValueBytes.BinaryAnd(x.Header.MaskBytes).IsEquals(x.Header.ValueBytes))))
+                 (data.Payload.BinaryAnd(x.Header.MaskBytes).IsEquals(x.Header.ValueBytes))))
             {
 
 
