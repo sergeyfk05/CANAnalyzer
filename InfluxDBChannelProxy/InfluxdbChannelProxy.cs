@@ -201,10 +201,7 @@ namespace InfluxDBChannelProxy
 
         private bool SendToInfluxDB(string data)
         {
-            //lock (_writeApi)
-            //{
-                _writeApi?.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
-            //}
+            _writeApi?.WriteRecord(_config.Server.Bucket, _config.Server.Organization, WritePrecision.Ns, data);
             return true;
         }
 
