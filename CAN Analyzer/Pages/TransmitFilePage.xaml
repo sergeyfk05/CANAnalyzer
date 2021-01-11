@@ -184,7 +184,7 @@
                 </DataGrid.Columns>
 
                 <DataGrid.Style>
-                    <Style TargetType="DataGrid" BasedOn="{StaticResource DataGrid}"> 
+                    <Style TargetType="DataGrid" BasedOn="{StaticResource DataGrid}">
                         <Setter Property="CanUserDeleteRows" Value="False"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
@@ -196,14 +196,14 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.Style>
-                
+
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Command="Delete" Header="{resources:Language #TraceDataGridDeleteContextMenuCommand}"/>
                         <MenuItem Command="Copy" Header="{resources:Language #TraceDataGridCopyContextMenuCommand}"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
-                
+
                 <i:Interaction.Behaviors>
                     <extensions:ScrollIntoViewBehavior/>
                 </i:Interaction.Behaviors>
@@ -219,9 +219,19 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
-                <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}" Background="{resources:Theme ListViewBackground}">
+                <TextBlock Text="{resources:Language #TraceFilterById}" 
+                    Grid.Row="0" 
+                    FontFamily="{resources:Theme MainTextFontFamily}" 
+                    FontWeight="{resources:Theme MainTextFontWeight}" 
+                    Foreground="{resources:Theme MainTextColor}"/>
+                <ListView Grid.Row="1" 
+                          VerticalAlignment="Stretch" 
+                          HorizontalAlignment="Stretch" 
+                          ItemsSource="{Binding Filters}" 
+                          Background="{resources:Theme ListViewBackground}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource TraceFilterListViewHeaderStyle}">
                             <GridView.Columns>
@@ -244,7 +254,7 @@
                                 <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Working}">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
-                                
+
                                 <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
                                     <Setter Property="IsEnabled" Value="True"/>
                                 </DataTrigger>
@@ -258,6 +268,59 @@
                         </Style>
                     </ListView.Style>
                 </ListView>
+                <Button Command="{Binding SelectAllFiltersCommand}" 
+                        Grid.Row="2" 
+                        Height="26" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch" 
+                        Content="{resources:Language #SelectAllFiltersButton}" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Working}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Paused}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Command="{Binding UnselectAllFiltersCommand}" 
+                        Grid.Row="3" 
+                        Height="26" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch" 
+                        Content="{resources:Language #UnselectAllFiltersButton}" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Working}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Undefined}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Paused}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TraceTransmiter+TraceTransmiterStatus.Reseted}">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
             </Grid>
 
             <Grid.Style>

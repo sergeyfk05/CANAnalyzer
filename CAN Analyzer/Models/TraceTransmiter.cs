@@ -56,9 +56,10 @@ namespace CANAnalyzer.Models
 
                 while (true)
                 {
-                    if (isEnd)
+                    if (isEnd || _enumerator.Current == null)
                     {
                         Stop();
+                        break;
                     }
 
                     if (_stopWatch.ElapsedMilliseconds + _stopWatchOffset >= (int)(_enumerator.Current.Time * 1000))

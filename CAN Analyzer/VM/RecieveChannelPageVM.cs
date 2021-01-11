@@ -466,6 +466,36 @@ namespace CANAnalyzer.VM
             Filters.Clear();
             this.Items.Clear();
         }
+        private RelayCommandAsync _selectAllFiltersCommand;
+        public RelayCommandAsync SelectAllFiltersCommand
+        {
+            get
+            {
+                if (_selectAllFiltersCommand == null)
+                    _selectAllFiltersCommand = new RelayCommandAsync(SelectAllFiltersCommand_Execute);
+
+                return _selectAllFiltersCommand;
+            }
+        }
+        private void SelectAllFiltersCommand_Execute()
+        {
+            Filters.ToList().ForEach(x => x.IsActive = true);
+        }
+        private RelayCommandAsync _unselectAllFiltersCommand;
+        public RelayCommandAsync UnselectAllFiltersCommand
+        {
+            get
+            {
+                if (_unselectAllFiltersCommand == null)
+                    _unselectAllFiltersCommand = new RelayCommandAsync(UnselectAllFiltersCommand_Execute);
+
+                return _unselectAllFiltersCommand;
+            }
+        }
+        private void UnselectAllFiltersCommand_Execute()
+        {
+            Filters.ToList().ForEach(x => x.IsActive = false);
+        }
 
         private string GenerateFilterForDialog(IEnumerable<ITraceDataTypeProvider> source)
         {

@@ -40,8 +40,6 @@ namespace CANAnalyzer.VM
             _transmiter = new TraceTransmiter();
             _transmiter.StatusChanged += _transmiter_StatusChanged;
             _transmiter.CurrentIndexChanged += _transmiter_CurrentIndexChanged;
-
-
         }
 
 
@@ -370,6 +368,37 @@ namespace CANAnalyzer.VM
             _transmiter.Stop();
         }
 
+        private RelayCommandAsync _selectAllFiltersCommand;
+        public RelayCommandAsync SelectAllFiltersCommand
+        {
+            get
+            {
+                if (_selectAllFiltersCommand == null)
+                    _selectAllFiltersCommand = new RelayCommandAsync(SelectAllFiltersCommand_Execute);
+
+                return _selectAllFiltersCommand;
+            }
+        }
+        private void SelectAllFiltersCommand_Execute()
+        {
+            Filters.ForEach(x => x.IsActive = true);
+        }
+        private RelayCommandAsync _unselectAllFiltersCommand;
+        public RelayCommandAsync UnselectAllFiltersCommand
+        {
+            get
+            {
+                if (_unselectAllFiltersCommand == null)
+                    _unselectAllFiltersCommand = new RelayCommandAsync(UnselectAllFiltersCommand_Execute);
+
+                return _unselectAllFiltersCommand;
+            }
+        }
+        private void UnselectAllFiltersCommand_Execute()
+        {
+            Filters.ForEach(x => x.IsActive = false);
+        }
+
         #endregion
 
 
@@ -434,8 +463,10 @@ namespace CANAnalyzer.VM
                     data = el.Filter(data);
                 }
 
-
-                ShowedData = new ObservableCollection<TraceModel>(data.Include("CanHeader").ToList());
+                lock(currentTraceProvider)
+                {
+                    ShowedData = new ObservableCollection<TraceModel>(data.Include("CanHeader").ToList());
+                }
                 FileIsOpened = FileState.Opened;
 
             }
@@ -536,11 +567,10 @@ namespace CANAnalyzer.VM
         }
         private void FilterIsActive_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "IsActive")
+            if ((e.PropertyName != "IsActive") || (FileIsOpened == FileState.Closed) || (FileIsOpened == FileState.Opening))
                 return;
 
-            UpdateDataCommand.Execute();
-
+                UpdateDataCommand.Execute();
         }
         private void OnSaveFileCommandCanExecuteChanged_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

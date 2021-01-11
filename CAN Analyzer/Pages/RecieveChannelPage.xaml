@@ -147,6 +147,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{resources:Language #TraceFilterById}" Grid.Row="0" FontFamily="{resources:Theme MainTextFontFamily}" FontWeight="{resources:Theme MainTextFontWeight}" Foreground="{resources:Theme MainTextColor}"/>
                 <ListView Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters}" Background="{resources:Theme ListViewBackground}">
@@ -165,6 +167,20 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+                <Button Command="{Binding SelectAllFiltersCommand}" 
+                        Grid.Row="2" 
+                        Height="26" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch" 
+                        Content="{resources:Language #SelectAllFiltersButton}" 
+                        IsEnabled="True"/>
+                <Button Command="{Binding UnselectAllFiltersCommand}" 
+                        Grid.Row="3" 
+                        Height="26" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch" 
+                        Content="{resources:Language #UnselectAllFiltersButton}" 
+                        IsEnabled="True"/>
             </Grid>
 
             <Grid.Style>

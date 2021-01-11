@@ -27,7 +27,8 @@ namespace CANAnalyzer.Models.Extensions
                     grid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                     {
                         grid.UpdateLayout();
-                        grid.ScrollIntoView(grid.SelectedItem, null);
+                        if(grid.SelectedItem != null)
+                            grid.ScrollIntoView(grid.SelectedItem, null);
                     });
                 }
             }
