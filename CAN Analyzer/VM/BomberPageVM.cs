@@ -280,8 +280,8 @@ namespace CANAnalyzer.VM
                 Status = TransmitState.Transmiting;
                 _msgPerStepComleted = 0;
 
-                if (Period < 10)
-                    Period = 10;
+                if (Period < 1)
+                    Period = 1;
 
                 _timer.Interval = Period;
                 _timer.Start();

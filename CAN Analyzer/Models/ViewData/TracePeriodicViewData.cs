@@ -152,8 +152,8 @@ namespace CANAnalyzer.Models.ViewData
         {
             if ((e.PropertyName == "Period") && (sender is TracePeriodicModel model) && (model == Model))
             {
-                if (Model.Period < 10)
-                    Model.Period = 10;
+                if (Model.Period < 1)
+                    Model.Period = 1;
 
                 _timer.Interval = Model.Period;
             }
