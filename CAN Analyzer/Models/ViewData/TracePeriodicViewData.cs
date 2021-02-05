@@ -200,8 +200,8 @@ namespace CANAnalyzer.Models.ViewData
         }
         public void StartTransmiting()
         {
-            if (Model.Period < 10)
-                Model.Period = 10;
+            if (Model.Period < 1)
+                Model.Period = 1;
 
             _timer.Interval = Model.Period;
             _timer.Start();
@@ -230,30 +230,13 @@ namespace CANAnalyzer.Models.ViewData
         }
 
         public void Dispose()
-        {
-          
-
-
+        {     
             if(_timer != null)
             {
                 _timer.Elapsed -= _timer_Elapsed;
                 _timer.Dispose();
             }
         }
-
-        //public override bool Equals(object obj)
-        //{
-        //    return obj is TracePeriodicViewData data &&
-        //           EqualityComparer<TracePeriodicModel>.Default.Equals(Model, data.Model) &&
-        //           EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, data.TransmitToSelectedChannels) &&
-        //           IsTrasmiting == data.IsTrasmiting &&
-        //           Count == data.Count;
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return HashCode.Combine(Model, TransmitToSelectedChannels, IsTrasmiting, Count);
-        //}
 
         ~TracePeriodicViewData()
         {
