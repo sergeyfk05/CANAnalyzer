@@ -241,19 +241,19 @@ namespace CANAnalyzer.Models.ViewData
             }
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is TracePeriodicViewData data &&
-                   EqualityComparer<TracePeriodicModel>.Default.Equals(Model, data.Model) &&
-                   EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, data.TransmitToSelectedChannels) &&
-                   IsTrasmiting == data.IsTrasmiting &&
-                   Count == data.Count;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    return obj is TracePeriodicViewData data &&
+        //           EqualityComparer<TracePeriodicModel>.Default.Equals(Model, data.Model) &&
+        //           EqualityComparer<TransmitToDelegate>.Default.Equals(TransmitToSelectedChannels, data.TransmitToSelectedChannels) &&
+        //           IsTrasmiting == data.IsTrasmiting &&
+        //           Count == data.Count;
+        //}
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Model, TransmitToSelectedChannels, IsTrasmiting, Count);
-        }
+        //public override int GetHashCode()
+        //{
+        //    return HashCode.Combine(Model, TransmitToSelectedChannels, IsTrasmiting, Count);
+        //}
 
         ~TracePeriodicViewData()
         {
