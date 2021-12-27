@@ -24,7 +24,7 @@ namespace CANAnalyzer.Models
             Paused,
             Reseted
         };
-        public TraceTransmiter(int timerAccuracy = 10)
+        public TraceTransmiter(int timerAccuracy = 1)
         {
             _timeAccuracy = timerAccuracy;
             Status = TraceTransmiterStatus.Reseted;
