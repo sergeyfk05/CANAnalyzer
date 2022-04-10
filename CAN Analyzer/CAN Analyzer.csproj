@@ -236,6 +236,9 @@
     <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Resources\Configs\DataProviders.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Configs\Devices.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
