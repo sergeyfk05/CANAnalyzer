@@ -18,7 +18,7 @@ namespace CANAnalyzerDevice.Protocol
         {
             List<ValidationResult> errors = new List<ValidationResult>();
 
-            if (this.CommandId != 6)
+            if (this.CommandId != 7)
                 errors.Add(new ValidationResult("Invalid CommandId field."));
 
             if (ChannelId > 7)
@@ -94,8 +94,8 @@ namespace CANAnalyzerDevice.Protocol
             result.ChannelId = (byte)(data[1] & 0x07);
             result.DLC = (byte)((data[1] & 0x78) >> 3);
 
-            result.CanId = Convert.ToUInt32((data[2] << 24) | (data[3] << 16) | (data[4] << 8) | (data[5]));
-            result.Time = Convert.ToUInt32((data[6] << 24) | (data[7] << 16) | (data[8] << 8) | (data[9]));
+            result.CanId = Convert.ToUInt32((data[2]) | (data[3] << 8) | (data[4] << 16) | (data[5] << 24));
+            result.Time = Convert.ToUInt32((data[6]) | (data[7] << 8) | (data[8] << 16) | (data[9] << 24));
 
             if (result.DLC != 0)
                 result.data = new byte[result.DLC];

@@ -235,4 +235,9 @@
     </PackageReference>
     <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Resources\Configs\Proxies.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

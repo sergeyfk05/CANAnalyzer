@@ -3,10 +3,10 @@
 * PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 */
 using CANAnalyzerChannelProxyInterfaces;
-using ConsoleChannelProxy;
-using DirtRallyV2ToRenaultDashboardProxy;
-using InfluxDBChannelProxy;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace CANAnalyzer.Models
 {
@@ -15,9 +15,32 @@ namespace CANAnalyzer.Models
         public static List<IChannelProxyCreator> GenerateTraceDataTypeProviders()
         {
             var proxiesCreators = new List<IChannelProxyCreator>();
-            proxiesCreators.Add(new ConsoleChannelProxyCreator());
-            proxiesCreators.Add(new DirtRallyV2ToRenaultDashboadrProxyCreator());
-            proxiesCreators.Add(new InfluxDBChannelProxyCreator());
+
+            if(File.Exists("Resources/Configs/Proxies.ini"))
+            {
+                string[] ddls = File.ReadAllLines("Resources/Configs/Proxies.ini");
+                foreach(var ddlName in ddls)
+                {
+                    try
+                    {
+                        Assembly asm = Assembly.LoadFrom(ddlName);
+                        foreach (Type type in asm.GetTypes())
+                        {
+                            var absraction = type.GetInterface("IChannelProxyCreator");
+                            if(absraction != null)
+                            {
+                                var creator = System.Activator.CreateInstance(type);
+                                proxiesCreators.Add((IChannelProxyCreator)creator);
+                            }
+
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+            }
 
             return proxiesCreators;
         }
