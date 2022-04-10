@@ -12,8 +12,14 @@ namespace CANAnalyzer.Models
 {
     public static class ChannelProxyCreatorsListBuilder
     {
+        internal static List<IChannelProxyCreator> _creators = null;
         public static List<IChannelProxyCreator> GenerateTraceDataTypeProviders()
         {
+            if (_creators != null)
+            {
+                return _creators;
+            }
+
             var proxiesCreators = new List<IChannelProxyCreator>();
 
             if(File.Exists("Resources/Configs/Proxies.ini"))
@@ -42,6 +48,7 @@ namespace CANAnalyzer.Models
                 }
             }
 
+            _creators = proxiesCreators;
             return proxiesCreators;
         }
     }
