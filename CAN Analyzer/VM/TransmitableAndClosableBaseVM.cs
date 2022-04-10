@@ -1,4 +1,8 @@
-﻿using CANAnalyzer.Models;
+﻿/*
+* This is a personal academic project. Dear PVS-Studio, please check it.
+* PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+*/
+using CANAnalyzer.Models;
 using CANAnalyzer.Models.Delegates;
 using CANAnalyzer.Models.Extensions;
 using CANAnalyzer.Models.ViewData;
