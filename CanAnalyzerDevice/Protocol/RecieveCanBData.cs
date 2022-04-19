@@ -98,15 +98,15 @@ namespace CANAnalyzerDevice.Protocol
             result.ChannelId = (byte)(data[1] & 0x07);
             result.DLC = (byte)((data[1] & 0x78) >> 3);
 
-            result.CanId = Convert.ToUInt32((data[2]) | (data[3] << 8) | (data[4] << 16) | (data[5] << 24));
-            result.Time = Convert.ToUInt32((data[6]) | (data[7] << 8) | (data[8] << 16) | (data[9] << 24));
+            result.CanId = Convert.ToUInt32((data[4]) | (data[5] << 8) | (data[6] << 16) | (data[7] << 24));
+            result.Time = Convert.ToUInt32((data[8]) | (data[9] << 8) | (data[10] << 16) | (data[11] << 24));
 
             if (result.DLC != 0)
                 result.data = new byte[result.DLC];
 
             for (int i = 0; i < result.DLC; i++)
             {
-                result.data[i] = data[10 + i];
+                result.data[i] = data[12 + i];
             }
 
             if (!Validator.TryValidateObject(result, new ValidationContext(result), null, true))

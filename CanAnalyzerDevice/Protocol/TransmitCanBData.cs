@@ -61,19 +61,19 @@ namespace CANAnalyzerDevice.Protocol
                 throw new Exception("invalid structure");
             }
 
-            byte[] result = new byte[6 + data.DLC];
+            byte[] result = new byte[8 + data.DLC];
 
             result[0] = data.CommandId;
             result[1] = data.ChannelId;
             result[1] |= (byte)(data.DLC << 3);
-            result[2] = (byte)(data.CanId);
-            result[3] = (byte)(data.CanId >> 8);
-            result[4] = (byte)(data.CanId >> 16);
-            result[5] = (byte)(data.CanId >> 24);
+            result[4] = (byte)(data.CanId);
+            result[5] = (byte)(data.CanId >> 8);
+            result[6] = (byte)(data.CanId >> 16);
+            result[7] = (byte)(data.CanId >> 24);
 
             for (int i = 0; i < data.DLC; i++)
             {
-                result[6 + i] = data.data[i];
+                result[8 + i] = data.data[i];
             }
 
             return result;

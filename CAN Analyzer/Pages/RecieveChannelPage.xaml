@@ -162,7 +162,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding DisplayName}" Header="adsf"/>
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding DisplayName}" Header="adsf"/>
                             </GridView.Columns>
                         </GridView>
                     </ListView.View>
